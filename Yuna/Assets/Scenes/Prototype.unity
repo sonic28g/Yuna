@@ -1797,7 +1797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251151918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.109116785, y: -2.2371195e-10, z: 2.4557361e-11, w: 0.994029}
+  m_LocalRotation: {x: 0.109116755, y: -0.00000002962438, z: 0.0000000032519334, w: 0.994029}
   m_LocalPosition: {x: 0, y: 3.9299998, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19339,7 +19339,7 @@ MonoBehaviour:
       Enabled: 1
       Input:
         LegacyInput: Mouse X
-        LegacyGain: 200
+        LegacyGain: 100
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -19399,10 +19399,10 @@ MonoBehaviour:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 0
-      Size: {x: 0.2, y: 0.2}
+      Size: {x: 0, y: 0}
     HardLimits:
-      Enabled: 0
-      Size: {x: 0.8, y: 0.8}
+      Enabled: 1
+      Size: {x: 0, y: 0}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
@@ -19526,7 +19526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905647899}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10911677, y: -2.2371191e-10, z: 2.4557254e-11, w: 0.994029}
+  m_LocalRotation: {x: 0.10911674, y: -0.000000029624376, z: 0.0000000032519325, w: 0.994029}
   m_LocalPosition: {x: 0, y: 3.9299998, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19556,12 +19556,12 @@ MonoBehaviour:
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
-  m_CameraRadius: 0.1
+  m_CameraRadius: 0.4
   m_Strategy: 0
   m_MaximumEffort: 4
   m_SmoothingTime: 0
-  m_Damping: 0
-  m_DampingWhenOccluded: 0
+  m_Damping: 0.1
+  m_DampingWhenOccluded: 0.1
   m_OptimalTargetDistance: 0
 --- !u!1 &2100607756
 GameObject:
