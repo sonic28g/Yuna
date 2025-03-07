@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour
     private EnemyState _currentState;
 
     // States
+    [field: SerializeField] public EnemyPatrolState PatrolState { get; private set; }
     // ...
 
 
@@ -15,7 +16,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        // TransitionToState(...);
+        TransitionToState(PatrolState);
     }
 
 
@@ -29,6 +30,7 @@ public class EnemyController : MonoBehaviour
 
     private void InitializeStates()
     {
+        PatrolState.InitState(this);
         // ...
     }
 
