@@ -4,6 +4,9 @@ public class EnemyController : MonoBehaviour
 {
     private EnemyState _currentState;
 
+    // Shared components
+    public EnemyPatrolPoints EnemyPatrolPoints { get; private set; }
+
     // States
     [field: SerializeField] public EnemyPatrolState PatrolState { get; private set; }
     // ...
@@ -11,6 +14,11 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        EnemyPatrolPoints = GetComponentInChildren<EnemyPatrolPoints>();
+
+        if (EnemyPatrolPoints == null) throw new System.Exception($"EnemyPatrolPoints is missing in {name}");
+        EnemyPatrolPoints.Init();
+        
         InitializeStates();
     }
 
