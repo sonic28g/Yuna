@@ -17,7 +17,6 @@ public class EnemyPatrolState : EnemyState
     public override void EnterState(EnemyController enemy)
     {
         // Move to the closest point
-        if (!hasPoints) return;
         ClosestPoint(enemy);
         MoveToCurrentPoint(enemy);
     }
