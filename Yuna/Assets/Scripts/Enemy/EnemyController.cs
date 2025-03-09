@@ -30,7 +30,10 @@ public class EnemyController : MonoBehaviour
 
     private void InitializeStates()
     {
+        if (PatrolState == null) throw new System.Exception($"PatrolState is missing in {name}");
+        PatrolState = Instantiate(PatrolState);
         PatrolState.InitState(this);
+
         // ...
     }
 
