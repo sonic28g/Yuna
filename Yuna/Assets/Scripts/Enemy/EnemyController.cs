@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
     private EnemyState _currentState;
 
     // Shared components
+    public NavMeshAgent NavAgent { get; private set; }
     public EnemyPatrolPoints EnemyPatrolPoints { get; private set; }
+    // ...
 
     // States
     [field: SerializeField] public EnemyPatrolState PatrolState { get; private set; }
@@ -14,11 +17,18 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        // Search for components
+        NavAgent = GetComponentInChildren<NavMeshAgent>();
         EnemyPatrolPoints = GetComponentInChildren<EnemyPatrolPoints>();
+
+        // Check for missing components or "invalid states" + initialization
+        if (NavAgent == null) throw new System.Exception($"NavMeshAgent is missing in {name}");
+        else if (!NavAgent.isOnNavMesh) throw new System.Exception($"NavMeshAgent is not on the NavMesh in {name}");
 
         if (EnemyPatrolPoints == null) throw new System.Exception($"EnemyPatrolPoints is missing in {name}");
         EnemyPatrolPoints.Init();
-        
+
+        // Initialize states
         InitializeStates();
     }
 

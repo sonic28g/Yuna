@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
 [CreateAssetMenu(menuName = "Yuna/Enemy/EnemyPatrolState")]
 public class EnemyPatrolState : EnemyState
@@ -8,25 +7,19 @@ public class EnemyPatrolState : EnemyState
     private int currentPointIndex = -1;
     private Vector3 currentPoint = Vector3.zero;
 
-    private NavMeshAgent _agent;
-
 
     public override void InitState(EnemyController enemy)
     {
-        _agent = enemy.GetComponentInChildren<NavMeshAgent>();
-        if (_agent == null) throw new System.Exception($"NavMeshAgent is missing in {enemy.name}");
-        else if (!_agent.isOnNavMesh) throw new System.Exception($"NavMeshAgent is not on the NavMesh in {enemy.name}");
-
         hasPoints = enemy.EnemyPatrolPoints.PatrolPoints.Length > 1;
     }
 
 
     public override void EnterState(EnemyController enemy)
     {
+        // Move to the closest point
         if (!hasPoints) return;
-
         ClosestPoint(enemy);
-        MoveToCurrentPoint();
+        MoveToCurrentPoint(enemy);
     }
 
     public override void FixedUpdateState(EnemyController enemy)
@@ -34,11 +27,10 @@ public class EnemyPatrolState : EnemyState
         // Transition to other states
         // ...
 
-        if (!hasPoints) return;
-        if (_agent.hasPath || _agent.pathStatus != NavMeshPathStatus.PathComplete) return;
-
+        // Move to the next point
+        if (!hasPoints || enemy.NavAgent.hasPath) return;
         NextPoint(enemy);
-        MoveToCurrentPoint();
+        MoveToCurrentPoint(enemy);
     }
 
 
@@ -74,8 +66,8 @@ public class EnemyPatrolState : EnemyState
     }
 
 
-    private void MoveToCurrentPoint()
+    private void MoveToCurrentPoint(EnemyController enemy)
     {
-        _agent.SetDestination(currentPoint);
+        enemy.NavAgent.SetDestination(currentPoint);
     }
 }
