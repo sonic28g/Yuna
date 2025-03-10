@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Yuna/Enemy/EnemyPatrolState")]
 public class EnemyPatrolState : EnemyState
@@ -24,6 +24,8 @@ public class EnemyPatrolState : EnemyState
     public override void FixedUpdateState(EnemyController enemy)
     {
         // Transition to other states
+        // If the enemy is dead, transition to the dead state
+        // enemy.TransitionToState(enemy.DeadState);
         // ...
 
         // Move to the next point if the current point is reached
@@ -48,11 +50,11 @@ public class EnemyPatrolState : EnemyState
     {
         Vector3[] patrolPoints = enemy.EnemyPatrolPoints.PatrolPoints;
         int patrolPointsLength = patrolPoints.Length;
-
+        
         Vector3 position = enemy.transform.position;
         float closestDistance = Mathf.Infinity;
         int closestIndex = 0;
-
+        
         for (int i = 0; i < patrolPointsLength; i++)
         {
             float distance = Vector3.Distance(position, patrolPoints[i]);
@@ -61,7 +63,7 @@ public class EnemyPatrolState : EnemyState
             closestDistance = distance;
             closestIndex = i;
         }
-
+        
         _currentPointIndex = closestIndex;
         _currentPoint = patrolPoints[_currentPointIndex];
     }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
 
     // States
     [field: SerializeField] public EnemyPatrolState PatrolState { get; private set; }
+    [field: SerializeField] public EnemyDeadState DeadState { get; private set; }
     // ...
 
 
@@ -52,6 +53,11 @@ public class EnemyController : MonoBehaviour
         PatrolState = Instantiate(PatrolState);
         PatrolState.name = $"PatrolState {name}";
         PatrolState.InitState(this);
+
+        if (DeadState == null) throw new System.Exception($"DeadState is missing in {name}");
+        DeadState = Instantiate(DeadState);
+        DeadState.name = $"DeadState {name}";
+        DeadState.InitState(this);
 
         // ...
     }
