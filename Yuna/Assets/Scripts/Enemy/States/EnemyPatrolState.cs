@@ -1,16 +1,16 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Yuna/Enemy/EnemyPatrolState")]
 public class EnemyPatrolState : EnemyState
 {
-    private bool hasPoints = false;
-    private int currentPointIndex = -1;
-    private Vector3 currentPoint = Vector3.zero;
+    private bool _hasPoints = false;
+    private int _currentPointIndex = -1;
+    private Vector3 _currentPoint = Vector3.zero;
 
 
     public override void InitState(EnemyController enemy)
     {
-        hasPoints = enemy.EnemyPatrolPoints.PatrolPoints.Length > 1;
+        _hasPoints = enemy.EnemyPatrolPoints.PatrolPoints.Length > 1;
     }
 
 
@@ -27,7 +27,7 @@ public class EnemyPatrolState : EnemyState
         // ...
 
         // Move to the next point if the current point is reached
-        if (!hasPoints) return;
+        if (!_hasPoints) return;
         if (enemy.NavAgent.hasPath || enemy.NavAgent.pathPending) return;
         
         NextPoint(enemy);
@@ -40,8 +40,8 @@ public class EnemyPatrolState : EnemyState
         Vector3[] patrolPoints = enemy.EnemyPatrolPoints.PatrolPoints;
         int patrolPointsLength = patrolPoints.Length;
 
-        currentPointIndex = (currentPointIndex + 1) % patrolPointsLength;
-        currentPoint = patrolPoints[currentPointIndex];
+        _currentPointIndex = (_currentPointIndex + 1) % patrolPointsLength;
+        _currentPoint = patrolPoints[_currentPointIndex];
     }
 
     private void ClosestPoint(EnemyController enemy)
@@ -56,19 +56,19 @@ public class EnemyPatrolState : EnemyState
         for (int i = 0; i < patrolPointsLength; i++)
         {
             float distance = Vector3.Distance(position, patrolPoints[i]);
-            if (distance >= closestDistance) return;
+            if (distance >= closestDistance) continue;
 
             closestDistance = distance;
             closestIndex = i;
         }
 
-        currentPointIndex = closestIndex;
-        currentPoint = patrolPoints[currentPointIndex];
+        _currentPointIndex = closestIndex;
+        _currentPoint = patrolPoints[_currentPointIndex];
     }
 
 
     private void MoveToCurrentPoint(EnemyController enemy)
     {
-        enemy.NavAgent.SetDestination(currentPoint);
+        enemy.NavAgent.SetDestination(_currentPoint);
     }
 }

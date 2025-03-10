@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
@@ -50,6 +50,7 @@ public class EnemyController : MonoBehaviour
     {
         if (PatrolState == null) throw new System.Exception($"PatrolState is missing in {name}");
         PatrolState = Instantiate(PatrolState);
+        PatrolState.name = $"PatrolState {name}";
         PatrolState.InitState(this);
 
         // ...
