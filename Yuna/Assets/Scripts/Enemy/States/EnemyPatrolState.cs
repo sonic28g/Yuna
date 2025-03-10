@@ -26,8 +26,10 @@ public class EnemyPatrolState : EnemyState
         // Transition to other states
         // ...
 
-        // Move to the next point
-        if (!hasPoints || enemy.NavAgent.hasPath) return;
+        // Move to the next point if the current point is reached
+        if (!hasPoints) return;
+        if (enemy.NavAgent.hasPath || enemy.NavAgent.pathPending) return;
+        
         NextPoint(enemy);
         MoveToCurrentPoint(enemy);
     }
