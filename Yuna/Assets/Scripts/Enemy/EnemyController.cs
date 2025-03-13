@@ -33,11 +33,7 @@ public class EnemyController : MonoBehaviour
         InitializeStates();
     }
 
-    private void Start()
-    {
-        TransitionToState(PatrolState);
-    }
-
+    private void Start() => TransitionToState(PatrolState);
 
     public void TransitionToState(EnemyState state)
     {
@@ -49,18 +45,21 @@ public class EnemyController : MonoBehaviour
 
     private void InitializeStates()
     {
-        if (PatrolState == null) throw new System.Exception($"PatrolState is missing in {name}");
-        PatrolState = Instantiate(PatrolState);
-        PatrolState.name = $"PatrolState {name}";
-        PatrolState.InitState(this);
-
-        if (DeadState == null) throw new System.Exception($"DeadState is missing in {name}");
-        DeadState = Instantiate(DeadState);
-        DeadState.name = $"DeadState {name}";
-        DeadState.InitState(this);
-
+        PatrolState = InitializeState(PatrolState);
+        DeadState = InitializeState(DeadState);
         // ...
     }
+
+    private T InitializeState<T>(T state) where T : EnemyState
+    {
+        if (state == null) throw new System.Exception($"{state.GetType().Name} is missing in {name}");
+
+        T newState = Instantiate(state);
+        newState.name = $"{state.name} - {name}";
+        newState.InitState(this);
+        return newState;
+    }
+
 
     private void Update()
     {

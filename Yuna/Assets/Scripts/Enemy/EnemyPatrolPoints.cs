@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EnemyPatrolPoints : MonoBehaviour
 {
+    [SerializeField] private bool _showGizmos = true;
+
     public Vector3[] PatrolPoints { get; private set; }
     private bool isInitialized = false;
 
@@ -23,6 +25,8 @@ public class EnemyPatrolPoints : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (!_showGizmos) return;
+
         // Get the patrol points from the transform array
         Vector3[] patrolPoints = PatrolPoints;
         if (!isInitialized)
