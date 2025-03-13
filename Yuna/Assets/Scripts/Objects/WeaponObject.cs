@@ -2,11 +2,20 @@ using UnityEngine;
 
 public class WeaponObject : InteractableObject
 {
+    public WeaponData weaponData; // Dados da arma (ScriptableObject)
+    public int amount; // Quantidade de munição que este objeto dá
+
     public override void Interact()
     {
-        Debug.Log("Pegaste a arma: " + objectName);
-        UIManager.instance.ShowPickupText(objectName);
+        Debug.Log("Pegaste a arma: " + weaponData.weaponName);
+        
+        // Adiciona munição ao inventário
+        InventoryManager.instance.AddAmmo(weaponData.weaponName, amount);
+        
+        // Mostra mensagem na UI
+        UIManager.instance.ShowPickupText(weaponData.weaponName);
 
+        // Destroi o objeto do mundo
         Destroy(gameObject);
     }
 }
