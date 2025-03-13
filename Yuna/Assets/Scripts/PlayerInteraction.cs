@@ -6,26 +6,33 @@ public class PlayerInteraction : MonoBehaviour
     public Transform playerPosition;
     public LayerMask interactableLayer;
 
+    private InteractableObject nearbyObject = null;
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        DetectNearbyObject();
+        
+        if (Input.GetKeyDown(KeyCode.E) && nearbyObject != null)
         {
-            InteractWithObject();
+            nearbyObject.Interact();
         }
     }
 
-    private void InteractWithObject()
+    private void DetectNearbyObject()
     {
         Collider[] hitColliders = Physics.OverlapSphere(playerPosition.position, interactionRange, interactableLayer);
-        
-        foreach (Collider hitCollider in hitColliders)
+
+        if (hitColliders.Length > 0)
         {
-            InteractableObject interactable = hitCollider.GetComponent<InteractableObject>();
-            if (interactable != null)
+            nearbyObject = hitColliders[0].GetComponent<InteractableObject>();
+            if (nearbyObject != null)
             {
-                interactable.Interact();
+                UIManager.instance.ShowNearbyText(true);
                 return;
             }
         }
+
+        nearbyObject = null;
+        UIManager.instance.ShowNearbyText(false);
     }
 }
