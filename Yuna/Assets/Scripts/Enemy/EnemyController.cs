@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     // Shared components
     public NavMeshAgent NavAgent { get; private set; }
     public EnemyPatrolPoints EnemyPatrolPoints { get; private set; }
+    public EnemyHealth EnemyHealth { get; private set; }
     // ...
 
     // States
@@ -21,6 +22,7 @@ public class EnemyController : MonoBehaviour
         // Search for components
         NavAgent = GetComponentInChildren<NavMeshAgent>();
         EnemyPatrolPoints = GetComponentInChildren<EnemyPatrolPoints>();
+        EnemyHealth = GetComponentInChildren<EnemyHealth>();
 
         // Check for missing components or "invalid states" + initialization
         if (NavAgent == null) throw new System.Exception($"NavMeshAgent is missing in {name}");
@@ -29,11 +31,15 @@ public class EnemyController : MonoBehaviour
         if (EnemyPatrolPoints == null) throw new System.Exception($"EnemyPatrolPoints is missing in {name}");
         EnemyPatrolPoints.Init();
 
+        if (EnemyHealth == null) throw new System.Exception($"EnemyHealth is missing in {name}");
+        else EnemyHealth.OnDeath += OnDeath;
+
         // Initialize states
         InitializeStates();
     }
 
     private void Start() => TransitionToState(PatrolState);
+    private void OnDeath() => TransitionToState(DeadState);
 
     public void TransitionToState(EnemyState state)
     {

@@ -24,8 +24,6 @@ public class EnemyPatrolState : EnemyState
     public override void FixedUpdateState(EnemyController enemy)
     {
         // Transition to other states
-        // If the enemy is dead, transition to the dead state
-        // enemy.TransitionToState(enemy.DeadState);
         // ...
 
         // Move to the next point if the current point is reached
