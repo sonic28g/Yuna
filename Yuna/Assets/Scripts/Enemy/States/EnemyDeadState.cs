@@ -12,10 +12,12 @@ public class EnemyDeadState : EnemyState
 
         _enable = enemy.enabled;
         enemy.enabled = false;
+        enemy.PlayerDetection.enabled = false;
     }
 
     public override void ExitState(EnemyController enemy)
     {
         enemy.enabled = _enable;
+        enemy.PlayerDetection.enabled = _enable;
     }
 }
