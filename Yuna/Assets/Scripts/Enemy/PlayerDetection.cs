@@ -13,9 +13,10 @@ public class PlayerDetection : MonoBehaviour
     [SerializeField] private string _playerTag = "Player";
     private Transform _playerTransform;
 
-    public event Action<bool, bool> OnDetectionChanged; // isDetected, isTooClose
+    public event Action<bool, bool, Vector3?> OnDetectionChanged; // isDetected, isTooClose, HitPoint
     public bool WasDetected { get; private set; } = false;
     public bool WasTooClose { get; private set; } = false;
+    public Vector3? HitPoint { get; private set; } = null;
 
     [Header("Vision Settings")]
     [SerializeField] private bool _showFOVGizmos = true;
@@ -52,7 +53,7 @@ public class PlayerDetection : MonoBehaviour
         bool isDetected = CanSeePlayer(out Vector3? hitPoint);
         bool isTooClose = PlayerTooClose(hitPoint);
         
-        UpdateDetectionState(isDetected, isTooClose);
+        UpdateDetectionState(isDetected, isTooClose, hitPoint);
     }
 
     private bool CanSeePlayer(out Vector3? hitPoint)
@@ -89,14 +90,16 @@ public class PlayerDetection : MonoBehaviour
     }
 
 
-    private void UpdateDetectionState(bool isDetected, bool isTooClose)
+    private void UpdateDetectionState(bool isDetected, bool isTooClose, Vector3? hitPoint)
     {
-        if (isDetected == WasDetected && isTooClose == WasTooClose) return;
+        if (isDetected == WasDetected && isTooClose == WasTooClose && hitPoint == HitPoint) return;
 
-        // Changed detected or too close
+        // Changed detected or too close or hit point
         WasDetected = isDetected;
         WasTooClose = isTooClose;
-        OnDetectionChanged?.Invoke(isDetected, isTooClose);
+        HitPoint = hitPoint;
+
+        OnDetectionChanged?.Invoke(isDetected, isTooClose, hitPoint);
     }
 
 
