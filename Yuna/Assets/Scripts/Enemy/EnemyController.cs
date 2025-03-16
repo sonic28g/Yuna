@@ -42,8 +42,11 @@ public class EnemyController : MonoBehaviour
         InitializeStates();
     }
 
+
     private void Start() => TransitionToState(PatrolState);
     private void OnDeath() => TransitionToState(DeadState);
+    private void OnDestroy() => EnemyHealth.OnDeath -= OnDeath;
+
 
     public void TransitionToState(EnemyState state)
     {
@@ -62,7 +65,7 @@ public class EnemyController : MonoBehaviour
 
     private T InitializeState<T>(T state) where T : EnemyState
     {
-        if (state == null) throw new System.Exception($"{state.GetType().Name} is missing in {name}");
+        if (state == null) throw new System.Exception($"{typeof(T)} is missing in {name}");
 
         T newState = Instantiate(state);
         newState.name = $"{state.name} - {name}";
