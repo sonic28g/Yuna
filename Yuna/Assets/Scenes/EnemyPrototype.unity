@@ -800,7 +800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2204,7 +2204,7 @@ Transform:
   m_GameObject: {fileID: 251151918}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17487976, y: -0.014732635, z: 0.0026170663, w: 0.98447615}
-  m_LocalPosition: {x: 0, y: 4.34, z: -4.5}
+  m_LocalPosition: {x: 0, y: 4.34, z: -9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11176,7 +11176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efdb20fe87c673a4e99fa3db0731fbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showGizmos: 1
+  _showGizmos: 0
 --- !u!43 &1440036561
 Mesh:
   m_ObjectHideFlags: 0
@@ -12295,6 +12295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PatrolState>k__BackingField: {fileID: 11400000, guid: a4da3b1e1f50cf34b8bc424773ac2a56, type: 2}
   <DeadState>k__BackingField: {fileID: 11400000, guid: abab8444c6f63baf59b385860dfe62f3, type: 2}
+  <ChaseState>k__BackingField: {fileID: 11400000, guid: 04a5fc62322aa1e41b779133bc4b4213, type: 2}
 --- !u!95 &1573252446
 Animator:
   serializedVersion: 7
@@ -12363,6 +12364,7 @@ MonoBehaviour:
   _showDistanceGizmos: 1
   _maxVisionDistance: 6
   _maxCloseDistance: 4
+  _showDetectionGizmos: 0
   _detectionLayer:
     serializedVersion: 2
     m_Bits: 320
@@ -21951,7 +21953,7 @@ Transform:
   m_GameObject: {fileID: 1905647899}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17487976, y: -0.014732632, z: 0.002617066, w: 0.98447615}
-  m_LocalPosition: {x: 0, y: 4.34, z: -4.5}
+  m_LocalPosition: {x: 0, y: 4.34, z: -9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22251,7 +22253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efdb20fe87c673a4e99fa3db0731fbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showGizmos: 1
+  _showGizmos: 0
 --- !u!1 &1962955317
 GameObject:
   m_ObjectHideFlags: 0
@@ -24589,6 +24591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PatrolState>k__BackingField: {fileID: 11400000, guid: a4da3b1e1f50cf34b8bc424773ac2a56, type: 2}
   <DeadState>k__BackingField: {fileID: 11400000, guid: abab8444c6f63baf59b385860dfe62f3, type: 2}
+  <ChaseState>k__BackingField: {fileID: 11400000, guid: 04a5fc62322aa1e41b779133bc4b4213, type: 2}
 --- !u!195 &6774954797916167109
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -24638,6 +24641,7 @@ MonoBehaviour:
   _showDistanceGizmos: 1
   _maxVisionDistance: 6
   _maxCloseDistance: 4
+  _showDetectionGizmos: 1
   _detectionLayer:
     serializedVersion: 2
     m_Bits: 320
