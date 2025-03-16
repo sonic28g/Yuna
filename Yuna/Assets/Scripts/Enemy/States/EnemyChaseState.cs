@@ -80,12 +80,7 @@ public class EnemyChaseState : EnemyState
     {
         _timer -= Time.fixedDeltaTime;
 
-        if (_timer <= 0f)
-        {
-            // enemy.TransitionToState(enemy.FoundState);
-            // DeadState for now...
-            enemy.TransitionToState(enemy.DeadState);
-        }
+        if (_timer <= 0f) enemy.TransitionToState(enemy.FoundState);
     }
 
 
