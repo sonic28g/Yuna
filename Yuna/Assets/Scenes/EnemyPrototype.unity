@@ -12296,6 +12296,7 @@ MonoBehaviour:
   <PatrolState>k__BackingField: {fileID: 11400000, guid: a4da3b1e1f50cf34b8bc424773ac2a56, type: 2}
   <DeadState>k__BackingField: {fileID: 11400000, guid: abab8444c6f63baf59b385860dfe62f3, type: 2}
   <ChaseState>k__BackingField: {fileID: 11400000, guid: 04a5fc62322aa1e41b779133bc4b4213, type: 2}
+  <FoundState>k__BackingField: {fileID: 11400000, guid: 79a9e60718746dc4dae76f9088fa579e, type: 2}
 --- !u!95 &1573252446
 Animator:
   serializedVersion: 7
@@ -24592,6 +24593,7 @@ MonoBehaviour:
   <PatrolState>k__BackingField: {fileID: 11400000, guid: a4da3b1e1f50cf34b8bc424773ac2a56, type: 2}
   <DeadState>k__BackingField: {fileID: 11400000, guid: abab8444c6f63baf59b385860dfe62f3, type: 2}
   <ChaseState>k__BackingField: {fileID: 11400000, guid: 04a5fc62322aa1e41b779133bc4b4213, type: 2}
+  <FoundState>k__BackingField: {fileID: 11400000, guid: 79a9e60718746dc4dae76f9088fa579e, type: 2}
 --- !u!195 &6774954797916167109
 NavMeshAgent:
   m_ObjectHideFlags: 0
