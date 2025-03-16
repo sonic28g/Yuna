@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     // States
     [field: SerializeField] public EnemyPatrolState PatrolState { get; private set; }
     [field: SerializeField] public EnemyDeadState DeadState { get; private set; }
+    [field: SerializeField] public EnemyChaseState ChaseState { get; private set; }
     // ...
 
 
@@ -60,6 +61,7 @@ public class EnemyController : MonoBehaviour
     {
         PatrolState = InitializeState(PatrolState);
         DeadState = InitializeState(DeadState);
+        ChaseState = InitializeState(ChaseState);
         // ...
     }
 

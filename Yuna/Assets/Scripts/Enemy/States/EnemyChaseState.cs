@@ -73,11 +73,7 @@ public class EnemyChaseState : EnemyState
             _phase = enemy.PlayerDetection.WasTooClose ? ChasePhase.Confirmed : ChasePhase.Chasing;
             _timer = enemy.PlayerDetection.WasTooClose ? _confirmedTime : 0f;
         }
-        else if (_timer <= 0f)
-        {
-            Debug.Log("Returning to Patrol");
-            enemy.TransitionToState(enemy.PatrolState);
-        }
+        else if (_timer <= 0f) enemy.TransitionToState(enemy.PatrolState);
     }
 
     private void HandleConfirmed(EnemyController enemy)
@@ -86,7 +82,6 @@ public class EnemyChaseState : EnemyState
 
         if (_timer <= 0f)
         {
-            Debug.Log("Player Confirmed - Transitioning to Found State");
             // enemy.TransitionToState(enemy.FoundState);
             // DeadState for now...
             enemy.TransitionToState(enemy.DeadState);

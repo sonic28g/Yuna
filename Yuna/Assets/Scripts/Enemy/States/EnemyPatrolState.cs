@@ -24,6 +24,11 @@ public class EnemyPatrolState : EnemyState
     public override void FixedUpdateState(EnemyController enemy)
     {
         // Transition to other states
+        if (enemy.PlayerDetection.WasDetected)
+        {
+            enemy.TransitionToState(enemy.ChaseState);
+            return;
+        }
         // ...
 
         // Move to the next point if the current point is reached
