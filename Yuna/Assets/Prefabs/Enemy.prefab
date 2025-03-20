@@ -1848,6 +1848,7 @@ GameObject:
   - component: {fileID: 5159046858097853340}
   - component: {fileID: 5076070742998123549}
   - component: {fileID: 5790966587338871961}
+  - component: {fileID: 1233938674602917909}
   - component: {fileID: 2332830140725461085}
   m_Layer: 9
   m_Name: Enemy
@@ -1913,6 +1914,7 @@ MonoBehaviour:
   <DeadState>k__BackingField: {fileID: 11400000, guid: abab8444c6f63baf59b385860dfe62f3, type: 2}
   <ChaseState>k__BackingField: {fileID: 11400000, guid: 04a5fc62322aa1e41b779133bc4b4213, type: 2}
   <FoundState>k__BackingField: {fileID: 11400000, guid: 79a9e60718746dc4dae76f9088fa579e, type: 2}
+  <SearchState>k__BackingField: {fileID: 0}
 --- !u!114 &5076070742998123549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1949,6 +1951,19 @@ MonoBehaviour:
   _fieldOfView: 90
   _detectionCooldown: 0.8
   _eyesTransform: {fileID: 6039743489875697275}
+--- !u!114 &1233938674602917909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511357172218980848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d779b98454235349b5fde067e268764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDetectionGizmos: 1
 --- !u!195 &2332830140725461085
 NavMeshAgent:
   m_ObjectHideFlags: 0

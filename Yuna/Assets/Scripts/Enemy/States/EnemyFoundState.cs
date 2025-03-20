@@ -15,6 +15,7 @@ public class EnemyFoundState : EnemyState
         _behaviours = new Behaviour[] {
             enemy,
             enemy.NavAgent, enemy.PlayerDetection,
+            enemy.SoundDetection,
             // ...
         };
 
