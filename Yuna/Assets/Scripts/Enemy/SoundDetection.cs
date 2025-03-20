@@ -39,30 +39,4 @@ public class SoundDetection : MonoBehaviour
         Gizmos.color = WasSoundDetected ? Color.red : Color.green;
         if (LastSoundPosition.HasValue) Gizmos.DrawWireSphere(LastSoundPosition.Value, 0.5f);
     }
-
-
-
-    // DEBUG PURPOSES
-    private void Start()
-    {
-        OnDetectionChange += (position) => Debug.Log($"Sound detected at {position}");
-        StartCoroutine(nameof(DebugSoundDetection));
-    }
-
-    private System.Collections.IEnumerator DebugSoundDetection()
-    {
-        Vector3 initialPos = transform.position;
-
-        yield return new WaitForSeconds(10f);
-        SoundDetectedInPosition(initialPos + Vector3.forward * 2);
-
-        yield return new WaitForSeconds(5f);
-        SoundDetectedInPosition(initialPos + Vector3.right * 2);
-
-        yield return new WaitForSeconds(5f);
-        SoundDetectedInPosition(initialPos + Vector3.back * 2);
-
-        yield return new WaitForSeconds(10f);
-        SoundDetectedInPosition(initialPos + Vector3.left * 2);
-    }
 }
