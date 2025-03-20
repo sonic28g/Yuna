@@ -16,9 +16,8 @@ public class SoundDetection : MonoBehaviour
     private void Awake() => _enabled = enabled;
 
     public void EnableDetection() => enabled = _enabled;
-    
     public void DisableDetection() => enabled = false;
-    public void OnDisable() => CheckedLastPosition();
+    public void OnDisable() => LastSoundPosition = _lastCheckPosition = null;
 
 
     public void SoundDetectedInPosition(Vector3 soundPosition)
@@ -37,6 +36,6 @@ public class SoundDetection : MonoBehaviour
         if (!_showDetectionGizmos) return;
 
         Gizmos.color = WasSoundDetected ? Color.red : Color.green;
-        if (LastSoundPosition.HasValue) Gizmos.DrawWireSphere(LastSoundPosition.Value, 0.5f);
+        if (LastSoundPosition.HasValue) Gizmos.DrawSphere(LastSoundPosition.Value, 0.5f);
     }
 }

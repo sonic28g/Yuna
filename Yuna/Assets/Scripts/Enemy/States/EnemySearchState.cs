@@ -20,7 +20,8 @@ public class EnemySearchState : EnemyState
         // ...
 
         // Move to the last sound position
-        enemy.NavAgent.SetDestination(enemy.SoundDetection.LastSoundPosition.Value);
+        Vector3 destination = enemy.SoundDetection.LastSoundPosition.GetValueOrDefault(enemy.NavAgent.destination);
+        enemy.NavAgent.SetDestination(destination);
 
         // Handle the current phase
         Action<EnemyController> handlePhase = _phase switch
