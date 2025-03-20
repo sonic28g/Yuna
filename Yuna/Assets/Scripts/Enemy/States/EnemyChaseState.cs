@@ -75,17 +75,9 @@ public class EnemyChaseState : EnemyState
             _phase = enemy.PlayerDetection.WasTooClose ? ChasePhase.Confirmed : ChasePhase.Chasing;
             _timer = enemy.PlayerDetection.WasTooClose ? _confirmedTime : 0f;
             enemy.SoundDetection.DisableDetection();
-            
-            // After adding the SearchState, remove return and change ifs to else ifs.
-            return;
         }
-
-        if (enemy.SoundDetection.WasSoundDetected)
-        {
-            Debug.Log($"Transition to SearchState [{name}]");
-            // enemy.TransitionToState(enemy.SearchState);
-        }
-        if (_timer <= 0f) enemy.TransitionToState(enemy.PatrolState);
+        else if (enemy.SoundDetection.WasSoundDetected) enemy.TransitionToState(enemy.SearchState);
+        else if (_timer <= 0f) enemy.TransitionToState(enemy.PatrolState);
     }
 
     private void HandleConfirmed(EnemyController enemy)

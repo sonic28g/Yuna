@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     [field: SerializeField] public EnemyDeadState DeadState { get; private set; }
     [field: SerializeField] public EnemyChaseState ChaseState { get; private set; }
     [field: SerializeField] public EnemyFoundState FoundState { get; private set; }
+    [field: SerializeField] public EnemySearchState SearchState { get; private set; }
     // ...
 
 
@@ -67,6 +68,7 @@ public class EnemyController : MonoBehaviour
         DeadState = InitializeState(DeadState);
         ChaseState = InitializeState(ChaseState);
         FoundState = InitializeState(FoundState);
+        SearchState = InitializeState(SearchState);
         // ...
     }
 

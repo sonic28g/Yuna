@@ -1914,7 +1914,7 @@ MonoBehaviour:
   <DeadState>k__BackingField: {fileID: 11400000, guid: abab8444c6f63baf59b385860dfe62f3, type: 2}
   <ChaseState>k__BackingField: {fileID: 11400000, guid: 04a5fc62322aa1e41b779133bc4b4213, type: 2}
   <FoundState>k__BackingField: {fileID: 11400000, guid: 79a9e60718746dc4dae76f9088fa579e, type: 2}
-  <SearchState>k__BackingField: {fileID: 0}
+  <SearchState>k__BackingField: {fileID: 11400000, guid: de098425aef0930408da53c485208f48, type: 2}
 --- !u!114 &5076070742998123549
 MonoBehaviour:
   m_ObjectHideFlags: 0

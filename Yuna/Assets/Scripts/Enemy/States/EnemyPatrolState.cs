@@ -31,9 +31,8 @@ public class EnemyPatrolState : EnemyState
         }
         else if (enemy.SoundDetection.WasSoundDetected)
         {
-            Debug.Log($"Transition to SearchState [{name}]");
-            // enemy.TransitionToState(enemy.SearchState);
-            // return;
+            enemy.TransitionToState(enemy.SearchState);
+            return;
         }
         // ...
 
