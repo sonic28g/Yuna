@@ -29,6 +29,12 @@ public class EnemyPatrolState : EnemyState
             enemy.TransitionToState(enemy.ChaseState);
             return;
         }
+        else if (enemy.SoundDetection.WasSoundDetected)
+        {
+            Debug.Log($"Transition to SearchState [{name}]");
+            // enemy.TransitionToState(enemy.SearchState);
+            // return;
+        }
         // ...
 
         // Move to the next point if the current point is reached
