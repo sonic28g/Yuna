@@ -169,12 +169,15 @@ namespace StarterAssets
                 // Play Aim Animation
                 Debug.Log("Play Aim Animation");
                 _animator.SetBool("Aiming", _input.isAiming);
+                _animator.SetBool("Shooting", _input.isShooting);    
+            
             }
             else
             {
                 // Stop Aim Animation
                 Debug.Log("Stop Aim Animation");
                 _animator.SetBool("Aiming", false);
+                _animator.SetBool("Shooting", false);
             }
         }
 
