@@ -110,6 +110,12 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        public GameObject kanzashi;
+        public Transform kanzashiPoint;
+
+        public GameObject followCamera;
+        public GameObject aimCamera;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -167,18 +173,27 @@ namespace StarterAssets
             if (_input.isAiming && Grounded && !_input.sprint)
             {
                 // Play Aim Animation
-                Debug.Log("Play Aim Animation");
+                // Debug.Log("Play Aim Animation");
                 _animator.SetBool("Aiming", _input.isAiming);
-                _animator.SetBool("Shooting", _input.isShooting);    
-            
+                _animator.SetBool("Shooting", _input.isShooting);
+                followCamera.SetActive(false);
+                aimCamera.SetActive(true);
             }
             else
             {
                 // Stop Aim Animation
-                Debug.Log("Stop Aim Animation");
+                // Debug.Log("Stop Aim Animation");
                 _animator.SetBool("Aiming", false);
                 _animator.SetBool("Shooting", false);
+                followCamera.SetActive(true);
+                aimCamera.SetActive(false);
             }
+        }
+
+        public void Shoot()
+        {
+            GameObject kan = Instantiate(kanzashi, kanzashiPoint.position, transform.rotation);
+            kan.GetComponent<Rigidbody>().AddForce(transform.forward * 25f, ForceMode.Impulse);
         }
 
         private void LateUpdate()
