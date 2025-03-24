@@ -27,6 +27,7 @@ namespace StarterAssets
 
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
+        public float Sensitivity = 1f;
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
@@ -113,8 +114,6 @@ namespace StarterAssets
         public GameObject kanzashi;
         public Transform kanzashiPoint;
 
-        public GameObject followCamera;
-        public GameObject aimCamera;
 
         private bool IsCurrentDeviceMouse
         {
@@ -165,29 +164,6 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
-            AimShoot();
-        }
-
-        private void AimShoot()
-        {
-            if (_input.isAiming && Grounded && !_input.sprint)
-            {
-                // Play Aim Animation
-                // Debug.Log("Play Aim Animation");
-                _animator.SetBool("Aiming", _input.isAiming);
-                _animator.SetBool("Shooting", _input.isShooting);
-                followCamera.SetActive(false);
-                aimCamera.SetActive(true);
-            }
-            else
-            {
-                // Stop Aim Animation
-                // Debug.Log("Stop Aim Animation");
-                _animator.SetBool("Aiming", false);
-                _animator.SetBool("Shooting", false);
-                followCamera.SetActive(true);
-                aimCamera.SetActive(false);
-            }
         }
 
         public void Shoot()
@@ -233,8 +209,8 @@ namespace StarterAssets
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * Sensitivity;
+                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * Sensitivity;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -422,6 +398,11 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        public void SetSensitivity(float newSensibility) 
+        {
+            Sensitivity = newSensibility;
         }
     }
 }

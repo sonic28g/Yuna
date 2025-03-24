@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aiming",
+                    "name": "Aim",
                     "type": "PassThrough",
                     "id": "b7c41d23-c783-4604-a472-c370de677599",
                     "expectedControlType": "",
@@ -243,8 +243,8 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Aiming",
+                    "groups": ";KeyboardMouse",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
