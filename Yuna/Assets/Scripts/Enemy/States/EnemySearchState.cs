@@ -11,7 +11,17 @@ public class EnemySearchState : EnemyState
     private float _timer = 0f;
 
 
-    public override void EnterState(EnemyController enemy) => _phase = SearchPhase.Searching;
+    public override void EnterState(EnemyController enemy)
+    {
+        _phase = SearchPhase.Searching;
+        enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Search);
+    }
+
+    public override void ExitState(EnemyController enemy)
+    {
+        enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Normal);
+    }
+
 
     public override void FixedUpdateState(EnemyController enemy)
     {
