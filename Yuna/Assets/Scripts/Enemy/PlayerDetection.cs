@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
 
 public class PlayerDetection : MonoBehaviour
 {
@@ -35,18 +36,27 @@ public class PlayerDetection : MonoBehaviour
 
     private void OnEnable()
     {
-        // Check detection every _detectionCooldown seconds
-        InvokeRepeating(nameof(CheckDetection), 0f, _detectionCooldown);
+        // Start checking detection
+        StartCoroutine(nameof(CheckDetection));
     }
 
     private void OnDisable()
     {
         // Stop checking detection
-        CancelInvoke(nameof(CheckDetection));
+        StopCoroutine(nameof(CheckDetection));
+    }
+
+    private IEnumerator CheckDetection()
+    {
+        while (true)
+        {
+            CheckPlayerDetection();
+            yield return new WaitForSeconds(_detectionCooldown);
+        }
     }
 
 
-    private void CheckDetection()
+    private void CheckPlayerDetection()
     {
         if (_playerTransform == null) return;
 
