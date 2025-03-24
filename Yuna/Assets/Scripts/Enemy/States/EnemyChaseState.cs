@@ -19,12 +19,15 @@ public class EnemyChaseState : EnemyState
         _phase = ChasePhase.Chasing;
         enemy.SoundDetection.DisableDetection();
         _lastKnownPosition = enemy.PlayerDetection.HitPoint.Value;
+
         enemy.PlayerDetection.OnDetectionChanged += OnDetectionChanged;
+        enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Chase);
     }
 
     public override void ExitState(EnemyController enemy)
     {
         enemy.PlayerDetection.OnDetectionChanged -= OnDetectionChanged;
+        enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Normal);
     }
 
 

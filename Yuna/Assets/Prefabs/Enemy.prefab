@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efdb20fe87c673a4e99fa3db0731fbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showGizmos: 0
+  _showGizmos: 1
 --- !u!1 &3753692074050789673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,17 +1964,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showDistanceGizmos: 1
-  _maxVisionDistance: 6
-  _maxCloseDistance: 4
   _showDetectionGizmos: 1
+  _showFOVGizmos: 1
   _detectionLayer:
     serializedVersion: 2
     m_Bits: 320
   _playerTag: Player
-  _showFOVGizmos: 1
-  _fieldOfView: 90
-  _detectionCooldown: 0.8
   _eyesTransform: {fileID: 6039743489875697275}
+  _normalParameters:
+    <MaxVisionDistance>k__BackingField: 6
+    <MaxCloseDistance>k__BackingField: 4
+    <FieldOfView>k__BackingField: 90
+    <DetectionCooldown>k__BackingField: 0.8
+  _chaseParameters:
+    <MaxVisionDistance>k__BackingField: 8
+    <MaxCloseDistance>k__BackingField: 4
+    <FieldOfView>k__BackingField: 100
+    <DetectionCooldown>k__BackingField: 0.6
+  _searchParameters:
+    <MaxVisionDistance>k__BackingField: 8
+    <MaxCloseDistance>k__BackingField: 4
+    <FieldOfView>k__BackingField: 90
+    <DetectionCooldown>k__BackingField: 0.7
 --- !u!114 &1233938674602917909
 MonoBehaviour:
   m_ObjectHideFlags: 0
