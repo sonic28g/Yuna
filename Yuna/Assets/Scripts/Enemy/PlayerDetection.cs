@@ -4,28 +4,36 @@ using System.Collections;
 
 public class PlayerDetection : MonoBehaviour
 {
-    [Header("Detection Settings")]
+    [Header("Gizmos")]
     [SerializeField] private bool _showDistanceGizmos = true;
-    [SerializeField] private float _maxVisionDistance = 10f;
-    [SerializeField] private float _maxCloseDistance = 5f;
-
     [SerializeField] private bool _showDetectionGizmos = true;
+    [SerializeField] private bool _showFOVGizmos = true;
+
+    [Header("Detection Settings")]
     [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private string _playerTag = "Player";
     private Transform _playerTransform;
+
+    [SerializeField] private Transform _eyesTransform; // Optional
+    private Transform VisionOrigin => _eyesTransform ? _eyesTransform : transform;
+
+    [Header("Detection Parameters")]
+    [SerializeField] private DetectionParameters _normalParameters;
+    [SerializeField] private DetectionParameters _chaseParameters;
+    [SerializeField] private DetectionParameters _searchParameters;
+
+    private DetectionMode _detectionMode = DetectionMode.Normal;
+    private DetectionParameters CurrentParameters => _detectionMode switch
+    {
+        DetectionMode.Chase => _chaseParameters,
+        DetectionMode.Search => _searchParameters,
+        _ => _normalParameters,
+    };
 
     public event Action<bool, bool, Vector3?> OnDetectionChanged; // isDetected, isTooClose, HitPoint
     public bool WasDetected { get; private set; } = false;
     public bool WasTooClose { get; private set; } = false;
     public Vector3? HitPoint { get; private set; } = null;
-
-    [Header("Vision Settings")]
-    [SerializeField] private bool _showFOVGizmos = true;
-    [SerializeField] private float _fieldOfView = 90f;
-    [SerializeField] private float _detectionCooldown = 1f;
-    
-    [SerializeField] private Transform _eyesTransform; // Optional
-    private Transform VisionOrigin => _eyesTransform ? _eyesTransform : transform;
 
 
     private void Awake()
@@ -46,27 +54,31 @@ public class PlayerDetection : MonoBehaviour
         StopCoroutine(nameof(CheckDetection));
     }
 
+
+    public void SetDetectionMode(DetectionMode mode) => _detectionMode = mode;
+
     private IEnumerator CheckDetection()
     {
         while (true)
         {
-            CheckPlayerDetection();
-            yield return new WaitForSeconds(_detectionCooldown);
+            DetectionParameters parameters = CurrentParameters; 
+            CheckPlayerDetection(parameters);
+            yield return new WaitForSeconds(parameters.DetectionCooldown);
         }
     }
 
 
-    private void CheckPlayerDetection()
+    private void CheckPlayerDetection(DetectionParameters parameters)
     {
         if (_playerTransform == null) return;
 
-        bool isDetected = CanSeePlayer(out Vector3? hitPoint);
-        bool isTooClose = PlayerTooClose(hitPoint);
+        bool isDetected = CanSeePlayer(parameters, out Vector3? hitPoint);
+        bool isTooClose = PlayerTooClose(parameters, hitPoint);
         
         UpdateDetectionState(isDetected, isTooClose, hitPoint);
     }
 
-    private bool CanSeePlayer(out Vector3? hitPoint)
+    private bool CanSeePlayer(DetectionParameters parameters, out Vector3? hitPoint)
     {
         Vector3 playerEyesPosition = _playerTransform.position;
         playerEyesPosition.y = VisionOrigin.position.y;
@@ -76,13 +88,13 @@ public class PlayerDetection : MonoBehaviour
 
         // Check field of view
         float angleToPlayer = Vector3.Angle(VisionOrigin.forward, directionToPlayer);
-        if (angleToPlayer > _fieldOfView / 2) return false;
+        if (angleToPlayer > parameters.FieldOfView / 2) return false;
 
         // Check line of sight w/raycast
         bool collided = Physics.Raycast(
             VisionOrigin.position, directionToPlayer,
             out RaycastHit hit,
-            _maxVisionDistance, _detectionLayer
+            parameters.MaxVisionDistance, _detectionLayer
         );
         if (!collided || !hit.collider.CompareTag(_playerTag)) return false;
 
@@ -90,13 +102,13 @@ public class PlayerDetection : MonoBehaviour
         return true;
     }
 
-    private bool PlayerTooClose(Vector3? hitPoint)
+    private bool PlayerTooClose(DetectionParameters parameters, Vector3? hitPoint)
     {
         if (!hitPoint.HasValue) return false;
 
         // Detected, check distance
         float distanceToPlayer = Vector3.Distance(VisionOrigin.position, hitPoint.Value);
-        return distanceToPlayer <= _maxCloseDistance;
+        return distanceToPlayer <= parameters.MaxCloseDistance;
     }
 
 
@@ -115,35 +127,54 @@ public class PlayerDetection : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (_showFOVGizmos) DrawFOVGizmos();
-        if (_showDistanceGizmos) DrawDistanceGizmos();
-        if (_showDetectionGizmos) DrawDetectionGizmos();
+        DetectionParameters parameters = CurrentParameters;
+
+        if (_showFOVGizmos) DrawFOVGizmos(parameters);
+        if (_showDistanceGizmos) DrawDistanceGizmos(parameters);
+        if (_showDetectionGizmos) DrawDetectionGizmos(parameters);
     }
 
-    private void DrawFOVGizmos()
+    private void DrawFOVGizmos(DetectionParameters parameters)
     {
         Gizmos.color = Color.cyan;
 
-        float halfFOV = _fieldOfView / 2;
+        float halfFOV = parameters.FieldOfView / 2;
         Vector3 leftRay = Quaternion.Euler(0, -halfFOV, 0) * VisionOrigin.forward;
         Vector3 rightRay = Quaternion.Euler(0, halfFOV, 0) * VisionOrigin.forward;
 
-        Gizmos.DrawRay(VisionOrigin.position, leftRay * _maxVisionDistance);
-        Gizmos.DrawRay(VisionOrigin.position, rightRay * _maxVisionDistance);
+        Gizmos.DrawRay(VisionOrigin.position, leftRay * parameters.MaxVisionDistance);
+        Gizmos.DrawRay(VisionOrigin.position, rightRay * parameters.MaxVisionDistance);
     }
 
-    private void DrawDistanceGizmos()
+    private void DrawDistanceGizmos(DetectionParameters parameters)
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(VisionOrigin.position, _maxVisionDistance);
+        Gizmos.DrawWireSphere(VisionOrigin.position, parameters.MaxVisionDistance);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(VisionOrigin.position, _maxCloseDistance);
+        Gizmos.DrawWireSphere(VisionOrigin.position, parameters.MaxCloseDistance);
     }
 
-    private void DrawDetectionGizmos()
+    private void DrawDetectionGizmos(DetectionParameters parameters)
     {
         Gizmos.color = !WasDetected ? Color.green : !WasTooClose ? Color.yellow : Color.red;
         Gizmos.DrawWireSphere(VisionOrigin.position, 0.5f);
+    }
+
+
+    [Serializable]
+    public class DetectionParameters
+    {
+        [field: SerializeField] public float MaxVisionDistance { get; private set; } = 10f;
+        [field: SerializeField] public float MaxCloseDistance { get; private set; } = 5f;
+        [field: SerializeField] public float FieldOfView { get; private set; } = 90f;
+        [field: SerializeField] public float DetectionCooldown { get; private set; } = 1f;
+    }
+
+    public enum DetectionMode
+    {
+        Normal,
+        Chase,
+        Search
     }
 }
