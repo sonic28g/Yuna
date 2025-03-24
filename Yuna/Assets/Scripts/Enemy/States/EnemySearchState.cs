@@ -16,7 +16,11 @@ public class EnemySearchState : EnemyState
     public override void FixedUpdateState(EnemyController enemy)
     {
         // Transition to other states
-        if (enemy.PlayerDetection.WasDetected) enemy.TransitionToState(enemy.ChaseState);
+        if (enemy.PlayerDetection.WasDetected)
+        {
+            enemy.TransitionToState(enemy.ChaseState);
+            return;
+        }
         // ...
 
         // Move to the last sound position
