@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public EnemyPatrolPoints EnemyPatrolPoints { get; private set; }
     public EnemyHealth EnemyHealth { get; private set; }
     public PlayerDetection PlayerDetection { get; private set; }
+    public SoundDetection SoundDetection { get; private set; }
     // ...
 
     // States
@@ -17,6 +18,7 @@ public class EnemyController : MonoBehaviour
     [field: SerializeField] public EnemyDeadState DeadState { get; private set; }
     [field: SerializeField] public EnemyChaseState ChaseState { get; private set; }
     [field: SerializeField] public EnemyFoundState FoundState { get; private set; }
+    [field: SerializeField] public EnemySearchState SearchState { get; private set; }
     // ...
 
 
@@ -27,6 +29,7 @@ public class EnemyController : MonoBehaviour
         EnemyPatrolPoints = GetComponentInChildren<EnemyPatrolPoints>();
         EnemyHealth = GetComponentInChildren<EnemyHealth>();
         PlayerDetection = GetComponentInChildren<PlayerDetection>();
+        SoundDetection = GetComponentInChildren<SoundDetection>();
 
         // Check for missing components or "invalid states" + initialization
         if (NavAgent == null) throw new System.Exception($"NavMeshAgent is missing in {name}");
@@ -39,6 +42,7 @@ public class EnemyController : MonoBehaviour
         else EnemyHealth.OnDeath += OnDeath;
 
         if (PlayerDetection == null) throw new System.Exception($"PlayerDetection is missing in {name}");
+        if (SoundDetection == null) throw new System.Exception($"SoundDetection is missing in {name}");
 
         // Initialize states
         InitializeStates();
@@ -54,7 +58,7 @@ public class EnemyController : MonoBehaviour
     {
         if (_currentState != null) _currentState.ExitState(this);
         _currentState = state;
-        _currentState.EnterState(this);
+        if (_currentState != null) _currentState.EnterState(this);
     }
 
 
@@ -64,6 +68,7 @@ public class EnemyController : MonoBehaviour
         DeadState = InitializeState(DeadState);
         ChaseState = InitializeState(ChaseState);
         FoundState = InitializeState(FoundState);
+        SearchState = InitializeState(SearchState);
         // ...
     }
 

@@ -3,21 +3,33 @@
 [CreateAssetMenu(menuName = "Yuna/Enemy/EnemyDeadState")]
 public class EnemyDeadState : EnemyState
 {
-    private bool _enable = false;
+    private Behaviour[] _behaviours;
+    private bool[] _enableds;
 
     public override void EnterState(EnemyController enemy)
     {
         enemy.NavAgent.isStopped = true;
         enemy.NavAgent.ResetPath();
 
-        _enable = enemy.enabled;
-        enemy.enabled = false;
-        enemy.PlayerDetection.enabled = false;
+        // Behaviours to disable
+        _behaviours = new Behaviour[] {
+            enemy,
+            enemy.NavAgent, enemy.PlayerDetection,
+            enemy.SoundDetection,
+            // ...
+        };
+
+        // Store the enabled value and disable the behaviours
+        _enableds = new bool[_behaviours.Length];
+        for (int i = 0; i < _behaviours.Length; i++)
+        {
+            _enableds[i] = _behaviours[i].enabled;
+            _behaviours[i].enabled = false;
+        }
     }
 
     public override void ExitState(EnemyController enemy)
     {
-        enemy.enabled = _enable;
-        enemy.PlayerDetection.enabled = _enable;
+        for (int i = 0; i < _behaviours.Length; i++) _behaviours[i].enabled = _enableds[i];
     }
 }

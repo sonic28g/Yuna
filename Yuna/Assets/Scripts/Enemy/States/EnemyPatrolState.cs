@@ -29,11 +29,15 @@ public class EnemyPatrolState : EnemyState
             enemy.TransitionToState(enemy.ChaseState);
             return;
         }
+        else if (enemy.SoundDetection.WasSoundDetected)
+        {
+            enemy.TransitionToState(enemy.SearchState);
+            return;
+        }
         // ...
 
         // Move to the next point if the current point is reached
-        if (!_hasPoints) return;
-        if (enemy.NavAgent.hasPath || enemy.NavAgent.pathPending) return;
+        if (!_hasPoints || enemy.NavAgent.hasPath || enemy.NavAgent.pathPending) return;
         
         NextPoint(enemy);
         MoveToCurrentPoint(enemy);
@@ -72,8 +76,5 @@ public class EnemyPatrolState : EnemyState
     }
 
 
-    private void MoveToCurrentPoint(EnemyController enemy)
-    {
-        enemy.NavAgent.SetDestination(_currentPoint);
-    }
+    private void MoveToCurrentPoint(EnemyController enemy) => enemy.NavAgent.SetDestination(_currentPoint);
 }

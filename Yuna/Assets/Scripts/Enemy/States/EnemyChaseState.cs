@@ -17,6 +17,7 @@ public class EnemyChaseState : EnemyState
     public override void EnterState(EnemyController enemy)
     {
         _phase = ChasePhase.Chasing;
+        enemy.SoundDetection.DisableDetection();
         _lastKnownPosition = enemy.PlayerDetection.HitPoint.Value;
         enemy.PlayerDetection.OnDetectionChanged += OnDetectionChanged;
     }
@@ -61,6 +62,7 @@ public class EnemyChaseState : EnemyState
         {
             _timer = _suspiciousTime;
             _phase = ChasePhase.Suspicious;
+            enemy.SoundDetection.EnableDetection();
         }
     }
 
@@ -72,7 +74,9 @@ public class EnemyChaseState : EnemyState
         {
             _phase = enemy.PlayerDetection.WasTooClose ? ChasePhase.Confirmed : ChasePhase.Chasing;
             _timer = enemy.PlayerDetection.WasTooClose ? _confirmedTime : 0f;
+            enemy.SoundDetection.DisableDetection();
         }
+        else if (enemy.SoundDetection.WasSoundDetected) enemy.TransitionToState(enemy.SearchState);
         else if (_timer <= 0f) enemy.TransitionToState(enemy.PatrolState);
     }
 
