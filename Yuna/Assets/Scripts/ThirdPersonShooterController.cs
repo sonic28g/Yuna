@@ -8,32 +8,45 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private float normalSensibility;
     [SerializeField] private float aimSensibility;
     [SerializeField] private GameObject crossHair;
+    [SerializeField] private GameObject kanzashiPrefab;
+    [SerializeField] private Transform shootPos;
 
     private StarterAssetsInputs starterAssetsInputs;
-    private ThirdPersonController thirdPersonController;
+    private ThirdPersonController _thirdPersonController;
+    private Animator _animator;
+    private bool _hasAnimator;
 
     private void Awake() {
-        thirdPersonController = gameObject.GetComponent<ThirdPersonController>();
+        _thirdPersonController = gameObject.GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
     }
 
     void Update()
-    {
-        if (starterAssetsInputs.aim)
+    {   _hasAnimator = TryGetComponent(out _animator);
+
+        if (starterAssetsInputs.aim && _hasAnimator)
         {
-            // Copia posição e rotação da câmara principal
             aimVirtualCamera.transform.position = Camera.main.transform.position;
             aimVirtualCamera.transform.rotation = Camera.main.transform.rotation;
 
-            aimVirtualCamera.SetActive(true);
-            thirdPersonController.SetSensitivity(aimSensibility);
+            aimVirtualCamera.GetComponent<CinemachineCamera>().Priority = 20;
+            _thirdPersonController.SetSensitivity(aimSensibility);
             crossHair.SetActive(true);
+            _animator.SetBool("Aiming", true);
+
+            if (starterAssetsInputs.shoot)
+            {
+                Instantiate(kanzashiPrefab);
+                starterAssetsInputs.shoot = false; // Garante que só dispara uma vez
+            }
         }
         else
         {
-            aimVirtualCamera.SetActive(false);
-            thirdPersonController.SetSensitivity(normalSensibility);
+            aimVirtualCamera.GetComponent<CinemachineCamera>().Priority = 0;
+            _thirdPersonController.SetSensitivity(normalSensibility);
             crossHair.SetActive(false);
+            _animator.SetBool("Aiming", false);
+
         }
     }
 }

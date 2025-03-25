@@ -2059,8 +2059,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251151918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.03900279, y: -0.005139836, z: 0.00020062327, w: 0.99922585}
-  m_LocalPosition: {x: -19.24, y: 2.1, z: -4.98}
+  m_LocalRotation: {x: 0.0733589, y: 0.037958782, z: -0.002794173, w: 0.99657905}
+  m_LocalPosition: {x: -19.66, y: 2.44, z: -4.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17614,10 +17614,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5d7c088409d9a40b7b09aa707777f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetOffset: {x: 0.42, y: 0.88, z: -0.36}
+  TargetOffset: {x: 0, y: 1.22, z: -0.35}
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 1, y: 0.42, z: 1}
+    PositionDamping: {x: 0, y: 0, z: 0}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
@@ -17679,7 +17679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 1
-    m_Value: 1
+    m_Value: 20
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -17716,8 +17716,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594885236}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.039002787, y: -0.0051398356, z: 0.00020062321, w: 0.9992259}
-  m_LocalPosition: {x: -19.24, y: 2.1, z: -4.98}
+  m_LocalRotation: {x: 0.07335889, y: 0.037958782, z: -0.002794173, w: 0.99657905}
+  m_LocalPosition: {x: -19.66, y: 2.44, z: -4.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21070,7 +21070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 1
-    m_Value: 0
+    m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -21107,7 +21107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905647899}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12091228, y: -0.000000001003175, z: 7.568289e-11, w: 0.9926632}
+  m_LocalRotation: {x: 0.120912276, y: -0.0000000056425087, z: 6.872911e-10, w: 0.9926632}
   m_LocalPosition: {x: -19.66, y: 2.9016593, z: -4.8986144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21640,6 +21640,8 @@ MonoBehaviour:
   normalSensibility: 0.5
   aimSensibility: 0.2
   crossHair: {fileID: 258371344}
+  kanzashiPrefab: {fileID: 8138050923530616137, guid: e0375b798096a4c46a8c01604122b662, type: 3}
+  shootPos: {fileID: 0}
 --- !u!1001 &2120218985
 PrefabInstance:
   m_ObjectHideFlags: 0
