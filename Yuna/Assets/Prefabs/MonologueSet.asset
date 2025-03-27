@@ -22,3 +22,7 @@ MonoBehaviour:
     <Text>k__BackingField: Test3 Test3 Test3
   - <Speaker>k__BackingField: 
     <Text>k__BackingField: Bye Bye Bye
+  _conditions:
+  - _conditionType: 0
+    _value: monologue0
+    _negated: 1

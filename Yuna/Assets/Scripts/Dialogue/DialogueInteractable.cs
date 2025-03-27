@@ -13,6 +13,7 @@ public class DialogueInteractable : InteractableObject
     public override void Interact()
     {
         if (DialogueManager.Instance.IsDialogueActive) return;
+        if (!dialogueSet.AreConditionsMet()) return;
 
         DialogueManager.Instance.StartDialogue(dialogueSet);
     }
