@@ -1,19 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// TODO: UI
-// using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
-    // TODO: UI
-    /*
+    [Header("Player Input Actions")]
+    [SerializeField] private string _skipDialogueAction = "DialogueSkip";
+    [SerializeField] private string _nextLineAction = "DialogueNext";
+    private PlayerInput _playerInput;
+
+    [Header("Dialogue UI")]
     [SerializeField] private GameObject _dialogueUI;
-    [SerializeField] private Text _nameText;
-    [SerializeField] private Text _dialogueText;
-    */
+    [SerializeField] private TMP_Text _speakerText;
+    [SerializeField] private TMP_Text _dialogueText;
+    // [SerializeField] private Image _portraitImage; // portrait (?)
+
     [SerializeField] private float _textSpeed = 0.25f;
 
     private readonly HashSet<string> _seenDialogues = new();
@@ -26,6 +32,32 @@ public class DialogueManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        // Disable the dialogue UI at the start
+        if (_dialogueUI != null) _dialogueUI.SetActive(false);
+
+        // Find PlayerInput 
+        _playerInput = GameObject.FindFirstObjectByType<PlayerInput>();
+        if (_playerInput == null) return;
+
+        // Subscribe to the SkipDialogue and NextLine actions (if they exist)
+        InputAction skipDialogueAction = _playerInput.actions.FindAction(_skipDialogueAction);
+        InputAction nextLineAction = _playerInput.actions.FindAction(_nextLineAction);
+
+        if (skipDialogueAction != null) skipDialogueAction.performed += _ => SkipDialogue();
+        if (nextLineAction != null) nextLineAction.performed += _ => NextLine();
+    }
+
+    private void OnDestroy()
+    {
+        if (_playerInput == null) return;
+        
+        // Unsubscribe from the SkipDialogue and NextLine actions (if they exist)
+        InputAction skipDialogueAction = _playerInput.actions.FindAction(_skipDialogueAction);
+        InputAction nextLineAction = _playerInput.actions.FindAction(_nextLineAction);
+        
+        if (skipDialogueAction != null) skipDialogueAction.performed -= _ => SkipDialogue();
+        if (nextLineAction != null) nextLineAction.performed -= _ => NextLine();
     }
 
     public bool HasSeenDialogue(string dialogueId) => _seenDialogues.Contains(dialogueId);
@@ -35,45 +67,41 @@ public class DialogueManager : MonoBehaviour
     {
         if (IsDialogueActive) return;
 
+        // Add the dialogue to the seen dialogues list
         IsDialogueActive = true;
         _seenDialogues.Add(dialogueSet.DialogueId);
 
+        // Clear the dialogue queue and add the new dialogue lines
         _dialogueQueue.Clear();
         dialogueSet.GetLines().ForEach(line => _dialogueQueue.Enqueue(line));
 
-        // TODO: UI
-        // _dialogueUI.SetActive(true);
-        Debug.Log("DialogueUI should be active");
-
+        // Enable the dialogue UI and display the first (next) line
+        if (_dialogueUI != null) _dialogueUI.SetActive(true);
         DisplayNextLine();
     }
 
     private void EndDialogue()
     {
+        // Disable the dialogue UI
         IsDialogueActive = false;
-        // TODO: UI
-        // _dialogueUI.SetActive(false);
-        Debug.Log("DialogueUI should be inactive");
+        if (_dialogueUI != null) _dialogueUI.SetActive(false);
     }
 
-
-    private void Update()
-    {
-        if (!IsDialogueActive) return;
-
-        // TODO: New Input System
-        if (Input.GetKeyDown(KeyCode.S)) SkipDialogue();
-        else if (Input.GetKeyDown(KeyCode.Space)) NextLine();
-    }
 
     public void SkipDialogue()
     {
+        if (!IsDialogueActive) return;
+
+        // Stop the TypeCurrentText coroutine and end the dialogue
         StopAllCoroutines();
         EndDialogue();
     }
 
     public void NextLine()
     {
+        if (!IsDialogueActive) return;
+
+        // Stop the TypeCurrentText coroutine and display the next line
         StopAllCoroutines();
         DisplayNextLine();
     }
@@ -81,34 +109,33 @@ public class DialogueManager : MonoBehaviour
 
     private void DisplayNextLine()
     {
+        // If the dialogue queue is empty, end the dialogue
         if (_dialogueQueue.Count == 0)
         {
             EndDialogue();
             return;
         }
 
+        // Get the next line from the dialogue queue
         DialogueLine line = _dialogueQueue.Dequeue();
-
-        // TODO: UI
-        // _nameText.text = line.Speaker;
-        Debug.Log(line.Speaker + ": " + line.Text);
-
-        StartCoroutine(TypeCurrentText(line.Text));
+        
+        // Display the line's portrait (?), speaker and text (w/TypeCurrentText coroutine)
+        // if (_portraitImage != null)
+        // {
+        //     _portraitImage.sprite = line.Portrait;
+        //     _portraitImage.enabled = line.Portrait != null;
+        // }
+        if (_speakerText != null) _speakerText.text = line.Speaker;
+        if (_dialogueText != null) StartCoroutine(TypeCurrentText(line.Text));
     }
 
     private IEnumerator TypeCurrentText(string currentText)
     {
-        // TODO: UI
-        // _dialogueText.text = "";
-        string txt = "";
-
+        // Clear the dialogue text and type the current text letter by letter w/delay
+        _dialogueText.text = "";
         foreach (char letter in currentText)
         {
-            // TODO: UI
-            // _dialogueText.text += letter;
-            txt += letter;
-            Debug.Log(txt);
-
+            _dialogueText.text += letter;
             yield return new WaitForSeconds(_textSpeed);
         }
     }
