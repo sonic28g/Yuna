@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
+// using UnityEngine.UI;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
@@ -37,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         if (_dialogueUI != null) _dialogueUI.SetActive(false);
 
         // Find PlayerInput 
-        _playerInput = GameObject.FindFirstObjectByType<PlayerInput>();
+        _playerInput = FindFirstObjectByType<PlayerInput>();
         if (_playerInput == null) return;
 
         // Subscribe to the SkipDialogue and NextLine actions (if they exist)
