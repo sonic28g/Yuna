@@ -29,7 +29,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             aimVirtualCamera.transform.position = Camera.main.transform.position;
             aimVirtualCamera.transform.rotation = Camera.main.transform.rotation;
 
-            aimVirtualCamera.GetComponent<CinemachineCamera>().Priority = 20;
+            aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
             _thirdPersonController.SetSensitivity(aimSensibility);
             crossHair.SetActive(true);
             _animator.SetBool("Aiming", true);
@@ -37,12 +37,12 @@ public class ThirdPersonShooterController : MonoBehaviour
             if (starterAssetsInputs.shoot)
             {
                 Instantiate(kanzashiPrefab);
-                starterAssetsInputs.shoot = false; // Garante que só dispara uma vez
+                starterAssetsInputs.shoot = false;
             }
         }
         else
         {
-            aimVirtualCamera.GetComponent<CinemachineCamera>().Priority = 0;
+            aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 0;
             _thirdPersonController.SetSensitivity(normalSensibility);
             crossHair.SetActive(false);
             _animator.SetBool("Aiming", false);
