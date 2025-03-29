@@ -144,7 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d680b5699430947fe8b87ea081622b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: 
+  objectName: Kanzashi
+  weaponData: {fileID: 11400000, guid: 6d70fce43355ae349b30bfe747a3e3f8, type: 2}
+  amount: 1
 --- !u!54 &3771416543730334679
 Rigidbody:
   m_ObjectHideFlags: 0
