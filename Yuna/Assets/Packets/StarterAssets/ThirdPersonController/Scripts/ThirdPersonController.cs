@@ -166,12 +166,6 @@ namespace StarterAssets
             Move();
         }
 
-        public void Shoot()
-        {
-            GameObject kan = Instantiate(kanzashi, kanzashiPoint.position, transform.rotation);
-            kan.GetComponent<Rigidbody>().AddForce(transform.forward * 25f, ForceMode.Impulse);
-        }
-
         private void LateUpdate()
         {
             CameraRotation();

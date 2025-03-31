@@ -26,17 +26,11 @@ public class ThirdPersonShooterController : MonoBehaviour
     }
 
     void Update()
-    {   _hasAnimator = TryGetComponent(out _animator);
+    {   
+        _hasAnimator = TryGetComponent(out _animator);
 
-        Vector3 mouseWorldPosition = Vector3.zero;
-
-        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-
-        if(Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
-        {
-            mouseWorldPosition = raycastHit.point;
-        }
+        // Obtém a direção da mira (da câmara)
+        Vector3 aimDir = Camera.main.transform.forward;
 
         if (starterAssetsInputs.aim && _hasAnimator)
         {
@@ -46,24 +40,19 @@ public class ThirdPersonShooterController : MonoBehaviour
             crossHair.SetActive(true);
             _animator.SetBool("Aiming", true);
 
-            // Faz a personagem rodar na mesma direção que a câmara
             transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
 
             if (starterAssetsInputs.shoot)
             {
-                Vector3 aimDir = (mouseWorldPosition - spawnProjectilePosition.position).normalized;
+                // Instancia o projetil na posição correta e na direção da mira
+                Transform projectileTransform = Instantiate(pfProjectile, spawnProjectilePosition.position, Quaternion.LookRotation(aimDir));
 
-                Transform projectileTransform = Instantiate(pfProjectile, spawnProjectilePosition.position, Quaternion.identity);
-                
-                // Ajusta a rotação do projetil para seguir a direção do tiro
-                projectileTransform.forward = aimDir;
-
-                // Aplica velocidade ao Rigidbody do projetil (se tiver um)
+                // Aplica velocidade ao projetil, se tiver um Rigidbody
                 Rigidbody rb = projectileTransform.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
-                    float projectileSpeed = 20f;
-                    rb.linearVelocity = aimDir * projectileSpeed;
+                    float projectileSpeed = 30f;
+                    rb.linearVelocity = aimDir * projectileSpeed; // Define a velocidade na direção da mira
                 }
 
                 starterAssetsInputs.shoot = false;
@@ -76,6 +65,6 @@ public class ThirdPersonShooterController : MonoBehaviour
             crossHair.SetActive(false);
             _animator.SetBool("Aiming", false);
         }
-
     }
+
 }
