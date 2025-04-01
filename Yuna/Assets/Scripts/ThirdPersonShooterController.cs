@@ -32,18 +32,19 @@ public class ThirdPersonShooterController : MonoBehaviour
         // Obtém a direção da mira (da câmara)
         Vector3 aimDir = Camera.main.transform.forward;
 
-        if (starterAssetsInputs.aim && _hasAnimator)
+        if (starterAssetsInputs.aim && _hasAnimator )
         {
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
             _thirdPersonController.SetSensitivity(aimSensibility);
             
             crossHair.SetActive(true);
-            _animator.SetBool("Aiming", true);
+            //_animator.SetBool("Aiming", true);
 
-            transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+            //transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
 
-            if (starterAssetsInputs.shoot)
+            if (starterAssetsInputs.shoot && InventoryManager.instance.HasAmmo("Kanzashi"))
             {
+                InventoryManager.instance.UseAmmo("Kanzashi");
                 // Instancia o projetil na posição correta e na direção da mira
                 Transform projectileTransform = Instantiate(pfProjectile, spawnProjectilePosition.position, Quaternion.LookRotation(aimDir));
 
@@ -51,7 +52,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 Rigidbody rb = projectileTransform.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
-                    float projectileSpeed = 30f;
+                    float projectileSpeed = 20f;
                     rb.linearVelocity = aimDir * projectileSpeed; // Define a velocidade na direção da mira
                 }
 
@@ -63,7 +64,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 0;
             _thirdPersonController.SetSensitivity(normalSensibility);
             crossHair.SetActive(false);
-            _animator.SetBool("Aiming", false);
+            //_animator.SetBool("Aiming", false);
         }
     }
 

@@ -24,9 +24,4 @@ public class WeaponObject : InteractableObject
     private void Awake() {
         bulletRigidBody = GetComponent<Rigidbody>();
     }
-
-    private void Start() {
-        float speed = 20f;
-        bulletRigidBody.linearVelocity = transform.forward * speed;
-    }
 }

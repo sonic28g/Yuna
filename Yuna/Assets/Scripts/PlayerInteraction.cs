@@ -1,20 +1,26 @@
+using StarterAssets;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    private StarterAssetsInputs starterAssetsInputs;
     public float interactionRange = 2f;
     public Transform playerPosition;
     public LayerMask interactableLayer;
 
     private InteractableObject nearbyObject = null;
 
+   private void Awake() {
+        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+    }
     private void Update()
     {
         DetectNearbyObject();
         
-        if (Input.GetKeyDown(KeyCode.E) && nearbyObject != null)
+        if (starterAssetsInputs.interact && nearbyObject != null)
         {
             nearbyObject.Interact();
+            starterAssetsInputs.interact = false;
         }
     }
 
