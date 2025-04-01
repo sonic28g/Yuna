@@ -40,7 +40,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             crossHair.SetActive(true);
             //_animator.SetBool("Aiming", true);
 
-            //transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+            transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
 
             if (starterAssetsInputs.shoot && InventoryManager.instance.HasAmmo("Kanzashi"))
             {
