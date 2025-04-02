@@ -32,13 +32,13 @@ public class ThirdPersonShooterController : MonoBehaviour
         // Obtém a direção da mira (da câmara)
         Vector3 aimDir = Camera.main.transform.forward;
 
-        if (starterAssetsInputs.aim && _hasAnimator )
+        if (starterAssetsInputs.aim && _hasAnimator && !starterAssetsInputs.sprint)
         {
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
             _thirdPersonController.SetSensitivity(aimSensibility);
             
             crossHair.SetActive(true);
-            //_animator.SetBool("Aiming", true);
+            _animator.SetBool("Aiming", starterAssetsInputs.aim);
 
             transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
 
@@ -64,7 +64,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 0;
             _thirdPersonController.SetSensitivity(normalSensibility);
             crossHair.SetActive(false);
-            //_animator.SetBool("Aiming", false);
+            _animator.SetBool("Aiming", false);
         }
     }
 
