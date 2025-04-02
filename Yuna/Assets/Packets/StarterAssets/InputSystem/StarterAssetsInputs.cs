@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -15,6 +16,9 @@ namespace StarterAssets
 		public bool aim;
 		public bool shoot;
 		public bool interact;
+
+		public Action DialogueSkip;
+        public Action DialogueNext;
 
         [Header("Movement Settings")]
 		public bool analogMovement;
@@ -50,20 +54,20 @@ namespace StarterAssets
 		public void OnAim(InputValue value)
 		{
 			AimInput(value.isPressed);
-
 		}
 
 		public void OnShoot(InputValue value)
 		{
 			ShootInput(value.isPressed);
-
 		}
 
 		public void OnInteract(InputValue value)
 		{
 			InteractInput(value.isPressed);
-
 		}
+
+		public void OnDialogueSkip(InputValue _) => DialogueSkip?.Invoke();
+        public void OnDialogueNext(InputValue _) => DialogueNext?.Invoke();
 #endif
 
 

@@ -20618,8 +20618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b680941ddb797fb4a8b09873d135e619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skipDialogueAction: DialogueSkip
-  _nextLineAction: DialogueNext
   _dialogueUI: {fileID: 1466101622}
   _speakerText: {fileID: 549068710}
   _dialogueText: {fileID: 1162211938}

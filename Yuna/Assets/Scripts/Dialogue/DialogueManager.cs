@@ -1,18 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 // using UnityEngine.UI;
 using TMPro;
+using StarterAssets;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
-
-    [Header("Player Input Actions")]
-    [SerializeField] private string _skipDialogueAction = "DialogueSkip";
-    [SerializeField] private string _nextLineAction = "DialogueNext";
-    private PlayerInput _playerInput;
+    private StarterAssetsInputs _inputs;
 
     [Header("Dialogue UI")]
     [SerializeField] private GameObject _dialogueUI;
@@ -36,28 +32,22 @@ public class DialogueManager : MonoBehaviour
         // Disable the dialogue UI at the start
         if (_dialogueUI != null) _dialogueUI.SetActive(false);
 
-        // Find PlayerInput 
-        _playerInput = FindFirstObjectByType<PlayerInput>();
-        if (_playerInput == null) return;
+        // Find StarterAssetsInputs 
+        _inputs = FindFirstObjectByType<StarterAssetsInputs>();
+        if (_inputs == null) return;
 
-        // Subscribe to the SkipDialogue and NextLine actions (if they exist)
-        InputAction skipDialogueAction = _playerInput.actions.FindAction(_skipDialogueAction);
-        InputAction nextLineAction = _playerInput.actions.FindAction(_nextLineAction);
-
-        if (skipDialogueAction != null) skipDialogueAction.performed += _ => SkipDialogue();
-        if (nextLineAction != null) nextLineAction.performed += _ => NextLine();
+        // Subscribe to the SkipDialogue and NextLine actions
+        _inputs.DialogueSkip += SkipDialogue;
+        _inputs.DialogueNext += NextLine;
     }
 
     private void OnDestroy()
     {
-        if (_playerInput == null) return;
-        
-        // Unsubscribe from the SkipDialogue and NextLine actions (if they exist)
-        InputAction skipDialogueAction = _playerInput.actions.FindAction(_skipDialogueAction);
-        InputAction nextLineAction = _playerInput.actions.FindAction(_nextLineAction);
-        
-        if (skipDialogueAction != null) skipDialogueAction.performed -= _ => SkipDialogue();
-        if (nextLineAction != null) nextLineAction.performed -= _ => NextLine();
+        if (_inputs == null) return;
+
+        // Unsubscribe from the SkipDialogue and NextLine actions
+        _inputs.DialogueSkip -= SkipDialogue;
+        _inputs.DialogueNext -= NextLine;
     }
 
     public bool HasSeenDialogue(string dialogueId) => _seenDialogues.Contains(dialogueId);
