@@ -22,7 +22,7 @@ public class Weapon : MonoBehaviour
 
         if (weaponData.projectilePrefab != null)
         {
-            Instantiate(weaponData.projectilePrefab, firePoint.position, firePoint.rotation);
+            //Instantiate(weaponData.projectilePrefab, firePoint.position, firePoint.rotation);
         }
 
         lastAttackTime = Time.time;
