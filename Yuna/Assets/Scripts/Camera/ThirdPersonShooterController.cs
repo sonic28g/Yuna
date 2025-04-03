@@ -66,6 +66,8 @@ public class ThirdPersonShooterController : MonoBehaviour
             crossHair.SetActive(false);
             _animator.SetBool("Aiming", false);
         }
+
+
     }
 
 }
