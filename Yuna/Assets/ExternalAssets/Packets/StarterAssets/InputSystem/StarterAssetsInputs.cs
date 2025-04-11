@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
-#endif
+using System.Collections.Generic;
 
 namespace StarterAssets
 {
@@ -27,7 +26,30 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
-#if ENABLE_INPUT_SYSTEM
+		[Header("Pause")]
+		[SerializeField] private string _playerActionMap = "Player";
+		[SerializeField] private string _pauseActionMap = "UI";
+		private PlayerInput _playerInput;
+		private readonly List<object> _stoppers = new();
+		
+
+		private void Awake() => _playerInput = GetComponent<PlayerInput>();
+
+		public void ResumeInput(object stopper)
+		{
+			// Remove the stopper from the list + Resume the input if there is no stoppers
+			_stoppers.Remove(stopper);
+			if (_stoppers.Count == 0) _playerInput.SwitchCurrentActionMap(_playerActionMap);
+		}
+
+		public void PauseInput(object stopper)
+		{
+			// Add the stopper to the list + Pause the input
+			_stoppers.Add(stopper);
+			_playerInput.SwitchCurrentActionMap(_pauseActionMap);
+		}
+
+
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
@@ -68,7 +90,6 @@ namespace StarterAssets
 
 		public void OnDialogueSkip(InputValue _) => DialogueSkip?.Invoke();
         public void OnDialogueNext(InputValue _) => DialogueNext?.Invoke();
-#endif
 
 
         public void MoveInput(Vector2 newMoveDirection)
