@@ -53,9 +53,10 @@ public class DialogueManager : MonoBehaviour
     public bool HasSeenDialogue(string dialogueId) => _seenDialogues.Contains(dialogueId);
 
 
-    public void StartDialogue(DialogueSet dialogueSet)
+    public bool StartDialogue(DialogueSet dialogueSet)
     {
-        if (IsDialogueActive) return;
+        if (IsDialogueActive) return false;
+        if (dialogueSet == null || !dialogueSet.AreConditionsMet()) return false;
 
         // Pause input
         if (_inputs != null) _inputs.PauseInput(this);
@@ -71,6 +72,8 @@ public class DialogueManager : MonoBehaviour
         // Enable the dialogue UI and display the first (next) line
         if (_dialogueUI != null) _dialogueUI.SetActive(true);
         DisplayNextLine();
+
+        return true;
     }
 
     private void EndDialogue()
