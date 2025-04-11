@@ -57,6 +57,9 @@ public class DialogueManager : MonoBehaviour
     {
         if (IsDialogueActive) return;
 
+        // Pause input
+        if (_inputs != null) _inputs.PauseInput(this);
+
         // Add the dialogue to the seen dialogues list
         IsDialogueActive = true;
         _seenDialogues.Add(dialogueSet.DialogueId);
@@ -75,6 +78,9 @@ public class DialogueManager : MonoBehaviour
         // Disable the dialogue UI
         IsDialogueActive = false;
         if (_dialogueUI != null) _dialogueUI.SetActive(false);
+
+        // Resume input
+        if (_inputs != null) _inputs.ResumeInput(this);
     }
 
 
