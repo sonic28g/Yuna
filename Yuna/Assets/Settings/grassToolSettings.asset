@@ -24,7 +24,7 @@ MonoBehaviour:
   layerFading: 0100000000000000
   VertexColorSettings: 0
   VertexFade: 0
-  sizeWidth: 0.483
+  sizeWidth: 0.435
   sizeLength: 1.162
   adjustWidth: -0.493
   adjustLength: -0.365
