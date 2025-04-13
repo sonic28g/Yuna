@@ -34,20 +34,20 @@ MonoBehaviour:
   rangeR: 0
   rangeG: 0
   rangeB: 0
-  AdjustedColor: {r: 0.3272072, g: 0.4056604, b: 0.3431884, a: 0.50980395}
+  AdjustedColor: {r: 0.039649345, g: 0.31132078, b: 0.1052252, a: 0.7294118}
   paintBlockMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2039
   hitMask:
     serializedVersion: 2
     m_Bits: 1
   paintMask:
     serializedVersion: 2
     m_Bits: 1
-  brushSize: 4.5
+  brushSize: 2.7
   brushFalloffSize: 0.8
   Flow: 0.1
   density: 0.1
-  normalLimit: 0
+  normalLimit: 0.14
   grassAmountToGenerate: 100000
   generationDensity: 1
