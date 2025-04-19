@@ -10,12 +10,10 @@ public class PlayerDetection : MonoBehaviour
     [SerializeField] private bool _showFOVGizmos = true;
 
     [Header("Detection Settings")]
-    [SerializeField] private LayerMask _detectionLayer;
-    [SerializeField] private string _playerTag = "Player";
-    private Transform _playerTransform;
-
     [SerializeField] private Transform _eyesTransform; // Optional
     private Transform VisionOrigin => _eyesTransform ? _eyesTransform : transform;
+    private PlayerDetectionPoints _playerDetectionPoints;
+
 
     [Header("Detection Parameters")]
     [SerializeField] private DetectionParameters _normalParameters;
@@ -38,8 +36,7 @@ public class PlayerDetection : MonoBehaviour
 
     private void Awake()
     {
-        GameObject player = GameObject.FindWithTag(_playerTag);
-        if (player) _playerTransform = player.transform;
+        _playerDetectionPoints = FindFirstObjectByType<PlayerDetectionPoints>();
     }
 
     private void OnEnable()
@@ -70,7 +67,7 @@ public class PlayerDetection : MonoBehaviour
 
     private void CheckPlayerDetection(DetectionParameters parameters)
     {
-        if (_playerTransform == null) return;
+        if (_playerDetectionPoints == null) return;
 
         bool isDetected = CanSeePlayer(parameters, out Vector3? hitPoint);
         bool isTooClose = PlayerTooClose(parameters, hitPoint);
@@ -80,26 +77,11 @@ public class PlayerDetection : MonoBehaviour
 
     private bool CanSeePlayer(DetectionParameters parameters, out Vector3? hitPoint)
     {
-        Vector3 playerEyesPosition = _playerTransform.position;
-        playerEyesPosition.y = VisionOrigin.position.y;
-
-        Vector3 directionToPlayer = (playerEyesPosition - VisionOrigin.position).normalized;
-        hitPoint = null;
-
-        // Check field of view
-        float angleToPlayer = Vector3.Angle(VisionOrigin.forward, directionToPlayer);
-        if (angleToPlayer > parameters.FieldOfView / 2) return false;
-
-        // Check line of sight w/raycast
-        bool collided = Physics.Raycast(
-            VisionOrigin.position, directionToPlayer,
-            out RaycastHit hit,
-            parameters.MaxVisionDistance, _detectionLayer
+        return _playerDetectionPoints.InLineOfSight(
+            VisionOrigin.position, VisionOrigin.forward,
+            parameters.MaxVisionDistance, _chaseParameters.FieldOfView,
+            out hitPoint
         );
-        if (!collided || !hit.collider.CompareTag(_playerTag)) return false;
-
-        hitPoint = hit.point;
-        return true;
     }
 
     private bool PlayerTooClose(DetectionParameters parameters, Vector3? hitPoint)

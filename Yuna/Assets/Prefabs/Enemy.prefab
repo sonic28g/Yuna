@@ -1967,10 +1967,6 @@ MonoBehaviour:
   _showDistanceGizmos: 1
   _showDetectionGizmos: 1
   _showFOVGizmos: 1
-  _detectionLayer:
-    serializedVersion: 2
-    m_Bits: 320
-  _playerTag: Player
   _eyesTransform: {fileID: 6039743489875697275}
   _normalParameters:
     <MaxVisionDistance>k__BackingField: 6
