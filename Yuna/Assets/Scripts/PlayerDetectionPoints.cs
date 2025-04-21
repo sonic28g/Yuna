@@ -3,10 +3,23 @@
 public class PlayerDetectionPoints : MonoBehaviour
 {
     [SerializeField] private bool _showPointsGizmos = true;
-    [SerializeField] private Transform[] _detectionPoints;
 
+    [Header("Detection Properties")]
     [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private string _playerTag = "Player";
+    [SerializeField] private Transform[] _detectionPoints;
+
+    // TODO: For testing purposes - will be removed when both Area and State are changed automatically
+    [Header("Area + State")]
+    [SerializeField] private PlayerArea _currentArea = PlayerArea.Normal;
+    [SerializeField] private PlayerState _currentState = PlayerState.Normal;
+
+
+    public void SetCurrentArea(PlayerArea area) => _currentArea = area;
+    public void SetCurrentPlayerState(PlayerState state) => _currentState = state;
+
+    public bool IsInSafeArea() => _currentArea == PlayerArea.Safe;
+    public bool IsSuspicious() => _currentArea == PlayerArea.Suspicious || _currentState == PlayerState.Suspicious;
 
 
     public bool InLineOfSight(
@@ -67,5 +80,19 @@ public class PlayerDetectionPoints : MonoBehaviour
 
             Gizmos.DrawSphere(point.position, 0.1f);
         }
+    }
+
+
+    public enum PlayerArea
+    {
+        Safe,
+        Normal,
+        Suspicious
+    }
+
+    public enum PlayerState
+    {
+        Normal,
+        Suspicious
     }
 }
