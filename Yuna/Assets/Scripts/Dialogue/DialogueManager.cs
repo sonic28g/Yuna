@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
 
     private readonly Queue<DialogueLine> _dialogueQueue = new();
     public bool IsDialogueActive { get; private set; } = false;
+    private bool _isSkippable = true;
 
 
     private void Awake()
@@ -58,16 +59,18 @@ public class DialogueManager : MonoBehaviour
         if (IsDialogueActive) return false;
         if (dialogueSet == null || !dialogueSet.AreConditionsMet()) return false;
 
+        IsDialogueActive = true;
+        _isSkippable = dialogueSet.Skippable;
+
         // Pause input
         if (_inputs != null) _inputs.PauseInput(this);
-
-        // Add the dialogue to the seen dialogues list
-        IsDialogueActive = true;
-        _seenDialogues.Add(dialogueSet.DialogueId);
 
         // Clear the dialogue queue and add the new dialogue lines
         _dialogueQueue.Clear();
         dialogueSet.GetLines().ForEach(line => _dialogueQueue.Enqueue(line));
+
+        // Add the dialogue to the seen dialogues list
+        _seenDialogues.Add(dialogueSet.DialogueId);
 
         // Enable the dialogue UI and display the first (next) line
         if (_dialogueUI != null) _dialogueUI.SetActive(true);
@@ -91,9 +94,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (!IsDialogueActive) return;
 
-        // Stop the TypeCurrentText coroutine and end the dialogue
-        StopAllCoroutines();
-        EndDialogue();
+        // If the dialogue is not skippable, just display the next line
+        if (!_isSkippable) NextLine();
+        else
+        {
+            // Stop the TypeCurrentText coroutine and end the dialogue
+            StopAllCoroutines();
+            EndDialogue();
+        }
     }
 
     public void NextLine()

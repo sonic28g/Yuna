@@ -13,7 +13,7 @@ public class DialogueCondition
     {
         bool result = _conditionType switch
         {
-            DialogueConditionType.SeenDialogue => DialogueManager.Instance.HasSeenDialogue(_value),
+            DialogueConditionType.SeenDialogue => DialogueManager.Instance != null && DialogueManager.Instance.HasSeenDialogue(_value),
             _ => throw new ArgumentOutOfRangeException()
         };
 

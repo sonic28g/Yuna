@@ -12,6 +12,6 @@ public class DialogueInteractable : InteractableObject
 
     public override void Interact()
     {
-        DialogueManager.Instance.StartDialogue(dialogueSet);
+        if (DialogueManager.Instance != null) DialogueManager.Instance.StartDialogue(dialogueSet);
     }
 }
