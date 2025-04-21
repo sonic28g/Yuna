@@ -1379,6 +1379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showPointsGizmos: 1
+  _detectionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _playerTag: Player
   _detectionPoints:
   - {fileID: 4329760479032487968}
   - {fileID: 557817384646886437}
@@ -1386,10 +1390,8 @@ MonoBehaviour:
   - {fileID: 669041985738091607}
   - {fileID: 6044159111065775861}
   - {fileID: 6135884457200830724}
-  _detectionLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _playerTag: Player
+  _currentArea: 1
+  _currentState: 0
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0

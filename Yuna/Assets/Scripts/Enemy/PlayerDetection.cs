@@ -69,10 +69,27 @@ public class PlayerDetection : MonoBehaviour
     {
         if (_playerDetectionPoints == null) return;
 
-        bool isDetected = CanSeePlayer(parameters, out Vector3? hitPoint);
-        bool isTooClose = PlayerTooClose(parameters, hitPoint);
+        Vector3? hitPoint = null;
+        bool isDetectable = CanBeDetected(parameters);
+
+        bool isDetected = isDetectable && CanSeePlayer(parameters, out hitPoint);
+        bool isTooClose = isDetected && PlayerTooClose(parameters, hitPoint);
         
         UpdateDetectionState(isDetected, isTooClose, hitPoint);
+    }
+
+    private bool CanBeDetected(DetectionParameters parameters)
+    {
+        // Not detectable in safe areas and is in a safe area
+        if (!parameters.DetectableOnSafeAreas && _playerDetectionPoints.IsInSafeArea())
+            return false;
+
+        // Only detect suspicious and player is not suspicious
+        if (parameters.OnlyDetectSuspicious && !_playerDetectionPoints.IsSuspicious())
+            return false;
+
+        // Can be detected
+        return true;
     }
 
     private bool CanSeePlayer(DetectionParameters parameters, out Vector3? hitPoint)
@@ -151,6 +168,9 @@ public class PlayerDetection : MonoBehaviour
         [field: SerializeField] public float MaxCloseDistance { get; private set; } = 5f;
         [field: SerializeField] public float FieldOfView { get; private set; } = 90f;
         [field: SerializeField] public float DetectionCooldown { get; private set; } = 1f;
+
+        [field: SerializeField] public bool OnlyDetectSuspicious { get; private set; } = false;
+        [field: SerializeField] public bool DetectableOnSafeAreas { get; private set; } = false;
     }
 
     public enum DetectionMode
