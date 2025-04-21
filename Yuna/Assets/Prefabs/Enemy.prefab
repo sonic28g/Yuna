@@ -1973,16 +1973,22 @@ MonoBehaviour:
     <MaxCloseDistance>k__BackingField: 4
     <FieldOfView>k__BackingField: 90
     <DetectionCooldown>k__BackingField: 0.8
+    <OnlyDetectSuspicious>k__BackingField: 0
+    <DetectableOnSafeAreas>k__BackingField: 0
   _chaseParameters:
     <MaxVisionDistance>k__BackingField: 8
     <MaxCloseDistance>k__BackingField: 4
     <FieldOfView>k__BackingField: 100
     <DetectionCooldown>k__BackingField: 0.6
+    <OnlyDetectSuspicious>k__BackingField: 0
+    <DetectableOnSafeAreas>k__BackingField: 1
   _searchParameters:
     <MaxVisionDistance>k__BackingField: 8
     <MaxCloseDistance>k__BackingField: 4
     <FieldOfView>k__BackingField: 90
     <DetectionCooldown>k__BackingField: 0.7
+    <OnlyDetectSuspicious>k__BackingField: 0
+    <DetectableOnSafeAreas>k__BackingField: 0
 --- !u!114 &1233938674602917909
 MonoBehaviour:
   m_ObjectHideFlags: 0
