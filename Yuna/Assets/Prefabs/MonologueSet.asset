@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MonologueSet
   m_EditorClassIdentifier: 
   <DialogueId>k__BackingField: monologue0
+  <Skippable>k__BackingField: 1
   _lines:
   - <Speaker>k__BackingField: Yuna
     <Text>k__BackingField: Test1 Test1 Test1
