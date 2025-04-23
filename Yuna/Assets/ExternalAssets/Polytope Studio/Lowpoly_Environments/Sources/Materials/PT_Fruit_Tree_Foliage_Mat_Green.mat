@@ -8,20 +8,22 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PT_Fruit_Tree_Foliage_Mat_Green
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: 4800000, guid: 77e1a76a38ecd5a46a270afb12894dd5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ALPHATEST_ON
+  - _CUSTOMWIND_ON
   - _RECEIVE_SHADOWS_OFF
+  m_InvalidKeywords:
+  - _CUSTOMCOLORSTINTING_ON
+  - _RECEIVESHADOWS_OFF
   - _SPECULAR_SETUP
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2450
-  stringTagMap:
-    RenderType: TransparentCutout
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -102,7 +104,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _CUSTOMCOLORSTINTING: 1
-    - _CUSTOMWIND: 0
+    - _CUSTOMWIND: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 0
@@ -115,7 +117,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _Gradient: 1.78
+    - _Gradient: 0.058
     - _GradientPower: 1.74
     - _LeavesThickness: 0.527
     - _MaskClipValue: 0.5
@@ -147,19 +149,19 @@ Material:
     - _Translucency: 10
     - _UVSec: 0
     - _WINDMASKONOFF: 0
-    - _WindDensity: 0.66
-    - _WindMovement: 0.56
-    - _WindStrength: 0.185
+    - _WindDensity: 0.98
+    - _WindMovement: 0.57
+    - _WindStrength: 0.14
     - _WorkflowMode: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _BaseColor: {r: 0.7735849, g: 0.52910286, b: 0.69174814, a: 1}
-    - _Color: {r: 0.7735849, g: 0.52910286, b: 0.6917481, a: 1}
+    - _BaseColor: {r: 0.15859735, g: 0.33962262, b: 0.1898086, a: 1}
+    - _Color: {r: 0.15859732, g: 0.3396226, b: 0.18980858, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.047169805, g: 0.021582412, b: 0.021582412, a: 1}
+    - _GroundColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TopColor: {r: 0.9528302, g: 0.30113026, b: 0.49466553, a: 1}
+    - _TopColor: {r: 0.121203154, g: 0.3490566, b: 0.11360805, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7458702541357252322
