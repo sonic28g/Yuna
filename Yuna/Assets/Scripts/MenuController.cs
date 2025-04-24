@@ -1,0 +1,31 @@
+using StarterAssets;
+using UnityEngine;
+
+public class MenuController : MonoBehaviour
+{
+    private StarterAssetsInputs starterAssetsInputs;
+
+    private bool isOpen;
+    public GameObject menu;
+
+    private void Awake() 
+    {
+        isOpen = false;
+        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+    }
+
+    private void Update() 
+    {
+        if (starterAssetsInputs.showMenu)
+        {
+            OpenMenu();
+            starterAssetsInputs.showMenu = false;
+        }
+    }
+
+    public void OpenMenu()
+    {
+        isOpen = !isOpen;
+        menu.SetActive(isOpen);
+    }
+}

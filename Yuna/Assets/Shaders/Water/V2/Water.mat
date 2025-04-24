@@ -20,7 +20,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _RippleSpeed
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -97,10 +97,10 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FoamAmount: 15.73
-    - _FoamCutoff: 1.01
-    - _FoamSize: 199.88
-    - _FoamSpeed: 0.01
+    - _FoamAmount: 0.64
+    - _FoamCutoff: 1
+    - _FoamSize: 600
+    - _FoamSpeed: 0.002
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -110,9 +110,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RippleDensity: 4
-    - _RippleSlimness: 8
-    - _RippleSpeed: 2
+    - _RippleDensity: 102.3
+    - _RippleSlimness: 2.05
+    - _RippleSpeed: 2.5
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -120,15 +120,15 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _Transparency: 0.5
-    - _WaveSize: 0.3
-    - _WaveSpeed: 0.1
+    - _WaveSize: 0.05
+    - _WaveSpeed: 0.5
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.29699183, g: 0.5254358, b: 0.8867924, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 0.7686991, g: 0.7763597, b: 0.8027793, a: 1}
+    - _FoamColor: {r: 0.9009434, g: 0.909338, b: 1, a: 1}
     - _RippleColor: {r: 0.06808473, g: 0.12048049, b: 0.3207547, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

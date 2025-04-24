@@ -10,9 +10,11 @@ public class PlayerInteraction : MonoBehaviour
 
     private InteractableObject nearbyObject = null;
 
-   private void Awake() {
+    private void Awake() 
+    {
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
     }
+
     private void Update()
     {
         DetectNearbyObject();

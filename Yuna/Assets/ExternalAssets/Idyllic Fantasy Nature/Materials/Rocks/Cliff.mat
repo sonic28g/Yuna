@@ -126,10 +126,10 @@ Material:
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Contrast: 0.55
+    - _Contrast: 0.303
     - _Coverage_Map_Scale: 10
     - _Coverage_Mask_Scale: 2.5
-    - _Coverage_Normal_Strength: 1
+    - _Coverage_Normal_Strength: 0.38
     - _Coverage_Smoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
@@ -138,20 +138,20 @@ Material:
     - _DstBlend: 0
     - _ENABLE_COVERAGE: 1
     - _EnvironmentReflections: 1
-    - _Fade: 0.38
+    - _Fade: 0.3
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Level: 0
     - _Metallic: 0
-    - _Normal_Strength: 1
+    - _Normal_Strength: 0.14
     - _OVERLAY: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0
+    - _Smoothness: 0.375
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -162,8 +162,8 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.754717, g: 0.7352475, b: 0.66571736, a: 1}
-    - _Coverage_Color: {r: 0.6106299, g: 0.7169812, b: 0, a: 1}
+    - _Color: {r: 0.3026878, g: 0.33063233, b: 0.3584906, a: 1}
+    - _Coverage_Color: {r: 0.32825443, g: 0.3679245, b: 0.098923095, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

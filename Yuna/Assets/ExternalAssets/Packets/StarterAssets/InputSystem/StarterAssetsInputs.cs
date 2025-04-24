@@ -15,6 +15,7 @@ namespace StarterAssets
 		public bool aim;
 		public bool shoot;
 		public bool interact;
+		public bool showMenu;
 
 		public Action DialogueSkip;
         public Action DialogueNext;
@@ -88,6 +89,16 @@ namespace StarterAssets
 			InteractInput(value.isPressed);
 		}
 
+		public void OnShowMenu(InputValue value)
+		{
+			ShowMenuInput(value.isPressed);
+		}
+
+		private void OnApplicationFocus(bool hasFocus)
+		{
+			SetCursorState(cursorLocked);
+		}
+
 		public void OnDialogueSkip(InputValue _) => DialogueSkip?.Invoke();
         public void OnDialogueNext(InputValue _) => DialogueNext?.Invoke();
 
@@ -127,15 +138,18 @@ namespace StarterAssets
 			interact = newInteractState;
 		}
 
-		private void OnApplicationFocus(bool hasFocus)
+		private void ShowMenuInput(bool newShowMenuState)
 		{
-			SetCursorState(cursorLocked);
+			showMenu = newShowMenuState;
 		}
+
 
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
+	
+
 	}
 	
 }
