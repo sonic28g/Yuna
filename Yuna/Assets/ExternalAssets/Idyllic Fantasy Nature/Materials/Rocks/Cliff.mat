@@ -126,7 +126,7 @@ Material:
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Contrast: 0.303
+    - _Contrast: 0.13
     - _Coverage_Map_Scale: 10
     - _Coverage_Mask_Scale: 2.5
     - _Coverage_Normal_Strength: 0.38
@@ -138,7 +138,7 @@ Material:
     - _DstBlend: 0
     - _ENABLE_COVERAGE: 1
     - _EnvironmentReflections: 1
-    - _Fade: 0.3
+    - _Fade: 0.35
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -151,7 +151,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.375
+    - _Smoothness: 0.32
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

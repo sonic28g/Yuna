@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Roof
+    second: {fileID: 2100000, guid: 5ee7cb2298cd5407d99bd0592c0c2cf2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Tatami
     second: {fileID: 2100000, guid: 5995d1fd380b386408205ddd1ddf88ef, type: 2}
   - first:
