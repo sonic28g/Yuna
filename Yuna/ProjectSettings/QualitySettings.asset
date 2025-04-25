@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 2
+  m_CurrentQuality: 3
   m_QualitySettings:
   - serializedVersion: 4
     name: Low
@@ -48,10 +48,10 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     customRenderPipeline: {fileID: 11400000, guid: c8b19e226687744c2a974d8b3d5acdb0, type: 2}
-    terrainQualityOverrides: 0
+    terrainQualityOverrides: 6
     terrainPixelError: 1
-    terrainDetailDensityScale: 1
-    terrainBasemapDistance: 1000
+    terrainDetailDensityScale: 0.5
+    terrainBasemapDistance: 60
     terrainDetailDistance: 80
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
@@ -100,10 +100,10 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     customRenderPipeline: {fileID: 11400000, guid: 63d242fe96c514b78ba33e6b82876a6a, type: 2}
-    terrainQualityOverrides: 0
+    terrainQualityOverrides: 6
     terrainPixelError: 1
-    terrainDetailDensityScale: 1
-    terrainBasemapDistance: 1000
+    terrainDetailDensityScale: 0.8
+    terrainBasemapDistance: 80
     terrainDetailDistance: 80
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
@@ -152,10 +152,10 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     customRenderPipeline: {fileID: 11400000, guid: daaf9d2f3a007364282d1a9f6762b387, type: 2}
-    terrainQualityOverrides: 0
+    terrainQualityOverrides: 6
     terrainPixelError: 1
     terrainDetailDensityScale: 1
-    terrainBasemapDistance: 1000
+    terrainBasemapDistance: 200
     terrainDetailDistance: 80
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
@@ -204,11 +204,11 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     customRenderPipeline: {fileID: 11400000, guid: 713ecff49b8a8477c89ff91674dc76a5, type: 2}
-    terrainQualityOverrides: 0
+    terrainQualityOverrides: 14
     terrainPixelError: 1
     terrainDetailDensityScale: 1
-    terrainBasemapDistance: 1000
-    terrainDetailDistance: 80
+    terrainBasemapDistance: 200
+    terrainDetailDistance: 100
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
     terrainFadeLength: 5
@@ -217,4 +217,3 @@ QualitySettings:
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
     Standalone: 3
-    WebGL: 3

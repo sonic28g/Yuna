@@ -1,57 +1,40 @@
 using UnityEngine;
-
 using TMPro;
 using System;
 
 [ExecuteAlways]
 public class FPSDisplay : MonoBehaviour
 {
-    public float fps { get; private set; }      // Frames per second (interval average).
-    public float frameMS { get; private set; }  // Milliseconds per frame (interval average).
+    public float fps { get; private set; }      // FPS médio do intervalo atual
+    public float frameMS { get; private set; }  // MS por frame no intervalo
 
     GUIStyle style = new GUIStyle();
-
     public int size = 16;
 
     [Space]
-
     public Vector2 position = new Vector2(16.0f, 16.0f);
 
     public enum Alignment { Left, Right }
     public Alignment alignment = Alignment.Left;
 
     [Space]
-
     public Color colour = Color.green;
-
-    [Space]
-
     public float updateInterval = 0.5f;
 
     float elapsedIntervalTime;
     int intervalFrameCount;
 
     [Space]
-
     [Tooltip("Optional. Will render using GUI if not assigned.")]
     public TextMeshProUGUI textMesh;
 
-    // Get average FPS and frame delta (ms) for current interval (so far, if called early).
+    // Nova parte para média dos fps
+    private float totalFPS;
+    private int intervalCount;
+    private float averageFPS;
 
-    public float GetIntervalFPS()
-    {
-        // 1 / time.unscaledDeltaTime for same-frame results.
-        // Same as above, but uses accumulated frameCount and deltaTime.
-
-        return intervalFrameCount / elapsedIntervalTime;
-    }
-    public float GetIntervalFrameMS()
-    {
-        // Calculate average frame delta during interval (time / frames).
-        // Same as Time.unscaledDeltaTime * 1000.0f, using accumulation.
-
-        return (elapsedIntervalTime * 1000.0f) / intervalFrameCount;
-    }
+    public float GetIntervalFPS() => intervalFrameCount / elapsedIntervalTime;
+    public float GetIntervalFrameMS() => (elapsedIntervalTime * 1000.0f) / intervalFrameCount;
 
     void Update()
     {
@@ -60,11 +43,13 @@ public class FPSDisplay : MonoBehaviour
 
         if (elapsedIntervalTime >= updateInterval)
         {
-            fps = GetIntervalFPS();
-            frameMS = GetIntervalFrameMS();
+            fps = (float)Math.Round(GetIntervalFPS(), 2);
+            frameMS = (float)Math.Round(GetIntervalFrameMS(), 2);
 
-            fps = (float)Math.Round(fps, 2);
-            frameMS = (float)Math.Round(frameMS, 2);
+            // Acumula os valores para fazer a média
+            totalFPS += fps;
+            intervalCount++;
+            averageFPS = totalFPS / intervalCount;
 
             intervalFrameCount = 0;
             elapsedIntervalTime = 0.0f;
@@ -84,23 +69,25 @@ public class FPSDisplay : MonoBehaviour
 
     string GetFPSText()
     {
-        return $"FPS: {fps:.00} ({frameMS:.00} ms)";
+        return $"FPS: {fps:0.00} ({frameMS:0.00} ms)\nMédia FPS: {averageFPS:0.00}";
     }
 
     void OnGUI()
     {
-        string fpsText = GetFPSText();
-
         if (!textMesh)
         {
+            string fpsText = GetFPSText();
             float x = position.x;
 
             if (alignment == Alignment.Right)
-            {
                 x = Screen.width - x - style.CalcSize(new GUIContent(fpsText)).x;
-            }
 
             GUI.Label(new Rect(x, position.y, 200, 100), fpsText, style);
         }
+    }
+
+    void OnApplicationQuit()
+    {
+        Debug.Log("Média de FPS (quando o jogo parou): " + averageFPS.ToString("F2"));
     }
 }
