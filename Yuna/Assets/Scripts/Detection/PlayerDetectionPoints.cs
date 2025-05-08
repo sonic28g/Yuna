@@ -1,25 +1,58 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class PlayerDetectionPoints : MonoBehaviour
 {
+    [Header("Gizmos")]
     [SerializeField] private bool _showPointsGizmos = true;
+    [SerializeField] private bool _showDetectedLine = true;
 
     [Header("Detection Properties")]
     [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private string _playerTag = "Player";
     [SerializeField] private Transform[] _detectionPoints;
 
-    // TODO: For testing purposes - will be removed when both Area and State are changed automatically
-    [Header("Area + State")]
-    [SerializeField] private PlayerArea _currentArea = PlayerArea.Normal;
-    [SerializeField] private PlayerState _currentState = PlayerState.Normal;
+    // TODO: For testing purposes - will be removed when State is changed automatically
+    [Header("State"), SerializeField]
+    private PlayerState _currentState = PlayerState.Normal;
 
-
-    public void SetCurrentArea(PlayerArea area) => _currentArea = area;
-    public void SetCurrentPlayerState(PlayerState state) => _currentState = state;
+    private readonly List<PlayerAreaTrigger> _currentAreas = new();
+    private PlayerArea _currentArea = PlayerArea.Normal;
 
     public bool IsInSafeArea() => _currentArea == PlayerArea.Safe;
     public bool IsSuspicious() => _currentArea == PlayerArea.Suspicious || _currentState == PlayerState.Suspicious;
+
+
+    private void OnEnable() => PlayerAreaTrigger.OnPlayerAreaChanged += HandleAreaChanged;
+    private void OnDisable() => PlayerAreaTrigger.OnPlayerAreaChanged -= HandleAreaChanged;
+
+    private void HandleAreaChanged(PlayerAreaTrigger trigger, bool entered)
+    {
+        if (trigger == null) return;
+
+        // Add or remove the trigger from the list
+        if (entered && !_currentAreas.Contains(trigger))
+            _currentAreas.Add(trigger);
+        else if (!entered && _currentAreas.Contains(trigger))
+            _currentAreas.Remove(trigger);
+
+        UpdateCurrentArea();
+    }
+
+    private void UpdateCurrentArea()
+    {
+        // Exists at least one suspicious area
+        if (_currentAreas.Any(a => a.AreaType == PlayerArea.Suspicious))
+            _currentArea = PlayerArea.Suspicious;
+
+        // Exists at least one safe area
+        else if (_currentAreas.Any(a => a.AreaType == PlayerArea.Safe))
+            _currentArea = PlayerArea.Safe;
+
+        // Exists one normal area or none
+        else _currentArea = PlayerArea.Normal;
+    }
 
 
     public bool InLineOfSight(
@@ -58,7 +91,7 @@ public class PlayerDetectionPoints : MonoBehaviour
             bool hitSomething = Physics.Linecast(origin, targetPos, out RaycastHit hit, _detectionLayer);
             if (hitSomething && !hit.collider.CompareTag(_playerTag)) continue;
 
-            Debug.DrawLine(origin, targetPos, Color.magenta, 0.1f);
+            if (_showDetectedLine) Debug.DrawLine(origin, targetPos, Color.magenta, 0.1f);
             hitPoint = hitSomething ? hit.point : targetPos;
             return true;
         }
@@ -81,18 +114,11 @@ public class PlayerDetectionPoints : MonoBehaviour
             Gizmos.DrawSphere(point.position, 0.1f);
         }
     }
+}
 
 
-    public enum PlayerArea
-    {
-        Safe,
-        Normal,
-        Suspicious
-    }
-
-    public enum PlayerState
-    {
-        Normal,
-        Suspicious
-    }
+public enum PlayerState
+{
+    Normal,
+    Suspicious
 }
