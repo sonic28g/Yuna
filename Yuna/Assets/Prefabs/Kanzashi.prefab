@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5985915685771778754}
   - component: {fileID: 616322933031818396}
   - component: {fileID: 8137374207558503919}
-  - component: {fileID: 137686577621561507}
   - component: {fileID: 2453419941980368499}
   - component: {fileID: 909342946808240871}
+  - component: {fileID: 6872887579467382634}
   - component: {fileID: 3771416543730334679}
   m_Layer: 7
   m_Name: Kanzashi
@@ -31,9 +31,9 @@ Transform:
   m_GameObject: {fileID: 8138050923530616137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5.149, y: 0.5569, z: 3.3053}
-  m_LocalScale: {x: 0.017630784, y: 0.017833065, z: 0.5287191}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.52, y: 0.52, z: 0.89823276}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -44,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8138050923530616137}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -8367231247473855917, guid: e7845c01950ae4f3eb204404f9906be3, type: 3}
 --- !u!23 &8137374207558503919
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68,7 +68,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: f7d47c17e047241b9922a2d9a063fb4b, type: 2}
+  - {fileID: 2100000, guid: d956cc26677fd4ff7b70980f0b02fddf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,27 +91,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &137686577621561507
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8138050923530616137}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &2453419941980368499
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -147,6 +127,29 @@ MonoBehaviour:
   objectName: Kanzashi
   weaponData: {fileID: 11400000, guid: 6d70fce43355ae349b30bfe747a3e3f8, type: 2}
   amount: 1
+--- !u!136 &6872887579467382634
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138050923530616137}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.0073212823
+  m_Height: 0.42830727
+  m_Direction: 2
+  m_Center: {x: -0.0015734629, y: -0.0024346176, z: -0.015858307}
 --- !u!54 &3771416543730334679
 Rigidbody:
   m_ObjectHideFlags: 0
