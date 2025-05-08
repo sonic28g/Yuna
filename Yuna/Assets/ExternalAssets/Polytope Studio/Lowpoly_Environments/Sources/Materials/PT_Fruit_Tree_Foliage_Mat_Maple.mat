@@ -158,9 +158,9 @@ Material:
     - _Translucency: 10
     - _UVSec: 0
     - _WINDMASKONOFF: 0
-    - _WindDensity: 0.5
-    - _WindMovement: 1
-    - _WindStrength: 0.5
+    - _WindDensity: 0.56
+    - _WindMovement: 0.7
+    - _WindStrength: 0.26
     - _WorkflowMode: 0
     - _ZWrite: 1
     - __dirty: 0
