@@ -80,16 +80,28 @@ public class PlayerDetection : MonoBehaviour
 
     private bool CanBeDetected(DetectionParameters parameters)
     {
-        // Not detectable in safe areas and is in a safe area
-        if (!parameters.DetectableOnSafeAreas && _playerDetectionPoints.IsInSafeArea())
-            return false;
+        // Player is not suspicious (but needs to be)
+        bool isSuspicious = _playerDetectionPoints.IsSuspicious();
+        if (parameters.OnlyDetectSuspicious && !isSuspicious) return false;
 
-        // Only detect suspicious and player is not suspicious
-        if (parameters.OnlyDetectSuspicious && !_playerDetectionPoints.IsSuspicious())
-            return false;
+        // SafeAreaMode is not set if the player is not in a safe area
+        bool isInSafeArea = _playerDetectionPoints.IsInSafeArea();
+        SafeAreaDetectionMode? safeAreaMode = isInSafeArea ? parameters.SafeAreaMode : null;
 
-        // Can be detected
-        return true;
+        return safeAreaMode switch
+        {
+            // Not detectable in safe area
+            SafeAreaDetectionMode.NotDetectable => false,
+
+            // Only detectable if suspicious
+            SafeAreaDetectionMode.OnlySuspicious => isSuspicious,
+
+            // Always detectable
+            SafeAreaDetectionMode.AlwaysDetectable => true,
+
+            // Is not in a safe area
+            _ => true,
+        };
     }
 
     private bool CanSeePlayer(DetectionParameters parameters, out Vector3? hitPoint)
@@ -154,7 +166,7 @@ public class PlayerDetection : MonoBehaviour
         Gizmos.DrawWireSphere(VisionOrigin.position, parameters.MaxCloseDistance);
     }
 
-    private void DrawDetectionGizmos(DetectionParameters parameters)
+    private void DrawDetectionGizmos(DetectionParameters _)
     {
         Gizmos.color = !WasDetected ? Color.green : !WasTooClose ? Color.yellow : Color.red;
         Gizmos.DrawWireSphere(VisionOrigin.position, 0.5f);
@@ -170,7 +182,7 @@ public class PlayerDetection : MonoBehaviour
         [field: SerializeField] public float DetectionCooldown { get; private set; } = 1f;
 
         [field: SerializeField] public bool OnlyDetectSuspicious { get; private set; } = false;
-        [field: SerializeField] public bool DetectableOnSafeAreas { get; private set; } = false;
+        [field: SerializeField] public SafeAreaDetectionMode SafeAreaMode { get; private set; } = SafeAreaDetectionMode.OnlySuspicious;
     }
 
     public enum DetectionMode
@@ -178,5 +190,12 @@ public class PlayerDetection : MonoBehaviour
         Normal,
         Chase,
         Search
+    }
+
+    public enum SafeAreaDetectionMode
+    {
+        NotDetectable,
+        OnlySuspicious,
+        AlwaysDetectable
     }
 }
