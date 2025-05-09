@@ -39,4 +39,9 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void ToggleMouse()
+    {
+        
+    }
 }
