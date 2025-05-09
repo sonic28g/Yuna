@@ -21905,46 +21905,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 909342946808240871, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: amount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 909342946808240871, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 909342946808240871, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: objectName
-      value: Kanzashi
-      objectReference: {fileID: 0}
-    - target: {fileID: 909342946808240871, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: weaponData
-      value: 
-      objectReference: {fileID: 11400000, guid: 6d70fce43355ae349b30bfe747a3e3f8, type: 2}
-    - target: {fileID: 2453419941980368499, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_Radius
-      value: 1.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771416543730334679, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771416543730334679, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.05125
-      objectReference: {fileID: 0}
-    - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.05125
-      objectReference: {fileID: 0}
     - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.93
@@ -21984,10 +21944,6 @@ PrefabInstance:
     - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8138050923530616137, guid: e0375b798096a4c46a8c01604122b662, type: 3}
       propertyPath: m_Name
@@ -23024,34 +22980,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 909342946808240871, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: amount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 909342946808240871, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: objectName
-      value: Kanzashi
-      objectReference: {fileID: 0}
-    - target: {fileID: 909342946808240871, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: weaponData
-      value: 
-      objectReference: {fileID: 11400000, guid: 6d70fce43355ae349b30bfe747a3e3f8, type: 2}
-    - target: {fileID: 2453419941980368499, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_Radius
-      value: 1.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.05125
-      objectReference: {fileID: 0}
-    - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.05125
-      objectReference: {fileID: 0}
     - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.895
@@ -23091,10 +23019,6 @@ PrefabInstance:
     - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8138050923530616137, guid: e0375b798096a4c46a8c01604122b662, type: 3}
       propertyPath: m_Name
