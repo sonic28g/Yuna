@@ -7,7 +7,7 @@ public class MenuController : MonoBehaviour
     private StarterAssetsInputs starterAssetsInputs;
 
     private bool isOpen;
-    public GameObject menu;
+    //public GameObject menu;
 
     private void Awake() 
     {
@@ -27,7 +27,7 @@ public class MenuController : MonoBehaviour
     public void OpenMenu()
     {
         isOpen = !isOpen;
-        menu.SetActive(isOpen);
+        //menu.SetActive(isOpen);
     }
 
     public void CloseGame()
