@@ -127,6 +127,10 @@ MonoBehaviour:
   objectName: Kanzashi
   weaponData: {fileID: 11400000, guid: 6d70fce43355ae349b30bfe747a3e3f8, type: 2}
   amount: 1
+  _soundMakerMask:
+    serializedVersion: 2
+    m_Bits: 2112
+  _soundEmitterPrefab: {fileID: 1734710220927586830, guid: 2201478abd2b5d84e887eef21ec4ca25, type: 3}
 --- !u!136 &6872887579467382634
 CapsuleCollider:
   m_ObjectHideFlags: 0
