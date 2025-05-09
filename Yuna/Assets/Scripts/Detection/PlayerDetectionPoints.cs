@@ -46,11 +46,15 @@ public class PlayerDetectionPoints : MonoBehaviour
         if (_currentAreas.Any(a => a.AreaType == PlayerArea.Suspicious))
             _currentArea = PlayerArea.Suspicious;
 
+        // Exists at least one normal area
+        else if (_currentAreas.Any(a => a.AreaType == PlayerArea.Normal))
+            _currentArea = PlayerArea.Normal;
+
         // Exists at least one safe area
         else if (_currentAreas.Any(a => a.AreaType == PlayerArea.Safe))
             _currentArea = PlayerArea.Safe;
 
-        // Exists one normal area or none
+        // no areas
         else _currentArea = PlayerArea.Normal;
     }
 
