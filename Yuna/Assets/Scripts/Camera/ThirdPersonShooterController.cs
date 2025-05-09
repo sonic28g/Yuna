@@ -59,6 +59,12 @@ public class ThirdPersonShooterController : MonoBehaviour
                 starterAssetsInputs.shoot = false;
             }
         }
+        else if (!starterAssetsInputs.aim && starterAssetsInputs.shoot)
+        {
+            _animator.SetTrigger("Attacking");
+            starterAssetsInputs.shoot = false;
+
+        }
         else
         {
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 0;

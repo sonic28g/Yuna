@@ -15,15 +15,6 @@ namespace IdyllicFantasyNature
         [Tooltip("the parent of this object")]
         [SerializeField] private Transform _controller;
 
-        // Start is called before the first frame update
-        private void Start()
-        {
-            // locks cursor and makes it invisible
-            Cursor.lockState = Cursor.lockState;
-            Cursor.visible = false;
-        }
-
-        // Update is called once per frame
         void Update()
         {
             // get input of the mouse 

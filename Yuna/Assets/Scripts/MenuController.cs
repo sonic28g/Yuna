@@ -1,5 +1,6 @@
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -27,5 +28,15 @@ public class MenuController : MonoBehaviour
     {
         isOpen = !isOpen;
         menu.SetActive(isOpen);
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
+
+    public void ChangeToScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
