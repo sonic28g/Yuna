@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -15,9 +16,13 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int kanzashiCriticalDamage = 50;
     [SerializeField] private int tessenDamage = 999;
 
+    [Header("Critical Hit Areas")]
+    [SerializeField] private Collider[] criticalColliders;
+
 
     private void Awake()
     {
+        criticalColliders.ToList().ForEach(c => c.isTrigger = true);
         ResetHealth();
     }
 
@@ -63,5 +68,5 @@ public class EnemyHealth : MonoBehaviour
             : kanzashiDamage;
     }
 
-    private bool IsCriticalHit(Vector3 _) => true;
+    private bool IsCriticalHit(Vector3 hitPoint) => criticalColliders.Any(c => c != null && c.bounds.Contains(hitPoint));
 }
