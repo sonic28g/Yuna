@@ -29,8 +29,14 @@ public class WeaponObject : InteractableObject
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (_soundEmitterPrefab == null) return;
         if (collision == null || collision.gameObject == null) return;
+
+        TryEmitSound(collision);
+    }
+
+    private void TryEmitSound(Collision collision)
+    {
+        if (_soundEmitterPrefab == null) return;
 
         // Check if the collision layer is in the mask
         int collisionLayer = collision.gameObject.layer;
