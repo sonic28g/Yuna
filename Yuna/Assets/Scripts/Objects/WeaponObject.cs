@@ -44,3 +44,10 @@ public class WeaponObject : InteractableObject
         Instantiate(_soundEmitterPrefab, contactPoint.point, Quaternion.identity);
     }
 }
+
+
+public enum WeaponType
+{
+    Kanzashi,
+    Tessen
+}
