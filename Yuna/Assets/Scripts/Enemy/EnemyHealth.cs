@@ -31,6 +31,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void Kill()
     {
+        // Check if the component is disabled
+        if (!enabled) return;
+
         CurrentHealth = 0;
         OnDeath?.Invoke();
     }
@@ -38,7 +41,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(WeaponType weapon, ContactPoint? contact = null)
     {
-        if (IsDead) return;
+        // Check if the enemy is already dead or if the component is disabled
+        if (!enabled || IsDead) return;
 
         // Calculate damage based on weapon type
         int damage = CalculateDamage(weapon, contact);

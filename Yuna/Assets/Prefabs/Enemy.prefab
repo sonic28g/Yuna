@@ -1952,6 +1952,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95df4e3381280d6438a6487a1afeeab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 100
+  kanzashiDamage: 50
+  kanzashiCriticalDamage: 100
+  tessenDamage: 999
+  criticalColliders: []
 --- !u!114 &5790966587338871961
 MonoBehaviour:
   m_ObjectHideFlags: 0

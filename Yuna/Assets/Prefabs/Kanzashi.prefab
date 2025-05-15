@@ -127,6 +127,7 @@ MonoBehaviour:
   objectName: Kanzashi
   weaponData: {fileID: 11400000, guid: 6d70fce43355ae349b30bfe747a3e3f8, type: 2}
   amount: 1
+  _weaponType: 0
   _soundMakerMask:
     serializedVersion: 2
     m_Bits: 2112
