@@ -73,28 +73,19 @@ public class EnemyDeadState : EnemyState
 
         // Store the enabled value and disable the behaviours
         int behavioursLength = _behaviours.Length;
-        _enableds = new bool[behavioursLength + 1];
+        _enableds = new bool[behavioursLength];
 
         for (int i = 0; i < behavioursLength; i++)
         {
             _enableds[i] = _behaviours[i].enabled;
             _behaviours[i].enabled = false;
         }
-
-        // Disable the collider
-        if (enemy.Collider == null) return;
-        _enableds[behavioursLength] = enemy.Collider.enabled;
-        enemy.Collider.enabled = false;
     }
 
-    private void RestoreComponents(EnemyController enemy)
+    private void RestoreComponents(EnemyController _)
     {
         // Restore the behaviours
         int behavioursLength = _behaviours.Length;
         for (int i = 0; i < behavioursLength; i++) _behaviours[i].enabled = _enableds[i];
-
-        // Restore the collider
-        if (enemy.Collider == null) return;
-        enemy.Collider.enabled = _enableds[behavioursLength];
     }
 }

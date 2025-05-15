@@ -11,7 +11,6 @@ public class EnemyController : MonoBehaviour
     public EnemyHealth EnemyHealth { get; private set; }
     public PlayerDetection PlayerDetection { get; private set; }
     public SoundDetection SoundDetection { get; private set; }
-    public Collider Collider { get; private set; }
     public Animator Animator { get; private set; }
     // ...
 
@@ -32,7 +31,6 @@ public class EnemyController : MonoBehaviour
         EnemyHealth = GetComponentInChildren<EnemyHealth>();
         PlayerDetection = GetComponentInChildren<PlayerDetection>();
         SoundDetection = GetComponentInChildren<SoundDetection>();
-        Collider = GetComponentInChildren<Collider>();
         Animator = GetComponentInChildren<Animator>();
 
         // Check for missing components or "invalid states" + initialization
@@ -94,6 +92,19 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        UpdateAnimator();
         if (_currentState != null) _currentState.FixedUpdateState(this);
     }
+
+
+    private void UpdateAnimator()
+    {
+        if (Animator == null) return;
+
+        Animator.SetFloat("Speed", NavAgent.velocity.magnitude);
+        Animator.SetFloat("MotionSpeed", NavAgent.velocity.magnitude / NavAgent.speed);
+    }
+
+    private void OnFootstep(AnimationEvent animationEvent) {}
+    private void OnLand(AnimationEvent animationEvent) {}
 }
