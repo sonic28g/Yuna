@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     public EnemyHealth EnemyHealth { get; private set; }
     public PlayerDetection PlayerDetection { get; private set; }
     public SoundDetection SoundDetection { get; private set; }
+    public Collider Collider { get; private set; }
+    public Animator Animator { get; private set; }
     // ...
 
     // States
@@ -30,6 +32,8 @@ public class EnemyController : MonoBehaviour
         EnemyHealth = GetComponentInChildren<EnemyHealth>();
         PlayerDetection = GetComponentInChildren<PlayerDetection>();
         SoundDetection = GetComponentInChildren<SoundDetection>();
+        Collider = GetComponentInChildren<Collider>();
+        Animator = GetComponentInChildren<Animator>();
 
         // Check for missing components or "invalid states" + initialization
         if (NavAgent == null) throw new System.Exception($"NavMeshAgent is missing in {name}");
