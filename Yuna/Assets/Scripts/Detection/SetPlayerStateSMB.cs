@@ -4,8 +4,13 @@ public class SetPlayerStateSMB : StateMachineBehaviour
 {
     private PlayerDetectionPoints _playerDetectionPoints;
 
-    [SerializeField] private PlayerState? _enterState;
-    [SerializeField] private PlayerState? _exitState;
+    [Header("Enter State")]
+    [SerializeField] private bool _changeOnEnter = false;
+    [SerializeField] private PlayerState _enterState = PlayerState.Normal;
+
+    [Header("Exit State")]
+    [SerializeField] private bool _changeOnExit = false;
+    [SerializeField] private PlayerState _exitState = PlayerState.Normal;
 
 
     private void CachePlayerDetectionPoints(Animator animator)
@@ -19,13 +24,13 @@ public class SetPlayerStateSMB : StateMachineBehaviour
     {
         CachePlayerDetectionPoints(animator);
 
-        if (!_enterState.HasValue || _playerDetectionPoints == null) return;
-        _playerDetectionPoints.SetCurrentPlayerState(_enterState.Value);
+        if (!_changeOnEnter || _playerDetectionPoints == null) return;
+        _playerDetectionPoints.SetCurrentPlayerState(_enterState);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (!_exitState.HasValue || _playerDetectionPoints == null) return;
-        _playerDetectionPoints.SetCurrentPlayerState(_exitState.Value);
+        if (!_changeOnExit || _playerDetectionPoints == null) return;
+        _playerDetectionPoints.SetCurrentPlayerState(_exitState);
     }
 }
