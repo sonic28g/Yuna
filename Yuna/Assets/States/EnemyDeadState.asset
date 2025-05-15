@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922edff71e7a9fb7ba8a9a74d3682ced, type: 3}
   m_Name: EnemyDeadState
   m_EditorClassIdentifier: 
+  _deadAnimationParameter: Dead

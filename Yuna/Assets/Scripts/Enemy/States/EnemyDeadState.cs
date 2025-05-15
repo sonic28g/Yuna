@@ -3,6 +3,8 @@
 [CreateAssetMenu(menuName = "Yuna/Enemy/EnemyDeadState")]
 public class EnemyDeadState : EnemyState
 {
+    [SerializeField] private string _deadAnimationParameter = "Dead";
+
     private Behaviour[] _behaviours;
     private bool[] _enableds;
 
@@ -11,11 +13,13 @@ public class EnemyDeadState : EnemyState
     {
         StopNavigation(enemy);
         DisableComponents(enemy);
+        DeadAnimation(enemy);
     }
 
     public override void ExitState(EnemyController enemy)
     {
         RestoreComponents(enemy);
+        RestoreAnimation(enemy);
     }
 
 
@@ -26,6 +30,19 @@ public class EnemyDeadState : EnemyState
     }
 
 
+    private void DeadAnimation(EnemyController enemy)
+    {
+        if (enemy.Animator == null) return;
+        enemy.Animator.SetBool(_deadAnimationParameter, true);
+    }
+
+    private void RestoreAnimation(EnemyController enemy)
+    {
+        if (enemy.Animator == null) return;
+        enemy.Animator.SetBool(_deadAnimationParameter, false);
+    }
+
+
     private void DisableComponents(EnemyController enemy)
     {
         // Behaviours to disable
@@ -33,6 +50,7 @@ public class EnemyDeadState : EnemyState
             enemy,
             enemy.NavAgent, enemy.PlayerDetection,
             enemy.SoundDetection,
+            enemy.EnemyHealth
             // ...
         };
 
