@@ -13,12 +13,12 @@ public class PlayerDetectionPoints : MonoBehaviour
     [SerializeField] private string _playerTag = "Player";
     [SerializeField] private Transform[] _detectionPoints;
 
-    // TODO: For testing purposes - will be removed when State is changed automatically
-    [Header("State"), SerializeField]
-    private PlayerState _currentState = PlayerState.Normal;
-
     private readonly List<PlayerAreaTrigger> _currentAreas = new();
     private PlayerArea _currentArea = PlayerArea.Normal;
+    private PlayerState _currentState = PlayerState.Normal;
+
+
+    public void SetCurrentPlayerState(PlayerState state) => _currentState = state;
 
     public bool IsInSafeArea() => _currentArea == PlayerArea.Safe;
     public bool IsSuspicious() => _currentArea == PlayerArea.Suspicious || _currentState == PlayerState.Suspicious;
