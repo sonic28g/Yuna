@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Yuna/Enemy/EnemyDeadState")]
 public class EnemyDeadState : EnemyState
@@ -32,14 +33,30 @@ public class EnemyDeadState : EnemyState
 
     private void DeadAnimation(EnemyController enemy)
     {
-        if (enemy.Animator == null) return;
+        if (!HaveAnimationParameter(enemy)) return;
         enemy.Animator.SetBool(_deadAnimationParameter, true);
     }
 
     private void RestoreAnimation(EnemyController enemy)
     {
-        if (enemy.Animator == null) return;
+        if (!HaveAnimationParameter(enemy)) return;
         enemy.Animator.SetBool(_deadAnimationParameter, false);
+    }
+
+    private bool HaveAnimationParameter(EnemyController enemy)
+    {
+        // Check if have a animator
+        if (enemy.Animator == null) return false;
+
+        // Check if have a parameter with the same name
+        AnimatorControllerParameter parameter = enemy.Animator.parameters.FirstOrDefault(p => p.name == _deadAnimationParameter);
+        if (parameter == null) return false;
+
+        // Check if the parameter is a bool type
+        bool isBool = parameter.type == AnimatorControllerParameterType.Bool;
+        if (!isBool) return false;
+
+        return true;
     }
 
 
