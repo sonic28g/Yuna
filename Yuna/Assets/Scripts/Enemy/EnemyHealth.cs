@@ -36,6 +36,8 @@ public class EnemyHealth : MonoBehaviour
 
         CurrentHealth = 0;
         OnDeath?.Invoke();
+
+        Debug.Log($"{name} is dead.");
     }
 
 
@@ -47,6 +49,8 @@ public class EnemyHealth : MonoBehaviour
         // Calculate damage based on weapon type
         int damage = CalculateDamage(weapon, contact);
         if (damage <= 0) return;
+
+        Debug.Log($"{name} took {damage} damage from {weapon}.\nCurrent Health: {CurrentHealth} / {MaxHealth}");
 
         // Apply damage & check for death
         CurrentHealth -= damage;
