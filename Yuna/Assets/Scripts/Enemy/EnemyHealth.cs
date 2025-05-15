@@ -50,10 +50,10 @@ public class EnemyHealth : MonoBehaviour
         int damage = CalculateDamage(weapon, contact);
         if (damage <= 0) return;
 
-        Debug.Log($"{name} took {damage} damage from {weapon}.\nCurrent Health: {CurrentHealth} / {MaxHealth}");
-
         // Apply damage & check for death
         CurrentHealth -= damage;
+        Debug.Log($"{name} took {damage} damage from {weapon}.\nCurrent Health: {CurrentHealth} / {MaxHealth}");
+
         if (IsDead) Kill();
     }
 
