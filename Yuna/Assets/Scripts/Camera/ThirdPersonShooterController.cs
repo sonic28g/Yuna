@@ -20,6 +20,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     private Animator _animator;
     private bool _hasAnimator;
 
+    private bool canAttack = false;
+
     private void Awake() {
         _thirdPersonController = gameObject.GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
@@ -59,7 +61,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 starterAssetsInputs.shoot = false;
             }
         }
-        else if (!starterAssetsInputs.aim && starterAssetsInputs.shoot)
+        else if (!starterAssetsInputs.aim && starterAssetsInputs.shoot && canAttack)
         {
             _animator.SetTrigger("Attacking");
             starterAssetsInputs.shoot = false;

@@ -20,13 +20,13 @@ public class Door : InteractableObject
     private void OpenDoor()
     {
         isOpen = true;
-        //animator.SetTrigger("Open");
+        animator.SetTrigger("Open");
     }
 
     private void CloseDoor()
     {
         isOpen = false;
-        //animator.SetTrigger("Close");
+        animator.SetTrigger("Close");
     }
 }
 
