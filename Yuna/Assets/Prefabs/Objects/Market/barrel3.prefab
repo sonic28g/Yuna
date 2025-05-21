@@ -184,6 +184,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9221421712796837190}
+  - component: {fileID: 5821632729254997541}
+  - component: {fileID: 8054694530242081498}
   m_Layer: 0
   m_Name: barrel3
   m_TagString: Untagged
@@ -209,6 +211,50 @@ Transform:
   - {fileID: 353378788259252403}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5821632729254997541
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287510401689553371}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.15100889
+  m_Height: 0.34175074
+  m_Direction: 2
+  m_Center: {x: 0.0018944121, y: -4.4102226e-18, z: -0.015548084}
+--- !u!65 &8054694530242081498
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287510401689553371}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1947379, y: 0.2115828, z: 0.03730817}
+  m_Center: {x: -0.000091231894, y: -0.0036214015, z: 0.13861449}
 --- !u!1 &6492268900838521156
 GameObject:
   m_ObjectHideFlags: 0
