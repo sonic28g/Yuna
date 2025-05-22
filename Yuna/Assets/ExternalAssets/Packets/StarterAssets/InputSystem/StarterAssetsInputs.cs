@@ -16,6 +16,7 @@ namespace StarterAssets
 		public bool shoot;
 		public bool interact;
 		public bool showMenu;
+		public bool crouch;
 
 		public Action DialogueSkip;
         public Action DialogueNext;
@@ -84,6 +85,11 @@ namespace StarterAssets
 			ShootInput(value.isPressed);
 		}
 
+		public void OnCrouch(InputValue value)
+		{
+			CrouchInput(value.isPressed);
+		}
+
 		public void OnInteract(InputValue value)
 		{
 			InteractInput(value.isPressed);
@@ -131,6 +137,11 @@ namespace StarterAssets
 		public void ShootInput(bool newShootState)
 		{
 			shoot = newShootState;
+		}
+
+		public void CrouchInput(bool newCrouchState)
+		{
+			crouch = newCrouchState;
 		}
 
 		public void InteractInput(bool newInteractState)

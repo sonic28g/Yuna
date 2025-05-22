@@ -21,6 +21,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     private bool _hasAnimator;
 
     private bool nearEnemy = false;
+    private bool isCrouching = false;
 
     private void Awake() {
         _thirdPersonController = gameObject.GetComponent<ThirdPersonController>();
@@ -75,6 +76,12 @@ public class ThirdPersonShooterController : MonoBehaviour
             _animator.SetBool("Aiming", false);
         }
 
+    if (starterAssetsInputs.crouch)
+    {
+        isCrouching = !isCrouching; // alterna o estado
+        _animator.SetBool("Crouching", isCrouching);
+        starterAssetsInputs.crouch = false; // impede múltiplos toggles no mesmo frame
+    }
 
     }
 
