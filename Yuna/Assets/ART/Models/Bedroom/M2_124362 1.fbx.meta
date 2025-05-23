@@ -3,7 +3,102 @@ guid: 92d62bc589f7e4080a7e8cc33ae57e5f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Atlas
+    second: {fileID: 2100000, guid: b14483d0a08a54f2c9b9998a907b5fbe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AtlasMetal
+    second: {fileID: 2100000, guid: 4fc7fa38b0df44151ae57f152fcb8532, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AtlasMetalGold
+    second: {fileID: 2100000, guid: f7d47c17e047241b9922a2d9a063fb4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AtlasShiny
+    second: {fileID: 2100000, guid: a9582d65ba5be473ba1f150eb3971711, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: 3ce3602d9436a4cfaa394011b9f32670, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Green
+    second: {fileID: 2100000, guid: fb0e6c6db7aa1467bb33959891fdb731, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mirror
+    second: {fileID: 2100000, guid: 4784acac3185f4aabb08b0ba0272c3b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paint
+    second: {fileID: 2100000, guid: 2716fcd6772c448ab9baeee68c36eef9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paiting
+    second: {fileID: 2100000, guid: 1079e3df241854a72a21c861613b32d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red
+    second: {fileID: 2100000, guid: d956cc26677fd4ff7b70980f0b02fddf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: 7af2644f5a474435a94c05f2aa9d98b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tatami
+    second: {fileID: 2100000, guid: df90768ad7f884498b16d1225b30cf07, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall
+    second: {fileID: 2100000, guid: e9cb020a22719424a8b1afdd28270f60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White
+    second: {fileID: 2100000, guid: 7751cdab9b4d84161b377614a24b3bc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: e467f12dd0e6240b5aed25d4507c4bd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodDark
+    second: {fileID: 2100000, guid: 302e3671fdb024196a8d705f1ee84995, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodLight
+    second: {fileID: 2100000, guid: 7c25e7c46ec2f4353b18073f397e1b80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodMedium
+    second: {fileID: 2100000, guid: 734517916ed0d4487a2f2f4250c7d311, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow
+    second: {fileID: 2100000, guid: 33d74b98588be424ba11733c2bdbc115, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
