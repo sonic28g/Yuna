@@ -19,7 +19,7 @@ QualitySettings:
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
     shadowmaskMode: 0
     skinWeights: 4
-    globalTextureMipmapLimit: 1
+    globalTextureMipmapLimit: 2
     textureMipmapLimitSettings: []
     anisotropicTextures: 0
     antiAliasing: 0
@@ -35,7 +35,7 @@ QualitySettings:
     adaptiveVsyncExtraB: 0
     lodBias: 2
     maximumLODLevel: 0
-    enableLODCrossFade: 1
+    enableLODCrossFade: 0
     streamingMipmapsActive: 0
     streamingMipmapsAddAllCameras: 1
     streamingMipmapsMemoryBudget: 512
@@ -48,11 +48,11 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     customRenderPipeline: {fileID: 11400000, guid: c8b19e226687744c2a974d8b3d5acdb0, type: 2}
-    terrainQualityOverrides: 7
+    terrainQualityOverrides: 15
     terrainPixelError: 10
     terrainDetailDensityScale: 0.5
-    terrainBasemapDistance: 80
-    terrainDetailDistance: 80
+    terrainBasemapDistance: 40
+    terrainDetailDistance: 30
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
     terrainFadeLength: 5
@@ -71,7 +71,7 @@ QualitySettings:
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
     shadowmaskMode: 1
     skinWeights: 4
-    globalTextureMipmapLimit: 0
+    globalTextureMipmapLimit: 2
     textureMipmapLimitSettings: []
     anisotropicTextures: 1
     antiAliasing: 2
@@ -100,11 +100,11 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     customRenderPipeline: {fileID: 11400000, guid: 63d242fe96c514b78ba33e6b82876a6a, type: 2}
-    terrainQualityOverrides: 6
+    terrainQualityOverrides: 14
     terrainPixelError: 1
     terrainDetailDensityScale: 0.8
     terrainBasemapDistance: 80
-    terrainDetailDistance: 80
+    terrainDetailDistance: 40
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
     terrainFadeLength: 5
@@ -123,7 +123,7 @@ QualitySettings:
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
     shadowmaskMode: 1
     skinWeights: 4
-    globalTextureMipmapLimit: 0
+    globalTextureMipmapLimit: 1
     textureMipmapLimitSettings: []
     anisotropicTextures: 1
     antiAliasing: 4
@@ -155,8 +155,8 @@ QualitySettings:
     terrainQualityOverrides: 14
     terrainPixelError: 1
     terrainDetailDensityScale: 1
-    terrainBasemapDistance: 200
-    terrainDetailDistance: 100
+    terrainBasemapDistance: 100
+    terrainDetailDistance: 40
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
     terrainFadeLength: 5
@@ -208,7 +208,7 @@ QualitySettings:
     terrainPixelError: 1
     terrainDetailDensityScale: 1
     terrainBasemapDistance: 200
-    terrainDetailDistance: 100
+    terrainDetailDistance: 60
     terrainTreeDistance: 5000
     terrainBillboardStart: 50
     terrainFadeLength: 5
