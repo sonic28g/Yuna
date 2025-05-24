@@ -354,19 +354,27 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2046226834}
     m_Modifications:
     - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.43
+      value: 23.0741
       objectReference: {fileID: 0}
     - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.002193
+      value: -1.5834112
       objectReference: {fileID: 0}
     - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -81.7
+      value: -75.10313
       objectReference: {fileID: 0}
     - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3753,7 +3761,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "FPS: 27.12 (36.87 ms)\nM\xE9dia FPS: 26.79"
+  m_text: "FPS: 0.11 (8822.95 ms)\nM\xE9dia FPS: 30.10"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -54461,6 +54469,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1951820503829950329, guid: 4e70af1e1afac47be903804de60ec621, type: 3}
   m_PrefabInstance: {fileID: 2037036747}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2037731865 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+  m_PrefabInstance: {fileID: 23641469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2043311601
 GameObject:
   m_ObjectHideFlags: 0
@@ -54582,6 +54595,7 @@ Transform:
   - {fileID: 883076567}
   - {fileID: 1304236716}
   - {fileID: 336574199}
+  - {fileID: 2037731865}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047978131
@@ -60898,4 +60912,3 @@ SceneRoots:
   - {fileID: 2046226834}
   - {fileID: 60575821}
   - {fileID: 113688829}
-  - {fileID: 23641469}
