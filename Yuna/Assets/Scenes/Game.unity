@@ -4650,7 +4650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "FPS: 0,87 (1154,28 ms)\nM\xE9dia FPS: 0,87"
+  m_text: "FPS: 0,06 (16987,27 ms)\nM\xE9dia FPS: 0,71"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19360,7 +19360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &613336074
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29261,9 +29261,11 @@ MonoBehaviour:
   showingSettings: 0
   showingPause: 0
   showingKeybinds: 0
+  showingJournal: 0
   pauseMenu: {fileID: 2123501722}
   settingsMenu: {fileID: 251670615}
   keybindsMenu: {fileID: 730609080}
+  journalMenu: {fileID: 2002490947}
 --- !u!1 &865096421 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5934129722972032481, guid: ac69685bf8946ec47b2bfd50df4630a4, type: 3}
@@ -62466,7 +62468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2002490948}
   m_Layer: 5
-  m_Name: Journal
+  m_Name: JournalMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
