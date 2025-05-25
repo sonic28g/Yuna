@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8673722255694194110}
   - component: {fileID: 6554069264075806639}
   m_Layer: 7
-  m_Name: Clue
+  m_Name: Lore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 4198480670496623312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.947353, y: 0.4016, z: 3.4736}
-  m_LocalScale: {x: 0.5, y: 0.4233, z: 0.22285}
+  m_LocalPosition: {x: 5.947353, y: 0.5298, z: 3.3274}
+  m_LocalScale: {x: 0.5, y: 0.1667802, z: 0.51527375}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8728eebb89863484682bb12b11686a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: Clue
+  objectName: Lore
   inspectableData: {fileID: 0}
 --- !u!54 &6554069264075806639
 Rigidbody:

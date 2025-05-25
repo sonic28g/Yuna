@@ -21,11 +21,11 @@ public class UIManager : MonoBehaviour
         nearbyText.SetActive(show);
     }
 
-    public void ShowPickupText(string objectName)
+    public void ShowPickupText(string text)
     {
         pickupText.SetActive(true);
-        pickupText.GetComponent<TextMeshProUGUI>().text = "+ 1 " + objectName;
-        Invoke("HidePickupText", 2f);
+        pickupText.GetComponent<TextMeshProUGUI>().text = text;
+        Invoke("HidePickupText", 3f);
     }
 
     private void HidePickupText()

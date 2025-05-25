@@ -59,8 +59,6 @@ public class MenuController : MonoBehaviour
             _inputs.showMenu = false;
 
         }
-
-        
     }
 
     public void CloseGame()

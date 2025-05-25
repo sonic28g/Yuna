@@ -17,6 +17,7 @@ namespace StarterAssets
 		public bool interact;
 		public bool showMenu;
 		public bool crouch;
+		public bool triggerJournal;
 
 		public Action DialogueSkip;
         public Action DialogueNext;
@@ -100,6 +101,11 @@ namespace StarterAssets
 			ShowMenuInput(value.isPressed);
 		}
 
+		public void OnShowJournal(InputValue value)
+		{
+			ShowJournalInput(value.isPressed);
+		}
+
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
@@ -154,6 +160,10 @@ namespace StarterAssets
 			showMenu = newShowMenuState;
 		}
 
+		private void ShowJournalInput(bool newShowJournalState)
+		{
+			triggerJournal = newShowJournalState;
+		}
 
 		private void SetCursorState(bool newState)
 		{
