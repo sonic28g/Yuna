@@ -101,9 +101,9 @@ namespace StarterAssets
 			ShowMenuInput(value.isPressed);
 		}
 
-		public void OnShowJournal(InputValue value)
+		public void OnTriggerJournal(InputValue value)
 		{
-			ShowJournalInput(value.isPressed);
+			TriggerJournalInput(value.isPressed);
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
@@ -160,9 +160,9 @@ namespace StarterAssets
 			showMenu = newShowMenuState;
 		}
 
-		private void ShowJournalInput(bool newShowJournalState)
+		private void TriggerJournalInput(bool newTriggerJournalState)
 		{
-			triggerJournal = newShowJournalState;
+			triggerJournal = newTriggerJournalState;
 		}
 
 		private void SetCursorState(bool newState)

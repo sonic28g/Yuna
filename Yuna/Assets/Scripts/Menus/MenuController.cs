@@ -13,22 +13,24 @@ public class MenuController : MonoBehaviour
     public bool showingSettings = false; 
     public bool showingPause = false; 
     public bool showingKeybinds = false;
+    public bool showingJournal = false;
 
     public GameObject pauseMenu;
     public GameObject settingsMenu;
     public GameObject keybindsMenu;
+    public GameObject journalMenu;
 
 
-    private void Awake() 
+    private void Awake()
     {
         isOpen = false;
     }
 
-    private void Update() 
+    private void Update()
     {
-        if(_inputs.showMenu)
+        if (_inputs.showMenu)
         {
-            if(!showingPause && !showingSettings && !showingKeybinds)
+            if (!showingPause && !showingSettings && !showingKeybinds)
             {
                 showingPause = true;
                 pauseMenu.SetActive(true);
@@ -36,19 +38,19 @@ public class MenuController : MonoBehaviour
                 Cursor.visible = true; // Esconde o cursor
                 Cursor.lockState = CursorLockMode.None; // Tranca o cursor ao centro do ecrã
             }
-            else if(showingPause && !showingSettings && !showingKeybinds)
+            else if (showingPause && !showingSettings && !showingKeybinds)
             {
                 ResumeGame();
                 pauseMenu.SetActive(false);
             }
-            else if(!showingPause && showingSettings && !showingKeybinds)
+            else if (!showingPause && showingSettings && !showingKeybinds)
             {
                 settingsMenu.SetActive(false);
                 showingSettings = false;
                 showingPause = true;
                 pauseMenu.SetActive(true);
             }
-            else if(!showingPause && !showingSettings && showingKeybinds)
+            else if (!showingPause && !showingSettings && showingKeybinds)
             {
                 keybindsMenu.SetActive(false);
                 showingKeybinds = false;
@@ -57,7 +59,14 @@ public class MenuController : MonoBehaviour
             }
 
             _inputs.showMenu = false;
+        }
+        
+        if (_inputs.triggerJournal)
+        {
+            journalMenu.SetActive(showingJournal);
+            showingJournal = !showingJournal;
 
+            _inputs.triggerJournal = false;
         }
     }
 
