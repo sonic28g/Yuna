@@ -4,7 +4,7 @@ public class CheckpointManager : MonoBehaviour
 {
     public static CheckpointManager Instance;
 
-    [SerializeField] private Vector2 lastCheckpointPos;
+    [SerializeField] private Vector3 lastCheckpointPos;
     private GameObject player;
 
     private void Awake()
@@ -17,9 +17,9 @@ public class CheckpointManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    public void SetCheckpoint(Vector2 pos)
+    public void SetCheckpoint()
     {
-        lastCheckpointPos = pos;
+        lastCheckpointPos = player.transform.position;
     }
 
     public void RespawnPlayer()
