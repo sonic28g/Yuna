@@ -344,7 +344,7 @@
                 {
                     "name": "",
                     "id": "be889489-b13e-43b9-b627-07d4cca62e33",
-                    "path": "",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -366,7 +366,7 @@
                 {
                     "name": "",
                     "id": "123c4c17-d065-49f5-97fc-936534af72d8",
-                    "path": "",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
