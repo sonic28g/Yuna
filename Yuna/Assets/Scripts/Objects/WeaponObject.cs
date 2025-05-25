@@ -25,7 +25,7 @@ public class WeaponObject : InteractableObject
         InventoryManager.instance.AddAmmo(weaponData.weaponName, amount);
         
         // Mostra mensagem na UI
-        UIManager.instance.ShowPickupText(weaponData.weaponName);
+        UIManager.instance.ShowInteractionText(weaponData.weaponName);
 
         // Destroi o objeto do mundo
         Destroy(gameObject);

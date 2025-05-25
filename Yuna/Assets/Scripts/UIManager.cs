@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
         nearbyText.SetActive(show);
     }
 
-    public void ShowPickupText(string text)
+    public void ShowInteractionText(string text)
     {
         pickupText.SetActive(true);
         pickupText.GetComponent<TextMeshProUGUI>().text = text;

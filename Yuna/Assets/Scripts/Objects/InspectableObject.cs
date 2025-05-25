@@ -11,7 +11,7 @@ public class InspectableObject : InteractableObject
 
     public override void Interact()
     {
-        UIManager.instance.ShowPickupText("New " + inspectableData.type.ToString().ToLower() + " added to the journal...");
+        UIManager.instance.ShowInteractionText("New " + inspectableData.type.ToString().ToLower() + " added to the journal...");
         inspectableData.isFound = true;
 
         if (inspectableData.type.ToString().ToLower().Equals("clue"))
