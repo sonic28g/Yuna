@@ -28,15 +28,14 @@ public class MenuController : MonoBehaviour
 
     private void Update()
     {
-        if (_inputs.showMenu)
+        if (_inputs.showMenu && !showingJournal)
         {
             if (!showingPause && !showingSettings && !showingKeybinds)
             {
                 showingPause = true;
                 pauseMenu.SetActive(true);
                 PauseGame();
-                Cursor.visible = true; // Esconde o cursor
-                Cursor.lockState = CursorLockMode.None; // Tranca o cursor ao centro do ecrã
+
             }
             else if (showingPause && !showingSettings && !showingKeybinds)
             {
@@ -63,8 +62,13 @@ public class MenuController : MonoBehaviour
         
         if (_inputs.triggerJournal)
         {
-            journalMenu.SetActive(showingJournal);
             showingJournal = !showingJournal;
+            journalMenu.SetActive(showingJournal);
+
+            if(showingJournal == true)
+                PauseGame();
+            else
+                ResumeGame();
 
             _inputs.triggerJournal = false;
         }
@@ -83,9 +87,9 @@ public class MenuController : MonoBehaviour
 
     public void PauseGame(){
         Time.timeScale = 0;
-        TPController.LockCameraPosition = true;
-        // parar camera
-        
+        TPController.LockCameraPosition = true;   
+        Cursor.visible = true; // Esconde o cursor
+        Cursor.lockState = CursorLockMode.None; // Tranca o cursor ao centro do ecrã     
     }
 
     public void ResumeGame(){
