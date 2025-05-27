@@ -77,6 +77,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Mirror
+    second: {fileID: 2100000, guid: a9f9d5957a26a49e78c8d429d4adbad3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Paint
     second: {fileID: 2100000, guid: 2716fcd6772c448ab9baeee68c36eef9, type: 2}
   - first:

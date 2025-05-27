@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76781ba6fc2fb94b9bcc35881889df2, type: 3}
   m_Name: EnemyChaseState
   m_EditorClassIdentifier: 
-  _suspiciousTime: 5
-  _confirmedTime: 2
+  _suspiciousTime: 4
+  _confirmedTime: 1

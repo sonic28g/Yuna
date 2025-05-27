@@ -8,6 +8,9 @@ public class EnemyFoundState : EnemyState
 
     public override void EnterState(EnemyController enemy)
     {
+        CheckpointManager.Instance.RespawnPlayer();
+
+        
         enemy.NavAgent.isStopped = true;
         enemy.NavAgent.ResetPath();
 

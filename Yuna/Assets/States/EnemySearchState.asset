@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bd52812f7fe884f859f00dfab41b59, type: 3}
   m_Name: EnemySearchState
   m_EditorClassIdentifier: 
-  _suspiciousTime: 5
+  _suspiciousTime: 4

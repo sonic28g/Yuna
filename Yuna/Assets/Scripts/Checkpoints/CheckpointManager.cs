@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
@@ -5,7 +6,10 @@ public class CheckpointManager : MonoBehaviour
     public static CheckpointManager Instance;
 
     [SerializeField] private Vector3 lastCheckpointPos;
-    private GameObject player;
+    [SerializeField] GameObject player;
+
+    [SerializeField] Transform firstSpawn;
+    [SerializeField] GameObject foundPanel;
 
     private void Awake()
     {
@@ -14,7 +18,8 @@ public class CheckpointManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        player = GameObject.FindGameObjectWithTag("Player");
+
+        SetCheckpoint();
     }
 
     public void SetCheckpoint()
@@ -24,8 +29,20 @@ public class CheckpointManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        player.transform.position = lastCheckpointPos;
+        StartCoroutine(RespawnCoroutine());
 
         // Aqui podes adicionar: reset de estado, desativar alerta de inimigos, etc.
+    }
+
+    public IEnumerator RespawnCoroutine()
+    {
+        foundPanel.SetActive(true);
+        foundPanel.GetComponent<Animator>().SetTrigger("found");
+        yield return new WaitForSeconds(2);
+
+        player.transform.position = lastCheckpointPos;
+        
+        yield return new WaitForSeconds(3);
+        foundPanel.SetActive(false);
     }
 }
