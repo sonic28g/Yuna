@@ -1,8 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    private static Action _resetAllEnemiesAction;
+    private static Action _saveAllEnemiesAction;
+
+    public static void ResetAllEnemies() => _resetAllEnemiesAction?.Invoke();
+    public static void SaveAllEnemies() => _saveAllEnemiesAction?.Invoke();
+
+
     private EnemyState _currentState;
 
     // Shared components
@@ -22,6 +30,11 @@ public class EnemyController : MonoBehaviour
     [field: SerializeField] public EnemySearchState SearchState { get; private set; }
     // ...
 
+    private static readonly string SPEED_ANIMATOR_PARAMETER = "Speed";
+    private static readonly string MOTION_SPEED_ANIMATOR_PARAMETER = "MotionSpeed";
+    private Vector3 _initialPosition;
+    private Quaternion _initialRotation;
+
 
     private void Awake()
     {
@@ -33,21 +46,28 @@ public class EnemyController : MonoBehaviour
         SoundDetection = GetComponentInChildren<SoundDetection>();
         Animator = GetComponentInChildren<Animator>();
 
-        // Check for missing components or "invalid states" + initialization
-        if (NavAgent == null) throw new System.Exception($"NavMeshAgent is missing in {name}");
-        else if (!NavAgent.isOnNavMesh) throw new System.Exception($"NavMeshAgent is not on the NavMesh in {name}");
+        // Store initial position and rotation
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
 
-        if (EnemyPatrolPoints == null) throw new System.Exception($"EnemyPatrolPoints is missing in {name}");
+        // Check for missing components or "invalid states" + initialization
+        if (NavAgent == null) throw new Exception($"NavMeshAgent is missing in {name}");
+        else if (!NavAgent.isOnNavMesh) throw new Exception($"NavMeshAgent is not on the NavMesh in {name}");
+
+        if (EnemyPatrolPoints == null) throw new Exception($"EnemyPatrolPoints is missing in {name}");
         EnemyPatrolPoints.Init();
 
-        if (EnemyHealth == null) throw new System.Exception($"EnemyHealth is missing in {name}");
+        if (EnemyHealth == null) throw new Exception($"EnemyHealth is missing in {name}");
         else EnemyHealth.OnDeath += OnDeath;
 
-        if (PlayerDetection == null) throw new System.Exception($"PlayerDetection is missing in {name}");
-        if (SoundDetection == null) throw new System.Exception($"SoundDetection is missing in {name}");
+        if (PlayerDetection == null) throw new Exception($"PlayerDetection is missing in {name}");
+        if (SoundDetection == null) throw new Exception($"SoundDetection is missing in {name}");
 
         // Initialize states
         InitializeStates();
+
+        _resetAllEnemiesAction += ResetEnemy;
+        _saveAllEnemiesAction += SaveEnemy;
     }
 
 
@@ -76,7 +96,7 @@ public class EnemyController : MonoBehaviour
 
     private T InitializeState<T>(T state) where T : EnemyState
     {
-        if (state == null) throw new System.Exception($"{typeof(T)} is missing in {name}");
+        if (state == null) throw new Exception($"{typeof(T)} is missing in {name}");
 
         T newState = Instantiate(state);
         newState.name = $"{state.name} - {name}";
@@ -97,14 +117,39 @@ public class EnemyController : MonoBehaviour
     }
 
 
+    public void ResetEnemy()
+    {
+        // Reset position and rotation
+        transform.SetPositionAndRotation(_initialPosition, _initialRotation);
+        if (NavAgent.isOnNavMesh) NavAgent.ResetPath();
+        NavAgent.Warp(_initialPosition);
+
+        // Reset Health and current state
+        EnemyHealth.ResetHealth();
+        if (!EnemyHealth.IsDead) TransitionToState(PatrolState);
+        else TransitionToState(DeadState);
+    }
+
+    public void SaveEnemy()
+    {
+        EnemyHealth.SaveHealth();
+
+        if (!EnemyHealth.IsDead) return;
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
+    }
+
+
     private void UpdateAnimator()
     {
         if (Animator == null) return;
 
-        Animator.SetFloat("Speed", NavAgent.velocity.magnitude);
-        Animator.SetFloat("MotionSpeed", NavAgent.velocity.magnitude / NavAgent.speed);
+        Animator.SetFloat(SPEED_ANIMATOR_PARAMETER, NavAgent.velocity.magnitude);
+        Animator.SetFloat(MOTION_SPEED_ANIMATOR_PARAMETER, NavAgent.velocity.magnitude / NavAgent.speed);
     }
 
-    private void OnFootstep(AnimationEvent animationEvent) {}
-    private void OnLand(AnimationEvent animationEvent) {}
+#pragma warning disable IDE0051 // Remove unused private members
+    private void OnFootstep(AnimationEvent _) {}
+    private void OnLand(AnimationEvent _) {}
+#pragma warning restore IDE0051 // Remove unused private members
 }

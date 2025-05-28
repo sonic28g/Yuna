@@ -28,6 +28,8 @@ public class EnemyHealth : MonoBehaviour
 
 
     public void ResetHealth() => CurrentHealth = MaxHealth;
+    public void SaveHealth() => MaxHealth = CurrentHealth;
+
 
     public void Kill()
     {
