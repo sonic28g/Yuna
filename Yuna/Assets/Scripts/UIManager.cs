@@ -1,11 +1,14 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    public GameObject nearbyText; 
+    public GameObject nearbyText;
+    public InputActionReference interactAction;
+    public GameObject nearbyTextKey;
     public GameObject pickupText;
     public TextMeshProUGUI ammoText; // Adiciona um campo para exibir a munição
 
@@ -19,6 +22,18 @@ public class UIManager : MonoBehaviour
     public void ShowNearbyText(bool show)
     {
         nearbyText.SetActive(show);
+
+        if (show)
+        {
+            var binding = interactAction.action.bindings[0];
+            string key = InputControlPath.ToHumanReadableString(
+                binding.effectivePath,
+                InputControlPath.HumanReadableStringOptions.OmitDevice
+            );
+
+            nearbyTextKey.GetComponent<TextMeshProUGUI>().text = $"{key}";
+        }
+
     }
 
     public void ShowInteractionText(string text)
