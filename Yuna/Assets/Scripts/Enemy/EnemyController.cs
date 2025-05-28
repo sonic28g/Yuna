@@ -32,6 +32,8 @@ public class EnemyController : MonoBehaviour
 
     private static readonly string SPEED_ANIMATOR_PARAMETER = "Speed";
     private static readonly string MOTION_SPEED_ANIMATOR_PARAMETER = "MotionSpeed";
+    private Vector3 _initialPosition;
+    private Quaternion _initialRotation;
 
 
     private void Awake()
@@ -43,6 +45,10 @@ public class EnemyController : MonoBehaviour
         PlayerDetection = GetComponentInChildren<PlayerDetection>();
         SoundDetection = GetComponentInChildren<SoundDetection>();
         Animator = GetComponentInChildren<Animator>();
+
+        // Store initial position and rotation
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
 
         // Check for missing components or "invalid states" + initialization
         if (NavAgent == null) throw new Exception($"NavMeshAgent is missing in {name}");
@@ -59,6 +65,9 @@ public class EnemyController : MonoBehaviour
 
         // Initialize states
         InitializeStates();
+
+        _resetAllEnemiesAction += ResetEnemy;
+        _saveAllEnemiesAction += SaveEnemy;
     }
 
 
@@ -105,6 +114,29 @@ public class EnemyController : MonoBehaviour
     {
         UpdateAnimator();
         if (_currentState != null) _currentState.FixedUpdateState(this);
+    }
+
+
+    public void ResetEnemy()
+    {
+        // Reset position and rotation
+        transform.SetPositionAndRotation(_initialPosition, _initialRotation);
+        if (NavAgent.isOnNavMesh) NavAgent.ResetPath();
+        NavAgent.Warp(_initialPosition);
+
+        // Reset Health and current state
+        EnemyHealth.ResetHealth();
+        if (!EnemyHealth.IsDead) TransitionToState(PatrolState);
+        else TransitionToState(DeadState);
+    }
+
+    public void SaveEnemy()
+    {
+        EnemyHealth.SaveHealth();
+
+        if (!EnemyHealth.IsDead) return;
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
     }
 
 
