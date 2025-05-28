@@ -77,6 +77,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Material_Alpha
+    second: {fileID: 2100000, guid: 50831b2c7d488ee4a871ba2f088a00b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Mirror
     second: {fileID: 2100000, guid: a9f9d5957a26a49e78c8d429d4adbad3, type: 2}
   - first:

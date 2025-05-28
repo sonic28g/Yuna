@@ -8,7 +8,6 @@ public class CheckpointManager : MonoBehaviour
     [SerializeField] private Vector3 lastCheckpointPos;
     [SerializeField] GameObject player;
 
-    [SerializeField] Transform firstSpawn;
     [SerializeField] GameObject foundPanel;
 
     private void Awake()

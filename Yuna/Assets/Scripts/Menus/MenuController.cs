@@ -10,15 +10,17 @@ public class MenuController : MonoBehaviour
     public ThirdPersonController TPController;
     public StarterAssetsInputs _inputs;
 
-    public bool showingSettings = false; 
-    public bool showingPause = false; 
+    public bool showingSettings = false;
+    public bool showingPause = false;
     public bool showingKeybinds = false;
     public bool showingJournal = false;
+    public bool showingOptions = false;
 
     public GameObject pauseMenu;
     public GameObject settingsMenu;
     public GameObject keybindsMenu;
     public GameObject journalMenu;
+    public GameObject optionsMenu;
 
 
     private void Awake()
@@ -30,42 +32,49 @@ public class MenuController : MonoBehaviour
     {
         if (_inputs.showMenu && !showingJournal)
         {
-            if (!showingPause && !showingSettings && !showingKeybinds)
+            if (!showingPause && !showingSettings && !showingKeybinds && !showingOptions)
             {
                 showingPause = true;
                 pauseMenu.SetActive(true);
                 PauseGame();
 
             }
-            else if (showingPause && !showingSettings && !showingKeybinds)
+            else if (showingPause && !showingSettings && !showingKeybinds && !showingOptions)
             {
                 ResumeGame();
                 pauseMenu.SetActive(false);
             }
-            else if (!showingPause && showingSettings && !showingKeybinds)
+            else if (!showingPause && showingSettings && !showingKeybinds && !showingOptions)
             {
                 settingsMenu.SetActive(false);
                 showingSettings = false;
-                showingPause = true;
-                pauseMenu.SetActive(true);
+                showingOptions = true;
+                optionsMenu.SetActive(true);
             }
-            else if (!showingPause && !showingSettings && showingKeybinds)
+            else if (!showingPause && !showingSettings && showingKeybinds && !showingOptions)
             {
                 keybindsMenu.SetActive(false);
                 showingKeybinds = false;
                 showingPause = true;
                 pauseMenu.SetActive(true);
             }
+            else if (!showingPause && !showingSettings && showingKeybinds && showingOptions)
+            {
+                optionsMenu.SetActive(false);
+                showingOptions = false;
+                showingPause = true;
+                optionsMenu.SetActive(true);
+            }
 
             _inputs.showMenu = false;
         }
-        
+
         if (_inputs.triggerJournal)
         {
             showingJournal = !showingJournal;
             journalMenu.SetActive(showingJournal);
 
-            if(showingJournal == true)
+            if (showingJournal == true)
                 PauseGame();
             else
                 ResumeGame();
@@ -85,14 +94,16 @@ public class MenuController : MonoBehaviour
     }
 
 
-    public void PauseGame(){
+    public void PauseGame()
+    {
         Time.timeScale = 0;
-        TPController.LockCameraPosition = true;   
+        TPController.LockCameraPosition = true;
         Cursor.visible = true; // Esconde o cursor
         Cursor.lockState = CursorLockMode.None; // Tranca o cursor ao centro do ecrã     
     }
 
-    public void ResumeGame(){
+    public void ResumeGame()
+    {
         Time.timeScale = 1;
         TPController.LockCameraPosition = false;
         Cursor.visible = false; // Esconde o cursor
@@ -105,7 +116,7 @@ public class MenuController : MonoBehaviour
         showingSettings = option;
     }
 
-    
+
     public void ToggleKeybindsShowing(bool option)
     {
         showingKeybinds = option;
@@ -114,5 +125,10 @@ public class MenuController : MonoBehaviour
     public void TogglePauseShowing(bool option)
     {
         showingPause = option;
+    }
+
+    public void ToggleOptionsShowing(bool option)
+    {
+        showingOptions = option;
     }
 }
