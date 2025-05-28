@@ -5187,7 +5187,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "FPS: 19,26 (51,91 ms)\nM\xE9dia FPS: 18,88"
+  m_text: "FPS: 3,16 (316,43 ms)\nM\xE9dia FPS: 2,15"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -42388,6 +42388,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5991092620670711097, guid: d01b580374d4c4f8f8f6f1b6bcf01b1f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991092620670711097, guid: d01b580374d4c4f8f8f6f1b6bcf01b1f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -44637,6 +44641,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 851812739996596082, guid: d01b580374d4c4f8f8f6f1b6bcf01b1f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 746265043}
+    - targetCorrespondingSourceObject: {fileID: 5991092620670711097, guid: d01b580374d4c4f8f8f6f1b6bcf01b1f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1733842271}
     - targetCorrespondingSourceObject: {fileID: 9100220534160534386, guid: d01b580374d4c4f8f8f6f1b6bcf01b1f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1629794382}
@@ -65581,6 +65588,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732347358}
   m_Mesh: {fileID: -4953986678398552453, guid: daad6ffca127f2d4f85cd0e49b57101f, type: 3}
+--- !u!1 &1733842267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5991092620670711097, guid: d01b580374d4c4f8f8f6f1b6bcf01b1f, type: 3}
+  m_PrefabInstance: {fileID: 1016758458}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1733842271
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733842267}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8999160294902066119, guid: d01b580374d4c4f8f8f6f1b6bcf01b1f, type: 3}
 --- !u!1 &1735229087 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3472119243571837365, guid: daad6ffca127f2d4f85cd0e49b57101f, type: 3}
