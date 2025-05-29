@@ -11,6 +11,26 @@ public class Door : InteractableObject
     public int etapaMinima = 2; // A partir de que etapa pode interagir
     public static event Action<Door> OnDoorOpened;
 
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip[] _clips;
+    private AudioSource _audioSource;
+
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
+    private void PlayOpenCloseSound()
+    {
+        if (_audioSource == null || _clips.Length == 0) return;
+
+        int index = UnityEngine.Random.Range(0, _clips.Length);
+        _audioSource.clip = _clips[index];
+        _audioSource.Play();
+    }
+
+
     public override void Interact()
     {
         // Verificar se pode interagir com base no progresso do tutorial
@@ -22,14 +42,10 @@ public class Door : InteractableObject
             return;
         }
 
-        if (!isOpen)
-        {
-            OpenDoor();
-        }
-        else
-        {
-            CloseDoor();
-        }
+        if (!isOpen) OpenDoor();
+        else CloseDoor();
+
+        PlayOpenCloseSound();
     }
 
     private void OpenDoor()
@@ -38,7 +54,6 @@ public class Door : InteractableObject
         animator.SetTrigger("Open");
 
         OnDoorOpened?.Invoke(this);
-
     }
 
     private void CloseDoor()
