@@ -20,9 +20,11 @@ public class EnemyController : MonoBehaviour
     public PlayerDetection PlayerDetection { get; private set; }
     public SoundDetection SoundDetection { get; private set; }
     public Animator Animator { get; private set; }
+    public AudioSource AudioSource { get; private set; }
     // ...
 
     // States
+    [field: Header("States")]
     [field: SerializeField] public EnemyPatrolState PatrolState { get; private set; }
     [field: SerializeField] public EnemyDeadState DeadState { get; private set; }
     [field: SerializeField] public EnemyChaseState ChaseState { get; private set; }
@@ -35,6 +37,9 @@ public class EnemyController : MonoBehaviour
     private Vector3 _initialPosition;
     private Quaternion _initialRotation;
 
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip[] _footstepClips;
+
 
     private void Awake()
     {
@@ -45,6 +50,7 @@ public class EnemyController : MonoBehaviour
         PlayerDetection = GetComponentInChildren<PlayerDetection>();
         SoundDetection = GetComponentInChildren<SoundDetection>();
         Animator = GetComponentInChildren<Animator>();
+        AudioSource = GetComponentInChildren<AudioSource>();
 
         // Store initial position and rotation
         _initialPosition = transform.position;
@@ -148,8 +154,19 @@ public class EnemyController : MonoBehaviour
         Animator.SetFloat(MOTION_SPEED_ANIMATOR_PARAMETER, NavAgent.velocity.magnitude / NavAgent.speed);
     }
 
+
 #pragma warning disable IDE0051 // Remove unused private members
-    private void OnFootstep(AnimationEvent _) {}
+    private void OnFootstep(AnimationEvent animationEvent)
+    {
+        if (_footstepClips.Length == 0) return;
+        if (animationEvent.animatorClipInfo.weight >= 0.5f) return;
+
+
+        int index = UnityEngine.Random.Range(0, _footstepClips.Length);
+        AudioSource.clip = _footstepClips[index];
+        AudioSource.Play();
+    }
+
     private void OnLand(AnimationEvent _) {}
 #pragma warning restore IDE0051 // Remove unused private members
 }
