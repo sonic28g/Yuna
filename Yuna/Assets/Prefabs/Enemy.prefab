@@ -1990,7 +1990,7 @@ MonoBehaviour:
   kanzashiCriticalDamage: 100
   tessenDamage: 999
   criticalColliders:
-  - {fileID: 0}
+  - {fileID: 5070061292031352357}
 --- !u!114 &5790966587338871961
 MonoBehaviour:
   m_ObjectHideFlags: 0
