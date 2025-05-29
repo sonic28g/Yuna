@@ -1712,7 +1712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &40029632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5908,7 +5908,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "FPS: 11,60 (86,18 ms)\nM\xE9dia FPS: 3,19"
+  m_text: "FPS: 19,07 (52,44 ms)\nM\xE9dia FPS: 15,74"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12835,7 +12835,6 @@ Transform:
   - {fileID: 1895388651}
   - {fileID: 1970751495}
   - {fileID: 272462816}
-  - {fileID: 494967758}
   m_Father: {fileID: 60575821}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &345821476 stripped
@@ -17466,37 +17465,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: daad6ffca127f2d4f85cd0e49b57101f, type: 3}
   m_PrefabInstance: {fileID: 2069995894}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &494967757
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 494967758}
-  m_Layer: 7
-  m_Name: Test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &494967758
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 494967757}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 161.546, y: 38.56, z: -115.687}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 344988248}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &497796639
 GameObject:
   m_ObjectHideFlags: 0
@@ -80722,6 +80690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueInteractable: {fileID: 272462818}
+  tutorial: {fileID: 40029631}
 --- !u!4 &1965072114
 Transform:
   m_ObjectHideFlags: 0

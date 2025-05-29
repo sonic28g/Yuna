@@ -31,9 +31,7 @@ public class WeaponObject : InteractableObject
 
 
     public override void Interact()
-    {
-        Debug.Log("Pegaste a arma: " + weaponData.weaponName);
-        
+    {        
         // Adiciona munição ao inventário
         InventoryManager.instance.AddAmmo(weaponData.weaponName, amount);
         

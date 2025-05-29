@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
                 InputControlPath.HumanReadableStringOptions.OmitDevice
             );
 
-            nearbyTextObject.GetComponent<TextMeshProUGUI>().text = interactableObject.name;
+            nearbyTextObject.GetComponent<TextMeshProUGUI>().text = interactableObject.objectName;
             nearbyTextKey.GetComponent<TextMeshProUGUI>().text = $"{key}";
         }
 
