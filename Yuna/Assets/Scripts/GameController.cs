@@ -6,20 +6,25 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public DialogueInteractable dialogueInteractable;
+    public GameObject tutorial;
 
     void Start()
     {
-        Cursor.visible = false; // Esconde o cursor
-        Cursor.lockState = CursorLockMode.Locked; // Tranca o cursor ao centro do ecrã
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         dialogueInteractable.Interact();
-
     }
 
-    private void Update() 
+    private void Update()
     {
-
+        if (DialogueManager.Instance.IsDialogueActive)
+        {
+            tutorial.SetActive(false);
+        }
+        else
+        {
+            tutorial.SetActive(true);
+        }
     }
-
-
 
 }
