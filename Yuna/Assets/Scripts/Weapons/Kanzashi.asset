@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kanzashi
   m_EditorClassIdentifier: 
   weaponName: Kanzashi
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 8138050923530616137, guid: e0375b798096a4c46a8c01604122b662, type: 3}
   maxAmmo: 10
   hasInfiniteAmmo: 0
   attackCooldown: 1

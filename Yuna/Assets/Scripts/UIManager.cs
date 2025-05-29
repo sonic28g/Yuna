@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject nearbyText;
     public InputActionReference interactAction;
+    public GameObject nearbyTextObject;
+
     public GameObject nearbyTextKey;
     public GameObject pickupText;
     public TextMeshProUGUI ammoText; // Adiciona um campo para exibir a munição
@@ -19,7 +21,7 @@ public class UIManager : MonoBehaviour
         pickupText.SetActive(false);
     }
 
-    public void ShowNearbyText(bool show)
+    public void ShowNearbyText(bool show, InteractableObject interactableObject)
     {
         nearbyText.SetActive(show);
 
@@ -31,6 +33,7 @@ public class UIManager : MonoBehaviour
                 InputControlPath.HumanReadableStringOptions.OmitDevice
             );
 
+            nearbyTextObject.GetComponent<TextMeshProUGUI>().text = interactableObject.name;
             nearbyTextKey.GetComponent<TextMeshProUGUI>().text = $"{key}";
         }
 
@@ -39,8 +42,8 @@ public class UIManager : MonoBehaviour
     public void ShowInteractionText(string text)
     {
         pickupText.SetActive(true);
-        pickupText.GetComponent<TextMeshProUGUI>().text = text;
-        Invoke("HidePickupText", 3f);
+        pickupText.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        Invoke("HidePickupText", 1f);
     }
 
     private void HidePickupText()

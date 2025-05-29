@@ -18,10 +18,14 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         DetectNearbyObject();
-        
+
         if (starterAssetsInputs.interact && nearbyObject != null)
         {
             nearbyObject.Interact();
+            starterAssetsInputs.interact = false;
+        }
+        else
+        {
             starterAssetsInputs.interact = false;
         }
     }
@@ -35,12 +39,12 @@ public class PlayerInteraction : MonoBehaviour
             nearbyObject = hitColliders[0].GetComponent<InteractableObject>();
             if (nearbyObject != null)
             {
-                UIManager.instance.ShowNearbyText(true);
+                UIManager.instance.ShowNearbyText(true, nearbyObject);
                 return;
             }
         }
 
         nearbyObject = null;
-        UIManager.instance.ShowNearbyText(false);
+        UIManager.instance.ShowNearbyText(false, nearbyObject);
     }
 }
