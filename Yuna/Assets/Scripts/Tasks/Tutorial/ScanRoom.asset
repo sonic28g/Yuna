@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ca9cedfe1d689e42809234306a569e8, type: 3}
-  m_Name: PickKanzashi
+  m_Script: {fileID: 11500000, guid: dfdd4232638490e41bd75e70d8ee52bd, type: 3}
+  m_Name: ScanRoom
   m_EditorClassIdentifier: 
-  taskID: tut_3
+  taskID: tut_2
   type: 0
-  title: Pick a kanzashi
-  description: Find a kanzashi and pick it up
+  title: Scan room
+  description: Scan around the room (F) to find a kanzashi
   completed: 1

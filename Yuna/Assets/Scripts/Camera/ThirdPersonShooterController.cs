@@ -16,21 +16,26 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private VignetteEffectHandler vignetteHandler;
 
 
+
     private StarterAssetsInputs starterAssetsInputs;
     private ThirdPersonController _thirdPersonController;
     private Animator _animator;
+    private Outline[] kanzashiOutlines;
+    private Outline[] enemyOutlines;
+
     private bool _hasAnimator;
 
     private bool nearEnemy = false;
     public bool isCrouching = false;
 
-    private void Awake() {
+    private void Awake()
+    {
         _thirdPersonController = gameObject.GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
     }
 
     void Update()
-    {   
+    {
         _hasAnimator = TryGetComponent(out _animator);
 
         // Obtém a direção da mira (da câmara)
@@ -42,7 +47,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
             _thirdPersonController.SetSensitivity(aimSensibility);
-            
+
             crossHair.SetActive(true);
             _animator.SetBool("Aiming", starterAssetsInputs.aim);
 
@@ -51,6 +56,8 @@ public class ThirdPersonShooterController : MonoBehaviour
             if (starterAssetsInputs.shoot && InventoryManager.instance.HasAmmo("Kanzashi"))
             {
                 InventoryManager.instance.UseAmmo("Kanzashi");
+
+
                 // Instancia o projetil na posição correta e na direção da mira
                 Transform projectileTransform = Instantiate(pfProjectile, spawnProjectilePosition.position, Quaternion.LookRotation(aimDir));
 
@@ -75,6 +82,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 0;
             vignetteHandler?.ResetVignette();
+
             _thirdPersonController.SetSensitivity(normalSensibility);
             crossHair.SetActive(false);
             _animator.SetBool("Aiming", false);
@@ -87,6 +95,19 @@ public class ThirdPersonShooterController : MonoBehaviour
             starterAssetsInputs.crouch = false; // impede múltiplos toggles no mesmo frame
         }
 
+        if (starterAssetsInputs.scan && starterAssetsInputs.move == Vector2.zero)
+        {
+            vignetteHandler?.SetAimingEffect();
+            SetKanzashiOutlinesActive(true);
+        }
+        else
+        {
+            vignetteHandler?.ResetVignette();
+            SetKanzashiOutlinesActive(false);
+            starterAssetsInputs.scan = false;
+
+        }
+
         /*
         if(_animator.GetFloat("Speed") == _thirdPersonController.SprintSpeed && _animator.GetBool("Crouching"))
         {
@@ -97,6 +118,39 @@ public class ThirdPersonShooterController : MonoBehaviour
             _animator.speed = 1f;
         }
         */
+    }
+
+    private void SetKanzashiOutlinesActive(bool active)
+    {
+        GameObject[] kanzashiObjects = GameObject.FindGameObjectsWithTag("Kanzashi");
+        kanzashiOutlines = new Outline[kanzashiObjects.Length];
+        for (int i = 0; i < kanzashiObjects.Length; i++)
+        {
+            kanzashiOutlines[i] = kanzashiObjects[i].GetComponent<Outline>();
+        }
+
+        if (kanzashiOutlines == null) return;
+
+        foreach (Outline outline in kanzashiOutlines)
+        {
+            if (outline != null)
+                outline.enabled = active;
+        }
+        
+        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
+        enemyOutlines = new Outline[enemyObjects.Length];
+        for (int i = 0; i < enemyObjects.Length; i++)
+        {
+            enemyOutlines[i] = enemyObjects[i].GetComponent<Outline>();
+        }
+
+        if (enemyObjects == null) return;
+
+        foreach (Outline outline in enemyOutlines)
+        {
+            if (outline != null)
+                outline.enabled = active;
+        }
     }
 
 }

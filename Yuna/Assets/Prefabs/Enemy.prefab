@@ -1591,7 +1591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867810396344490187}
-  - component: {fileID: 2894081430462485664}
+  - component: {fileID: 5070061292031352357}
   m_Layer: 9
   m_Name: CriticalColliders
   m_TagString: Untagged
@@ -1614,8 +1614,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6396323605542105574}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2894081430462485664
-BoxCollider:
+--- !u!136 &5070061292031352357
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1632,9 +1632,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.29999995, z: 0.55}
-  m_Center: {x: 0, y: 1.68, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.15785912
+  m_Height: 0.31571823
+  m_Direction: 1
+  m_Center: {x: -0.0015697876, y: 1.6476983, z: 0}
 --- !u!1 &5689336922435655572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,9 +1906,10 @@ GameObject:
   - component: {fileID: 1233938674602917909}
   - component: {fileID: 2332830140725461085}
   - component: {fileID: 5651615030885751575}
+  - component: {fileID: 6342799568643751586}
   m_Layer: 9
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1987,7 +1990,7 @@ MonoBehaviour:
   kanzashiCriticalDamage: 100
   tessenDamage: 999
   criticalColliders:
-  - {fileID: 2894081430462485664}
+  - {fileID: 0}
 --- !u!114 &5790966587338871961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2083,6 +2086,24 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: -0, y: 0.9, z: 0}
+--- !u!114 &6342799568643751586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511357172218980848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.69803923, g: 0.4627451, b: 0.6862745, a: 1}
+  outlineWidth: 2.33
+  precomputeOutline: 1
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6665267537353514568
 GameObject:
   m_ObjectHideFlags: 0

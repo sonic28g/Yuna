@@ -8,6 +8,8 @@ TagManager:
   - Door
   - NoSprintZone
   - Shrine
+  - Kanzashi
+  - Enemy
   layers:
   - Default
   - TransparentFX

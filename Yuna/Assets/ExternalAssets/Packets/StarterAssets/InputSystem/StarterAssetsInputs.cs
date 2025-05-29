@@ -18,6 +18,7 @@ namespace StarterAssets
 		public bool showMenu;
 		public bool crouch;
 		public bool triggerJournal;
+		public bool scan;
 
 		public Action DialogueSkip;
         public Action DialogueNext;
@@ -106,6 +107,11 @@ namespace StarterAssets
 			TriggerJournalInput(value.isPressed);
 		}
 
+		public void OnScan(InputValue value)
+		{
+			ScanInput(value.isPressed);
+		}
+
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
@@ -163,6 +169,11 @@ namespace StarterAssets
 		private void TriggerJournalInput(bool newTriggerJournalState)
 		{
 			triggerJournal = newTriggerJournalState;
+		}
+
+		public void ScanInput(bool newScanState)
+		{
+			scan = newScanState;
 		}
 
 		private void SetCursorState(bool newState)

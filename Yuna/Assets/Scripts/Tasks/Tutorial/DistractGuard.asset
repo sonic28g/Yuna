@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6790426e992238e46ae9337edaa4a50a, type: 3}
   m_Name: DistractGuard
   m_EditorClassIdentifier: 
-  taskID: tut_4
+  taskID: tut_5
   type: 0
   title: Distract Guard
   description: Use the aim to shoot a kanzashi and distract the guard in your way
