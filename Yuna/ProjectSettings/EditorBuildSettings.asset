@@ -15,5 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Cutscene.unity
     guid: 90d3b1b3aa8641b4f9c4cd21ad3bad92
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
+    com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
   m_UseUCBPForAssetBundles: 0
