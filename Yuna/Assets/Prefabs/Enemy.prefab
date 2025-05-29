@@ -2006,7 +2006,7 @@ MonoBehaviour:
   _eyesTransform: {fileID: 6039743489875697275}
   _normalParameters:
     <MaxVisionDistance>k__BackingField: 6
-    <MaxCloseDistance>k__BackingField: 4
+    <MaxCloseDistance>k__BackingField: 2
     <FieldOfView>k__BackingField: 90
     <DetectionCooldown>k__BackingField: 0.8
     <OnlyDetectSuspicious>k__BackingField: 0
@@ -2014,14 +2014,14 @@ MonoBehaviour:
   _chaseParameters:
     <MaxVisionDistance>k__BackingField: 8
     <MaxCloseDistance>k__BackingField: 4
-    <FieldOfView>k__BackingField: 100
+    <FieldOfView>k__BackingField: 120
     <DetectionCooldown>k__BackingField: 0.6
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 2
   _searchParameters:
     <MaxVisionDistance>k__BackingField: 8
     <MaxCloseDistance>k__BackingField: 4
-    <FieldOfView>k__BackingField: 90
+    <FieldOfView>k__BackingField: 80
     <DetectionCooldown>k__BackingField: 0.7
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 1
@@ -2047,7 +2047,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6511357172218980848}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.28
+  m_Radius: 0.15
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50

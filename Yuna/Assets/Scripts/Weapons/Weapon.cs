@@ -14,15 +14,10 @@ public class Weapon : MonoBehaviour
         {
             if (!InventoryManager.instance.HasAmmo(weaponData.weaponName))
             {
-                Debug.Log("Sem munição!");
+                UIManager.instance.ShowInteractionText("You have no kanzashis");
                 return;
             }
             InventoryManager.instance.UseAmmo(weaponData.weaponName);
-        }
-
-        if (weaponData.projectilePrefab != null)
-        {
-            //Instantiate(weaponData.projectilePrefab, firePoint.position, firePoint.rotation);
         }
 
         lastAttackTime = Time.time;

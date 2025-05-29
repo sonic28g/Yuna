@@ -8,11 +8,14 @@ public class NoSprintZone : MonoBehaviour
     public float newDistance = 3.5f;
     public float originalDistance = 4.5f;
 
+    public bool isOnSprintZone = false;
+
     private void OnTriggerEnter(Collider other)
     {
         var controller = other.GetComponent<ThirdPersonController>();
         if (controller != null)
         {
+            isOnSprintZone = false;
             controller.canSprint = false;
 
             var transposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -28,6 +31,7 @@ public class NoSprintZone : MonoBehaviour
         var controller = other.GetComponent<ThirdPersonController>();
         if (controller != null)
         {
+            isOnSprintZone = true;
             controller.canSprint = true;
 
             var transposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
