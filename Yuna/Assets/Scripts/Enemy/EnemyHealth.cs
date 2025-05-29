@@ -6,10 +6,10 @@ public class EnemyHealth : MonoBehaviour
 {
     [Header("Health Settings")]
     [field: SerializeField] public int MaxHealth { get; private set; } = 100;
-    public int CurrentHealth { get; private set; }
+    public int? CurrentHealth { get; private set; }
 
     public event Action OnDeath;
-    public bool IsDead => CurrentHealth <= 0;
+    public bool IsDead => CurrentHealth.GetValueOrDefault(MaxHealth) <= 0;
 
     [Header("Damage Settings")]
     [SerializeField] private int kanzashiDamage = 25;
@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
 
 
     public void ResetHealth() => CurrentHealth = MaxHealth;
-    public void SaveHealth() => MaxHealth = CurrentHealth;
+    public void SaveHealth() => MaxHealth = CurrentHealth.GetValueOrDefault(MaxHealth);
 
 
     public void Kill()
