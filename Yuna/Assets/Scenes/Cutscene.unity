@@ -13849,6 +13849,7 @@ MonoBehaviour:
   virtualCamera: {fileID: 0}
   newDistance: 4
   originalDistance: 4.5
+  isOnSprintZone: 0
 --- !u!1 &646378447
 GameObject:
   m_ObjectHideFlags: 0
@@ -19775,7 +19776,6 @@ GameObject:
   - component: {fileID: 863827386}
   - component: {fileID: 863827385}
   - component: {fileID: 863827384}
-  - component: {fileID: 863827388}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -19867,30 +19867,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &863827388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863827383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37518a4956261647822468d9c3b5ef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TPController: {fileID: 0}
-  _inputs: {fileID: 0}
-  showingSettings: 0
-  showingPause: 0
-  showingKeybinds: 0
-  showingJournal: 0
-  showingOptions: 0
-  pauseMenu: {fileID: 0}
-  settingsMenu: {fileID: 0}
-  keybindsMenu: {fileID: 0}
-  journalMenu: {fileID: 0}
-  optionsMenu: {fileID: 0}
 --- !u!1 &865096421 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5934129722972032481, guid: ac69685bf8946ec47b2bfd50df4630a4, type: 3}
@@ -43082,7 +43058,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1965072114}
-  - component: {fileID: 1965072113}
+  - component: {fileID: 1965072116}
   - component: {fileID: 1965072115}
   m_Layer: 0
   m_Name: GameController
@@ -43091,18 +43067,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1965072113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1965072112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02eb12dda6d05a4a96d655cec168ef3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1965072114
 Transform:
   m_ObjectHideFlags: 0
@@ -43127,9 +43091,159 @@ MonoBehaviour:
   m_GameObject: {fileID: 1965072112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25fde81565fc39942b9364e3c4fa89d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6bc1aaf4-b110-4ff7-891e-5b9fe6f32c4d
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2690c379-f54d-45be-a724-414123833eb4
+    m_ActionName: 'Player/Look[/Mouse/delta]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8c4abdf8-4099-493a-aa1a-129acec7c3df
+    m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 980e881e-182c-404c-8cbf-3d09fdb48fef
+    m_ActionName: 'Player/Sprint[/Keyboard/leftShift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b7c41d23-c783-4604-a472-c370de677599
+    m_ActionName: 'Player/Aim[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 78b086d4-16a3-4b86-99ce-15bf5d777c8b
+    m_ActionName: 'Player/Shoot[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: be58b19e-aa25-4298-b82d-a227d7f8bf12
+    m_ActionName: 'Player/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 63ea9621-326e-4428-bc9a-960aba774778
+    m_ActionName: 'Player/ShowMenu[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a35adcf5-1e0f-4a60-8f04-1db6fba89287
+    m_ActionName: 'Player/Crouch[/Keyboard/c]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c97c7345-13db-469d-9e5e-c9bff6fd7d3d
+    m_ActionName: 'Player/TriggerJournal[/Keyboard/tab]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7ae67c0d-0e9a-4bab-9bfd-f24b23179f0e
+    m_ActionName: 'Player/Scan[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55be73f6-f466-4447-8ced-2cedce164a54
+    m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a64f9d16-4edc-4815-8e33-d057fec7f5bf
+    m_ActionName: 'UI/Submit[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fec2cf54-6c5f-4276-97b3-c8c989ef534e
+    m_ActionName: 'UI/Cancel[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 26cf2ac5-8d66-4cf2-803d-7b2bc953d4a3
+    m_ActionName: 'UI/Point[/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a4d7f4ed-903c-41eb-8193-2096cd360597
+    m_ActionName: 'UI/Click[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1d5f59a-54b4-4d47-be47-a8c8a771752c
+    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ef302780-f3e8-4bfb-9007-05524bd20baa
+    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ffbf72eb-a7de-44e3-895d-11c6d6042e39
+    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bc118253-bb10-4ba1-80f5-f2370f007d74
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 35901924-fc3a-47c0-b99a-4a2e996b4c23
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bbc91b96-f454-401a-a5b1-d0073abb0d9b
+    m_ActionName: 'UI/DialogueNext[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7331edd1-d466-4efb-8374-82929e1bbaf7
+    m_ActionName: 'UI/DialogueSkip[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1965072116}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: ChangeToScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StartScene
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 617ac000-3fea-4cb8-a34d-566c4a5e482b
+    m_ActionName: 'Cutscene/AnyKey[/Keyboard/anyKey]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Cutscene
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1965072116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965072112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37518a4956261647822468d9c3b5ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TPController: {fileID: 0}
+  _inputs: {fileID: 0}
+  showingSettings: 0
+  showingPause: 0
+  showingKeybinds: 0
+  showingJournal: 0
+  showingOptions: 0
+  pauseMenu: {fileID: 0}
+  settingsMenu: {fileID: 0}
+  keybindsMenu: {fileID: 0}
+  journalMenu: {fileID: 0}
+  optionsMenu: {fileID: 0}
 --- !u!4 &1972762979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9221421712796837190, guid: 5a69fb86d13534edd969cef85660739a, type: 3}
@@ -49440,6 +49554,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Door
   animator: {fileID: 8570911104216123477}
+  bloqueadaPorTutorial: 1
+  etapaMinima: 2
 --- !u!65 &8621959565638534270
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -4,9 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    private StarterAssetsInputs starterAssetsInputs;
-
-    private bool isOpen;
     public ThirdPersonController TPController;
     public StarterAssetsInputs _inputs;
 
@@ -23,13 +20,10 @@ public class MenuController : MonoBehaviour
     public GameObject optionsMenu;
 
 
-    private void Awake()
-    {
-        isOpen = false;
-    }
-
     private void Update()
     {
+        if (_inputs == null) return;
+
         if (_inputs.showMenu && !showingJournal)
         {
             if (!showingPause && !showingSettings && !showingKeybinds && !showingOptions)
@@ -85,7 +79,11 @@ public class MenuController : MonoBehaviour
 
     public void CloseGame()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     public void ChangeToScene(string sceneName)
