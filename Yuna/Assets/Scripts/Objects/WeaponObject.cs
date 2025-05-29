@@ -16,6 +16,19 @@ public class WeaponObject : InteractableObject
     private LayerMask _soundMakerMask;
     [SerializeField] private GameObject _soundEmitterPrefab;
 
+    [SerializeField] private AudioClip[] _startClips;
+
+
+    public void PlayThrowSound()
+    {
+        bool hasSource = TryGetComponent(out AudioSource audioSource);
+        if (!hasSource || _startClips.Length == 0) return;
+
+        int randomIndex = Random.Range(0, _startClips.Length);
+        audioSource.clip = _startClips[randomIndex];
+        audioSource.Play();
+    }
+
 
     public override void Interact()
     {

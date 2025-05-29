@@ -69,6 +69,10 @@ public class ThirdPersonShooterController : MonoBehaviour
                     rb.linearVelocity = aimDir * projectileSpeed; // Define a velocidade na direção da mira
                 }
 
+                // Play the throw sound if the projectile has a WeaponObject component
+                bool hasWeaponObject = projectileTransform.TryGetComponent<WeaponObject>(out var weaponObject);
+                if (hasWeaponObject) weaponObject.PlayThrowSound();
+
                 starterAssetsInputs.shoot = false;
             }
         }
