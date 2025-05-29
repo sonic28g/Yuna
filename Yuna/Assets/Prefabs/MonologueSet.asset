@@ -16,13 +16,15 @@ MonoBehaviour:
   <Skippable>k__BackingField: 1
   _lines:
   - <Speaker>k__BackingField: Yuna
-    <Text>k__BackingField: Test1 Test1 Test1
+    <Text>k__BackingField: "My father has been accused of a crime he didn\u2019t
+      commit. I didn\u2019t see it but they already took him away when I woke up
+      this morning. No one would even tell me what had happened if it wasn\u2019t
+      for [Ama]."
   - <Speaker>k__BackingField: Yuna
-    <Text>k__BackingField: Test2 Test2 Test2
-  - <Speaker>k__BackingField: Yuna
-    <Text>k__BackingField: Test3 Test3 Test3
-  - <Speaker>k__BackingField: 
-    <Text>k__BackingField: Bye Bye Bye
+    <Text>k__BackingField: I know that he is innocent and that he would never do
+      anything like this to dishonour our family, but everyone else seems to have
+      given up already. I will not rest until the real culprit is behind bars and
+      my father is back with us again.
   _conditions:
   - _conditionType: 0
     _value: monologue0

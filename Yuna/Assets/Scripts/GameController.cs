@@ -5,17 +5,14 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
-
-    void Awake()
-    {
-        //GameSettings settings = GameSettings.LoadFromFile();
-        //SettingsManager.SetQualityLevel(settings.qualityLevel);
-    }
+    public DialogueInteractable dialogueInteractable;
 
     void Start()
     {
         Cursor.visible = false; // Esconde o cursor
         Cursor.lockState = CursorLockMode.Locked; // Tranca o cursor ao centro do ecrã
+        dialogueInteractable.Interact();
+
     }
 
     private void Update() 
