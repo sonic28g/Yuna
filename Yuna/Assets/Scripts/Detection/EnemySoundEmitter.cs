@@ -18,9 +18,14 @@ public class EnemySoundEmitter : MonoBehaviour
 
     private const float DESTRUCTION_TIME = 2f;
 
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip[] _clips;
+    private AudioSource _audioSource;
+
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _colliders = new Collider[_maxEnemies];
 
         if (_repeat) InvokeRepeating(nameof(Activation), 0f, _timeBetweenActivations);
@@ -35,6 +40,21 @@ public class EnemySoundEmitter : MonoBehaviour
     private void DestroyThis() => Destroy(gameObject);
 
     private void Emission()
+    {
+        EmitSound();
+        NotifyEnemies();
+    }
+
+    private void EmitSound()
+    {
+        if (_audioSource == null || _clips.Length == 0) return;
+
+        int randomIndex = Random.Range(0, _clips.Length);
+        _audioSource.clip = _clips[randomIndex];
+        _audioSource.Play();
+    }
+
+    private void NotifyEnemies()
     {
         int numEnemies = Physics.OverlapSphereNonAlloc(transform.position, _radius, _colliders, _enemyMask);
         if (numEnemies == 0) return;
