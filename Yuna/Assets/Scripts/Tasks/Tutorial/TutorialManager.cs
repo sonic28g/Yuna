@@ -12,9 +12,15 @@ public class TutorialManager : MonoBehaviour
     public TextMeshProUGUI tutorialText;
     public GameObject tutorialPanel;
 
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip _completionSound;
+    private AudioSource _audioSource;
+
+
     void Awake()
     {
         Instance = this;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -28,6 +34,8 @@ public class TutorialManager : MonoBehaviour
         {
             currentIndex++;
             StartNextTask();
+
+            PlayCompletionSound();
         }
     }
 
@@ -54,5 +62,14 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         gameObject.SetActive(false);
         tutorialPanel.SetActive(false);
+    }
+
+
+    private void PlayCompletionSound()
+    {
+        if (_audioSource == null || _completionSound == null) return;
+
+        _audioSource.clip = _completionSound;
+        _audioSource.Play();
     }
 }
