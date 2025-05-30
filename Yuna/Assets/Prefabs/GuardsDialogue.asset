@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6869e1dff5c8144954fb97b03a8e4b, type: 3}
+  m_Name: GuardsDialogue
+  m_EditorClassIdentifier: 
+  <DialogueId>k__BackingField: dialogue0
+  <Skippable>k__BackingField: 1
+  _lines:
+  - <Speaker>k__BackingField: Guard
+    <Text>k__BackingField: Have you heard of the news?
+  - <Speaker>k__BackingField: Guard
+    <Text>k__BackingField: "Besides our Sir being accused of attempted murder of
+      our shogun? I bet you can\u2019t top that."
+  - <Speaker>k__BackingField: Guard
+    <Text>k__BackingField: "I have heard that one of the master\u2019s best guards
+      got fired just one day before. The master told him to disappear and never come
+      back. That is very mysterious, don\u2019t you think?"
+  - <Speaker>k__BackingField: Guard
+    <Text>k__BackingField: "Oh\u2026 Indeed."
+  _conditions:
+  - _conditionType: 0
+    _value: dialogue0
+    _negated: 1

@@ -1,0 +1,38 @@
+
+{
+  "SerializedVersion": "2",
+  "MaterialGraph": {
+    "ObjectId": "ShaderGraphObject",
+    "GraphType": "ShaderGraph",
+    "GraphName": "StylizedWaterFoam",
+    "Properties": [
+      {
+        "Name": "_WaterColor",
+        "DisplayName": "Water Color",
+        "Type": "Color",
+        "Default": [0.0, 0.5, 1.0, 0.6]
+      },
+      {
+        "Name": "_FoamColor",
+        "DisplayName": "Foam Color",
+        "Type": "Color",
+        "Default": [1.0, 1.0, 1.0, 1.0]
+      },
+      {
+        "Name": "_FoamWidth",
+        "DisplayName": "Foam Width",
+        "Type": "Float",
+        "Default": 0.1
+      },
+      {
+        "Name": "_FoamSmooth",
+        "DisplayName": "Foam Smooth",
+        "Type": "Float",
+        "Default": 1.0
+      }
+    ],
+    "Nodes": [],
+    "Edges": [],
+    "OutputNode": {}
+  }
+}
