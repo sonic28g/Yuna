@@ -65,7 +65,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 Rigidbody rb = projectileTransform.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
-                    float projectileSpeed = 20f;
+                    float projectileSpeed = 40f;
                     rb.linearVelocity = aimDir * projectileSpeed; // Define a velocidade na direção da mira
                 }
 
