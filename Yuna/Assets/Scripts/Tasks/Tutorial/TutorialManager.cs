@@ -68,8 +68,6 @@ public class TutorialManager : MonoBehaviour
     private void PlayCompletionSound()
     {
         if (_audioSource == null || _completionSound == null) return;
-
-        _audioSource.clip = _completionSound;
-        _audioSource.Play();
+        _audioSource.PlayOneShot(_completionSound);
     }
 }
