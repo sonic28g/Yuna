@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6869e1dff5c8144954fb97b03a8e4b, type: 3}
+  m_Name: Monologue2
+  m_EditorClassIdentifier: 
+  <DialogueId>k__BackingField: monologue1
+  <Skippable>k__BackingField: 1
+  _lines:
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: Maybe this guard knows about something. If I can find
+      him maybe he can give me more information. I can only assume about what my
+      dad is being accused of, but if it involves the guards, then this may be more
+      serious than I imagined. Am I certain that he is innocent?
+  _conditions:
+  - _conditionType: 0
+    _value: monologue1
+    _negated: 1
