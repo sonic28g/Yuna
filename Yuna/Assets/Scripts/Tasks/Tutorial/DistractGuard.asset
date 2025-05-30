@@ -15,5 +15,6 @@ MonoBehaviour:
   taskID: tut_5
   type: 0
   title: Distract Guard
-  description: Use the aim to shoot a kanzashi and distract the guard in your way
-  completed: 1
+  description: Use the aim to shoot a kanzashi and distract or immobilize the guard
+    in your way
+  completed: 0

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showEmissionGizmos: 1
-  _radius: 5
+  _radius: 4
   _enemyMask:
     serializedVersion: 2
     m_Bits: 512
