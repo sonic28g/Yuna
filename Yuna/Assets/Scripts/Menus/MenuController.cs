@@ -69,9 +69,15 @@ public class MenuController : MonoBehaviour
             journalMenu.SetActive(showingJournal);
 
             if (showingJournal == true)
+            {
+                DiaryManager.Instance.PlayOpenSound();
                 PauseGame();
+            }
             else
+            {
+                DiaryManager.Instance.PlayCloseSound();
                 ResumeGame();
+            }
 
             _inputs.triggerJournal = false;
         }
