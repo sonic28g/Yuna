@@ -18567,10 +18567,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2046226834}
     m_Modifications:
-    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
-      propertyPath: m_Speed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4683044611485924641, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.71
@@ -18579,6 +18575,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -7.84
       objectReference: {fileID: 0}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <ChaseState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: d214ed15c3a549f4894f9dc876f6b980, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <PatrolState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: bcccc28ac75924c4b96f34e622663499, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <SearchState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: c376fce85890ac342b098a373aeaf8ff, type: 2}
     - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 140.06
@@ -19382,10 +19390,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2046226834}
     m_Modifications:
-    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
-      propertyPath: m_Speed
-      value: 4
-      objectReference: {fileID: 0}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <ChaseState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: f71958a1d14e108419e741ee729d8d88, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <PatrolState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: e6400a0dd2bca6541be74c91cd16e250, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <SearchState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: d968e8d66d5eac247a6a99e9dba32979, type: 2}
     - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1999998
@@ -19628,10 +19644,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2046226834}
     m_Modifications:
-    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
-      propertyPath: m_Speed
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <ChaseState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: d214ed15c3a549f4894f9dc876f6b980, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <PatrolState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: bcccc28ac75924c4b96f34e622663499, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <SearchState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: c376fce85890ac342b098a373aeaf8ff, type: 2}
     - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1999998
@@ -22062,10 +22086,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2046226834}
     m_Modifications:
-    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
-      propertyPath: m_Speed
-      value: 4
-      objectReference: {fileID: 0}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <ChaseState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: f71958a1d14e108419e741ee729d8d88, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <PatrolState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: e6400a0dd2bca6541be74c91cd16e250, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <SearchState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: d968e8d66d5eac247a6a99e9dba32979, type: 2}
     - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1999998
@@ -40691,10 +40723,6 @@ PrefabInstance:
       propertyPath: _showDetectionGizmos
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
-      propertyPath: m_Speed
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5076070742998123549, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: tessenDamage
       value: 0
@@ -40707,6 +40735,18 @@ PrefabInstance:
       propertyPath: kanzashiCriticalDamage
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <ChaseState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: f71958a1d14e108419e741ee729d8d88, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <PatrolState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: e6400a0dd2bca6541be74c91cd16e250, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <SearchState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: d968e8d66d5eac247a6a99e9dba32979, type: 2}
     - target: {fileID: 5790966587338871961, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: _normalParameters.<MaxCloseDistance>k__BackingField
       value: 2
@@ -42160,10 +42200,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2046226834}
     m_Modifications:
-    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
-      propertyPath: m_Speed
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <ChaseState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: d214ed15c3a549f4894f9dc876f6b980, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <PatrolState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: bcccc28ac75924c4b96f34e622663499, type: 2}
+    - target: {fileID: 5159046858097853340, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: <SearchState>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: c376fce85890ac342b098a373aeaf8ff, type: 2}
     - target: {fileID: 6396323605542105574, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 126.63
