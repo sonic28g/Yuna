@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     public SoundDetection SoundDetection { get; private set; }
     public Animator Animator { get; private set; }
     public AudioSource AudioSource { get; private set; }
+    public Outline Outline { get; private set; }
     // ...
 
     // States
@@ -51,6 +52,7 @@ public class EnemyController : MonoBehaviour
         SoundDetection = GetComponentInChildren<SoundDetection>();
         Animator = GetComponentInChildren<Animator>();
         AudioSource = GetComponentInChildren<AudioSource>();
+        Outline = GetComponentInChildren<Outline>();
 
         // Store initial position and rotation
         _initialPosition = transform.position;
