@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76781ba6fc2fb94b9bcc35881889df2, type: 3}
-  m_Name: EnemyChaseState
+  m_Script: {fileID: 11500000, guid: 97bd52812f7fe884f859f00dfab41b59, type: 3}
+  m_Name: NormalSearch
   m_EditorClassIdentifier: 
   _suspiciousTime: 4
-  _confirmedTime: 1
+  _searchSpeed: 3
