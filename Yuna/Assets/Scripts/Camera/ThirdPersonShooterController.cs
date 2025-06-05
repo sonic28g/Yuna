@@ -14,7 +14,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private Transform pfProjectile;
     [SerializeField] private Transform spawnProjectilePosition;
     [SerializeField] private VignetteEffectHandler vignetteHandler;
-
+    [SerializeField] private GameObject tessen;
 
 
     private StarterAssetsInputs starterAssetsInputs;
@@ -25,8 +25,9 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private bool _hasAnimator;
 
-    private bool nearEnemy = false;
+    public bool isAttacking = false;
     public bool isCrouching = false;
+    
 
     private void Awake()
     {
@@ -76,11 +77,22 @@ public class ThirdPersonShooterController : MonoBehaviour
                 starterAssetsInputs.shoot = false;
             }
         }
-        else if (!starterAssetsInputs.aim && starterAssetsInputs.shoot && nearEnemy)
+        else if (!starterAssetsInputs.aim && isAttacking)
         {
+            AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+
+            if (stateInfo.IsName("YourAnimationName") && stateInfo.normalizedTime < 1.0f)
+            {
+                tessen.SetActive(true);
+            }
+            else
+            {
+                tessen.SetActive(false);
+            }
+
             _animator.SetTrigger("Attacking");
             starterAssetsInputs.shoot = false;
-
+            isAttacking = false;
         }
         else
         {
