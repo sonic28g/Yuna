@@ -7,19 +7,25 @@ public class EnemyPatrolState : EnemyState
     private int _currentPointIndex = -1;
     private Vector3 _currentPoint = Vector3.zero;
 
+    [SerializeField, Tooltip("Speed of the enemy during the patrol phase")]
+    private float _patrolSpeed = 2f;
+
 
     public override void InitState(EnemyController enemy)
     {
         _hasPoints = enemy.EnemyPatrolPoints.PatrolPoints.Length > 1;
     }
 
-
     public override void EnterState(EnemyController enemy)
     {
+        // Set the patrol speed
+        enemy.NavAgent.speed = _patrolSpeed;
+
         // Move to the closest point
         ClosestPoint(enemy);
         MoveToCurrentPoint(enemy);
     }
+
 
     public override void FixedUpdateState(EnemyController enemy)
     {
