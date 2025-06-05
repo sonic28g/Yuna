@@ -60,8 +60,8 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialText.text = "Tutorial completed!";
         yield return new WaitForSeconds(3);
-        gameObject.SetActive(false);
         tutorialPanel.SetActive(false);
+        enabled = false;
     }
 
 
