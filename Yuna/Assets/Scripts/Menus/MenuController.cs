@@ -24,40 +24,47 @@ public class MenuController : MonoBehaviour
     {
         if (_inputs == null) return;
 
-        if (_inputs.showMenu && !showingJournal)
+        if (_inputs.showMenu)
         {
-            if (!showingPause && !showingSettings && !showingKeybinds && !showingOptions)
+
+            if (!showingPause && !showingSettings && !showingKeybinds && !showingOptions && !showingJournal)
             {
                 showingPause = true;
                 pauseMenu.SetActive(true);
                 PauseGame();
 
             }
-            else if (showingPause && !showingSettings && !showingKeybinds && !showingOptions)
+            else if (showingPause && !showingSettings && !showingKeybinds && !showingOptions && !showingJournal)
             {
                 ResumeGame();
                 pauseMenu.SetActive(false);
             }
-            else if (!showingPause && showingSettings && !showingKeybinds && !showingOptions)
+            else if (!showingPause && showingSettings && !showingKeybinds && !showingOptions && !showingJournal)
             {
                 settingsMenu.SetActive(false);
                 showingSettings = false;
                 showingOptions = true;
                 optionsMenu.SetActive(true);
             }
-            else if (!showingPause && !showingSettings && showingKeybinds && !showingOptions)
+            else if (!showingPause && !showingSettings && showingKeybinds && !showingOptions && !showingJournal)
             {
                 keybindsMenu.SetActive(false);
                 showingKeybinds = false;
-                showingPause = true;
-                pauseMenu.SetActive(true);
+                showingOptions = true;
+                optionsMenu.SetActive(true);
             }
-            else if (!showingPause && !showingSettings && showingKeybinds && showingOptions)
+            else if (!showingPause && !showingSettings && !showingKeybinds && showingOptions && !showingJournal)
             {
                 optionsMenu.SetActive(false);
                 showingOptions = false;
                 showingPause = true;
-                optionsMenu.SetActive(true);
+                pauseMenu.SetActive(true);
+            }
+            else if (!showingPause && !showingSettings && !showingKeybinds && !showingOptions && showingJournal)
+            {
+                journalMenu.SetActive(false);
+                showingJournal = false;
+                ResumeGame();
             }
 
             _inputs.showMenu = false;
@@ -134,5 +141,10 @@ public class MenuController : MonoBehaviour
     public void ToggleOptionsShowing(bool option)
     {
         showingOptions = option;
+    }
+
+    public void ToggleJournalShowing(bool option)
+    {
+        showingJournal = option;
     }
 }
