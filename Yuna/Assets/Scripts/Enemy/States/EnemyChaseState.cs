@@ -13,12 +13,18 @@ public class EnemyChaseState : EnemyState
     private float _confirmedTime = 2f;
     private float _timer = 0f;
 
+    [SerializeField, Tooltip("Speed of the enemy during the chase phase")]
+    private float _chaseSpeed = 2f;
+
 
     public override void EnterState(EnemyController enemy)
     {
         _phase = ChasePhase.Chasing;
         enemy.SoundDetection.DisableDetection();
         _lastKnownPosition = enemy.PlayerDetection.HitPoint.Value;
+
+        // Set the chase speed
+        enemy.NavAgent.speed = _chaseSpeed;
 
         enemy.PlayerDetection.OnDetectionChanged += OnDetectionChanged;
         enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Chase);

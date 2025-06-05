@@ -10,11 +10,17 @@ public class EnemySearchState : EnemyState
     private float _suspiciousTime = 5f;
     private float _timer = 0f;
 
+    [SerializeField, Tooltip("Speed of the enemy during the search phase")]
+    private float _searchSpeed = 2f;
+
 
     public override void EnterState(EnemyController enemy)
     {
         _phase = SearchPhase.Searching;
         enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Search);
+
+        // Set the search speed
+        enemy.NavAgent.speed = _searchSpeed;
     }
 
     public override void ExitState(EnemyController enemy)
