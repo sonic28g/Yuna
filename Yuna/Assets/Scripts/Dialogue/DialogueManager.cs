@@ -17,6 +17,8 @@ public class DialogueManager : MonoBehaviour
     // [SerializeField] private Image _portraitImage; // portrait (?)
 
     [SerializeField] private float _textSpeed = 0.25f;
+    private string _currentText = "";
+    private bool _isTyping = false;
 
     private readonly HashSet<string> _seenDialogues = new();
 
@@ -39,7 +41,7 @@ public class DialogueManager : MonoBehaviour
 
         // Subscribe to the SkipDialogue and NextLine actions
         _inputs.DialogueSkip += SkipDialogue;
-        _inputs.DialogueNext += NextLine;
+        _inputs.DialogueNext += NextLineOrFinishCurrent;
     }
 
     private void OnDestroy()
@@ -48,7 +50,7 @@ public class DialogueManager : MonoBehaviour
 
         // Unsubscribe from the SkipDialogue and NextLine actions
         _inputs.DialogueSkip -= SkipDialogue;
-        _inputs.DialogueNext -= NextLine;
+        _inputs.DialogueNext -= NextLineOrFinishCurrent;
     }
 
     public bool HasSeenDialogue(string dialogueId) => _seenDialogues.Contains(dialogueId);
@@ -95,22 +97,22 @@ public class DialogueManager : MonoBehaviour
         if (!IsDialogueActive) return;
 
         // If the dialogue is not skippable, just display the next line
-        if (!_isSkippable) NextLine();
+        if (!_isSkippable) NextLineOrFinishCurrent();
         else
         {
-            // Stop the TypeCurrentText coroutine and end the dialogue
-            StopAllCoroutines();
+            // End the dialogue
+            FinishCurrentText();
             EndDialogue();
         }
     }
 
-    public void NextLine()
+    public void NextLineOrFinishCurrent()
     {
         if (!IsDialogueActive) return;
 
-        // Stop the TypeCurrentText coroutine and display the next line
-        StopAllCoroutines();
-        DisplayNextLine();
+        // Display the current or next line
+        if (_isTyping) FinishCurrentText();
+        else DisplayNextLine();
     }
 
 
@@ -133,17 +135,37 @@ public class DialogueManager : MonoBehaviour
         //     _portraitImage.enabled = line.Portrait != null;
         // }
         if (_speakerText != null) _speakerText.text = line.Speaker;
-        if (_dialogueText != null) StartCoroutine(TypeCurrentText(line.Text));
+        if (_dialogueText != null)
+        {
+            _currentText = line.Text;
+            StartCoroutine(TypeCurrentText());
+    }
     }
 
-    private IEnumerator TypeCurrentText(string currentText)
+    private IEnumerator TypeCurrentText()
     {
+        _isTyping = true;
+
         // Clear the dialogue text and type the current text letter by letter w/delay
         _dialogueText.text = "";
-        foreach (char letter in currentText)
+        foreach (char letter in _currentText)
         {
             _dialogueText.text += letter;
             yield return new WaitForSeconds(_textSpeed);
         }
+
+        _isTyping = false;
+    }
+
+    private void FinishCurrentText()
+    {
+        if (!_isTyping) return;
+
+        // Stop the TypeCurrentText coroutine
+        StopAllCoroutines();
+        _isTyping = false;
+
+        // Set the dialogue text to the current text immediately
+        _dialogueText.text = _currentText; 
     }
 }
