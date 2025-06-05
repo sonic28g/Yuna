@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // using UnityEngine.UI;
@@ -8,6 +9,8 @@ using StarterAssets;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
+    public Action OnDialogueEnd;
+
     private StarterAssetsInputs _inputs;
 
     [Header("Dialogue UI")]
@@ -89,6 +92,9 @@ public class DialogueManager : MonoBehaviour
 
         // Resume input
         if (_inputs != null) _inputs.ResumeInput(this);
+
+        // Invoke the OnDialogueEnd action
+        OnDialogueEnd?.Invoke();
     }
 
 
@@ -109,7 +115,7 @@ public class DialogueManager : MonoBehaviour
     public void NextLineOrFinishCurrent()
     {
         if (!IsDialogueActive) return;
-
+        
         // Display the current or next line
         if (_isTyping) FinishCurrentText();
         else DisplayNextLine();
@@ -139,7 +145,7 @@ public class DialogueManager : MonoBehaviour
         {
             _currentText = line.Text;
             StartCoroutine(TypeCurrentText());
-    }
+        }
     }
 
     private IEnumerator TypeCurrentText()
