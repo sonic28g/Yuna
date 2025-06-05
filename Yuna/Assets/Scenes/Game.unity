@@ -2397,8 +2397,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 464.94727, y: 313.61}
-  m_SizeDelta: {x: 302.1165, y: 54.118}
+  m_AnchoredPosition: {x: 464.94727, y: 313.60992}
+  m_SizeDelta: {x: 302.1165, y: 77.1986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &60435468
 MonoBehaviour:
@@ -2982,8 +2982,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tutorial
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6d691116db8b14525af5e89d41049aae, type: 2}
-  m_sharedMaterial: {fileID: -2856018550741158268, guid: 6d691116db8b14525af5e89d41049aae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3118923318ca0ac4596a1ccb84fa2ebf, type: 2}
+  m_sharedMaterial: {fileID: -4233583644611539207, guid: 3118923318ca0ac4596a1ccb84fa2ebf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6427,7 +6427,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "FPS: 5.36 (186.48 ms)\nM\xE9dia FPS: 2.45"
+  m_text: "FPS: 35.47 (28.19 ms)\nM\xE9dia FPS: 14.25"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11586,8 +11586,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -42219,7 +42219,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.000020981}
+  m_AnchoredPosition: {x: 0, y: -4.4}
   m_SizeDelta: {x: 111.0209, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &961546770
@@ -42269,8 +42269,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -94976,7 +94976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 464.95, y: 313.61}
+  m_AnchoredPosition: {x: 464.95, y: 313.60992}
   m_SizeDelta: {x: 219.7744, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2074317513
@@ -95026,8 +95026,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
