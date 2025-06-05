@@ -2079,7 +2079,6 @@ GameObject:
   m_Component:
   - component: {fileID: 251151922}
   - component: {fileID: 251151921}
-  - component: {fileID: 251151920}
   - component: {fileID: 251151923}
   - component: {fileID: 251151924}
   m_Layer: 0
@@ -2089,14 +2088,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &251151920
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251151918}
-  m_Enabled: 1
 --- !u!20 &251151921
 Camera:
   m_ObjectHideFlags: 0
@@ -22007,6 +21998,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearbyText: {fileID: 517853459}
+  interactAction: {fileID: 0}
+  nearbyTextObject: {fileID: 0}
+  nearbyTextKey: {fileID: 0}
   pickupText: {fileID: 2115197863}
   ammoText: {fileID: 278800099}
 --- !u!224 &1999552290
@@ -22202,7 +22196,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.093333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: a060203780e497cedaac3d7060f30057, type: 2}
   m_BuildHeightMesh: 0
@@ -22384,6 +22378,8 @@ MonoBehaviour:
     m_Bits: 4294967295
   pfProjectile: {fileID: 5985915685771778754, guid: e0375b798096a4c46a8c01604122b662, type: 3}
   spawnProjectilePosition: {fileID: 1885760270}
+  vignetteHandler: {fileID: 0}
+  isCrouching: 0
 --- !u!1001 &2120218985
 PrefabInstance:
   m_ObjectHideFlags: 0

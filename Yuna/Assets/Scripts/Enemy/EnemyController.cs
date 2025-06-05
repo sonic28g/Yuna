@@ -21,15 +21,16 @@ public class EnemyController : MonoBehaviour
     public SoundDetection SoundDetection { get; private set; }
     public Animator Animator { get; private set; }
     public AudioSource AudioSource { get; private set; }
+    public Outline Outline { get; private set; }
     // ...
 
     // States
     [field: Header("States")]
     [field: SerializeField] public EnemyPatrolState PatrolState { get; private set; }
-    [field: SerializeField] public EnemyDeadState DeadState { get; private set; }
     [field: SerializeField] public EnemyChaseState ChaseState { get; private set; }
-    [field: SerializeField] public EnemyFoundState FoundState { get; private set; }
     [field: SerializeField] public EnemySearchState SearchState { get; private set; }
+    [field: SerializeField] public EnemyDeadState DeadState { get; private set; }
+    [field: SerializeField] public EnemyFoundState FoundState { get; private set; }
     // ...
 
     private static readonly string SPEED_ANIMATOR_PARAMETER = "Speed";
@@ -51,6 +52,7 @@ public class EnemyController : MonoBehaviour
         SoundDetection = GetComponentInChildren<SoundDetection>();
         Animator = GetComponentInChildren<Animator>();
         AudioSource = GetComponentInChildren<AudioSource>();
+        Outline = GetComponentInChildren<Outline>();
 
         // Store initial position and rotation
         _initialPosition = transform.position;

@@ -6,6 +6,9 @@ public class EnemySearchState : EnemyState
 {
     private SearchPhase _phase = SearchPhase.Searching;
 
+    [SerializeField, Tooltip("Speed of the enemy during the search phase")]
+    private float _searchSpeed = 2f;
+
     [SerializeField, Tooltip("Time to transition from the suspicious phase to the PatrolState")]
     private float _suspiciousTime = 5f;
     private float _timer = 0f;
@@ -15,6 +18,9 @@ public class EnemySearchState : EnemyState
     {
         _phase = SearchPhase.Searching;
         enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Search);
+
+        // Set the search speed
+        enemy.NavAgent.speed = _searchSpeed;
     }
 
     public override void ExitState(EnemyController enemy)

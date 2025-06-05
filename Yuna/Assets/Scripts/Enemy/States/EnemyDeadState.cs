@@ -8,6 +8,7 @@ public class EnemyDeadState : EnemyState
 
     private Behaviour[] _behaviours;
     private bool[] _enableds;
+    private Color _outlineColor;
 
 
     public override void EnterState(EnemyController enemy)
@@ -15,12 +16,14 @@ public class EnemyDeadState : EnemyState
         StopNavigation(enemy);
         DisableComponents(enemy);
         DeadAnimation(enemy);
+        NoOutline(enemy);
     }
 
     public override void ExitState(EnemyController enemy)
     {
         RestoreComponents(enemy);
         RestoreAnimation(enemy);
+        RestoreOutline(enemy);
     }
 
 
@@ -77,6 +80,9 @@ public class EnemyDeadState : EnemyState
 
         for (int i = 0; i < behavioursLength; i++)
         {
+            // Check if the behaviour is null
+            if (_behaviours[i] == null) continue;
+
             _enableds[i] = _behaviours[i].enabled;
             _behaviours[i].enabled = false;
         }
@@ -86,6 +92,28 @@ public class EnemyDeadState : EnemyState
     {
         // Restore the behaviours
         int behavioursLength = _behaviours.Length;
-        for (int i = 0; i < behavioursLength; i++) _behaviours[i].enabled = _enableds[i];
+        for (int i = 0; i < behavioursLength; i++)
+        {
+            // Check if the behaviour is null
+            if (_behaviours[i] == null) continue;
+
+            _behaviours[i].enabled = _enableds[i];
+        }
+    }
+
+
+    private void NoOutline(EnemyController enemy)
+    {
+        if (enemy.Outline == null) return;
+
+        _outlineColor = enemy.Outline.OutlineColor;
+        enemy.Outline.OutlineColor = Color.clear;
+    }
+
+    private void RestoreOutline(EnemyController enemy)
+    {
+        if (enemy.Outline == null) return;
+
+        enemy.Outline.OutlineColor = _outlineColor;
     }
 }

@@ -7,6 +7,9 @@ public class EnemyChaseState : EnemyState
     private ChasePhase _phase = ChasePhase.Chasing;
     private Vector3 _lastKnownPosition = Vector3.zero;
 
+    [SerializeField, Tooltip("Speed of the enemy during the chase phase")]
+    private float _chaseSpeed = 2f;
+
     [SerializeField, Tooltip("Time to transition from the suspicious phase to the PatrolState")]
     private float _suspiciousTime = 5f;
     [SerializeField, Tooltip("Time to transition from the confirmed phase to the FoundState")]
@@ -19,6 +22,9 @@ public class EnemyChaseState : EnemyState
         _phase = ChasePhase.Chasing;
         enemy.SoundDetection.DisableDetection();
         _lastKnownPosition = enemy.PlayerDetection.HitPoint.Value;
+
+        // Set the chase speed
+        enemy.NavAgent.speed = _chaseSpeed;
 
         enemy.PlayerDetection.OnDetectionChanged += OnDetectionChanged;
         enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Chase);
