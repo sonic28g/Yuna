@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bd52812f7fe884f859f00dfab41b59, type: 3}
   m_Name: NormalSearch
   m_EditorClassIdentifier: 
-  _suspiciousTime: 4
   _searchSpeed: 3
+  _suspiciousTime: 4
