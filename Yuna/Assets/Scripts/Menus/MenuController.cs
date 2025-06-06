@@ -12,12 +12,14 @@ public class MenuController : MonoBehaviour
     public bool showingKeybinds = false;
     public bool showingJournal = false;
     public bool showingOptions = false;
+    public bool showingBriefing = false;
 
     public GameObject pauseMenu;
     public GameObject settingsMenu;
     public GameObject keybindsMenu;
     public GameObject journalMenu;
     public GameObject optionsMenu;
+    public GameObject briefingMenu;
 
 
     private void Update()
@@ -27,44 +29,51 @@ public class MenuController : MonoBehaviour
         if (_inputs.showMenu)
         {
 
-            if (!showingPause && !showingSettings && !showingKeybinds && !showingOptions && !showingJournal)
+            if (!showingPause && !showingSettings && !showingKeybinds && !showingOptions && !showingJournal && !showingBriefing)
             {
                 showingPause = true;
                 pauseMenu.SetActive(true);
                 PauseGame();
 
             }
-            else if (showingPause && !showingSettings && !showingKeybinds && !showingOptions && !showingJournal)
+            else if (showingPause && !showingSettings && !showingKeybinds && !showingOptions && !showingJournal && !showingBriefing)
             {
                 ResumeGame();
                 pauseMenu.SetActive(false);
             }
-            else if (!showingPause && showingSettings && !showingKeybinds && !showingOptions && !showingJournal)
+            else if (!showingPause && showingSettings && !showingKeybinds && !showingOptions && !showingJournal && !showingBriefing)
             {
                 settingsMenu.SetActive(false);
                 showingSettings = false;
                 showingOptions = true;
                 optionsMenu.SetActive(true);
             }
-            else if (!showingPause && !showingSettings && showingKeybinds && !showingOptions && !showingJournal)
+            else if (!showingPause && !showingSettings && showingKeybinds && !showingOptions && !showingJournal && !showingBriefing)
             {
                 keybindsMenu.SetActive(false);
                 showingKeybinds = false;
                 showingOptions = true;
                 optionsMenu.SetActive(true);
             }
-            else if (!showingPause && !showingSettings && !showingKeybinds && showingOptions && !showingJournal)
+            else if (!showingPause && !showingSettings && !showingKeybinds && showingOptions && !showingJournal && !showingBriefing)
             {
                 optionsMenu.SetActive(false);
                 showingOptions = false;
                 showingPause = true;
                 pauseMenu.SetActive(true);
             }
-            else if (!showingPause && !showingSettings && !showingKeybinds && !showingOptions && showingJournal)
+            else if (!showingPause && !showingSettings && !showingKeybinds && !showingOptions && showingJournal && !showingBriefing)
             {
                 journalMenu.SetActive(false);
                 showingJournal = false;
                 ResumeGame();
+            }
+            else if (!showingPause && !showingSettings && !showingKeybinds && !showingOptions && !showingJournal && showingBriefing)
+            {
+                briefingMenu.SetActive(false);
+                showingBriefing = false;
+                showingPause = true;
+                pauseMenu.SetActive(true);
             }
 
             _inputs.showMenu = false;
@@ -104,7 +113,6 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-
     public void PauseGame()
     {
         Time.timeScale = 0;
@@ -127,7 +135,6 @@ public class MenuController : MonoBehaviour
         showingSettings = option;
     }
 
-
     public void ToggleKeybindsShowing(bool option)
     {
         showingKeybinds = option;
@@ -146,5 +153,10 @@ public class MenuController : MonoBehaviour
     public void ToggleJournalShowing(bool option)
     {
         showingJournal = option;
+    }
+
+    public void ToggleBriefingShowing(bool option)
+    {
+        showingBriefing = option;
     }
 }

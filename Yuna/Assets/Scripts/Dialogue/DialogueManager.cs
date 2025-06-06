@@ -17,6 +17,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject _dialogueUI;
     [SerializeField] private TMP_Text _speakerText;
     [SerializeField] private TMP_Text _dialogueText;
+    [SerializeField] private TMP_Text _briefingText;
+
     // [SerializeField] private Image _portraitImage; // portrait (?)
 
     [SerializeField] private float _textSpeed = 0.25f;
@@ -72,7 +74,11 @@ public class DialogueManager : MonoBehaviour
 
         // Clear the dialogue queue and add the new dialogue lines
         _dialogueQueue.Clear();
-        dialogueSet.GetLines().ForEach(line => _dialogueQueue.Enqueue(line));
+        dialogueSet.GetLines().ForEach(line =>
+        {
+            _dialogueQueue.Enqueue(line);
+            _briefingText.text += line.Text + "\n";
+        });
 
         // Add the dialogue to the seen dialogues list
         _seenDialogues.Add(dialogueSet.DialogueId);
