@@ -28,10 +28,14 @@ public class EnemyChaseState : EnemyState
 
         enemy.PlayerDetection.OnDetectionChanged += OnDetectionChanged;
         enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Chase);
+
+        enemy.ChaseImage.SetActive(true);
     }
 
     public override void ExitState(EnemyController enemy)
     {
+        enemy.ChaseImage.SetActive(false);
+
         enemy.PlayerDetection.OnDetectionChanged -= OnDetectionChanged;
         enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Normal);
     }

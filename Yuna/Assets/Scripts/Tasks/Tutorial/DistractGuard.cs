@@ -20,10 +20,4 @@ public class DistractGuard : TaskData
 
         return completed;
     }
-
-    private void OnDoorOpened(Door door)
-    {
-        completed = true;
-        Door.OnDoorOpened -= OnDoorOpened; // remover depois de completado
-    }
 }
