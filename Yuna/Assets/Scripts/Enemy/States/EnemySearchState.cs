@@ -21,10 +21,14 @@ public class EnemySearchState : EnemyState
 
         // Set the search speed
         enemy.NavAgent.speed = _searchSpeed;
+
+        enemy.SearchImage.SetActive(true);
     }
 
     public override void ExitState(EnemyController enemy)
     {
+        enemy.SearchImage.SetActive(false);
+
         enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Normal);
     }
 

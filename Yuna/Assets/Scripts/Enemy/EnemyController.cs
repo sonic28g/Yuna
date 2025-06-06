@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,6 +23,9 @@ public class EnemyController : MonoBehaviour
     public Animator Animator { get; private set; }
     public AudioSource AudioSource { get; private set; }
     public Outline Outline { get; private set; }
+
+    public GameObject SearchImage;
+    public GameObject ChaseImage;
     // ...
 
     // States
