@@ -2,13 +2,19 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    public Camera mainCamera;
+    private Camera mainCam;
+
+    void Start()
+    {
+        // A câmara principal será controlada pela Cinemachine
+        mainCam = Camera.main;
+    }
 
     void LateUpdate()
     {
-        if (mainCamera == null)
-            mainCamera = Camera.main;
+        if (mainCam == null) return;
 
-        transform.LookAt(transform.position + mainCamera.transform.forward);
+        // Faz com que o aviso fique sempre virado para a câmara
+        transform.forward = mainCam.transform.forward;
     }
 }

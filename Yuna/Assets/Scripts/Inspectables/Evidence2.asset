@@ -17,3 +17,4 @@ MonoBehaviour:
   inspectableTitle: Evidence 2
   inspectableDescription: Something about evidence 2
   isFound: 0
+  isActive: 1
