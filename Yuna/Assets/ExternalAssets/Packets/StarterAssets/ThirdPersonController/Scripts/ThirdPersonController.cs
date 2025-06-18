@@ -1,6 +1,7 @@
 ﻿ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -80,17 +81,22 @@ namespace StarterAssets
         private float _terminalVelocity = 53.0f;
 
         // timeout deltatime
-        private float _jumpTimeoutDelta;
-        private float _fallTimeoutDelta;
 
         // animation IDs
         private int _animIDSpeed;
         private int _animIDGrounded;
-        private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
-#if ENABLE_INPUT_SYSTEM 
+        [Header("Stamina Settings")]
+        public float maxStamina = 100f;
+        public float currentStamina;
+        public float staminaDrainRate = 20f; // por segundo
+        public float staminaRecoveryRate = 25f; // por segundo
+        public float staminaThresholdToSprint = 10f; // stamina mínima para sprintar
+        public Slider staminaSlider;
+
+#if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
 #endif
         private Animator _animator;
@@ -132,11 +138,12 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
-#if ENABLE_INPUT_SYSTEM 
+            currentStamina = maxStamina;
+#if ENABLE_INPUT_SYSTEM
             _playerInput = GetComponent<PlayerInput>();
             _TPController = GetComponent<ThirdPersonShooterController>();
 #else
@@ -154,6 +161,8 @@ namespace StarterAssets
 
             GroundedCheck();
             Move();
+            HandleStamina();
+            ApplyGravity();
         }
 
         private void LateUpdate()
@@ -314,9 +323,72 @@ namespace StarterAssets
             }
         }
 
-        public void SetSensitivity(float newSensibility) 
+        public void SetSensitivity(float newSensibility)
         {
             Sensitivity = newSensibility;
         }
+
+        private void HandleStamina()
+        {
+            if (_input.sprint && _input.move != Vector2.zero && canSprint && Grounded)
+            {
+                currentStamina -= staminaDrainRate * Time.deltaTime;
+                if (currentStamina <= 0f)
+                {
+                    currentStamina = 0f;
+                    canSprint = false; // desativa correr
+                }
+            }
+            else
+            {
+                // Recupera stamina
+                if (currentStamina < maxStamina)
+                {
+                    currentStamina += staminaRecoveryRate * Time.deltaTime;
+                    if (currentStamina >= staminaThresholdToSprint)
+                    {
+                        canSprint = true; // permite correr novamente
+                    }
+
+                    if (currentStamina > maxStamina)
+                        currentStamina = maxStamina;
+                }
+            }
+
+            staminaSlider.value = currentStamina / maxStamina;
+        }
+
+        private void ApplyGravity()
+        {
+            if (Grounded)
+            {
+                // Se estiver no chão, manter uma pequena força negativa para manter contacto com o solo
+                _verticalVelocity = -2f;
+
+                // (Opcional) se quiseres fazer animação de "aterragem", podes usar _animIDFreeFall aqui
+                if (_hasAnimator)
+                {
+                    _animator.SetBool(_animIDFreeFall, false);
+                }
+            }
+            else
+            {
+                // Aplicar gravidade
+                _verticalVelocity += Physics.gravity.y * Time.deltaTime;
+
+                // Limite terminal da queda
+                if (_verticalVelocity < -_terminalVelocity)
+                {
+                    _verticalVelocity = -_terminalVelocity;
+                }
+
+                // (Opcional) se quiseres animação de "queda livre"
+                if (_hasAnimator)
+                {
+                    _animator.SetBool(_animIDFreeFall, true);
+                }
+            }
+        }
     }
+    
 }
