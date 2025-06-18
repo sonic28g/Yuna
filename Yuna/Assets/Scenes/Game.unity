@@ -2038,8 +2038,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1965072113}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+      - m_Target: {fileID: 1965072117}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
@@ -6562,7 +6562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "FPS: 7.24 (138.11 ms)\nM\xE9dia FPS: 4.46"
+  m_text: "FPS: 11.15 (89.69 ms)\nM\xE9dia FPS: 10.53"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12480,6 +12480,7 @@ MonoBehaviour:
   qualityDropdown: {fileID: 2137206354}
   cascadeDropdown: {fileID: 220663467}
   msaaDropdown: {fileID: 226771630}
+  highContrastToggle: {fileID: 1376786705}
 --- !u!1001 &251986361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31041,7 +31042,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wind
+  m_text: High Contrast Mode
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3118923318ca0ac4596a1ccb84fa2ebf, type: 2}
   m_sharedMaterial: {fileID: -4233583644611539207, guid: 3118923318ca0ac4596a1ccb84fa2ebf, type: 2}
@@ -92647,7 +92648,7 @@ GameObject:
   - component: {fileID: 2006777799}
   - component: {fileID: 2006777798}
   m_Layer: 5
-  m_Name: WindLabel
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93119,7 +93120,7 @@ GameObject:
   - component: {fileID: 2016525299}
   - component: {fileID: 2016525300}
   m_Layer: 5
-  m_Name: Wind
+  m_Name: High Contrast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,6 +2,7 @@ using StarterAssets;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private VignetteEffectHandler vignetteHandler;
     [SerializeField] private GameObject tessen;
 
+    [SerializeField] private float distance;
+    [SerializeField] private LayerMask enemyMask;
+    [SerializeField] private Image aimUI;
+    [SerializeField] private Color normalColor = Color.white;
+    [SerializeField] private Color transparentColor = new Color(1, 1, 1, 0.3f); // branco com transparência
 
     private StarterAssetsInputs starterAssetsInputs;
     private ThirdPersonController _thirdPersonController;
@@ -54,27 +60,44 @@ public class ThirdPersonShooterController : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
 
-            if (starterAssetsInputs.shoot && InventoryManager.instance.HasAmmo("Kanzashi"))
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, distance, enemyMask))
             {
-                InventoryManager.instance.UseAmmo("Kanzashi");
-
-
-                // Instancia o projetil na posição correta e na direção da mira
-                Transform projectileTransform = Instantiate(pfProjectile, spawnProjectilePosition.position, Quaternion.LookRotation(aimDir));
-
-                // Aplica velocidade ao projetil, se tiver um Rigidbody
-                Rigidbody rb = projectileTransform.GetComponent<Rigidbody>();
-                if (rb != null)
+                if (hit.collider.CompareTag("Guard"))
                 {
-                    float projectileSpeed = 40f;
-                    rb.linearVelocity = aimDir * projectileSpeed; // Define a velocidade na direção da mira
+                    aimUI.color = transparentColor;
+                    print("guard");
+                }
+                else
+                {
+                    aimUI.color = normalColor;
+                    print("enemy");
                 }
 
-                // Play the throw sound if the projectile has a WeaponObject component
-                bool hasWeaponObject = projectileTransform.TryGetComponent<WeaponObject>(out var weaponObject);
-                if (hasWeaponObject) weaponObject.PlayThrowSound();
+                // Disparo apenas se acertar em algo que **não seja guarda**
+                if (!hit.collider.CompareTag("Guard") && starterAssetsInputs.shoot && InventoryManager.instance.HasAmmo("Kanzashi"))
+                {
+                    InventoryManager.instance.UseAmmo("Kanzashi");
 
-                starterAssetsInputs.shoot = false;
+                    Transform projectileTransform = Instantiate(pfProjectile, spawnProjectilePosition.position, Quaternion.LookRotation(aimDir));
+                    Rigidbody rb = projectileTransform.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        float projectileSpeed = 40f;
+                        rb.linearVelocity = aimDir * projectileSpeed;
+                    }
+
+                    if (projectileTransform.TryGetComponent<WeaponObject>(out var weaponObject))
+                        weaponObject.PlayThrowSound();
+
+                    starterAssetsInputs.shoot = false;
+                }
+            }
+            else
+            {
+                aimUI.color = normalColor;
             }
         }
         else if (!starterAssetsInputs.aim && isAttacking)
