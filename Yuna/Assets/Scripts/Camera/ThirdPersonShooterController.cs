@@ -60,44 +60,40 @@ public class ThirdPersonShooterController : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
 
+            bool isPointingAtGuard = false;
+
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
-
+            
             if (Physics.Raycast(ray, out hit, distance, enemyMask))
             {
-                if (hit.collider.CompareTag("Guard"))
-                {
-                    aimUI.color = transparentColor;
-                    print("guard");
-                }
-                else
-                {
-                    aimUI.color = normalColor;
-                    print("enemy");
-                }
+                isPointingAtGuard = hit.collider.CompareTag("Guard");
 
-                // Disparo apenas se acertar em algo que **não seja guarda**
-                if (!hit.collider.CompareTag("Guard") && starterAssetsInputs.shoot && InventoryManager.instance.HasAmmo("Kanzashi"))
-                {
-                    InventoryManager.instance.UseAmmo("Kanzashi");
+                aimUI.color = isPointingAtGuard ? transparentColor : normalColor;
 
-                    Transform projectileTransform = Instantiate(pfProjectile, spawnProjectilePosition.position, Quaternion.LookRotation(aimDir));
-                    Rigidbody rb = projectileTransform.GetComponent<Rigidbody>();
-                    if (rb != null)
-                    {
-                        float projectileSpeed = 40f;
-                        rb.linearVelocity = aimDir * projectileSpeed;
-                    }
-
-                    if (projectileTransform.TryGetComponent<WeaponObject>(out var weaponObject))
-                        weaponObject.PlayThrowSound();
-
-                    starterAssetsInputs.shoot = false;
-                }
+                Debug.Log("Apontar para: " + hit.collider.name);
             }
             else
             {
                 aimUI.color = normalColor;
+            }
+
+            if (starterAssetsInputs.shoot && !isPointingAtGuard && InventoryManager.instance.HasAmmo("Kanzashi"))
+            {
+                InventoryManager.instance.UseAmmo("Kanzashi");
+
+                Transform projectileTransform = Instantiate(pfProjectile, spawnProjectilePosition.position, Quaternion.LookRotation(aimDir));
+                Rigidbody rb = projectileTransform.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    float projectileSpeed = 40f;
+                    rb.linearVelocity = aimDir * projectileSpeed;
+                }
+
+                if (projectileTransform.TryGetComponent<WeaponObject>(out var weaponObject))
+                    weaponObject.PlayThrowSound();
+
+                starterAssetsInputs.shoot = false;
             }
         }
         else if (!starterAssetsInputs.aim && isAttacking)
