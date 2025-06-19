@@ -50,6 +50,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _checkRadius: 5
+  _notifyRange: 6
   _timeToActivate: 0
   _timeBetweenActivations: 0
   _repeat: 0

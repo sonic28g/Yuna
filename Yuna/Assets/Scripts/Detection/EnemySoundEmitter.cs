@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySoundEmitter : MonoBehaviour
 {
-    // Time to destroy the emitter
+    // Distance for sample NavMesh points + Time to destroy the emitter
+    private const float MAX_SAMPLE_DISTANCE = 1f;
     private const float DESTRUCTION_TIME = 5f;
 
     [Header("Emission Settings")]
@@ -11,6 +13,8 @@ public class EnemySoundEmitter : MonoBehaviour
     private LayerMask _enemyMask;
     [SerializeField, Tooltip("Initial sphere radius to check for potential enemies")]
     private float _checkRadius = 8f;
+    [SerializeField, Tooltip("Range to notify enemies")]
+    private float _notifyRange = 5f;
 
     [Header("Activation Settings")]
     [SerializeField, Tooltip("Time between the activation and the sound emission")]
@@ -69,9 +73,43 @@ public class EnemySoundEmitter : MonoBehaviour
             bool hasSoundDetection = enemy.TryGetComponent(out SoundDetection soundDetection);
             if (!hasSoundDetection) continue;
 
+            // Check if they are in range (with NavMesh)
+            Vector3 enemyPosition = enemy.transform.position;
+            float? navDistance = GetNavMeshDistance(emitterPosition, enemyPosition);
+            if (!navDistance.HasValue || navDistance.Value > _notifyRange) continue;
+
             // Detect sound
             soundDetection.SoundDetectedInPosition(emitterPosition);
         }
+    }
+
+
+    private float? GetNavMeshDistance(Vector3 start, Vector3 end)
+    {
+        // Snap to closest point on NavMesh
+        bool startSnapped = NavMesh.SamplePosition(start, out NavMeshHit startHit, MAX_SAMPLE_DISTANCE, NavMesh.AllAreas);
+        bool endSnapped = NavMesh.SamplePosition(end, out NavMeshHit endHit, MAX_SAMPLE_DISTANCE, NavMesh.AllAreas);
+        if (!startSnapped || !endSnapped) return null;
+
+        // Calculate the path
+        NavMeshPath path = new();
+        bool foundPath = NavMesh.CalculatePath(startHit.position, endHit.position, NavMesh.AllAreas, path);
+
+        // Path not found or incomplete
+        if (!foundPath || path.status != NavMeshPathStatus.PathComplete) return null;
+
+        // Get distance
+        float pathDistance = 0f;
+        for (int i = 1; i < path.corners.Length; i++)
+        {
+            pathDistance += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+
+            if (!_showEmissionGizmos) continue;
+            Color orange50 = new(1, 0.5f, 0, 0.5f); // Orange 50%
+            Debug.DrawLine(path.corners[i - 1], path.corners[i], orange50, 2f);
+        }
+
+        return pathDistance;
     }
 
 
