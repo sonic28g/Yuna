@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -161,7 +160,7 @@ public class EnemyController : MonoBehaviour
     }
 
 
-#pragma warning disable IDE0051 // Remove unused private members
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
     private void OnFootstep(AnimationEvent animationEvent)
     {
         if (_footstepClips.Length == 0) return;
@@ -173,6 +172,6 @@ public class EnemyController : MonoBehaviour
         AudioSource.Play();
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
     private void OnLand(AnimationEvent _) {}
-#pragma warning restore IDE0051 // Remove unused private members
 }
