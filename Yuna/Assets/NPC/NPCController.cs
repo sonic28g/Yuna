@@ -14,13 +14,16 @@ public class NPCController : MonoBehaviour
 
     // Shared components
     public NavMeshAgent NavAgent { get; private set; }
+    // public NPCInterestPoints NPCInterestPoints { get; private set; }
     public EnemyHealth EnemyHealth { get; private set; }
     public Animator Animator { get; private set; }
     public AudioSource AudioSource { get; private set; }
     // ...
 
     // States
-    // [field: Header("States")]
+    [field: Header("States")]
+    [field: SerializeField] public NPCWanderState WanderState { get; private set; }
+    [field: SerializeField] public NPCDeadState DeadState { get; private set; }
     // ...
 
     private static readonly string SPEED_ANIMATOR_PARAMETER = "Speed";
@@ -36,6 +39,7 @@ public class NPCController : MonoBehaviour
     {
         // Search for components
         NavAgent = GetComponentInChildren<NavMeshAgent>();
+        // NPCInterestPoints = GetComponentInChildren<NPCInterestPoints>();
         EnemyHealth = GetComponentInChildren<EnemyHealth>();
         Animator = GetComponentInChildren<Animator>();
         AudioSource = GetComponentInChildren<AudioSource>();
@@ -48,6 +52,9 @@ public class NPCController : MonoBehaviour
         if (NavAgent == null) throw new Exception($"NavMeshAgent is missing in {name}");
         else if (!NavAgent.isOnNavMesh) throw new Exception($"NavMeshAgent is not on the NavMesh in {name}");
 
+        // if (NPCInterestPoints == null) throw new Exception($"NPCInterestPoints is missing in {name}");
+        // NPCInterestPoints.Init();
+
         if (EnemyHealth == null) throw new Exception($"EnemyHealth is missing in {name}");
         else EnemyHealth.OnDeath += OnDeath;
 
@@ -59,8 +66,8 @@ public class NPCController : MonoBehaviour
     }
 
 
-    // private void Start() => TransitionToState(_);
-    private void OnDeath() {} // => TransitionToState(_);
+    private void Start() => TransitionToState(WanderState);
+    private void OnDeath() => TransitionToState(DeadState);
     private void OnDestroy() => EnemyHealth.OnDeath -= OnDeath;
 
 
@@ -74,6 +81,8 @@ public class NPCController : MonoBehaviour
 
     private void InitializeStates()
     {
+        WanderState = InitializeState(WanderState);
+        DeadState = InitializeState(DeadState);
         // ...
     }
 
@@ -109,7 +118,7 @@ public class NPCController : MonoBehaviour
 
         // Reset Health and current state
         EnemyHealth.ResetHealth();
-        // TransitionToState(_);
+        TransitionToState(WanderState);
     }
 
     public void SaveNPC()
