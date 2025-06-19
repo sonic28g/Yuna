@@ -2,12 +2,15 @@
 
 public class EnemySoundEmitter : MonoBehaviour
 {
+    // Time to destroy the emitter
+    private const float DESTRUCTION_TIME = 5f;
+
     [Header("Emission Settings")]
     [SerializeField] private bool _showEmissionGizmos = true;
-    [SerializeField] private float _radius = 5f;
-    [SerializeField] private LayerMask _enemyMask;
-    [SerializeField] private int _maxEnemies = 8;
-    private Collider[] _colliders;
+    [SerializeField, Tooltip("Layers that can hear the sound")]
+    private LayerMask _enemyMask;
+    [SerializeField, Tooltip("Initial sphere radius to check for potential enemies")]
+    private float _checkRadius = 8f;
 
     [Header("Activation Settings")]
     [SerializeField, Tooltip("Time between the activation and the sound emission")]
@@ -15,8 +18,6 @@ public class EnemySoundEmitter : MonoBehaviour
     [SerializeField, Tooltip("Time between each activation (if repeat is enabled)")]
     private float _timeBetweenActivations = 5f;
     [SerializeField] private bool _repeat = false;
-
-    private const float DESTRUCTION_TIME = 2f;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioClip[] _clips;
@@ -26,7 +27,6 @@ public class EnemySoundEmitter : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _colliders = new Collider[_maxEnemies];
 
         if (_repeat) InvokeRepeating(nameof(Activation), 0f, _timeBetweenActivations);
         else
@@ -49,21 +49,28 @@ public class EnemySoundEmitter : MonoBehaviour
     {
         if (_audioSource == null || _clips.Length == 0) return;
 
+        // Random sound from the list
         int randomIndex = Random.Range(0, _clips.Length);
         _audioSource.clip = _clips[randomIndex];
         _audioSource.Play();
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "UNT0028:Use non-allocating physics APIs", Justification = "<Pending>")]
     private void NotifyEnemies()
     {
-        int numEnemies = Physics.OverlapSphereNonAlloc(transform.position, _radius, _colliders, _enemyMask);
-        if (numEnemies == 0) return;
-
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _checkRadius, _enemyMask);
         Vector3 emitterPosition = transform.position;
-        for (int i = 0; i < numEnemies; i++)
+
+        foreach (Collider enemy in colliders)
         {
-            bool hasSoundDetection = _colliders[i].TryGetComponent(out SoundDetection soundDetection);
-            if (hasSoundDetection) soundDetection.SoundDetectedInPosition(emitterPosition);
+            if (enemy == null) continue;
+
+            // Check if they have SoundDetection
+            bool hasSoundDetection = enemy.TryGetComponent(out SoundDetection soundDetection);
+            if (!hasSoundDetection) continue;
+
+            // Detect sound
+            soundDetection.SoundDetectedInPosition(emitterPosition);
         }
     }
 
@@ -73,6 +80,6 @@ public class EnemySoundEmitter : MonoBehaviour
         if (!_showEmissionGizmos) return;
 
         Gizmos.color = new Color(1, 0.5f, 0, 0.5f); // Orange 50%
-        Gizmos.DrawSphere(transform.position, _radius);
+        Gizmos.DrawSphere(transform.position, _checkRadius);
     }
 }
