@@ -46,11 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showEmissionGizmos: 1
-  _radius: 4
   _enemyMask:
     serializedVersion: 2
     m_Bits: 512
-  _maxEnemies: 8
+  _checkRadius: 5
+  _notifyRange: 6
   _timeToActivate: 0
   _timeBetweenActivations: 0
   _repeat: 0
