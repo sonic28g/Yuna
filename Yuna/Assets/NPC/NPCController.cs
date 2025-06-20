@@ -14,7 +14,7 @@ public class NPCController : MonoBehaviour
 
     // Shared components
     public NavMeshAgent NavAgent { get; private set; }
-    // public NPCInterestPoints NPCInterestPoints { get; private set; }
+    public NPCInterestPoints NPCInterestPoints { get; private set; }
     public EnemyHealth EnemyHealth { get; private set; }
     public Animator Animator { get; private set; }
     public AudioSource AudioSource { get; private set; }
@@ -39,7 +39,7 @@ public class NPCController : MonoBehaviour
     {
         // Search for components
         NavAgent = GetComponentInChildren<NavMeshAgent>();
-        // NPCInterestPoints = GetComponentInChildren<NPCInterestPoints>();
+        NPCInterestPoints = GetComponentInChildren<NPCInterestPoints>();
         EnemyHealth = GetComponentInChildren<EnemyHealth>();
         Animator = GetComponentInChildren<Animator>();
         AudioSource = GetComponentInChildren<AudioSource>();
@@ -52,8 +52,8 @@ public class NPCController : MonoBehaviour
         if (NavAgent == null) throw new Exception($"NavMeshAgent is missing in {name}");
         else if (!NavAgent.isOnNavMesh) throw new Exception($"NavMeshAgent is not on the NavMesh in {name}");
 
-        // if (NPCInterestPoints == null) throw new Exception($"NPCInterestPoints is missing in {name}");
-        // NPCInterestPoints.Init();
+        if (NPCInterestPoints == null) throw new Exception($"NPCInterestPoints is missing in {name}");
+        NPCInterestPoints.Init();
 
         if (EnemyHealth == null) throw new Exception($"EnemyHealth is missing in {name}");
         else EnemyHealth.OnDeath += OnDeath;

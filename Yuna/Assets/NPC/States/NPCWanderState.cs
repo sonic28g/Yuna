@@ -8,17 +8,17 @@ public class NPCWanderState : NPCState
     private Vector3? _currentPoint;
 
     [SerializeField, Tooltip("Maximum time the npc waits at a interest point before moving to the next one")]
-    private float _maxWaitTimeAtPoint = 3f;
+    private float _maxWaitTimeAtPoint = 10f;
 
     [SerializeField, Tooltip("Minimum time the npc waits at a interest point before moving to the next one")]
-    private float _minWaitTimeAtPoint = 0.5f;
+    private float _minWaitTimeAtPoint = 3.5f;
 
     public bool IsWaiting { get; private set; }
     private float _waitTimeAtPoint = 0f;
     private float _waitStartTime = 0f;
 
 
-    // public override void InitState(NPCController npc) => _hasPoints = npc.NPCInterestPoints.InterestPoints.Length > 1;
+    public override void InitState(NPCController npc) => _hasPoints = npc.NPCInterestPoints.InterestPoints.Length > 1;
 
     public override void EnterState(NPCController npc) => NewWaitTime();
     public override void ExitState(NPCController npc) => IsWaiting = false;
@@ -50,7 +50,7 @@ public class NPCWanderState : NPCState
 
     private void NextPoint(NPCController npc)
     {
-        Vector3[] interestPoints = {}; // npc.NPCInterestPoints.InterestPoints;
+        Vector3[] interestPoints = npc.NPCInterestPoints.InterestPoints;
 
         // If there are no interest points, do nothing
         int interestPointsLength = interestPoints.Length;
