@@ -1826,6 +1826,7 @@ GameObject:
   - component: {fileID: 2724673456998515506}
   - component: {fileID: 4787881516789916795}
   - component: {fileID: 894682429690327128}
+  - component: {fileID: 2132780858396586800}
   - component: {fileID: 5076070742998123549}
   - component: {fileID: 2332830140725461085}
   - component: {fileID: 5651615030885751575}
@@ -1889,6 +1890,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c57c5abb40623a43b030b6d4aea67b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <NPCInterestPoints>k__BackingField: {fileID: 0}
+  <WanderState>k__BackingField: {fileID: 11400000, guid: 9c5a851bc8ad7c447bf2b4cfc80f3e59, type: 2}
+  <DeadState>k__BackingField: {fileID: 11400000, guid: fb9d63ad19d2c4c47985424585113903, type: 2}
   _footstepClips: []
 --- !u!82 &894682429690327128
 AudioSource:
@@ -1987,6 +1991,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2132780858396586800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511357172218980848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad571be1d91b75f46abab38e361552a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGizmos: 1
+  _interestPoints: []
 --- !u!114 &5076070742998123549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2000,7 +2018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
-  kanzashiDamage: 100
+  kanzashiDamage: 50
   kanzashiCriticalDamage: 100
   tessenDamage: 999
   criticalColliders:
@@ -2019,7 +2037,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 240
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
