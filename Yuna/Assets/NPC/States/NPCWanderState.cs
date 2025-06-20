@@ -29,8 +29,9 @@ public class NPCWanderState : NPCState
         if (!IsWaiting)
         {
             // No interest points available or the npc is moving to a point
-            if (!_hasPoints || npc.NavAgent.hasPath || npc.NavAgent.pathPending) return;
-            
+            if (!_hasPoints || npc.NavAgent.pathPending) return;
+            if (npc.NavAgent.remainingDistance > npc.NavAgent.stoppingDistance) return;
+
             // Start waiting
             NewWaitTime();
         }
