@@ -2,38 +2,28 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class NPCController : MonoBehaviour
 {
-    private static Action _resetAllEnemiesAction;
-    private static Action _saveAllEnemiesAction;
+    private static Action _resetAllNPCsAction;
+    private static Action _saveAllNPCsAction;
 
-    public static void ResetAllEnemies() => _resetAllEnemiesAction?.Invoke();
-    public static void SaveAllEnemies() => _saveAllEnemiesAction?.Invoke();
+    public static void ResetAllNPCs() => _resetAllNPCsAction?.Invoke();
+    public static void SaveAllNPCs() => _saveAllNPCsAction?.Invoke();
 
-
-    private EnemyState _currentState;
+    private NPCState _currentState;
 
     // Shared components
+    [field: SerializeField] public NPCInterestPoints NPCInterestPoints { get; private set; }
     public NavMeshAgent NavAgent { get; private set; }
-    public EnemyPatrolPoints EnemyPatrolPoints { get; private set; }
     public EnemyHealth EnemyHealth { get; private set; }
-    public PlayerDetection PlayerDetection { get; private set; }
-    public SoundDetection SoundDetection { get; private set; }
     public Animator Animator { get; private set; }
     public AudioSource AudioSource { get; private set; }
-    public Outline Outline { get; private set; }
-
-    public GameObject SearchImage;
-    public GameObject ChaseImage;
     // ...
 
     // States
     [field: Header("States")]
-    [field: SerializeField] public EnemyPatrolState PatrolState { get; private set; }
-    [field: SerializeField] public EnemyChaseState ChaseState { get; private set; }
-    [field: SerializeField] public EnemySearchState SearchState { get; private set; }
-    [field: SerializeField] public EnemyDeadState DeadState { get; private set; }
-    [field: SerializeField] public EnemyFoundState FoundState { get; private set; }
+    [field: SerializeField] public NPCWanderState WanderState { get; private set; }
+    [field: SerializeField] public NPCDeadState DeadState { get; private set; }
     // ...
 
     private static readonly string SPEED_ANIMATOR_PARAMETER = "Speed";
@@ -48,46 +38,40 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         // Search for components
+        if (NPCInterestPoints == null) NPCInterestPoints = GetComponentInChildren<NPCInterestPoints>();
         NavAgent = GetComponentInChildren<NavMeshAgent>();
-        EnemyPatrolPoints = GetComponentInChildren<EnemyPatrolPoints>();
         EnemyHealth = GetComponentInChildren<EnemyHealth>();
-        PlayerDetection = GetComponentInChildren<PlayerDetection>();
-        SoundDetection = GetComponentInChildren<SoundDetection>();
         Animator = GetComponentInChildren<Animator>();
         AudioSource = GetComponentInChildren<AudioSource>();
-        Outline = GetComponentInChildren<Outline>();
 
         // Store initial position and rotation
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
 
         // Check for missing components or "invalid states" + initialization
+        if (NPCInterestPoints == null) throw new Exception($"NPCInterestPoints is missing in {name}");
+        NPCInterestPoints.Init();
+
         if (NavAgent == null) throw new Exception($"NavMeshAgent is missing in {name}");
         else if (!NavAgent.isOnNavMesh) throw new Exception($"NavMeshAgent is not on the NavMesh in {name}");
-
-        if (EnemyPatrolPoints == null) throw new Exception($"EnemyPatrolPoints is missing in {name}");
-        EnemyPatrolPoints.Init();
 
         if (EnemyHealth == null) throw new Exception($"EnemyHealth is missing in {name}");
         else EnemyHealth.OnDeath += OnDeath;
 
-        if (PlayerDetection == null) throw new Exception($"PlayerDetection is missing in {name}");
-        if (SoundDetection == null) throw new Exception($"SoundDetection is missing in {name}");
-
         // Initialize states
         InitializeStates();
 
-        _resetAllEnemiesAction += ResetEnemy;
-        _saveAllEnemiesAction += SaveEnemy;
+        _resetAllNPCsAction += ResetNPC;
+        _saveAllNPCsAction += SaveNPC;
     }
 
 
-    private void Start() => TransitionToState(PatrolState);
+    private void Start() => TransitionToState(WanderState);
     private void OnDeath() => TransitionToState(DeadState);
     private void OnDestroy() => EnemyHealth.OnDeath -= OnDeath;
 
 
-    public void TransitionToState(EnemyState state)
+    public void TransitionToState(NPCState state)
     {
         if (_currentState != null) _currentState.ExitState(this);
         _currentState = state;
@@ -97,15 +81,12 @@ public class EnemyController : MonoBehaviour
 
     private void InitializeStates()
     {
-        PatrolState = InitializeState(PatrolState);
+        WanderState = InitializeState(WanderState);
         DeadState = InitializeState(DeadState);
-        ChaseState = InitializeState(ChaseState);
-        FoundState = InitializeState(FoundState);
-        SearchState = InitializeState(SearchState);
         // ...
     }
 
-    private T InitializeState<T>(T state) where T : EnemyState
+    private T InitializeState<T>(T state) where T : NPCState
     {
         if (state == null) throw new Exception($"{typeof(T)} is missing in {name}");
 
@@ -128,7 +109,7 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    public void ResetEnemy()
+    public void ResetNPC()
     {
         // Reset position and rotation
         transform.SetPositionAndRotation(_initialPosition, _initialRotation);
@@ -137,15 +118,11 @@ public class EnemyController : MonoBehaviour
 
         // Reset Health and current state
         EnemyHealth.ResetHealth();
-        if (!EnemyHealth.IsDead) TransitionToState(PatrolState);
-        else TransitionToState(DeadState);
+        TransitionToState(WanderState);
     }
 
-    public void SaveEnemy()
+    public void SaveNPC()
     {
-        EnemyHealth.SaveHealth();
-
-        if (!EnemyHealth.IsDead) return;
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
     }
@@ -173,5 +150,5 @@ public class EnemyController : MonoBehaviour
     }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-    private void OnLand(AnimationEvent _) {}
+    private void OnLand(AnimationEvent _) { }
 }

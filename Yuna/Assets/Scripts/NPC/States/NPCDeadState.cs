@@ -1,38 +1,37 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Yuna/Enemy/EnemyFoundState")]
-public class EnemyFoundState : EnemyState
+[CreateAssetMenu(menuName = "Yuna/NPC/NPCDeadState")]
+public class NPCDeadState : NPCState
 {
     private Behaviour[] _behaviours;
     private bool[] _enableds;
 
 
-    public override void EnterState(EnemyController enemy)
+    public override void EnterState(NPCController npc)
     {
         if (CheckpointManager.Instance != null) CheckpointManager.Instance.RespawnPlayer();
 
-        StopNavigation(enemy);
-        DisableComponents(enemy);
+        StopNavigation(npc);
+        DisableComponents(npc);
     }
 
-    public override void ExitState(EnemyController enemy) => RestoreComponents(enemy);
+    public override void ExitState(NPCController npc) => RestoreComponents(npc);
 
 
-    private void StopNavigation(EnemyController enemy)
+    private void StopNavigation(NPCController npc)
     {
-        enemy.NavAgent.isStopped = true;
-        enemy.NavAgent.ResetPath();
+        npc.NavAgent.isStopped = true;
+        npc.NavAgent.ResetPath();
     }
 
 
-    private void DisableComponents(EnemyController enemy)
+    private void DisableComponents(NPCController npc)
     {
         // Behaviours to disable
         _behaviours = new Behaviour[] {
-            enemy,
-            enemy.NavAgent, enemy.PlayerDetection,
-            enemy.SoundDetection,
-            enemy.EnemyHealth
+            npc,
+            npc.NavAgent,
+            npc.EnemyHealth
             // ...
         };
 
@@ -50,7 +49,7 @@ public class EnemyFoundState : EnemyState
         }
     }
 
-    private void RestoreComponents(EnemyController _)
+    private void RestoreComponents(NPCController _)
     {
         // Restore the behaviours
         int behavioursLength = _behaviours.Length;
