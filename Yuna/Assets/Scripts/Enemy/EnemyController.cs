@@ -77,6 +77,9 @@ public class EnemyController : MonoBehaviour
         // Initialize states
         InitializeStates();
 
+        // Initial load
+        ResetEnemy();
+
         _resetAllEnemiesAction += ResetEnemy;
         _saveAllEnemiesAction += SaveEnemy;
     }

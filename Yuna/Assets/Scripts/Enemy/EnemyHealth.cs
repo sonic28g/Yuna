@@ -1,9 +1,13 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    private EnemyHealthData _healthData;
+    private static readonly string ENEMY_HEALTH_FILE = "health.json";
+
     [Header("Health Settings")]
     [field: SerializeField] public int MaxHealth { get; private set; } = 100;
     public int? CurrentHealth { get; private set; }
@@ -20,15 +24,67 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private Collider[] criticalColliders;
 
 
-    private void Awake()
+    private void Awake() => criticalColliders.ToList().ForEach(c => c.isTrigger = true);
+
+
+    public void ResetHealth(string enemyDir = null)
     {
-        criticalColliders.ToList().ForEach(c => c.isTrigger = true);
-        ResetHealth();
+        LoadHealthData(enemyDir);
+        CurrentHealth = _healthData.CurrentHealth;
+    }
+
+    private void LoadHealthData(string enemyDir = null)
+    {
+        // Already loaded
+        if (_healthData != null) return;
+
+        // Set up the file path
+        string filePath = Path.Combine(enemyDir ?? name, ENEMY_HEALTH_FILE);
+        
+        try
+        {
+            // Read the JSON file and deserialize it + Set the data variable
+            string json = File.ReadAllText(filePath);
+            _healthData = JsonUtility.FromJson<EnemyHealthData>(json) ?? throw new Exception($"Failed to parse health data from {filePath}");
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Failed to load health data for {name}: {e.Message}");
+
+            // Initialize with default values if load fails
+            _healthData = new EnemyHealthData
+            {
+                CurrentHealth = MaxHealth
+            };
+        }
     }
 
 
-    public void ResetHealth() => CurrentHealth = MaxHealth;
-    public void SaveHealth() => MaxHealth = CurrentHealth.GetValueOrDefault(MaxHealth);
+    public void SaveHealth(string enemyDir = null)
+    {
+        // Save data variable
+        _healthData ??= new EnemyHealthData();
+        _healthData.CurrentHealth = CurrentHealth.GetValueOrDefault(MaxHealth);
+
+        // Set up the file path
+        string filePath = Path.Combine(enemyDir ?? name, ENEMY_HEALTH_FILE);
+
+        try
+        {
+            // Convert the data to JSON
+            string json = JsonUtility.ToJson(_healthData);
+
+            // Create the directory if it doesn't exist
+            if (!Directory.Exists(enemyDir)) Directory.CreateDirectory(enemyDir);
+
+            // Save the JSON to a file
+            File.WriteAllText(filePath, json);
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Failed to save health data for {name}: {e.Message}");
+        }
+    }
 
 
     public void Kill()
@@ -79,4 +135,11 @@ public class EnemyHealth : MonoBehaviour
     }
 
     private bool IsCriticalHit(Vector3 hitPoint) => criticalColliders.Any(c => c != null && c.bounds.Contains(hitPoint));
+
+
+    [Serializable]
+    private class EnemyHealthData
+    {
+        public int CurrentHealth;
+    }
 }

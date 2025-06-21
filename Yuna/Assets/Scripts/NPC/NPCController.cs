@@ -61,6 +61,9 @@ public class NPCController : MonoBehaviour
         // Initialize states
         InitializeStates();
 
+        // Initial load
+        ResetNPC();
+
         _resetAllNPCsAction += ResetNPC;
         _saveAllNPCsAction += SaveNPC;
     }
