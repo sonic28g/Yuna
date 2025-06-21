@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,8 @@ public class EnemyController : MonoBehaviour
     public static void SaveAllEnemies() => _saveAllEnemiesAction?.Invoke();
 
     private EnemyData _enemyData;
+    private string _enemyDir, _enemyDataFilePath;
+    private static readonly string ENEMY_DATA_FILE = "enemyData.json";
 
     private EnemyState _currentState;
 
@@ -73,6 +76,8 @@ public class EnemyController : MonoBehaviour
         InitializeStates();
 
         // Setup save/load + Initial load
+        _enemyDir = Path.Combine(Application.persistentDataPath, "Enemies", name);
+        _enemyDataFilePath = Path.Combine(_enemyDir, ENEMY_DATA_FILE);
         ResetEnemy();
 
         _resetAllEnemiesAction += ResetEnemy;
@@ -136,7 +141,7 @@ public class EnemyController : MonoBehaviour
         NavAgent.Warp(_enemyData.Position);
 
         // Reset Health and current state
-        EnemyHealth.ResetHealth();
+        EnemyHealth.ResetHealth(_enemyDir);
         if (!EnemyHealth.IsDead) TransitionToState(PatrolState);
         else TransitionToState(DeadState);
     }
@@ -146,17 +151,29 @@ public class EnemyController : MonoBehaviour
         // Already loaded
         if (_enemyData != null) return;
 
-        _enemyData = new EnemyData
+        try
         {
-            Position = transform.position,
-            Rotation = transform.rotation
-        };
+            // Read the JSON file and deserialize it + Set the data variable
+            string json = File.ReadAllText(_enemyDataFilePath);
+            _enemyData = JsonUtility.FromJson<EnemyData>(json) ?? throw new Exception($"Failed to parse enemy data from {_enemyDataFilePath}");
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Failed to load enemy data for {name}: {e.Message}");
+
+            // Initialize with default values if load fails
+            _enemyData = new EnemyData
+            {
+                Position = transform.position,
+                Rotation = transform.rotation
+            };
+        }
     }
 
 
     public void SaveEnemy()
     {
-        EnemyHealth.SaveHealth();
+        EnemyHealth.SaveHealth(_enemyDir);
         SaveEnemyData();
     }
 
@@ -169,6 +186,22 @@ public class EnemyController : MonoBehaviour
         _enemyData ??= new EnemyData();
         _enemyData.Position = transform.position;
         _enemyData.Rotation = transform.rotation;
+
+        try
+        {
+            // Convert the data to JSON
+            string json = JsonUtility.ToJson(_enemyData);
+
+            // Create the directory if it doesn't exist
+            if (!Directory.Exists(_enemyDir)) Directory.CreateDirectory(_enemyDir);
+
+            // Save the JSON to a file
+            File.WriteAllText(_enemyDataFilePath, json);
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Failed to save enemy data for {name}: {e.Message}");
+        }
     }
 
 

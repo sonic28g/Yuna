@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,8 @@ public class NPCController : MonoBehaviour
     public static void SaveAllNPCs() => _saveAllNPCsAction?.Invoke();
 
     private NPCData _npcData;
+    private string _npcDir, _npcDataFilePath;
+    private static readonly string NPC_DATA_FILE = "npcData.json";
 
     private NPCState _currentState;
 
@@ -58,6 +61,8 @@ public class NPCController : MonoBehaviour
         InitializeStates();
 
         // Setup save/load + Initial load
+        _npcDir = Path.Combine(Application.persistentDataPath, "NPCs", name);
+        _npcDataFilePath = Path.Combine(_npcDir, NPC_DATA_FILE);
         ResetNPC();
 
         _resetAllNPCsAction += ResetNPC;
@@ -118,7 +123,7 @@ public class NPCController : MonoBehaviour
         NavAgent.Warp(_npcData.Position);
 
         // Reset Health and current state
-        EnemyHealth.ResetHealth();
+        EnemyHealth.ResetHealth(_npcDir);
         TransitionToState(WanderState);
     }
 
@@ -127,11 +132,23 @@ public class NPCController : MonoBehaviour
         // Already loaded
         if (_npcData != null) return;
 
-        _npcData = new NPCData
+        try
         {
-            Position = transform.position,
-            Rotation = transform.rotation
-        };
+            // Read the JSON file and deserialize it + Set the data variable
+            string json = File.ReadAllText(_npcDataFilePath);
+            _npcData = JsonUtility.FromJson<NPCData>(json) ?? throw new Exception($"Failed to parse npc data from {_npcDataFilePath}");
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Failed to load npc data for {name}: {e.Message}");
+
+            // Initialize with default values if load fails
+            _npcData = new NPCData
+            {
+                Position = transform.position,
+                Rotation = transform.rotation
+            };
+        }
     }
 
 
@@ -141,6 +158,22 @@ public class NPCController : MonoBehaviour
         _npcData ??= new NPCData();
         _npcData.Position = transform.position;
         _npcData.Rotation = transform.rotation;
+
+        try
+        {
+            // Convert the data to JSON
+            string json = JsonUtility.ToJson(_npcData);
+
+            // Create the directory if it doesn't exist
+            if (!Directory.Exists(_npcDir)) Directory.CreateDirectory(_npcDir);
+
+            // Save the JSON to a file
+            File.WriteAllText(_npcDataFilePath, json);
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Failed to save npc data for {name}: {e.Message}");
+        }
     }
 
 
