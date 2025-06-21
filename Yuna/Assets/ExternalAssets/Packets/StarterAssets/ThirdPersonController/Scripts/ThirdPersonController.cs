@@ -42,6 +42,9 @@ namespace StarterAssets
 
         [Header("Player Grounded")]
         public bool Grounded = true;
+        public float minFallHeight = 0.5f;
+        private float fallStartHeight;
+        private bool wasGroundedLastFrame;
 
         [Tooltip("Useful for rough ground")]
         public float GroundedOffset = -0.14f;
@@ -362,10 +365,11 @@ namespace StarterAssets
         {
             if (Grounded)
             {
-                // Se estiver no chão, manter uma pequena força negativa para manter contacto com o solo
+                // Reset ao estado
                 _verticalVelocity = -2f;
+                wasGroundedLastFrame = true;
 
-                // (Opcional) se quiseres fazer animação de "aterragem", podes usar _animIDFreeFall aqui
+                // Animação de não estar em queda
                 if (_hasAnimator)
                 {
                     _animator.SetBool(_animIDFreeFall, false);
@@ -373,22 +377,33 @@ namespace StarterAssets
             }
             else
             {
-                // Aplicar gravidade
-                _verticalVelocity += Physics.gravity.y * Time.deltaTime;
-
-                // Limite terminal da queda
-                if (_verticalVelocity < -_terminalVelocity)
+                if (wasGroundedLastFrame)
                 {
-                    _verticalVelocity = -_terminalVelocity;
+                    // Acabou de sair do chão – regista a altura onde começou a cair
+                    fallStartHeight = transform.position.y;
+                    wasGroundedLastFrame = false;
                 }
 
-                // (Opcional) se quiseres animação de "queda livre"
-                if (_hasAnimator)
+                // Verifica a diferença de altura em relação ao início da queda
+                float fallDistance = fallStartHeight - transform.position.y;
+
+                if (fallDistance > minFallHeight)
                 {
-                    _animator.SetBool(_animIDFreeFall, true);
+                    _verticalVelocity += Physics.gravity.y * Time.deltaTime;
+
+                    if (_verticalVelocity < -_terminalVelocity)
+                    {
+                        _verticalVelocity = -_terminalVelocity;
+                    }
+
+                    if (_hasAnimator)
+                    {
+                        _animator.SetBool(_animIDFreeFall, true);
+                    }
                 }
             }
         }
+
     }
     
 }
