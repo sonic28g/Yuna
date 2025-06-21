@@ -2315,6 +2315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4280012788660662834}
   - component: {fileID: 3075571866558819963}
+  - component: {fileID: 3236154210049337556}
   m_Layer: 0
   m_Name: Nanny
   m_TagString: Untagged
@@ -2361,6 +2362,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &3236154210049337556
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171131585900036231}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.33807984
+  m_Height: 2.5270004
+  m_Direction: 1
+  m_Center: {x: -0.017671885, y: -0.1676111, z: 0.04557978}
 --- !u!1 &7263089296666888998
 GameObject:
   m_ObjectHideFlags: 0
