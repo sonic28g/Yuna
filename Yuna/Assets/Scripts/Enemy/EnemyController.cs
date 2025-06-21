@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public static void ResetAllEnemies() => _resetAllEnemiesAction?.Invoke();
     public static void SaveAllEnemies() => _saveAllEnemiesAction?.Invoke();
 
+    private EnemyData _enemyData;
 
     private EnemyState _currentState;
 
@@ -38,8 +39,6 @@ public class EnemyController : MonoBehaviour
 
     private static readonly string SPEED_ANIMATOR_PARAMETER = "Speed";
     private static readonly string MOTION_SPEED_ANIMATOR_PARAMETER = "MotionSpeed";
-    private Vector3 _initialPosition;
-    private Quaternion _initialRotation;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioClip[] _footstepClips;
@@ -57,10 +56,6 @@ public class EnemyController : MonoBehaviour
         AudioSource = GetComponentInChildren<AudioSource>();
         Outline = GetComponentInChildren<Outline>();
 
-        // Store initial position and rotation
-        _initialPosition = transform.position;
-        _initialRotation = transform.rotation;
-
         // Check for missing components or "invalid states" + initialization
         if (NavAgent == null) throw new Exception($"NavMeshAgent is missing in {name}");
         else if (!NavAgent.isOnNavMesh) throw new Exception($"NavMeshAgent is not on the NavMesh in {name}");
@@ -77,7 +72,7 @@ public class EnemyController : MonoBehaviour
         // Initialize states
         InitializeStates();
 
-        // Initial load
+        // Setup save/load + Initial load
         ResetEnemy();
 
         _resetAllEnemiesAction += ResetEnemy;
@@ -133,10 +128,12 @@ public class EnemyController : MonoBehaviour
 
     public void ResetEnemy()
     {
+        LoadEnemyData();
+
         // Reset position and rotation
-        transform.SetPositionAndRotation(_initialPosition, _initialRotation);
+        transform.SetPositionAndRotation(_enemyData.Position, _enemyData.Rotation);
         if (NavAgent.isOnNavMesh) NavAgent.ResetPath();
-        NavAgent.Warp(_initialPosition);
+        NavAgent.Warp(_enemyData.Position);
 
         // Reset Health and current state
         EnemyHealth.ResetHealth();
@@ -144,13 +141,34 @@ public class EnemyController : MonoBehaviour
         else TransitionToState(DeadState);
     }
 
+    private void LoadEnemyData()
+    {
+        // Already loaded
+        if (_enemyData != null) return;
+
+        _enemyData = new EnemyData
+        {
+            Position = transform.position,
+            Rotation = transform.rotation
+        };
+    }
+
+
     public void SaveEnemy()
     {
         EnemyHealth.SaveHealth();
+        SaveEnemyData();
+    }
 
+    private void SaveEnemyData()
+    {
+        // Only if is dead
         if (!EnemyHealth.IsDead) return;
-        _initialPosition = transform.position;
-        _initialRotation = transform.rotation;
+
+        // Save data variable
+        _enemyData ??= new EnemyData();
+        _enemyData.Position = transform.position;
+        _enemyData.Rotation = transform.rotation;
     }
 
 
@@ -177,4 +195,12 @@ public class EnemyController : MonoBehaviour
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
     private void OnLand(AnimationEvent _) {}
+
+
+    [Serializable]
+    private class EnemyData
+    {
+        public Vector3 Position;
+        public Quaternion Rotation;
+    }
 }

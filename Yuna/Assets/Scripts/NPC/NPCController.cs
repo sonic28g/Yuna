@@ -10,6 +10,8 @@ public class NPCController : MonoBehaviour
     public static void ResetAllNPCs() => _resetAllNPCsAction?.Invoke();
     public static void SaveAllNPCs() => _saveAllNPCsAction?.Invoke();
 
+    private NPCData _npcData;
+
     private NPCState _currentState;
 
     // Shared components
@@ -28,8 +30,6 @@ public class NPCController : MonoBehaviour
 
     private static readonly string SPEED_ANIMATOR_PARAMETER = "Speed";
     private static readonly string MOTION_SPEED_ANIMATOR_PARAMETER = "MotionSpeed";
-    private Vector3 _initialPosition;
-    private Quaternion _initialRotation;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioClip[] _footstepClips;
@@ -44,10 +44,6 @@ public class NPCController : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         AudioSource = GetComponentInChildren<AudioSource>();
 
-        // Store initial position and rotation
-        _initialPosition = transform.position;
-        _initialRotation = transform.rotation;
-
         // Check for missing components or "invalid states" + initialization
         if (NPCInterestPoints == null) throw new Exception($"NPCInterestPoints is missing in {name}");
         NPCInterestPoints.Init();
@@ -61,7 +57,7 @@ public class NPCController : MonoBehaviour
         // Initialize states
         InitializeStates();
 
-        // Initial load
+        // Setup save/load + Initial load
         ResetNPC();
 
         _resetAllNPCsAction += ResetNPC;
@@ -114,20 +110,37 @@ public class NPCController : MonoBehaviour
 
     public void ResetNPC()
     {
+        LoadNPCData();
+
         // Reset position and rotation
-        transform.SetPositionAndRotation(_initialPosition, _initialRotation);
+        transform.SetPositionAndRotation(_npcData.Position, _npcData.Rotation);
         if (NavAgent.isOnNavMesh) NavAgent.ResetPath();
-        NavAgent.Warp(_initialPosition);
+        NavAgent.Warp(_npcData.Position);
 
         // Reset Health and current state
         EnemyHealth.ResetHealth();
         TransitionToState(WanderState);
     }
 
+    private void LoadNPCData()
+    {
+        // Already loaded
+        if (_npcData != null) return;
+
+        _npcData = new NPCData
+        {
+            Position = transform.position,
+            Rotation = transform.rotation
+        };
+    }
+
+
     public void SaveNPC()
     {
-        _initialPosition = transform.position;
-        _initialRotation = transform.rotation;
+        // Save data variable
+        _npcData ??= new NPCData();
+        _npcData.Position = transform.position;
+        _npcData.Rotation = transform.rotation;
     }
 
 
@@ -154,4 +167,12 @@ public class NPCController : MonoBehaviour
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
     private void OnLand(AnimationEvent _) { }
+
+
+    [Serializable]
+    private class NPCData
+    {
+        public Vector3 Position;
+        public Quaternion Rotation;
+    }
 }
