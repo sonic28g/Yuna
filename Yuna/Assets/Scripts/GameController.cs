@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        dialogueInteractable.Interact();
     }
 
     private void Update()
@@ -25,6 +24,11 @@ public class GameController : MonoBehaviour
         {
             tutorial.SetActive(true);
         }
+    }
+
+    public void StartDialogue()
+    {
+        dialogueInteractable.Interact();
     }
 
 }
