@@ -52242,10 +52242,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.19844396
+  m_Radius: 0.2815238
   m_Height: 1.6600449
   m_Direction: 1
-  m_Center: {x: 0.00000058402105, y: 1.0023705, z: -0.26477087}
+  m_Center: {x: 0.001962632, y: 1.0023705, z: -0.26669356}
 --- !u!114 &5576350853924840267
 MonoBehaviour:
   m_ObjectHideFlags: 0

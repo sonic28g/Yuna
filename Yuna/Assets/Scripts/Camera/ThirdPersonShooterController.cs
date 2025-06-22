@@ -23,6 +23,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color transparentColor = new Color(1, 1, 1, 0.3f); // branco com transparência
 
+    [SerializeField] private GameObject staminaBar;
+
     private StarterAssetsInputs starterAssetsInputs;
     private ThirdPersonController _thirdPersonController;
     private Animator _animator;
@@ -64,7 +66,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
-            
+
             if (Physics.Raycast(ray, out hit, distance, enemyMask))
             {
                 isPointingAtGuard = hit.collider.CompareTag("Guard");
@@ -142,6 +144,13 @@ public class ThirdPersonShooterController : MonoBehaviour
             starterAssetsInputs.scan = false;
 
         }
+
+        if (starterAssetsInputs.sprint)
+            staminaBar.SetActive(true);
+        else
+            staminaBar.SetActive(false);
+        
+
 
         /*
         if(_animator.GetFloat("Speed") == _thirdPersonController.SprintSpeed && _animator.GetBool("Crouching"))
