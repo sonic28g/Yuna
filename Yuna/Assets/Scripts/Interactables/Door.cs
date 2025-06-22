@@ -76,8 +76,9 @@ public class Door : InteractableObject
     }
 
 
-    public void CutsceneOpenDoor()
+    public void CutsceneInteractDoor()
     {
         if (!isOpen) StartCoroutine(MoveDoor(openDoorTransform));
+        else StartCoroutine(MoveDoor(closedDoorTransform));
     }
 }

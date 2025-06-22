@@ -30,6 +30,7 @@ public class DialogueManager : MonoBehaviour
     private readonly Queue<DialogueLine> _dialogueQueue = new();
     public bool IsDialogueActive { get; private set; } = false;
     private bool _isSkippable = true;
+    public DialogueSet currentDialogue { get; private set; }
 
 
     private void Awake()
@@ -78,6 +79,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueSet == null || !dialogueSet.AreConditionsMet()) return false;
 
         IsDialogueActive = true;
+        currentDialogue = dialogueSet;
         _isSkippable = dialogueSet.Skippable;
 
         // Pause input
@@ -91,9 +93,6 @@ public class DialogueManager : MonoBehaviour
             _briefingText.text += line.Text + "\n";
         });
 
-        // Add the dialogue to the seen dialogues list
-        SetDialogueAsSeen(dialogueSet.DialogueId);
-
         // Enable the dialogue UI and display the first (next) line
         if (_dialogueUI != null) _dialogueUI.SetActive(true);
         DisplayNextLine();
@@ -106,6 +105,9 @@ public class DialogueManager : MonoBehaviour
         // Disable the dialogue UI
         IsDialogueActive = false;
         if (_dialogueUI != null) _dialogueUI.SetActive(false);
+
+        // Add the dialogue to the seen dialogues list
+        _seenDialogues.Add(currentDialogue.DialogueId);
 
         // Resume input
         if (_inputs != null) _inputs.ResumeInput(this);

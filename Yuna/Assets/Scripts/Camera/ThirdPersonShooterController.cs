@@ -28,7 +28,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     private Animator _animator;
     private Outline[] kanzashiOutlines;
     private Outline[] enemyOutlines;
-
+    private Outline[] guardsOutlines;
     private bool _hasAnimator;
 
     public bool isAttacking = false;
@@ -133,12 +133,12 @@ public class ThirdPersonShooterController : MonoBehaviour
         if (starterAssetsInputs.scan && starterAssetsInputs.move == Vector2.zero)
         {
             vignetteHandler?.SetAimingEffect();
-            SetKanzashiOutlinesActive(true);
+            SetOutlinesActive(true);
         }
         else
         {
             vignetteHandler?.ResetVignette();
-            SetKanzashiOutlinesActive(false);
+            SetOutlinesActive(false);
             starterAssetsInputs.scan = false;
 
         }
@@ -155,7 +155,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         */
     }
 
-    private void SetKanzashiOutlinesActive(bool active)
+    private void SetOutlinesActive(bool active)
     {
         GameObject[] kanzashiObjects = GameObject.FindGameObjectsWithTag("Kanzashi");
         kanzashiOutlines = new Outline[kanzashiObjects.Length];
@@ -171,7 +171,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             if (outline != null)
                 outline.enabled = active;
         }
-        
+
         GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
         enemyOutlines = new Outline[enemyObjects.Length];
         for (int i = 0; i < enemyObjects.Length; i++)
@@ -182,6 +182,22 @@ public class ThirdPersonShooterController : MonoBehaviour
         if (enemyObjects == null) return;
 
         foreach (Outline outline in enemyOutlines)
+        {
+            if (outline != null)
+                outline.enabled = active;
+        }
+        
+
+        GameObject[] guardsObjects = GameObject.FindGameObjectsWithTag("Guard");
+        guardsOutlines = new Outline[guardsObjects.Length];
+        for (int i = 0; i < guardsObjects.Length; i++)
+        {
+            guardsOutlines[i] = guardsObjects[i].GetComponent<Outline>();
+        }
+
+        if (guardsObjects == null) return;
+
+        foreach (Outline outline in guardsOutlines)
         {
             if (outline != null)
                 outline.enabled = active;
