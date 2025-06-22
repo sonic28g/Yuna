@@ -172,7 +172,9 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: c963d870b26b44549b99e1e560f283b0
+    name: LowpassFrequency
   m_AudioMixerGroupViews:
   - guids:
     - 0700fef9516e0f94a84887923d168dc3
