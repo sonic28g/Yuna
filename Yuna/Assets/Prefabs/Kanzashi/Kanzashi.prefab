@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6872887579467382634}
   - component: {fileID: 3771416543730334679}
   - component: {fileID: 2206543611262823736}
+  - component: {fileID: -1991221199443821588}
   m_Layer: 7
   m_Name: Kanzashi
   m_TagString: Kanzashi
@@ -3598,3 +3599,15 @@ MonoBehaviour:
     - {x: 0.23784491, y: -0.0011500779, z: 0.97130245}
     - {x: 0.8166272, y: -0.16323587, z: 0.55360097}
     - {x: 0.829252, y: -0.0003526023, z: 0.5588748}
+--- !u!114 &-1991221199443821588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8138050923530616137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e88b8cf2e18444a8076b86d3441568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

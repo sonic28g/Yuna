@@ -6,7 +6,7 @@ public class LeaveRoom : TaskData
     public override void StartTask()
     {
         completed = false;
-        Door.OnDoorOpened += OnDoorOpened;
+        //Door.OnDoorOpened += OnDoorOpened;
     }
 
     public override bool CheckIfCompleted()
@@ -17,6 +17,6 @@ public class LeaveRoom : TaskData
     private void OnDoorOpened(Door door)
     {
         completed = true;
-        Door.OnDoorOpened -= OnDoorOpened; // remover depois de completado
+        //Door.OnDoorOpened -= OnDoorOpened; // remover depois de completado
     }
 }
