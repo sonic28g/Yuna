@@ -5646,7 +5646,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.555, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1253680134}
   m_Father: {fileID: 1696131153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5698,8 +5699,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 830117321}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+      - m_Target: {fileID: 830117326}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: ChangeToScene
         m_Mode: 5
         m_Arguments:
@@ -6051,7 +6052,7 @@ GameObject:
   - component: {fileID: 830117324}
   - component: {fileID: 830117323}
   - component: {fileID: 830117322}
-  - component: {fileID: 830117321}
+  - component: {fileID: 830117326}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6059,32 +6060,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &830117321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830117320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37518a4956261647822468d9c3b5ef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TPController: {fileID: 0}
-  _inputs: {fileID: 0}
-  showingSettings: 0
-  showingPause: 0
-  showingKeybinds: 0
-  showingJournal: 0
-  showingOptions: 0
-  showingBriefing: 0
-  pauseMenu: {fileID: 0}
-  settingsMenu: {fileID: 0}
-  keybindsMenu: {fileID: 0}
-  journalMenu: {fileID: 0}
-  optionsMenu: {fileID: 0}
-  briefingMenu: {fileID: 0}
 --- !u!114 &830117322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6171,6 +6146,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &830117326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830117320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2646ef28af7344c93ea1c1be83ca56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &835984675
 GameObject:
   m_ObjectHideFlags: 0
@@ -7414,7 +7401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &994882102
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7648,7 +7635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1000991710
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9206,15 +9193,15 @@ RectTransform:
   m_GameObject: {fileID: 1253680133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.33999997, y: 0.33999997, z: 0.33999997}
+  m_LocalScale: {x: 0.6126126, y: 0.34, z: 0.34}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1696131153}
+  m_Father: {fileID: 774690202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 17.000002}
-  m_SizeDelta: {x: 60, y: -70}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1253680135
 MonoBehaviour:
@@ -12437,7 +12424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1696131153}
   m_Layer: 5
-  m_Name: QuitButton
+  m_Name: ReturnButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12456,7 +12443,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 774690202}
-  - {fileID: 1253680134}
   m_Father: {fileID: 830117325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -13161,7 +13147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -94}
+  m_AnchoredPosition: {x: 0, y: -201}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1795114043

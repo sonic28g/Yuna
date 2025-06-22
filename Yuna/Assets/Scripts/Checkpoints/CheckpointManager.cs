@@ -26,6 +26,7 @@ public class CheckpointManager : MonoBehaviour
         lastCheckpointPos = player.transform.position;
         EnemyController.SaveAllEnemies();
         NPCController.SaveAllNPCs();
+        DialogueSet.SaveAllDialogueSets();
     }
 
     public void RespawnPlayer()
