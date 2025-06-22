@@ -8,7 +8,16 @@ public class DialogueInteractable : InteractableObject
 
     private void Awake()
     {
-        if (dialogueSet == null) throw new System.Exception("DialogueSet not set in " + name);
+        if (dialogueSet == null) throw new System.Exception($"DialogueSet not set in {name}");
+    }
+
+    private void Start()
+    {
+        if (DialogueManager.Instance == null || inspectableObject == null) return;
+        if (!DialogueManager.Instance.HasSeenDialogue(dialogueSet.DialogueId)) return;
+
+        // Interact with the inspectable object if the dialogue has already been seen
+        inspectableObject.Interact();
     }
 
     public override void Interact()
