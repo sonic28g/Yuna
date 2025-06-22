@@ -26,11 +26,11 @@ public class DialogueManager : MonoBehaviour
     private bool _isTyping = false;
 
     private readonly HashSet<string> _seenDialogues = new();
+    private string _currentDialogueId;
 
     private readonly Queue<DialogueLine> _dialogueQueue = new();
     public bool IsDialogueActive { get; private set; } = false;
     private bool _isSkippable = true;
-    public DialogueSet currentDialogue { get; private set; }
 
 
     private void Awake()
@@ -79,7 +79,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueSet == null || !dialogueSet.AreConditionsMet()) return false;
 
         IsDialogueActive = true;
-        currentDialogue = dialogueSet;
+        _currentDialogueId = dialogueSet.DialogueId;
         _isSkippable = dialogueSet.Skippable;
 
         // Pause input
@@ -107,7 +107,7 @@ public class DialogueManager : MonoBehaviour
         if (_dialogueUI != null) _dialogueUI.SetActive(false);
 
         // Add the dialogue to the seen dialogues list
-        _seenDialogues.Add(currentDialogue.DialogueId);
+        _seenDialogues.Add(_currentDialogueId);
 
         // Resume input
         if (_inputs != null) _inputs.ResumeInput(this);
