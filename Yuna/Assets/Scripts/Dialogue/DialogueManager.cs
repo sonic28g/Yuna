@@ -58,7 +58,16 @@ public class DialogueManager : MonoBehaviour
         _inputs.DialogueNext -= NextLineOrFinishCurrent;
     }
 
+    
     public bool HasSeenDialogue(string dialogueId) => _seenDialogues.Contains(dialogueId);
+
+    public void SetDialogueAsSeen(string dialogueId)
+    {
+        if (string.IsNullOrEmpty(dialogueId)) return;
+        if (HasSeenDialogue(dialogueId)) return;
+
+        _seenDialogues.Add(dialogueId);
+    }
 
 
     public bool StartDialogue(DialogueSet dialogueSet)
@@ -81,7 +90,7 @@ public class DialogueManager : MonoBehaviour
         });
 
         // Add the dialogue to the seen dialogues list
-        _seenDialogues.Add(dialogueSet.DialogueId);
+        SetDialogueAsSeen(dialogueSet.DialogueId);
 
         // Enable the dialogue UI and display the first (next) line
         if (_dialogueUI != null) _dialogueUI.SetActive(true);
