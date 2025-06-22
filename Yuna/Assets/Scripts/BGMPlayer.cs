@@ -1,15 +1,27 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BGMPlayer : MonoBehaviour
 {
     public static BGMPlayer Instance { get; private set; }
 
     private AudioSource _audioSource;
+    private AudioMixer _audioMixer;
 
     [Header("BGM Clips")]
     [SerializeField] private ClipByType[] _bgmClips;
     private BGMType? _lastType;
+
+    [Header("Muffle Settings")]
+    [SerializeField] private string _lowpassParam = "LowpassFrequency";
+
+    [SerializeField] private float _muffleFrequency = 500f;
+    [SerializeField] private float _normalFrequency = 22000f;
+    [SerializeField] private float _muffleTransitionTime = 1f;
+
+    private Coroutine _muffleCoroutine;
 
 
     private void Awake()
@@ -27,6 +39,9 @@ public class BGMPlayer : MonoBehaviour
         // Initialization
         bool hasAudioSource = TryGetComponent(out _audioSource);
         if (!hasAudioSource) throw new System.Exception($"AudioSource component is missing on {name}.");
+
+        if (_audioSource.outputAudioMixerGroup == null) Debug.LogWarning($"OutputAudioMixerGroup is not set for {name}. Muffle will not work.");
+        else _audioMixer = _audioSource.outputAudioMixerGroup.audioMixer;
     }
 
 
@@ -64,7 +79,36 @@ public class BGMPlayer : MonoBehaviour
     }
 
 
-    public void Muffle()
+    public void Muffle() => StartMuffleTransition(_muffleFrequency);
+    public void Unmuffle() => StartMuffleTransition(_normalFrequency);
+
+    private void StartMuffleTransition(float targetFrequency)
+    {
+        if (_muffleCoroutine != null) StopCoroutine(_muffleCoroutine);
+        _muffleCoroutine = StartCoroutine(MuffleTransition(targetFrequency));
+    }
+
+    private IEnumerator MuffleTransition(float targetFrequency)
+    {
+        // Get the initial lowpass filter frequency
+        _audioMixer.GetFloat(_lowpassParam, out float startFreq);
+
+        float elapsed = 0f;
+        while (elapsed < _muffleTransitionTime)
+        {
+            elapsed += Time.deltaTime;
+
+            // Calculate the interpolation factor and the current frequency
+            float t = Mathf.Clamp01(elapsed / _muffleTransitionTime);
+            float currentFreq = Mathf.Lerp(startFreq, targetFrequency, t);
+
+            // Set the lowpass filter frequency
+            _audioMixer.SetFloat(_lowpassParam, currentFreq);
+            yield return null;
+        }
+
+        _audioMixer.SetFloat(_lowpassParam, targetFrequency);
+    }
 
 
     public enum BGMType
