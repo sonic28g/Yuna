@@ -10,6 +10,12 @@ public class DialogueSet : ScriptableObject
     private string DialogueSetFilePath => Path.Combine(DIALOGUE_SET_DIR, $"{DialogueId}.json");
     private DialogueData _dialogueData;
 
+    private static Action _loadAllDialogueSets;
+    private static Action _saveAllDialogueSets;
+
+    public static void LoadAllDialogueSets() => _loadAllDialogueSets?.Invoke();
+    public static void SaveAllDialogueSets() => _saveAllDialogueSets?.Invoke();
+
 
     [field: SerializeField] public string DialogueId { get; private set; }
     [field: SerializeField] public bool Skippable { get; private set; } = true;
@@ -25,8 +31,16 @@ public class DialogueSet : ScriptableObject
     private void Awake()
     {
         LoadDialogueSet();
+        _loadAllDialogueSets += LoadDialogueSet;
+        _saveAllDialogueSets += SaveDialogueSet;
     }
     
+    private void OnDestroy()
+    {
+        _loadAllDialogueSets -= LoadDialogueSet;
+        _saveAllDialogueSets -= SaveDialogueSet;
+    }
+
 
     private void LoadDialogueSet()
     {
@@ -78,7 +92,7 @@ public class DialogueSet : ScriptableObject
             Debug.Log($"Failed to save dialogue set data for {name}: {e.Message}");
         }
     }
-    
+
 
     [Serializable]
     private class DialogueData

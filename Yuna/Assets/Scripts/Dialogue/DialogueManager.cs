@@ -49,6 +49,8 @@ public class DialogueManager : MonoBehaviour
         _inputs.DialogueNext += NextLineOrFinishCurrent;
     }
 
+    private void Start() => DialogueSet.LoadAllDialogueSets();
+
     private void OnDestroy()
     {
         if (_inputs == null) return;
