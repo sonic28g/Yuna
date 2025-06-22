@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,9 @@ public class EnemyController : MonoBehaviour
     public static void ResetAllEnemies() => _resetAllEnemiesAction?.Invoke();
     public static void SaveAllEnemies() => _saveAllEnemiesAction?.Invoke();
 
+    private EnemyData _enemyData;
+    private string _enemyDir, _enemyDataFilePath;
+    private static readonly string ENEMY_DATA_FILE = "enemyData.json";
 
     private EnemyState _currentState;
 
@@ -38,8 +42,6 @@ public class EnemyController : MonoBehaviour
 
     private static readonly string SPEED_ANIMATOR_PARAMETER = "Speed";
     private static readonly string MOTION_SPEED_ANIMATOR_PARAMETER = "MotionSpeed";
-    private Vector3 _initialPosition;
-    private Quaternion _initialRotation;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioClip[] _footstepClips;
@@ -57,10 +59,6 @@ public class EnemyController : MonoBehaviour
         AudioSource = GetComponentInChildren<AudioSource>();
         Outline = GetComponentInChildren<Outline>();
 
-        // Store initial position and rotation
-        _initialPosition = transform.position;
-        _initialRotation = transform.rotation;
-
         // Check for missing components or "invalid states" + initialization
         if (NavAgent == null) throw new Exception($"NavMeshAgent is missing in {name}");
         else if (!NavAgent.isOnNavMesh) throw new Exception($"NavMeshAgent is not on the NavMesh in {name}");
@@ -76,6 +74,11 @@ public class EnemyController : MonoBehaviour
 
         // Initialize states
         InitializeStates();
+
+        // Setup save/load + Initial load
+        _enemyDir = Path.Combine(Application.persistentDataPath, "Enemies", name);
+        _enemyDataFilePath = Path.Combine(_enemyDir, ENEMY_DATA_FILE);
+        ResetEnemy();
 
         _resetAllEnemiesAction += ResetEnemy;
         _saveAllEnemiesAction += SaveEnemy;
@@ -130,24 +133,75 @@ public class EnemyController : MonoBehaviour
 
     public void ResetEnemy()
     {
+        LoadEnemyData();
+
         // Reset position and rotation
-        transform.SetPositionAndRotation(_initialPosition, _initialRotation);
+        transform.SetPositionAndRotation(_enemyData.Position, _enemyData.Rotation);
         if (NavAgent.isOnNavMesh) NavAgent.ResetPath();
-        NavAgent.Warp(_initialPosition);
+        NavAgent.Warp(_enemyData.Position);
 
         // Reset Health and current state
-        EnemyHealth.ResetHealth();
+        EnemyHealth.ResetHealth(_enemyDir);
         if (!EnemyHealth.IsDead) TransitionToState(PatrolState);
         else TransitionToState(DeadState);
     }
 
+    private void LoadEnemyData()
+    {
+        // Already loaded
+        if (_enemyData != null) return;
+
+        try
+        {
+            // Read the JSON file and deserialize it + Set the data variable
+            string json = File.ReadAllText(_enemyDataFilePath);
+            _enemyData = JsonUtility.FromJson<EnemyData>(json) ?? throw new Exception($"Failed to parse enemy data from {_enemyDataFilePath}");
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Failed to load enemy data for {name}: {e.Message}");
+
+            // Initialize with default values if load fails
+            _enemyData = new EnemyData
+            {
+                Position = transform.position,
+                Rotation = transform.rotation
+            };
+        }
+    }
+
+
     public void SaveEnemy()
     {
-        EnemyHealth.SaveHealth();
+        EnemyHealth.SaveHealth(_enemyDir);
+        SaveEnemyData();
+    }
 
+    private void SaveEnemyData()
+    {
+        // Only if is dead
         if (!EnemyHealth.IsDead) return;
-        _initialPosition = transform.position;
-        _initialRotation = transform.rotation;
+
+        // Save data variable
+        _enemyData ??= new EnemyData();
+        _enemyData.Position = transform.position;
+        _enemyData.Rotation = transform.rotation;
+
+        try
+        {
+            // Convert the data to JSON
+            string json = JsonUtility.ToJson(_enemyData);
+
+            // Create the directory if it doesn't exist
+            if (!Directory.Exists(_enemyDir)) Directory.CreateDirectory(_enemyDir);
+
+            // Save the JSON to a file
+            File.WriteAllText(_enemyDataFilePath, json);
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Failed to save enemy data for {name}: {e.Message}");
+        }
     }
 
 
@@ -174,4 +228,12 @@ public class EnemyController : MonoBehaviour
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
     private void OnLand(AnimationEvent _) {}
+
+
+    [Serializable]
+    private class EnemyData
+    {
+        public Vector3 Position;
+        public Quaternion Rotation;
+    }
 }
