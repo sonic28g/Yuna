@@ -9,6 +9,7 @@ public class DialogueInteractable : InteractableObject
     private void Awake()
     {
         if (dialogueSet == null) throw new System.Exception($"DialogueSet not set in {name}");
+        dialogueSet.InitDialogueSet();
     }
 
     private void Start()

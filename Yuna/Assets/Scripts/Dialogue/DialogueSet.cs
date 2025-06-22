@@ -6,8 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Yuna/Dialogue/DialogueSet")]
 public class DialogueSet : ScriptableObject
 {
-    private static readonly string DIALOGUE_SET_DIR = Path.Combine(Application.persistentDataPath, "Dialogue");
-    private string DialogueSetFilePath => Path.Combine(DIALOGUE_SET_DIR, $"{DialogueId}.json");
+    private string _dialogueSetDir;
+    private string DialogueSetFilePath => Path.Combine(_dialogueSetDir, $"{DialogueId}.json");
     private DialogueData _dialogueData;
 
     private static Action _loadAllDialogueSets;
@@ -28,15 +28,18 @@ public class DialogueSet : ScriptableObject
     public bool AreConditionsMet() => _conditions.TrueForAll(c => c.Evaluate());
 
 
-    private void Awake()
+    public void InitDialogueSet()
     {
+        _dialogueSetDir = Path.Combine(Application.persistentDataPath, "Dialogue");
         LoadDialogueSet();
+
         _loadAllDialogueSets += LoadDialogueSet;
         _saveAllDialogueSets += SaveDialogueSet;
     }
     
     private void OnDestroy()
     {
+        if (_dialogueSetDir == null) return;
         _loadAllDialogueSets -= LoadDialogueSet;
         _saveAllDialogueSets -= SaveDialogueSet;
     }
@@ -44,6 +47,8 @@ public class DialogueSet : ScriptableObject
 
     private void LoadDialogueSet()
     {
+        if (_dialogueSetDir == null) return;
+
         // Already loaded
         if (_dialogueData != null)
         {
@@ -82,7 +87,7 @@ public class DialogueSet : ScriptableObject
             string json = JsonUtility.ToJson(_dialogueData);
 
             // Create the directory if it doesn't exist
-            if (!Directory.Exists(DIALOGUE_SET_DIR)) Directory.CreateDirectory(DIALOGUE_SET_DIR);
+            if (!Directory.Exists(_dialogueSetDir)) Directory.CreateDirectory(_dialogueSetDir);
 
             // Save the JSON to a file
             File.WriteAllText(DialogueSetFilePath, json);
