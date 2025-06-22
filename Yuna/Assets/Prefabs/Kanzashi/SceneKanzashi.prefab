@@ -298,8 +298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineColor: {r: 0.6981132, g: 0.46431115, b: 0.68662095, a: 1}
-  outlineWidth: 2.5
+  outlineColor: {r: 0.26337978, g: 0.9433962, b: 0.24474904, a: 1}
+  outlineWidth: 2
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -8367231247473855917, guid: e7845c01950ae4f3eb204404f9906be3, type: 3}
