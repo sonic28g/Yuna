@@ -64,11 +64,13 @@ public class UIManager : MonoBehaviour
             ammoText.text = amount.ToString(); // Atualiza o texto da munição
     }
 
-    public void ShowHelper(string title, string text, Image image)
+    public void ShowHelper(string title, string text, Sprite image)
     {
         helper.SetActive(true);
         helperTitle.text = title;
         helperText.text = text;
+        helperImage.sprite = image;
+
         menuController.PauseGame();
     }
 }

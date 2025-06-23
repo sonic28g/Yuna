@@ -9,7 +9,7 @@ public class PickKanzashiTask : TaskData
     private Vector3 lastPosition;
     [SerializeField] string helperTitle;
     [SerializeField] string helperText;
-    [SerializeField] Image helperImage;
+    [SerializeField] Sprite helperImage;
 
     public override void StartTask()
     {
