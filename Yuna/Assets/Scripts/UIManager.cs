@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image helperImage;
     [SerializeField] TextMeshProUGUI helperText;
     [SerializeField] GameObject weaponPanel;
+    [SerializeField] GameObject DiaryEntry;
 
     private void Awake()
     {
@@ -75,5 +76,10 @@ public class UIManager : MonoBehaviour
         weaponPanel.SetActive(true);
 
         menuController.PauseGame();
+    }
+
+    public void ShowDiaryEntry()
+    {
+        DiaryEntry.SetActive(true);
     }
 }
