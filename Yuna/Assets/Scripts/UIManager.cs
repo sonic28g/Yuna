@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI helperTitle;
     [SerializeField] Image helperImage;
     [SerializeField] TextMeshProUGUI helperText;
+    [SerializeField] GameObject weaponPanel;
 
     private void Awake()
     {
@@ -48,14 +49,14 @@ public class UIManager : MonoBehaviour
 
     public void ShowInteractionText(string text)
     {
-        pickupText.SetActive(true);
-        pickupText.GetComponentInChildren<TextMeshProUGUI>().text = text;
-        Invoke("HidePickupText", 1f);
+        //pickupText.SetActive(true);
+        //pickupText.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        //Invoke("HidePickupText", 1f);
     }
 
     private void HidePickupText()
     {
-        pickupText.SetActive(false);
+        //pickupText.SetActive(false);
     }
 
     public void UpdateAmmoUI(string weaponName, int amount)
@@ -70,6 +71,8 @@ public class UIManager : MonoBehaviour
         helperTitle.text = title;
         helperText.text = text;
         helperImage.sprite = image;
+
+        weaponPanel.SetActive(true);
 
         menuController.PauseGame();
     }
