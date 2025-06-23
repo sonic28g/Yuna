@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -21,6 +22,8 @@ public class BGMPlayer : MonoBehaviour
     [SerializeField] private float _normalFrequency = 22000f;
     [SerializeField] private float _muffleTransitionTime = 1f;
 
+    private readonly List<object> _mufflers = new();
+
     private Coroutine _muffleCoroutine;
     private Coroutine _waitCoroutine;
 
@@ -42,7 +45,11 @@ public class BGMPlayer : MonoBehaviour
         if (!hasAudioSource) throw new System.Exception($"AudioSource component is missing on {name}.");
 
         if (_audioSource.outputAudioMixerGroup == null) Debug.LogWarning($"OutputAudioMixerGroup is not set for {name}. Muffle will not work.");
-        else _audioMixer = _audioSource.outputAudioMixerGroup.audioMixer;
+        else
+        {
+            _audioMixer = _audioSource.outputAudioMixerGroup.audioMixer;
+            _audioMixer.SetFloat(_lowpassParam, _normalFrequency);
+        }
     }
 
 
@@ -91,13 +98,28 @@ public class BGMPlayer : MonoBehaviour
     private IEnumerator WaitForClipEnd(float clipLength)
     {
         // Wait for the clip to finish + Play another clip
-        yield return new WaitForSeconds(clipLength);
+        yield return new WaitForSecondsRealtime(clipLength);
         Play(null, true);
     }
 
 
-    public void Muffle() => StartMuffleTransition(_muffleFrequency);
-    public void Unmuffle() => StartMuffleTransition(_normalFrequency);
+    public void Muffle(object muffler)
+    {
+        if (_mufflers.Contains(muffler)) return;
+       
+        if (_mufflers.Count == 0) StartMuffleTransition(_muffleFrequency);
+        _mufflers.Add(muffler);
+    }
+
+    public void Unmuffle(object muffler)
+    {
+        if (!_mufflers.Contains(muffler)) return;
+        _mufflers.Remove(muffler);
+
+        if (_mufflers.Count > 0) return;
+        StartMuffleTransition(_normalFrequency);
+    }
+
 
     private void StartMuffleTransition(float targetFrequency)
     {
@@ -113,7 +135,7 @@ public class BGMPlayer : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < _muffleTransitionTime)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
 
             // Calculate the interpolation factor and the current frequency
             float t = Mathf.Clamp01(elapsed / _muffleTransitionTime);
