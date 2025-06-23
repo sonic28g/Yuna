@@ -42686,7 +42686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1965072114}
-  - component: {fileID: 1965072116}
+  - component: {fileID: 1965072117}
   - component: {fileID: 1965072115}
   m_Layer: 0
   m_Name: GameController
@@ -42829,8 +42829,8 @@ MonoBehaviour:
     m_ActionName: 'UI/DialogueSkip[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1965072116}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+      - m_Target: {fileID: 1965072117}
+        m_TargetAssemblyTypeName: StartCutsceneController, Assembly-CSharp
         m_MethodName: ChangeToScene
         m_Mode: 5
         m_Arguments:
@@ -42848,7 +42848,7 @@ MonoBehaviour:
   m_DefaultActionMap: Cutscene
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1965072116
+--- !u!114 &1965072117
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42857,23 +42857,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1965072112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37518a4956261647822468d9c3b5ef1, type: 3}
+  m_Script: {fileID: 11500000, guid: 401ac016821fb1e469b55336c34d01bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TPController: {fileID: 0}
-  _inputs: {fileID: 0}
-  showingSettings: 0
-  showingPause: 0
-  showingKeybinds: 0
-  showingJournal: 0
-  showingOptions: 0
-  showingBriefing: 0
-  pauseMenu: {fileID: 0}
-  settingsMenu: {fileID: 0}
-  keybindsMenu: {fileID: 0}
-  journalMenu: {fileID: 0}
-  optionsMenu: {fileID: 0}
-  briefingMenu: {fileID: 0}
+  _bgmType: 0
 --- !u!4 &1972762979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9221421712796837190, guid: 5a69fb86d13534edd969cef85660739a, type: 3}

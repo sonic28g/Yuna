@@ -48,7 +48,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -148,6 +148,32 @@ MonoBehaviour:
   - Type: 0
     Clip: {fileID: 8300000, guid: bef31386954879c41b2284dcca0a2a43, type: 3}
   - Type: 0
+    Clip: {fileID: 8300000, guid: 2ab2a3553ff698144b392addded472df, type: 3}
+  - Type: 1
+    Clip: {fileID: 8300000, guid: bef31386954879c41b2284dcca0a2a43, type: 3}
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 2ab2a3553ff698144b392addded472df, type: 3}
+  - Type: 2
+    Clip: {fileID: 8300000, guid: 47e86e287b508754abf8685a31099399, type: 3}
+  - Type: 3
+    Clip: {fileID: 8300000, guid: 47e86e287b508754abf8685a31099399, type: 3}
+  - Type: 3
+    Clip: {fileID: 8300000, guid: 2ab2a3553ff698144b392addded472df, type: 3}
+  - Type: 3
+    Clip: {fileID: 8300000, guid: bef31386954879c41b2284dcca0a2a43, type: 3}
+  - Type: 4
+    Clip: {fileID: 8300000, guid: 2ab2a3553ff698144b392addded472df, type: 3}
+  - Type: 4
+    Clip: {fileID: 8300000, guid: 9f05d6dc08b5bc4489abb345c44883cd, type: 3}
+  - Type: 5
+    Clip: {fileID: 8300000, guid: 2ab2a3553ff698144b392addded472df, type: 3}
+  - Type: 5
+    Clip: {fileID: 8300000, guid: 9f05d6dc08b5bc4489abb345c44883cd, type: 3}
+  - Type: 6
+    Clip: {fileID: 8300000, guid: 47e86e287b508754abf8685a31099399, type: 3}
+  - Type: 6
+    Clip: {fileID: 8300000, guid: bef31386954879c41b2284dcca0a2a43, type: 3}
+  - Type: 6
     Clip: {fileID: 8300000, guid: 2ab2a3553ff698144b392addded472df, type: 3}
   _lowpassParam: LowpassFrequency
   _muffleFrequency: 500
