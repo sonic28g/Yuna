@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -81,5 +82,13 @@ public class UIManager : MonoBehaviour
     public void ShowDiaryEntry()
     {
         DiaryEntry.SetActive(true);
+
+        StartCoroutine(WaitSecondsAndHide(2, DiaryEntry));
+    }
+
+    IEnumerator WaitSecondsAndHide(int seconds, GameObject gameObject)
+    {
+        yield return new WaitForSeconds(seconds);
+        gameObject.SetActive(false);
     }
 }
