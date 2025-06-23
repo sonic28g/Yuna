@@ -17,3 +17,9 @@ MonoBehaviour:
   title: Pick a kanzashi
   description: Find a kanzashi and pick it up
   completed: 1
+  helperTitle: Kanzashi
+  helperText: "A kanzashi is a traditional Japanese hair ornament used to decorate
+    hairstyles, especially in formal or ceremonial settings like weddings or worn
+    with kimono. They can be made from materials like wood, metal, or silk, and come
+    in various styles\u2014from simple sticks to intricate floral designs."
+  helperImage: {fileID: 21300000, guid: 6474c6a797f56e348aa75fc0bebea3bf, type: 3}
