@@ -116,6 +116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House1_LOD1
       objectReference: {fileID: 0}
+    - target: {fileID: 6837166214436680290, guid: 2064da55c37614952adf04993715a7e1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -183,17 +187,45 @@ PrefabInstance:
       propertyPath: m_Name
       value: House1_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: 1569867600400497914, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2744958762377566275, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3247805497034334032, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
       propertyPath: m_Name
       value: Stairs
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247805497034334032, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4154263274402493422, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 4154263274402493422, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928630120224678597, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8129126433224531917, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
       propertyPath: m_Name
       value: Walls
+      objectReference: {fileID: 0}
+    - target: {fileID: 8129126433224531917, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230709323056971275, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8706774442647595002, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
       propertyPath: m_LightmapParameters
@@ -202,6 +234,10 @@ PrefabInstance:
     - target: {fileID: 8706774442647595002, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
       propertyPath: m_StaticShadowCaster
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724805334416880703, guid: 076e5c3db394e4248a2dc389310c5917, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -239,6 +275,10 @@ PrefabInstance:
     - target: {fileID: 1073841223525453681, guid: 83a5cf51d4728453189fbd169960a2c2, type: 3}
       propertyPath: m_Name
       value: House1_LOD2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073841223525453681, guid: 83a5cf51d4728453189fbd169960a2c2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2223098709844779549, guid: 83a5cf51d4728453189fbd169960a2c2, type: 3}
       propertyPath: m_LocalPosition.x
