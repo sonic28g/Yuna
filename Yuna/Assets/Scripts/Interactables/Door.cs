@@ -1,20 +1,26 @@
+using System.Collections;
 using System;
 using UnityEngine;
 
 public class Door : InteractableObject
 {
-    public Animator animator; // Referência ao Animator da porta
-    private bool isOpen = false; // Estado da porta
+    [Header("Posições Porta")]
+    [SerializeField] Transform openDoorTransform;
+    [SerializeField] Transform closedDoorTransform;
 
-    [Header("Requisitos de tutorial")]
-    public bool bloqueadaPorTutorial = true;
-    public int etapaMinima = 2; // A partir de que etapa pode interagir
-    public static event Action<Door> OnDoorOpened;
+    [SerializeField] float doorMoveDuration = 1f; // Duração do movimento da porta
+
+    [Header("Requisitos de Tutorial")]
+    [SerializeField] bool bloqueadaPorTutorial = true;
+    [SerializeField] int etapaMinima = 2;
+    [SerializeField] static event Action<Door> OnDoorOpened;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioClip[] _clips;
     private AudioSource _audioSource;
 
+    private bool isOpen = false;
+    private bool isMoving = false;
 
     private void Awake()
     {
@@ -30,35 +36,49 @@ public class Door : InteractableObject
         _audioSource.Play();
     }
 
-
     public override void Interact()
     {
-        // Verificar se pode interagir com base no progresso do tutorial
         if (bloqueadaPorTutorial && TutorialManager.Instance != null &&
             TutorialManager.Instance.currentIndex < etapaMinima)
         {
             UIManager.instance.ShowInteractionText("Finish the tutorial task first");
-            // Aqui podes mostrar mensagem ao jogador na UI, se quiseres
             return;
         }
 
-        if (!isOpen) OpenDoor();
-        else CloseDoor();
+        if (isMoving) return; // Impede interação durante movimento
+
+        if (!isOpen) StartCoroutine(MoveDoor(openDoorTransform));
+        else StartCoroutine(MoveDoor(closedDoorTransform));
 
         PlayOpenCloseSound();
     }
 
-    private void OpenDoor()
+    private IEnumerator MoveDoor(Transform target)
     {
-        isOpen = true;
-        animator.SetTrigger("Open");
+        isMoving = true;
+        Vector3 startPos = transform.position;
+        float elapsed = 0f;
 
-        OnDoorOpened?.Invoke(this);
+        while (elapsed < doorMoveDuration)
+        {
+            transform.position = Vector3.Lerp(startPos, target.position, elapsed / doorMoveDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = target.position;
+
+        isOpen = (target == openDoorTransform);
+        if (isOpen)
+            OnDoorOpened?.Invoke(this);
+
+        isMoving = false;
     }
 
-    private void CloseDoor()
+
+    public void CutsceneInteractDoor()
     {
-        isOpen = false;
-        animator.SetTrigger("Close");
+        if (!isOpen) StartCoroutine(MoveDoor(openDoorTransform));
+        else StartCoroutine(MoveDoor(closedDoorTransform));
     }
 }

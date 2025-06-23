@@ -23,12 +23,14 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color transparentColor = new Color(1, 1, 1, 0.3f); // branco com transparência
 
+    [SerializeField] private GameObject staminaBar;
+
     private StarterAssetsInputs starterAssetsInputs;
     private ThirdPersonController _thirdPersonController;
     private Animator _animator;
     private Outline[] kanzashiOutlines;
     private Outline[] enemyOutlines;
-
+    private Outline[] guardsOutlines;
     private bool _hasAnimator;
 
     public bool isAttacking = false;
@@ -50,8 +52,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         if (starterAssetsInputs.aim && _hasAnimator && !starterAssetsInputs.sprint)
         {
-            vignetteHandler?.SetAimingEffect();
-
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
             _thirdPersonController.SetSensitivity(aimSensibility);
 
@@ -64,7 +64,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
-            
+
             if (Physics.Raycast(ray, out hit, distance, enemyMask))
             {
                 isPointingAtGuard = hit.collider.CompareTag("Guard");
@@ -100,7 +100,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
 
-            if (stateInfo.IsName("YourAnimationName") && stateInfo.normalizedTime < 1.0f)
+            if (stateInfo.IsName("Attacking") && stateInfo.normalizedTime < 1.0f)
             {
                 tessen.SetActive(true);
             }
@@ -116,7 +116,6 @@ public class ThirdPersonShooterController : MonoBehaviour
         else
         {
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 0;
-            vignetteHandler?.ResetVignette();
 
             _thirdPersonController.SetSensitivity(normalSensibility);
             crossHair.SetActive(false);
@@ -133,15 +132,22 @@ public class ThirdPersonShooterController : MonoBehaviour
         if (starterAssetsInputs.scan && starterAssetsInputs.move == Vector2.zero)
         {
             vignetteHandler?.SetAimingEffect();
-            SetKanzashiOutlinesActive(true);
+            SetOutlinesActive(true);
         }
         else
         {
             vignetteHandler?.ResetVignette();
-            SetKanzashiOutlinesActive(false);
+            SetOutlinesActive(false);
             starterAssetsInputs.scan = false;
 
         }
+
+        if (starterAssetsInputs.sprint)
+            staminaBar.SetActive(true);
+        else
+            staminaBar.SetActive(false);
+        
+
 
         /*
         if(_animator.GetFloat("Speed") == _thirdPersonController.SprintSpeed && _animator.GetBool("Crouching"))
@@ -155,7 +161,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         */
     }
 
-    private void SetKanzashiOutlinesActive(bool active)
+    private void SetOutlinesActive(bool active)
     {
         GameObject[] kanzashiObjects = GameObject.FindGameObjectsWithTag("Kanzashi");
         kanzashiOutlines = new Outline[kanzashiObjects.Length];
@@ -171,7 +177,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             if (outline != null)
                 outline.enabled = active;
         }
-        
+
         GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
         enemyOutlines = new Outline[enemyObjects.Length];
         for (int i = 0; i < enemyObjects.Length; i++)
@@ -182,6 +188,22 @@ public class ThirdPersonShooterController : MonoBehaviour
         if (enemyObjects == null) return;
 
         foreach (Outline outline in enemyOutlines)
+        {
+            if (outline != null)
+                outline.enabled = active;
+        }
+        
+
+        GameObject[] guardsObjects = GameObject.FindGameObjectsWithTag("Guard");
+        guardsOutlines = new Outline[guardsObjects.Length];
+        for (int i = 0; i < guardsObjects.Length; i++)
+        {
+            guardsOutlines[i] = guardsObjects[i].GetComponent<Outline>();
+        }
+
+        if (guardsObjects == null) return;
+
+        foreach (Outline outline in guardsOutlines)
         {
             if (outline != null)
                 outline.enabled = active;

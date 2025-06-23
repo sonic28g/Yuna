@@ -112,8 +112,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.66
-  m_Center: {x: 0.000000059604645, y: 0, z: 0}
+  m_Radius: 0.7133602
+  m_Center: {x: 0.00000008499317, y: 0, z: -0.010703692}
 --- !u!114 &909342946808240871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ AudioSource:
   m_GameObject: {fileID: 8138050923530616137}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 9148151317383463275, guid: 5630bc8abb1394c478b70134aa02a031, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineColor: {r: 0.6981132, g: 0.46431115, b: 0.68662095, a: 1}
+  outlineColor: {r: 0.6901961, g: 0.06666667, b: 0.54901963, a: 1}
   outlineWidth: 2.5
   precomputeOutline: 1
   bakeKeys:

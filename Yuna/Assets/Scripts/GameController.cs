@@ -5,26 +5,29 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
-    public DialogueInteractable dialogueInteractable;
     public GameObject tutorial;
 
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        dialogueInteractable.Interact();
     }
 
     private void Update()
     {
-        if (DialogueManager.Instance.IsDialogueActive)
-        {
-            tutorial.SetActive(false);
-        }
-        else
+        if (DialogueManager.Instance.HasSeenDialogue("dialogue0"))
         {
             tutorial.SetActive(true);
         }
+        else
+        {
+            tutorial.SetActive(false);
+        }
+    }
+
+    public void StartDialogue(DialogueInteractable dialogueInteractable)
+    {
+        dialogueInteractable.Interact();
     }
 
 }

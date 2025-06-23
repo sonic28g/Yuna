@@ -6,33 +6,60 @@ public class EnemyFoundState : EnemyState
     private Behaviour[] _behaviours;
     private bool[] _enableds;
 
+
     public override void EnterState(EnemyController enemy)
     {
-        CheckpointManager.Instance.RespawnPlayer();
+        if (CheckpointManager.Instance != null) CheckpointManager.Instance.RespawnPlayer();
 
-        
+        StopNavigation(enemy);
+        DisableComponents(enemy);
+    }
+
+    public override void ExitState(EnemyController enemy) => RestoreComponents(enemy);
+
+
+    private void StopNavigation(EnemyController enemy)
+    {
         enemy.NavAgent.isStopped = true;
         enemy.NavAgent.ResetPath();
+    }
 
+
+    private void DisableComponents(EnemyController enemy)
+    {
         // Behaviours to disable
         _behaviours = new Behaviour[] {
             enemy,
             enemy.NavAgent, enemy.PlayerDetection,
             enemy.SoundDetection,
+            enemy.EnemyHealth
             // ...
         };
 
         // Store the enabled value and disable the behaviours
-        _enableds = new bool[_behaviours.Length];
-        for (int i = 0; i < _behaviours.Length; i++)
+        int behavioursLength = _behaviours.Length;
+        _enableds = new bool[behavioursLength];
+
+        for (int i = 0; i < behavioursLength; i++)
         {
+            // Check if the behaviour is null
+            if (_behaviours[i] == null) continue;
+
             _enableds[i] = _behaviours[i].enabled;
             _behaviours[i].enabled = false;
         }
     }
 
-    public override void ExitState(EnemyController enemy)
+    private void RestoreComponents(EnemyController _)
     {
-        for (int i = 0; i < _behaviours.Length; i++) _behaviours[i].enabled = _enableds[i];
+        // Restore the behaviours
+        int behavioursLength = _behaviours.Length;
+        for (int i = 0; i < behavioursLength; i++)
+        {
+            // Check if the behaviour is null
+            if (_behaviours[i] == null) continue;
+
+            _behaviours[i].enabled = _enableds[i];
+        }
     }
 }
