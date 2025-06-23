@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class UIManager : MonoBehaviour
     public GameObject nearbyTextKey;
     public GameObject pickupText;
     public TextMeshProUGUI ammoText; // Adiciona um campo para exibir a munição
+
+    [SerializeField] MenuController menuController;
+    [SerializeField] GameObject helper;
+    [SerializeField] TextMeshProUGUI helperTitle;
+    [SerializeField] Image helperImage;
+    [SerializeField] TextMeshProUGUI helperText;
 
     private void Awake()
     {
@@ -55,5 +62,13 @@ public class UIManager : MonoBehaviour
     {
         if (ammoText != null)
             ammoText.text = amount.ToString(); // Atualiza o texto da munição
+    }
+
+    public void ShowHelper(string title, string text, Image image)
+    {
+        helper.SetActive(true);
+        helperTitle.text = title;
+        helperText.text = text;
+        menuController.PauseGame();
     }
 }
