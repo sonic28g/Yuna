@@ -22,6 +22,7 @@ public class BGMPlayer : MonoBehaviour
     [SerializeField] private float _muffleTransitionTime = 1f;
 
     private Coroutine _muffleCoroutine;
+    private Coroutine _waitCoroutine;
 
 
     private void Awake()
@@ -45,13 +46,16 @@ public class BGMPlayer : MonoBehaviour
     }
 
 
-    public void Play(BGMType? type = null)
+    public void Play(BGMType? type = null, bool forceAnother = false)
     {
         // If no type is provided, use the last played type
         type ??= _lastType;
-
-        // Set the last played type (or do nothing if null)
         if (type == null) return;
+
+        // If the type is the same as the last one, and we're not forcing another play, do nothing
+        if (_lastType == type && !forceAnother && _audioSource.isPlaying) return;
+
+        // Set the last type to the current one
         _lastType = type;
 
         // Get candidates for the specified type (and ensure it has a clip)
@@ -64,18 +68,31 @@ public class BGMPlayer : MonoBehaviour
         ClipByType selected = candidates[Random.Range(0, candidates.Length)];
         var selectedClip = selected.Clip;
 
-        // If the selected clip is the same as the currently playing one, do nothing
-        if (selectedClip == _audioSource.clip && _audioSource.isPlaying) return;
-
         // Play the new clip
         Stop();
         _audioSource.clip = selectedClip;
         _audioSource.Play();
+
+        // Start the wait coroutine to handle clip end
+        _waitCoroutine = StartCoroutine(WaitForClipEnd(selectedClip.length));
     }
+
 
     public void Stop()
     {
-        if (_audioSource.isPlaying) _audioSource.Stop();
+        // Stop the wait coroutine if it's running
+        if (_waitCoroutine != null) StopCoroutine(_waitCoroutine);
+        _waitCoroutine = null;
+
+        // Stop the audio source if it's playing
+        if (!_audioSource.isPlaying) _audioSource.Stop();
+    }
+
+    private IEnumerator WaitForClipEnd(float clipLength)
+    {
+        // Wait for the clip to finish + Play another clip
+        yield return new WaitForSeconds(clipLength);
+        Play(null, true);
     }
 
 
