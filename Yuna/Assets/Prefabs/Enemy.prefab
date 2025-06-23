@@ -2166,7 +2166,7 @@ MonoBehaviour:
   SearchImage: {fileID: 732476333875099205}
   ChaseImage: {fileID: 9009866883729676600}
   <PatrolState>k__BackingField: {fileID: 11400000, guid: a4da3b1e1f50cf34b8bc424773ac2a56, type: 2}
-  <ChaseState>k__BackingField: {fileID: 11400000, guid: 04a5fc62322aa1e41b779133bc4b4213, type: 2}
+  <ChaseState>k__BackingField: {fileID: 11400000, guid: f71958a1d14e108419e741ee729d8d88, type: 2}
   <SearchState>k__BackingField: {fileID: 11400000, guid: de098425aef0930408da53c485208f48, type: 2}
   <DeadState>k__BackingField: {fileID: 11400000, guid: abab8444c6f63baf59b385860dfe62f3, type: 2}
   <FoundState>k__BackingField: {fileID: 11400000, guid: 79a9e60718746dc4dae76f9088fa579e, type: 2}

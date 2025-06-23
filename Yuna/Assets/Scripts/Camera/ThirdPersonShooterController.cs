@@ -52,8 +52,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         if (starterAssetsInputs.aim && _hasAnimator && !starterAssetsInputs.sprint)
         {
-            vignetteHandler?.SetAimingEffect();
-
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
             _thirdPersonController.SetSensitivity(aimSensibility);
 
@@ -118,7 +116,6 @@ public class ThirdPersonShooterController : MonoBehaviour
         else
         {
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 0;
-            vignetteHandler?.ResetVignette();
 
             _thirdPersonController.SetSensitivity(normalSensibility);
             crossHair.SetActive(false);
