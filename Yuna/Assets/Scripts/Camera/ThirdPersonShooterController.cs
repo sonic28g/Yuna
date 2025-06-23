@@ -100,7 +100,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
 
-            if (stateInfo.IsName("YourAnimationName") && stateInfo.normalizedTime < 1.0f)
+            if (stateInfo.IsName("Attacking") && stateInfo.normalizedTime < 1.0f)
             {
                 tessen.SetActive(true);
             }

@@ -2284,9 +2284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
-  kanzashiDamage: 50
-  kanzashiCriticalDamage: 100
-  tessenDamage: 999
+  kanzashiDamage: 10
+  kanzashiCriticalDamage: 20
+  tessenDamage: 150
   criticalColliders:
   - {fileID: 5070061292031352357}
 --- !u!114 &5790966587338871961
