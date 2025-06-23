@@ -5,10 +5,11 @@ public class StartCutsceneController : MonoBehaviour
 {
     [SerializeField] private BGMPlayer.BGMType _bgmType = BGMPlayer.BGMType.MainMenu;
 
-    private void Start()
+    private void OnEnable()
     {
         if (BGMPlayer.Instance != null) BGMPlayer.Instance.Play(_bgmType);
     }
+
 
     public void ChangeToScene(string sceneName)
     {
