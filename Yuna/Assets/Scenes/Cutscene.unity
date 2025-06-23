@@ -30490,6 +30490,63 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3410944087502363961, guid: ac69685bf8946ec47b2bfd50df4630a4, type: 3}
+--- !u!1001 &1428990111
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4470912160155656455, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470912160155656455, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470912160155656455, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470912160155656455, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470912160155656455, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470912160155656455, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470912160155656455, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470912160155656455, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470912160155656455, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470912160155656455, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560131694120747222, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
+      propertyPath: m_Name
+      value: BGM
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e221dd9b0620f9544ab0520824a8c958, type: 3}
 --- !u!1 &1432222641
 GameObject:
   m_ObjectHideFlags: 0
@@ -42810,11 +42867,13 @@ MonoBehaviour:
   showingKeybinds: 0
   showingJournal: 0
   showingOptions: 0
+  showingBriefing: 0
   pauseMenu: {fileID: 0}
   settingsMenu: {fileID: 0}
   keybindsMenu: {fileID: 0}
   journalMenu: {fileID: 0}
   optionsMenu: {fileID: 0}
+  briefingMenu: {fileID: 0}
 --- !u!4 &1972762979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9221421712796837190, guid: 5a69fb86d13534edd969cef85660739a, type: 3}
@@ -49002,7 +49061,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Door
-  animator: {fileID: 8570911104216123477}
+  openDoorTransform: {fileID: 0}
+  closedDoorTransform: {fileID: 0}
+  doorMoveDuration: 1
   bloqueadaPorTutorial: 1
   etapaMinima: 2
   _clips: []
@@ -49302,3 +49363,4 @@ SceneRoots:
   - {fileID: 113688829}
   - {fileID: 328913959}
   - {fileID: 333292675}
+  - {fileID: 1428990111}
