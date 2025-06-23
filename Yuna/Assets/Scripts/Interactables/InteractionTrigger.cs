@@ -8,8 +8,8 @@ public class InteractionTrigger : MonoBehaviour
     {
         playerInteraction = GetComponentInParent<PlayerInteraction>();
     }
-
-    private void OnTriggerStay(Collider other)
+    
+    private void OnTriggerEnter(Collider other)
     {
         if (((1 << other.gameObject.layer) & LayerMask.GetMask("Interactable")) != 0)
         {

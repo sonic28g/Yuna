@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: TutorialSequence
   m_EditorClassIdentifier: 
   tutorialTasks:
-  - {fileID: 11400000, guid: c4842ceb9dfe7b64a9ef9fb856cfaa91, type: 2}
   - {fileID: 11400000, guid: 37964652d11dbc34ab4f01b579b6a753, type: 2}
   - {fileID: 11400000, guid: 36b2d367ac404c640aab87079b58f6b7, type: 2}
   - {fileID: 11400000, guid: e6c7115dc620b514e944075871e0e038, type: 2}

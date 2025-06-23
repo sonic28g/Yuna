@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DialogueId>k__BackingField: dialogue0
   <Skippable>k__BackingField: 1
-  isSeen: 1
   _lines:
   - <Speaker>k__BackingField: 'Chiyo '
     <Text>k__BackingField: "My dear, I don\u2019t wish to upset you but\u2026 your
@@ -23,17 +22,16 @@ MonoBehaviour:
   - <Speaker>k__BackingField: Yuna
     <Text>k__BackingField: Why? What is going on?
   - <Speaker>k__BackingField: 'Chiyo '
-    <Text>k__BackingField: "I don\u2019t know how to tell you this, but he was accused
-      of trying to overthrow our lord. "
+    <Text>k__BackingField: 'He was accused of trying to overthrow our lord. '
   - <Speaker>k__BackingField: Yuna
-    <Text>k__BackingField: "What?! But that can\u2019t be! My father would never
-      do something like this! "
+    <Text>k__BackingField: "But that can\u2019t be! My father would never do something
+      like that! "
   - <Speaker>k__BackingField: 'Chiyo '
     <Text>k__BackingField: 'We both know that, Yuna. But we must be careful, not
       everyone in the palace thinks the same. They think your father is a traitor. '
   - <Speaker>k__BackingField: Yuna
     <Text>k__BackingField: "I can\u2019t just wait here, while my father is in danger.
-      [Ama], I will not rest until the real culprit is behind bars and my father
+      Chiyo, I will not rest until the real culprit is behind bars and my father
       is back with us again! "
   - <Speaker>k__BackingField: 'Chiyo '
     <Text>k__BackingField: I knew you would say that. And I will not stop you from

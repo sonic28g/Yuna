@@ -2138,7 +2138,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6511357172218980848}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 36078ab0369161e49a29d349ae3e0739, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 2312176eb29e2384db6c6f1020d471dc, type: 3}
   m_Controller: {fileID: 9100000, guid: c2018ab9640087f4ba671008d93adbc1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -2323,7 +2323,7 @@ MonoBehaviour:
     <MaxVisionDistance>k__BackingField: 8
     <MaxCloseDistance>k__BackingField: 4
     <FieldOfView>k__BackingField: 80
-    <DetectionCooldown>k__BackingField: 0.7
+    <DetectionCooldown>k__BackingField: 1
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 1
 --- !u!114 &1233938674602917909

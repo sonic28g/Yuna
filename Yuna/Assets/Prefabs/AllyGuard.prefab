@@ -1078,7 +1078,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.065
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1214,7 +1214,7 @@ MonoBehaviour:
     <MaxVisionDistance>k__BackingField: 8
     <MaxCloseDistance>k__BackingField: 4
     <FieldOfView>k__BackingField: 80
-    <DetectionCooldown>k__BackingField: 0.7
+    <DetectionCooldown>k__BackingField: 1
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 1
 --- !u!114 &3922925616741702347
@@ -1288,7 +1288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineColor: {r: 0.7529412, g: 0.09803922, b: 0.11764706, a: 1}
+  outlineColor: {r: 0.8584906, g: 0.6256465, b: 0.21462265, a: 1}
   outlineWidth: 4
   precomputeOutline: 1
   bakeKeys: []

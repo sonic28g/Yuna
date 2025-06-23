@@ -5,7 +5,6 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
-    public DialogueInteractable dialogueInteractable;
     public GameObject tutorial;
 
     void Start()
@@ -16,17 +15,17 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (DialogueManager.Instance.IsDialogueActive)
-        {
-            tutorial.SetActive(false);
-        }
-        else
+        if (DialogueManager.Instance.HasSeenDialogue("dialogue0"))
         {
             tutorial.SetActive(true);
         }
+        else
+        {
+            tutorial.SetActive(false);
+        }
     }
 
-    public void StartDialogue()
+    public void StartDialogue(DialogueInteractable dialogueInteractable)
     {
         dialogueInteractable.Interact();
     }
