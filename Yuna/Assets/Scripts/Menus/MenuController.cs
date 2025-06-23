@@ -110,6 +110,7 @@ public class MenuController : MonoBehaviour
 
     public void ChangeToScene(string sceneName)
     {
+        if (BGMPlayer.Instance != null) BGMPlayer.Instance.Unmuffle(this);
         SceneManager.LoadScene(sceneName);
     }
 
@@ -119,6 +120,8 @@ public class MenuController : MonoBehaviour
         TPController.LockCameraPosition = true;
         Cursor.visible = true; // Esconde o cursor
         Cursor.lockState = CursorLockMode.None; // Tranca o cursor ao centro do ecrã     
+
+        if (BGMPlayer.Instance != null) BGMPlayer.Instance.Muffle(this);
     }
 
     public void ResumeGame()
@@ -128,6 +131,8 @@ public class MenuController : MonoBehaviour
         Cursor.visible = false; // Esconde o cursor
         Cursor.lockState = CursorLockMode.Locked; // Tranca o cursor ao centro do ecrã
         showingPause = false;
+
+        if (BGMPlayer.Instance != null) BGMPlayer.Instance.Unmuffle(this);
     }
 
     public void ToggleSettingsShowing(bool option)
