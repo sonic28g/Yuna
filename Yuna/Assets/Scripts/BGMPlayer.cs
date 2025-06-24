@@ -148,27 +148,26 @@ public class BGMPlayer : MonoBehaviour
 
         _audioMixer.SetFloat(_lowpassParam, targetFrequency);
     }
+}
 
+public enum BGMType
+{
+    // Cutscene + Main Menu
+    MainMenu,
 
-    public enum BGMType
-    {
-        // Cutscene + Main Menu
-        MainMenu,
+    // Game
+    Outside,
+    YunaHouse,
+    Village,
+    GuardHouse,
+    Werehouse,
+    Market,
+    // ...
+}
 
-        // Game
-        Outside,
-        YunaHouse,
-        Village,
-        GuardHouse,
-        Werehouse,
-        Market,
-        // ...
-    }
-
-    [System.Serializable]
-    public class ClipByType
-    {
-        public BGMType Type;
-        public AudioClip Clip;
-    }
+[System.Serializable]
+public class ClipByType
+{
+    public BGMType Type;
+    public AudioClip Clip;
 }
