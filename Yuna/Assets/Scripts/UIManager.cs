@@ -27,11 +27,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float zoomDuration = 0.2f;
     [SerializeField] private float zoomScale = 1.5f;
 
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip _diaryEntrySound;
+    private AudioSource _audioSource;
+
+
     private void Awake()
     {
         instance = this;
         nearbyText.SetActive(false);
         pickupText.SetActive(false);
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void ShowNearbyText(bool show, InteractableObject interactableObject)
@@ -77,6 +83,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowDiaryEntry()
     {
+        PlayDiaryEntrySound();
         DiaryEntry.SetActive(true);
 
         StartCoroutine(WaitSecondsAndHide(5, DiaryEntry));
@@ -117,5 +124,12 @@ public class UIManager : MonoBehaviour
         }
 
         target.localScale = originalScale;
+    }
+
+
+    private void PlayDiaryEntrySound()
+    {
+        if (_audioSource == null || _diaryEntrySound == null) return;
+        _audioSource.PlayOneShot(_diaryEntrySound);
     }
 }
