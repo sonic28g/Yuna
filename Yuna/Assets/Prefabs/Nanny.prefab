@@ -2316,6 +2316,10 @@ GameObject:
   - component: {fileID: 4280012788660662834}
   - component: {fileID: 3075571866558819963}
   - component: {fileID: 3236154210049337556}
+  - component: {fileID: 9086497800031301497}
+  - component: {fileID: 3719920328675072876}
+  - component: {fileID: 1880089178685912816}
+  - component: {fileID: 3082592168151348024}
   m_Layer: 0
   m_Name: Nanny
   m_TagString: Untagged
@@ -2386,6 +2390,107 @@ CapsuleCollider:
   m_Height: 2.5270004
   m_Direction: 1
   m_Center: {x: -0.017671885, y: -0.1676111, z: 0.04557978}
+--- !u!114 &9086497800031301497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171131585900036231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 4b6046965db023c47bc7a6fb7d245ffe, type: 2}
+    - {fileID: 11400000, guid: be2c16672a10a634990f098ac36b0c86, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 689441976643342149}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 689441976643342149}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &3719920328675072876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171131585900036231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3799ba63af6562a428f8956e76f3a052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: Talk
+  dialogueSet: {fileID: 11400000, guid: 2eb61625e26d61a4883db99853b1165d, type: 2}
+  inspectableObject: {fileID: 0}
+  talkIndicator: {fileID: 689441976643342149}
+--- !u!136 &1880089178685912816
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171131585900036231}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.0762035
+  m_Height: 3.2996616
+  m_Direction: 1
+  m_Center: {x: 0.12609804, y: 1.1498317, z: 0.32205644}
+--- !u!114 &3082592168151348024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171131585900036231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd423daa361a942538944a8e36f6aea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueID: dialogue3
+  tessenPanel: {fileID: 0}
+  helperTitle: Tessen
+  helperImage: {fileID: 0}
+  helperText: 
 --- !u!1 &7263089296666888998
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,5 +2945,10 @@ PrefabInstance:
 --- !u!4 &580354840369593039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7984299794007203707, guid: ad5244da0adb1b24099650783c63c818, type: 3}
+  m_PrefabInstance: {fileID: 7403983737390523828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &689441976643342149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8021289340195810033, guid: ad5244da0adb1b24099650783c63c818, type: 3}
   m_PrefabInstance: {fileID: 7403983737390523828}
   m_PrefabAsset: {fileID: 0}

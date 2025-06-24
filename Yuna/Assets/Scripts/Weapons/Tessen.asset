@@ -17,3 +17,5 @@ MonoBehaviour:
   maxAmmo: 0
   hasInfiniteAmmo: 1
   attackCooldown: 1
+  image: {fileID: 0}
+  weaponType: 1
