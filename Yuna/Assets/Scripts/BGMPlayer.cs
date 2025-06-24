@@ -17,6 +17,7 @@ public class BGMPlayer : MonoBehaviour
 
     private static readonly float EXTRA_WAIT_TIME = 0.5f;
     private Coroutine _waitCoroutine;
+    private Coroutine _playAfterWaitCoroutine;
 
     [Header("Muffle Settings")]
     [SerializeField] private string _lowpassParam = "LowpassFrequency";
@@ -77,13 +78,12 @@ public class BGMPlayer : MonoBehaviour
         ClipByType selected = candidates[Random.Range(0, candidates.Length)];
         AudioClip selectedClip = selected.Clip;
 
-        // Play the new clip
-        Stop();
-        _audioSource.clip = selectedClip;
-        _audioSource.Play();
+        // If the selected clip is the current one playing, do nothing
+        if (selectedClip == _audioSource.clip && _audioSource.isPlaying) return;
 
-        // Start the wait coroutine to handle clip end
-        _waitCoroutine = StartCoroutine(WaitForClipEnd(selectedClip.length));
+        // Play the new clip (remove the last one if it exists)
+        if (_playAfterWaitCoroutine != null) StopCoroutine(_playAfterWaitCoroutine);
+        _playAfterWaitCoroutine = StartCoroutine(PlayAfterWait(selectedClip));
     }
 
 
@@ -93,17 +93,35 @@ public class BGMPlayer : MonoBehaviour
         yield return new WaitForSecondsRealtime(clipLength);
         yield return new WaitForSecondsRealtime(EXTRA_WAIT_TIME);
 
-        // Play another
-        Play(null, true);
+        // If there is no play after wait coroutine, play another
+        if (_playAfterWaitCoroutine == null) Play(null, true);
 
         // Reset the wait coroutine
         _waitCoroutine = null;
     }
 
+    private IEnumerator PlayAfterWait(AudioClip clip)
+    {
+        // Wait for the wait coroutine to finish
+        while (_waitCoroutine != null) yield return null;
+
+        // Play the new clip
+        _audioSource.clip = clip;
+        _audioSource.Play();
+
+        // Start the new wait coroutine to handle clip end + Reset play after coroutine
+        _waitCoroutine = StartCoroutine(WaitForClipEnd(clip.length));
+        _playAfterWaitCoroutine = null;
+    }
+
 
     public void Stop()
     {
-        // Stop the wait coroutine if it's running
+        // Stop the play after wait coroutine
+        if (_playAfterWaitCoroutine != null) StopCoroutine(_playAfterWaitCoroutine);
+        _playAfterWaitCoroutine = null;
+
+        // Stop the wait coroutine
         if (_waitCoroutine != null) StopCoroutine(_waitCoroutine);
         _waitCoroutine = null;
 
@@ -115,7 +133,7 @@ public class BGMPlayer : MonoBehaviour
     public void Muffle(object muffler)
     {
         if (_mufflers.Contains(muffler)) return;
-       
+
         // If this is the first muffler, start the muffle transition
         if (_mufflers.Count == 0) StartMuffleTransition(_muffleFrequency);
         _mufflers.Add(muffler);
