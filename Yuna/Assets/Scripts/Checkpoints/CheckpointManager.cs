@@ -10,6 +10,11 @@ public class CheckpointManager : MonoBehaviour
 
     [SerializeField] GameObject foundPanel;
 
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip _checkpointSound;
+    private AudioSource _audioSource;
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -17,17 +22,28 @@ public class CheckpointManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-
-        SetCheckpoint();
+        _audioSource = GetComponent<AudioSource>();
+        SetCheckpoint(false);
     }
 
-    public void SetCheckpoint()
+
+    public void SetCheckpoint(bool playSound = true)
     {
         lastCheckpointPos = player.transform.position;
+        
         EnemyController.SaveAllEnemies();
         NPCController.SaveAllNPCs();
         DialogueSet.SaveAllDialogueSets();
+
+        if (playSound) PlayCheckpointSound();
     }
+
+    private void PlayCheckpointSound()
+    {
+        if (_audioSource == null || _checkpointSound == null) return;
+        _audioSource.PlayOneShot(_checkpointSound);
+    }
+
 
     public void RespawnPlayer()
     {
