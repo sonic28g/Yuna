@@ -4,12 +4,27 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
-    private Dictionary<string, int> ammoDictionary = new Dictionary<string, int>();
+    private readonly Dictionary<string, int> ammoDictionary = new();
+
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip[] _takeClips;
+
 
     private void Awake()
     {
         if (instance == null) instance = this;
+        _audioSource = GetComponent<AudioSource>();
     }
+
+    private void PlayTakeSound()
+    {
+        if (_audioSource == null || _takeClips.Length == 0) return;
+
+        int randomIndex = Random.Range(0, _takeClips.Length);
+        _audioSource.clip = _takeClips[randomIndex];
+        _audioSource.Play();
+    }
+
 
     public void AddAmmo(string weaponName, int amount)
     {
@@ -20,6 +35,8 @@ public class InventoryManager : MonoBehaviour
 
         // Atualiza UI da munição
         UIManager.instance.UpdateAmmoUI(weaponName, ammoDictionary[weaponName]);
+
+        PlayTakeSound();
     }
 
     public bool HasAmmo(string weaponName)
