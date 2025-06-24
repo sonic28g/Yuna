@@ -87,7 +87,13 @@ public class EnemyController : MonoBehaviour
 
     private void Start() => TransitionToState(PatrolState);
     private void OnDeath() => TransitionToState(DeadState);
-    private void OnDestroy() => EnemyHealth.OnDeath -= OnDeath;
+
+    private void OnDestroy()
+    {
+        _resetAllEnemiesAction -= ResetEnemy;
+        _saveAllEnemiesAction -= SaveEnemy;
+        EnemyHealth.OnDeath -= OnDeath;
+    }
 
 
     public void TransitionToState(EnemyState state)
