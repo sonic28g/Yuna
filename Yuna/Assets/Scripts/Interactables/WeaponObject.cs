@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WeaponObject : InteractableObject
@@ -18,7 +20,9 @@ public class WeaponObject : InteractableObject
 
     [SerializeField] private AudioClip[] _startClips;
     [SerializeField] private PlayerInteraction playerInteraction;
-    
+
+
+
     private void Awake()
     {
         playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>();
@@ -36,11 +40,12 @@ public class WeaponObject : InteractableObject
 
 
     public override void Interact()
-    {        
+    {
         // Adiciona munição ao inventário
         InventoryManager.instance.AddAmmo(weaponData.weaponName, amount);
 
         // Mostra mensagem na UI
+        UIManager.instance.AmmoNumberEffect();
 
         // fazer zoom no numero
 
@@ -92,6 +97,8 @@ public class WeaponObject : InteractableObject
         // Add the enemy to the hit list
         _hitEnemies.Add(enemy);
     }
+    
+
 }
 
 

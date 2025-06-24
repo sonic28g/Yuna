@@ -24,6 +24,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject weaponPanel;
     [SerializeField] GameObject DiaryEntry;
 
+    [SerializeField] private float zoomDuration = 0.2f;
+    [SerializeField] private float zoomScale = 1.5f;
+
     private void Awake()
     {
         instance = this;
@@ -83,5 +86,36 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         gameObject.SetActive(false);
+    }
+
+    public void AmmoNumberEffect()
+    {
+        StartCoroutine(ZoomEffect(ammoText.transform));
+    }
+
+    private IEnumerator ZoomEffect(Transform target)
+    {
+        Vector3 originalScale = target.localScale;
+        Vector3 zoomedScale = originalScale * zoomScale;
+
+        float elapsed = 0f;
+        while (elapsed < zoomDuration)
+        {
+            target.localScale = Vector3.Lerp(originalScale, zoomedScale, elapsed / zoomDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        target.localScale = zoomedScale;
+
+        elapsed = 0f;
+        while (elapsed < zoomDuration)
+        {
+            target.localScale = Vector3.Lerp(zoomedScale, originalScale, elapsed / zoomDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        target.localScale = originalScale;
     }
 }
