@@ -26,7 +26,10 @@ public class DialogueInteractable : InteractableObject
     public override void Interact()
     {
         if (DialogueManager.Instance == null) return;
+        
         Destroy(talkIndicator);
+        Destroy(gameObject);
+
         DialogueManager.Instance.StartDialogue(dialogueSet);
         DialogueManager.Instance.OnDialogueEnd += OnDialogueEnd;
     }
