@@ -1,8 +1,6 @@
 ﻿ using UnityEngine;
-#if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-#endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -10,9 +8,7 @@ using UnityEngine.UI;
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
-#if ENABLE_INPUT_SYSTEM 
     [RequireComponent(typeof(PlayerInput))]
-#endif
     public class ThirdPersonController : MonoBehaviour
     {
         [Header("Player")]
@@ -32,7 +28,6 @@ namespace StarterAssets
         public float SpeedChangeRate = 10.0f;
         public float Sensitivity = 1f;
 
-        public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
@@ -81,14 +76,12 @@ namespace StarterAssets
         private float _targetRotation = 0.0f;
         private float _rotationVelocity;
         private float _verticalVelocity;
-        private float _terminalVelocity = 53.0f;
+        private readonly float _terminalVelocity = 53.0f;
 
         // timeout deltatime
 
         // animation IDs
         private int _animIDSpeed;
-        private int _animIDGrounded;
-        private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
         [Header("Stamina Settings")]
@@ -99,16 +92,11 @@ namespace StarterAssets
         public float staminaThresholdToSprint = 10f; // stamina mínima para sprintar
         public Slider staminaSlider;
 
-#if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
-#endif
         private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
-        private ThirdPersonShooterController _TPController;
-
-        private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
 
@@ -120,11 +108,7 @@ namespace StarterAssets
         {
             get
             {
-#if ENABLE_INPUT_SYSTEM
                 return _playerInput.currentControlScheme == "KeyboardMouse";
-#else
-				return false;
-#endif
             }
         }
 
@@ -146,16 +130,9 @@ namespace StarterAssets
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
             currentStamina = maxStamina;
-#if ENABLE_INPUT_SYSTEM
             _playerInput = GetComponent<PlayerInput>();
-            _TPController = GetComponent<ThirdPersonShooterController>();
-#else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
-#endif
 
             AssignAnimationIDs();
-
-
         }
 
         private void Update()
@@ -176,24 +153,16 @@ namespace StarterAssets
         private void AssignAnimationIDs()
         {
             _animIDSpeed = Animator.StringToHash("Speed");
-            _animIDGrounded = Animator.StringToHash("Grounded");
-            _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
 
         private void GroundedCheck()
         {
             // set sphere position, with offset
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+            Vector3 spherePosition = new(transform.position.x, transform.position.y - GroundedOffset,
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
-
-            // update animator if using character
-            if (_hasAnimator)
-            {
-                _animator.SetBool(_animIDGrounded, Grounded);
-            }
         }
 
         private void CameraRotation()
@@ -294,8 +263,8 @@ namespace StarterAssets
 
         private void OnDrawGizmosSelected()
         {
-            Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
-            Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
+            Color transparentGreen = new(0.0f, 1.0f, 0.0f, 0.35f);
+            Color transparentRed = new(1.0f, 0.0f, 0.0f, 0.35f);
 
             if (Grounded) Gizmos.color = transparentGreen;
             else Gizmos.color = transparentRed;
@@ -306,6 +275,7 @@ namespace StarterAssets
                 GroundedRadius);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
         private void OnFootstep(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
@@ -318,13 +288,8 @@ namespace StarterAssets
             }
         }
 
-        private void OnLand(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
-            }
-        }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+        private void OnLand(AnimationEvent _) {}
 
         public void SetSensitivity(float newSensibility)
         {
@@ -368,12 +333,6 @@ namespace StarterAssets
                 // Reset ao estado
                 _verticalVelocity = -2f;
                 wasGroundedLastFrame = true;
-
-                // Animação de não estar em queda
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDFreeFall, false);
-                }
             }
             else
             {
@@ -394,11 +353,6 @@ namespace StarterAssets
                     if (_verticalVelocity < -_terminalVelocity)
                     {
                         _verticalVelocity = -_terminalVelocity;
-                    }
-
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDFreeFall, true);
                     }
                 }
             }
