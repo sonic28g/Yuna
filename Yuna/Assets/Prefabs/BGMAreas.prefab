@@ -68,6 +68,74 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 29.829765, y: 18.46681, z: 7.43153}
   m_Center: {x: -0.83390236, y: 4.8764973, z: -19.175428}
+--- !u!1 &2101315272702180454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7385740887809172663}
+  - component: {fileID: 1402847875352204209}
+  - component: {fileID: 6432364855685646914}
+  m_Layer: 0
+  m_Name: WerehouseBGMArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7385740887809172663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101315272702180454}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.2524916, z: 0, w: 0.96759915}
+  m_LocalPosition: {x: -31.05, y: 0, z: -32.34}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6143612686556653535}
+  m_LocalEulerAnglesHint: {x: 0, y: -29.25, z: 0}
+--- !u!114 &1402847875352204209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101315272702180454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc222f1e413d80449b02a522809032f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGizmos: 1
+  <BGMType>k__BackingField: 5
+--- !u!65 &6432364855685646914
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101315272702180454}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.779799, y: 9.081553, z: 7.1693635}
+  m_Center: {x: -0.19247627, y: 1.8868059, z: -0.17419219}
 --- !u!1 &2346164756722259418
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,11 +172,81 @@ Transform:
   - {fileID: 5888495666112836145}
   - {fileID: 3936422919248513672}
   - {fileID: 3518323861150146573}
+  - {fileID: 7385740887809172663}
+  - {fileID: 697836351643274387}
   - {fileID: 5839881889786459855}
   - {fileID: 1343350097840324928}
   - {fileID: 5008767139915423859}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3567483356061402811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 697836351643274387}
+  - component: {fileID: 5428708144715661252}
+  - component: {fileID: 8928232698901677678}
+  m_Layer: 0
+  m_Name: GuardHouseBGMArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &697836351643274387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567483356061402811}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.20364168, z: 0, w: 0.9790455}
+  m_LocalPosition: {x: -69.89, y: 0, z: -41.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6143612686556653535}
+  m_LocalEulerAnglesHint: {x: 0, y: -23.5, z: 0}
+--- !u!114 &5428708144715661252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567483356061402811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc222f1e413d80449b02a522809032f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGizmos: 1
+  <BGMType>k__BackingField: 4
+--- !u!65 &8928232698901677678
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567483356061402811}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 14.360907, y: 10.0961075, z: 8.286707}
+  m_Center: {x: -0.24613237, y: 19.460926, z: 0.09790516}
 --- !u!1 &3743374614270823458
 GameObject:
   m_ObjectHideFlags: 0
