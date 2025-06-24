@@ -6,6 +6,7 @@ public class PlayerAreaTrigger : MonoBehaviour
 {
     [SerializeField] private bool _showGizmos = true;
 
+    private static readonly string PLAYER_TAG = "Player";
     public static event Action<PlayerAreaTrigger, bool> OnPlayerAreaChanged;
     [field: SerializeField] public PlayerArea AreaType { get; private set; } = PlayerArea.Normal;
 
@@ -14,11 +15,23 @@ public class PlayerAreaTrigger : MonoBehaviour
     {
         // Ensure the colliders are set to trigger
         BoxCollider[] colliders = GetComponents<BoxCollider>();
+        if (colliders.Length > 1) Debug.LogWarning($"The use of multiple colliders in {name} is not recommended.\nThis may cause unexpected behavior in PlayerAreaTrigger");
+        
         foreach (BoxCollider collider in colliders) collider.isTrigger = true;
     }
 
-    private void OnTriggerEnter(Collider _) => OnPlayerAreaChanged?.Invoke(this, true);
-    private void OnTriggerExit(Collider _) => OnPlayerAreaChanged?.Invoke(this, false);
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag(PLAYER_TAG)) return;
+        OnPlayerAreaChanged?.Invoke(this, true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag(PLAYER_TAG)) return;
+        OnPlayerAreaChanged?.Invoke(this, false);
+    }
 
 
     private void OnDrawGizmosSelected()

@@ -6,6 +6,7 @@ public class BGMTypeAreaTrigger : MonoBehaviour
 {
     [SerializeField] private bool _showGizmos = true;
 
+    private static readonly string PLAYER_TAG = "Player";
     public static event Action<BGMTypeAreaTrigger, bool> OnBGMTypeAreaChanged;
     [field: SerializeField] public BGMType BGMType { get; private set; } = BGMType.Outside;
 
@@ -14,18 +15,20 @@ public class BGMTypeAreaTrigger : MonoBehaviour
     {
         // Ensure the colliders are set to trigger
         BoxCollider[] colliders = GetComponents<BoxCollider>();
+        if (colliders.Length > 1) Debug.LogWarning($"The use of multiple colliders in {name} is not recommended.\nThis may cause unexpected behavior in PlayerAreaTrigger");
+
         foreach (BoxCollider collider in colliders) collider.isTrigger = true;
     }
 
-    private void OnTriggerEnter(Collider _)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.LogWarning($"BGMTypeAreaTrigger.OnTriggerEnter: {this}");
+        if (!other.CompareTag(PLAYER_TAG)) return;
         OnBGMTypeAreaChanged?.Invoke(this, true);
     }
 
-    private void OnTriggerExit(Collider _)
+    private void OnTriggerExit(Collider other)
     {
-        Debug.LogWarning($"BGMTypeAreaTrigger.OnTriggerExit: {this}");
+        if (!other.CompareTag(PLAYER_TAG)) return;
         OnBGMTypeAreaChanged?.Invoke(this, false);
     }
 
