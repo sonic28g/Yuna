@@ -36,7 +36,12 @@ public class PlayerAreaTrigger : MonoBehaviour
 
         // Draw the gizmos for each collider
         BoxCollider[] colliders = GetComponents<BoxCollider>();
-        foreach (BoxCollider collider in colliders) Gizmos.DrawCube(collider.bounds.center, collider.bounds.size);
+        foreach (BoxCollider collider in colliders)
+        {
+            Gizmos.matrix = collider.transform.localToWorldMatrix;
+            Gizmos.DrawCube(collider.bounds.center, collider.bounds.size);
+        }
+        Gizmos.matrix = Matrix4x4.identity;
     }
 }
 
