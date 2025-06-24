@@ -178,4 +178,4 @@ MonoBehaviour:
   _lowpassParam: LowpassFrequency
   _muffleFrequency: 500
   _normalFrequency: 22000
-  _muffleTransitionTime: 1.5
+  _muffleTransitionTime: 1
