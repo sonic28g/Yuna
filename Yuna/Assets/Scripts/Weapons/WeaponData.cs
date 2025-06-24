@@ -8,4 +8,6 @@ public class WeaponData : ScriptableObject
     public int maxAmmo; // Munição máxima (0 se for infinita)
     public bool hasInfiniteAmmo;
     public float attackCooldown; // Tempo entre ataques
+    public Sprite image;
+    public WeaponType weaponType;
 }

@@ -44,10 +44,7 @@ public class WeaponObject : InteractableObject
         // Adiciona munição ao inventário
         InventoryManager.instance.AddAmmo(weaponData.weaponName, amount);
 
-        // Mostra mensagem na UI
         UIManager.instance.AmmoNumberEffect();
-
-        // fazer zoom no numero
 
         playerInteraction.ClearNearbyObject();
 

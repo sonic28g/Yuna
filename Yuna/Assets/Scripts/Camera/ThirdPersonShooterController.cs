@@ -50,7 +50,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         // Obtém a direção da mira (da câmara)
         Vector3 aimDir = Camera.main.transform.forward;
 
-        if (starterAssetsInputs.aim && _hasAnimator && !starterAssetsInputs.sprint)
+        if (starterAssetsInputs.aim && _hasAnimator && !starterAssetsInputs.sprint && WeaponSwitcher.instance.CurrentWeapon.weaponType == WeaponType.Kanzashi)
         {
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
             _thirdPersonController.SetSensitivity(aimSensibility);
@@ -96,7 +96,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 starterAssetsInputs.shoot = false;
             }
         }
-        else if (!starterAssetsInputs.aim && isAttacking)
+        else if (!starterAssetsInputs.aim && starterAssetsInputs.shoot && WeaponSwitcher.instance.CurrentWeapon.weaponType == WeaponType.Tessen)
         {
             AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
 
