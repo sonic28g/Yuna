@@ -26,10 +26,9 @@ public class DialogueInteractable : InteractableObject
     public override void Interact()
     {
         if (DialogueManager.Instance == null) return;
-        
-        Destroy(talkIndicator);
-        Destroy(gameObject);
 
+        Destroy(talkIndicator);
+        
         DialogueManager.Instance.StartDialogue(dialogueSet);
         DialogueManager.Instance.OnDialogueEnd += OnDialogueEnd;
     }
@@ -37,6 +36,9 @@ public class DialogueInteractable : InteractableObject
     private void OnDialogueEnd()
     {
         DialogueManager.Instance.OnDialogueEnd -= OnDialogueEnd;
+
         if (inspectableObject != null) inspectableObject.Interact();
+        
+        Destroy(this);
     }
 }
