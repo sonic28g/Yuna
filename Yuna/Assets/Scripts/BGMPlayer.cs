@@ -156,8 +156,8 @@ public class BGMPlayer : MonoBehaviour
         MainMenu,
 
         // Game
-        YunaHouse,
         Outside,
+        YunaHouse,
         Village,
         GuardHouse,
         Werehouse,
