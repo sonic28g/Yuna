@@ -15,5 +15,9 @@ MonoBehaviour:
   taskID: tut_5
   type: 0
   title: Distract Guard
-  description: Use the aim to shoot a kanzashi and distract a guard.
+  description: I need to leave the house. I can throw kanzashis to distract the guards.
   completed: 1
+  helperTitle: Aim and Throw
+  helperText: Yuna can aim to throw kanzashis. Press Right Button to aim and Left
+    Button to throw. If a kanzashi lands close to a guard it will alert them.
+  helperImage: {fileID: 0}

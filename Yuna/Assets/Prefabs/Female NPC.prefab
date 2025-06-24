@@ -3439,6 +3439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2181272745731261919}
   - component: {fileID: 7276985519788627588}
+  - component: {fileID: 8897329274393622688}
   m_Layer: 0
   m_Name: Female NPC
   m_TagString: Untagged
@@ -3495,6 +3496,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &8897329274393622688
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834853941877038866}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.20202382
+  m_Height: 1.7543736
+  m_Direction: 1
+  m_Center: {x: -0.025399053, y: 0.75408924, z: 0.03249469}
 --- !u!1 &7858877513070520608
 GameObject:
   m_ObjectHideFlags: 0

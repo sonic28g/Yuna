@@ -17,7 +17,12 @@ public class WeaponObject : InteractableObject
     [SerializeField] private GameObject _soundEmitterPrefab;
 
     [SerializeField] private AudioClip[] _startClips;
-
+    [SerializeField] private PlayerInteraction playerInteraction;
+    
+    private void Awake()
+    {
+        playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>();
+    }
 
     public void PlayThrowSound()
     {
@@ -34,9 +39,12 @@ public class WeaponObject : InteractableObject
     {        
         // Adiciona munição ao inventário
         InventoryManager.instance.AddAmmo(weaponData.weaponName, amount);
-        
+
         // Mostra mensagem na UI
-        UIManager.instance.ShowInteractionText(weaponData.weaponName);
+
+        // fazer zoom no numero
+
+        playerInteraction.ClearNearbyObject();
 
         // Destroi o objeto do mundo
         Destroy(gameObject);

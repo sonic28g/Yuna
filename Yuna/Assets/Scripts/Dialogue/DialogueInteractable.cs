@@ -4,6 +4,7 @@ public class DialogueInteractable : InteractableObject
 {
     [SerializeField] private DialogueSet dialogueSet;
     [SerializeField] private InspectableObject inspectableObject;
+    [SerializeField] private GameObject talkIndicator;
 
 
     private void Awake()
@@ -14,17 +15,18 @@ public class DialogueInteractable : InteractableObject
 
     private void Start()
     {
-        if (DialogueManager.Instance == null || inspectableObject == null) return;
+        if (DialogueManager.Instance == null) return;
         if (!DialogueManager.Instance.HasSeenDialogue(dialogueSet.DialogueId)) return;
 
         // Interact with the inspectable object if the dialogue has already been seen
+        if (inspectableObject == null) return;
         inspectableObject.Interact();
     }
 
     public override void Interact()
     {
         if (DialogueManager.Instance == null) return;
-
+        Destroy(talkIndicator);
         DialogueManager.Instance.StartDialogue(dialogueSet);
         DialogueManager.Instance.OnDialogueEnd += OnDialogueEnd;
     }

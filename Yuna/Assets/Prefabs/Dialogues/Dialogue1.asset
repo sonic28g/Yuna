@@ -16,27 +16,30 @@ MonoBehaviour:
   <Skippable>k__BackingField: 1
   _lines:
   - <Speaker>k__BackingField: 'Chiyo '
-    <Text>k__BackingField: "My dear, I don\u2019t wish to upset you but\u2026 your
-      father was just taken away by the shogun\u2019s guards. He is being accused
-      of the highest of treasons. "
+    <Text>k__BackingField: "My dear... I hate to bring you such news. Your father
+      was just taken by the shogun\u2019s guards."
   - <Speaker>k__BackingField: Yuna
-    <Text>k__BackingField: Why? What is going on?
+    <Text>k__BackingField: What? Taken? Why? What is going on?
   - <Speaker>k__BackingField: 'Chiyo '
-    <Text>k__BackingField: 'He was accused of trying to overthrow our lord. '
+    <Text>k__BackingField: They say... he has been accused of high treason.
   - <Speaker>k__BackingField: Yuna
-    <Text>k__BackingField: "But that can\u2019t be! My father would never do something
-      like that! "
+    <Text>k__BackingField: "Treason?! That\u2019s impossible! My father would never
+      do such a thing!"
   - <Speaker>k__BackingField: 'Chiyo '
-    <Text>k__BackingField: 'We both know that, Yuna. But we must be careful, not
-      everyone in the palace thinks the same. They think your father is a traitor. '
+    <Text>k__BackingField: We both know that, Yuna. But not everyone in the palace
+      shares our view.
   - <Speaker>k__BackingField: Yuna
-    <Text>k__BackingField: "I can\u2019t just wait here, while my father is in danger.
-      Chiyo, I will not rest until the real culprit is behind bars and my father
-      is back with us again! "
+    <Text>k__BackingField: "This is madness. I won\u2019t just sit here while he\u2019s
+      in danger!"
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "I won\u2019t rest until the truth is known... And my
+      father is free."
   - <Speaker>k__BackingField: 'Chiyo '
-    <Text>k__BackingField: I knew you would say that. And I will not stop you from
-      doing whatever you think is right. All these years I have trained you for something
-      like this. I think you are ready, dear.
+    <Text>k__BackingField: "I knew you would say that. And I won\u2019t stop you."
+  - <Speaker>k__BackingField: 'Chiyo '
+    <Text>k__BackingField: "All these years\u2026 I\u2019ve trained you for this."
+  - <Speaker>k__BackingField: 'Chiyo '
+    <Text>k__BackingField: 'Now go, but be careful. Stay hidden and trust no one.  '
   _conditions:
   - _conditionType: 0
     _value: dialogue0

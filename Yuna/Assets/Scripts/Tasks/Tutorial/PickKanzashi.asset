@@ -15,7 +15,7 @@ MonoBehaviour:
   taskID: tut_3
   type: 0
   title: Pick a kanzashi
-  description: Find a kanzashi and pick it up
+  description: I need to leave this room... But first I need kanzashis.
   completed: 1
   helperTitle: Kanzashi
   helperText: "A kanzashi is a traditional Japanese hair ornament used to decorate

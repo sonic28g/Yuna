@@ -41,7 +41,6 @@ public class Door : InteractableObject
         if (bloqueadaPorTutorial && TutorialManager.Instance != null &&
             TutorialManager.Instance.currentIndex < etapaMinima)
         {
-            UIManager.instance.ShowInteractionText("Finish the tutorial task first");
             return;
         }
 

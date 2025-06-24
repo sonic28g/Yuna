@@ -49,13 +49,6 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void ShowInteractionText(string text)
-    {
-        //pickupText.SetActive(true);
-        //pickupText.GetComponentInChildren<TextMeshProUGUI>().text = text;
-        //Invoke("HidePickupText", 1f);
-    }
-
     private void HidePickupText()
     {
         //pickupText.SetActive(false);
@@ -83,7 +76,7 @@ public class UIManager : MonoBehaviour
     {
         DiaryEntry.SetActive(true);
 
-        StartCoroutine(WaitSecondsAndHide(2, DiaryEntry));
+        StartCoroutine(WaitSecondsAndHide(5, DiaryEntry));
     }
 
     IEnumerator WaitSecondsAndHide(int seconds, GameObject gameObject)

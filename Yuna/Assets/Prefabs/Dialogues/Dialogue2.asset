@@ -16,13 +16,18 @@ MonoBehaviour:
   <Skippable>k__BackingField: 1
   _lines:
   - <Speaker>k__BackingField: Guard
-    <Text>k__BackingField: "My dear, I don\u2019t wish to upset you but\u2026 your
-      father was just taken away by the shogun\u2019s guards. He is being accused
-      of the highest of treasons. "
+    <Text>k__BackingField: I'm sorry, Lady Yuna. I can't let you leave this house.
   - <Speaker>k__BackingField: Yuna
-    <Text>k__BackingField: Why? What is going on?
-  - <Speaker>k__BackingField: 'Chiyo '
-    <Text>k__BackingField: 'He was accused of trying to overthrow our lord. '
+    <Text>k__BackingField: 'What? Why not?  '
+  - <Speaker>k__BackingField: Guard
+    <Text>k__BackingField: "Orders from above. Since your father was arrested, no
+      one is allowed to leave the castle\u2014especially not you."
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "But he\u2019s innocent! You can\u2019t keep me locked
+      in here like a prisoner."
+  - <Speaker>k__BackingField: Guard
+    <Text>k__BackingField: "I understand how you feel, my lady. But my orders are
+      clear. It\u2019s for your safety\u2026 or so they say."
   _conditions:
   - _conditionType: 0
     _value: dialogue1

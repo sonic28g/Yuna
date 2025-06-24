@@ -15,5 +15,5 @@ MonoBehaviour:
   taskID: tut_4
   type: 0
   title: Leave room
-  description: Leave the room
+  description: Now I can leave the room.
   completed: 1

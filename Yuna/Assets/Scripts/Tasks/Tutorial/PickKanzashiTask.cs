@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,15 +15,16 @@ public class PickKanzashiTask : TaskData
     public override void StartTask()
     {
         completed = false;
+        UIManager.instance.ShowHelper(helperTitle, helperText, helperImage);
     }
 
     public override bool CheckIfCompleted()
     {
         if (InventoryManager.instance.GetAmmo("Kanzashi") >= 1)
         {
-            UIManager.instance.ShowHelper(helperTitle, helperText, helperImage);
             completed = true;
         }
         return completed;
     }
+
 }

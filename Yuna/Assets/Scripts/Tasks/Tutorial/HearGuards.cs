@@ -1,16 +1,23 @@
 using UnityEngine;
 
-public class HearGuards : MonoBehaviour
+[CreateAssetMenu(menuName = "Tutorial/HearGuards")]
+public class HearGuards : TaskData
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] string dialogueID;
+
+    public override void StartTask()
     {
-        
+        completed = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool CheckIfCompleted()
     {
-        
+        if (DialogueManager.Instance.HasSeenDialogue(dialogueID))
+        {
+            completed = true;
+        }
+
+        return completed;
     }
+
 }

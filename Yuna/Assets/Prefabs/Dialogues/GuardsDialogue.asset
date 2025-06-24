@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6869e1dff5c8144954fb97b03a8e4b, type: 3}
   m_Name: GuardsDialogue
   m_EditorClassIdentifier: 
-  <DialogueId>k__BackingField: dialogue0
+  <DialogueId>k__BackingField: dialogue2
   <Skippable>k__BackingField: 1
   _lines:
   - <Speaker>k__BackingField: Guard
@@ -28,5 +28,5 @@ MonoBehaviour:
     <Text>k__BackingField: "Oh\u2026 Indeed."
   _conditions:
   - _conditionType: 0
-    _value: dialogue0
+    _value: dialogue2
     _negated: 1

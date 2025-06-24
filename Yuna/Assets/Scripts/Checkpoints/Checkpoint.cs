@@ -7,7 +7,7 @@ public class Checkpoint : InteractableObject
 
     public override void Interact()
     {
-        UIManager.instance.ShowInteractionText("Checkpoint saved...");
+        print("checkpoint saved");
         CheckpointManager.Instance.SetCheckpoint();
     }
 }

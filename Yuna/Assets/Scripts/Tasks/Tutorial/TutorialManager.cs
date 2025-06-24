@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    public static TutorialManager Instance; // Singleton para acesso fácil
+    public static TutorialManager Instance;
     public int currentIndex { get; private set; } = 0;
 
     private TaskData currentTask;
@@ -25,6 +25,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
+        tutorialPanel.SetActive(true);
         StartNextTask();
     }
 
@@ -39,15 +40,12 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    void StartNextTask()
+    public void StartNextTask()
     {
         if (currentIndex >= tutorialSequence.tutorialTasks.Length)
         {
-
             currentTask = null;
-
-            StartCoroutine(ShowTutorialCompletion());
-
+            tutorialPanel.SetActive(false);
             return;
         }
 
@@ -56,18 +54,14 @@ public class TutorialManager : MonoBehaviour
         tutorialText.text = currentTask.description;
     }
 
-    private IEnumerator ShowTutorialCompletion()
-    {
-        tutorialText.text = "Tutorial completed!";
-        yield return new WaitForSeconds(3);
-        tutorialPanel.SetActive(false);
-        enabled = false;
-    }
-
-
     private void PlayCompletionSound()
     {
         if (_audioSource == null || _completionSound == null) return;
         _audioSource.PlayOneShot(_completionSound);
+    }
+
+    public void MarkCompleted()
+    {
+        currentTask.completed = true;
     }
 }

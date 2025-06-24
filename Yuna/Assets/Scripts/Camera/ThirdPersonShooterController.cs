@@ -142,7 +142,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         }
 
-        if (starterAssetsInputs.sprint)
+        if (starterAssetsInputs.sprint && _thirdPersonController.canSprint)
             staminaBar.SetActive(true);
         else
             staminaBar.SetActive(false);
