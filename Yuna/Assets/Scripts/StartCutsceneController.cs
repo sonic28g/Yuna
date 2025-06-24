@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class StartCutsceneController : MonoBehaviour
 {
-    [SerializeField] private BGMPlayer.BGMType _bgmType = BGMPlayer.BGMType.MainMenu;
+    [SerializeField] private BGMType _bgmType = BGMType.MainMenu;
 
     private void OnEnable()
     {

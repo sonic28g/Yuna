@@ -15,6 +15,10 @@ public class BGMPlayer : MonoBehaviour
     [SerializeField] private ClipByType[] _bgmClips;
     private BGMType? _lastType;
 
+    private static readonly float EXTRA_WAIT_TIME = 0.5f;
+    private Coroutine _waitCoroutine;
+    private Coroutine _playAfterWaitCoroutine;
+
     [Header("Muffle Settings")]
     [SerializeField] private string _lowpassParam = "LowpassFrequency";
 
@@ -23,9 +27,7 @@ public class BGMPlayer : MonoBehaviour
     [SerializeField] private float _muffleTransitionTime = 1f;
 
     private readonly List<object> _mufflers = new();
-
     private Coroutine _muffleCoroutine;
-    private Coroutine _waitCoroutine;
 
 
     private void Awake()
@@ -40,10 +42,11 @@ public class BGMPlayer : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Initialization
+        // Get the AudioSource component
         bool hasAudioSource = TryGetComponent(out _audioSource);
         if (!hasAudioSource) throw new System.Exception($"AudioSource component is missing on {name}.");
 
+        // Get the AudioMixer (from the AudioSource)
         if (_audioSource.outputAudioMixerGroup == null) Debug.LogWarning($"OutputAudioMixerGroup is not set for {name}. Muffle will not work.");
         else
         {
@@ -73,40 +76,65 @@ public class BGMPlayer : MonoBehaviour
         // Select a random clip from the candidates (or do nothing if none are available)
         if (candidates.Length == 0) return;
         ClipByType selected = candidates[Random.Range(0, candidates.Length)];
-        var selectedClip = selected.Clip;
+        AudioClip selectedClip = selected.Clip;
+
+        // If the selected clip is the current one playing, do nothing
+        if (selectedClip == _audioSource.clip && _audioSource.isPlaying) return;
+
+        // Play the new clip (remove the last one if it exists)
+        if (_playAfterWaitCoroutine != null) StopCoroutine(_playAfterWaitCoroutine);
+        _playAfterWaitCoroutine = StartCoroutine(PlayAfterWait(selectedClip));
+    }
+
+
+    private IEnumerator WaitForClipEnd(float clipLength)
+    {
+        // Wait for the clip to finish
+        yield return new WaitForSecondsRealtime(clipLength);
+        yield return new WaitForSecondsRealtime(EXTRA_WAIT_TIME);
+
+        // If there is no play after wait coroutine, play another
+        if (_playAfterWaitCoroutine == null) Play(null, true);
+
+        // Reset the wait coroutine
+        _waitCoroutine = null;
+    }
+
+    private IEnumerator PlayAfterWait(AudioClip clip)
+    {
+        // Wait for the wait coroutine to finish
+        while (_waitCoroutine != null) yield return null;
 
         // Play the new clip
-        Stop();
-        _audioSource.clip = selectedClip;
+        _audioSource.clip = clip;
         _audioSource.Play();
 
-        // Start the wait coroutine to handle clip end
-        _waitCoroutine = StartCoroutine(WaitForClipEnd(selectedClip.length));
+        // Start the new wait coroutine to handle clip end + Reset play after coroutine
+        _waitCoroutine = StartCoroutine(WaitForClipEnd(clip.length));
+        _playAfterWaitCoroutine = null;
     }
 
 
     public void Stop()
     {
-        // Stop the wait coroutine if it's running
+        // Stop the play after wait coroutine
+        if (_playAfterWaitCoroutine != null) StopCoroutine(_playAfterWaitCoroutine);
+        _playAfterWaitCoroutine = null;
+
+        // Stop the wait coroutine
         if (_waitCoroutine != null) StopCoroutine(_waitCoroutine);
         _waitCoroutine = null;
 
-        // Stop the audio source if it's playing
-        if (!_audioSource.isPlaying) _audioSource.Stop();
-    }
-
-    private IEnumerator WaitForClipEnd(float clipLength)
-    {
-        // Wait for the clip to finish + Play another clip
-        yield return new WaitForSecondsRealtime(clipLength);
-        Play(null, true);
+        // Stop the audio source
+        if (_audioSource.isPlaying) _audioSource.Stop();
     }
 
 
     public void Muffle(object muffler)
     {
         if (_mufflers.Contains(muffler)) return;
-       
+
+        // If this is the first muffler, start the muffle transition
         if (_mufflers.Count == 0) StartMuffleTransition(_muffleFrequency);
         _mufflers.Add(muffler);
     }
@@ -116,6 +144,7 @@ public class BGMPlayer : MonoBehaviour
         if (!_mufflers.Contains(muffler)) return;
         _mufflers.Remove(muffler);
 
+        // If there are no more mufflers, reset the lowpass filter frequency
         if (_mufflers.Count > 0) return;
         StartMuffleTransition(_normalFrequency);
     }
@@ -123,6 +152,7 @@ public class BGMPlayer : MonoBehaviour
 
     private void StartMuffleTransition(float targetFrequency)
     {
+        // Stop any existing muffle transition coroutine + Start a new one
         if (_muffleCoroutine != null) StopCoroutine(_muffleCoroutine);
         _muffleCoroutine = StartCoroutine(MuffleTransition(targetFrequency));
     }
@@ -148,27 +178,27 @@ public class BGMPlayer : MonoBehaviour
 
         _audioMixer.SetFloat(_lowpassParam, targetFrequency);
     }
+}
 
 
-    public enum BGMType
-    {
-        // Cutscene + Main Menu
-        MainMenu,
+public enum BGMType
+{
+    // Cutscene + Main Menu
+    MainMenu,
 
-        // Game
-        YunaHouse,
-        Outside,
-        Village,
-        GuardHouse,
-        Werehouse,
-        Market,
-        // ...
-    }
+    // Game
+    Outside,
+    YunaHouse,
+    Village,
+    GuardHouse,
+    Werehouse,
+    Market,
+    // ...
+}
 
-    [System.Serializable]
-    public class ClipByType
-    {
-        public BGMType Type;
-        public AudioClip Clip;
-    }
+[System.Serializable]
+public class ClipByType
+{
+    public BGMType Type;
+    public AudioClip Clip;
 }

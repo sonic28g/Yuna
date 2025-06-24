@@ -6,6 +6,7 @@ public class PlayerAreaTrigger : MonoBehaviour
 {
     [SerializeField] private bool _showGizmos = true;
 
+    private static readonly string PLAYER_TAG = "Player";
     public static event Action<PlayerAreaTrigger, bool> OnPlayerAreaChanged;
     [field: SerializeField] public PlayerArea AreaType { get; private set; } = PlayerArea.Normal;
 
@@ -14,11 +15,23 @@ public class PlayerAreaTrigger : MonoBehaviour
     {
         // Ensure the colliders are set to trigger
         BoxCollider[] colliders = GetComponents<BoxCollider>();
+        if (colliders.Length > 1) Debug.LogError($"The use of multiple colliders in {name} is not recommended.\nThis may cause unexpected behavior in PlayerAreaTrigger");
+        
         foreach (BoxCollider collider in colliders) collider.isTrigger = true;
     }
 
-    private void OnTriggerEnter(Collider _) => OnPlayerAreaChanged?.Invoke(this, true);
-    private void OnTriggerExit(Collider _) => OnPlayerAreaChanged?.Invoke(this, false);
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag(PLAYER_TAG)) return;
+        OnPlayerAreaChanged?.Invoke(this, true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag(PLAYER_TAG)) return;
+        OnPlayerAreaChanged?.Invoke(this, false);
+    }
 
 
     private void OnDrawGizmosSelected()
@@ -36,7 +49,12 @@ public class PlayerAreaTrigger : MonoBehaviour
 
         // Draw the gizmos for each collider
         BoxCollider[] colliders = GetComponents<BoxCollider>();
-        foreach (BoxCollider collider in colliders) Gizmos.DrawCube(collider.bounds.center, collider.bounds.size);
+        foreach (BoxCollider collider in colliders)
+        {
+            Gizmos.matrix = collider.transform.localToWorldMatrix;
+            Gizmos.DrawCube(collider.bounds.center, collider.bounds.size);
+        }
+        Gizmos.matrix = Matrix4x4.identity;
     }
 }
 
