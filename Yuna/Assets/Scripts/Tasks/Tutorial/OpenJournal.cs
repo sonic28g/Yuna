@@ -26,7 +26,7 @@ public class OpenJournal : TaskData
 
     public override bool CheckIfCompleted()
     {
-        if (_inputs.triggerJournal)
+        if (MenuController.Instance.showingJournal)
         {
             completed = true;
         }

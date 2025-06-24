@@ -14,8 +14,8 @@ public class DistractGuard : TaskData
     public override void StartTask()
     {
         var playerInput = GameObject.FindWithTag("Player").GetComponent<PlayerInput>();
-        var aimBinding = playerInput.actions["Aim"].bindings[0]; 
-        var shootBinding = playerInput.actions["Shoot"].bindings[0]; 
+        var aimBinding = playerInput.actions["Aim"].bindings[0];
+        var shootBinding = playerInput.actions["Shoot"].bindings[0];
 
         string aimKey = InputControlPath.ToHumanReadableString(aimBinding.effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
         string shootKey = InputControlPath.ToHumanReadableString(shootBinding.effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
@@ -26,13 +26,11 @@ public class DistractGuard : TaskData
         _inputs = GameObject.FindWithTag("Player").GetComponent<StarterAssetsInputs>();
 
         completed = false;
+
     }
 
     public override bool CheckIfCompleted()
-    {
-        if (_inputs.shoot)
-            completed = true;
-
+    {       
         return completed;
     }
 }
