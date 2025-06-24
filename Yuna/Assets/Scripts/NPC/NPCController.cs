@@ -72,7 +72,13 @@ public class NPCController : MonoBehaviour
 
     private void Start() => TransitionToState(WanderState);
     private void OnDeath() => TransitionToState(DeadState);
-    private void OnDestroy() => EnemyHealth.OnDeath -= OnDeath;
+
+    private void OnDestroy()
+    {
+        _resetAllNPCsAction -= ResetNPC;
+        _saveAllNPCsAction -= SaveNPC;
+        EnemyHealth.OnDeath -= OnDeath;
+    }
 
 
     public void TransitionToState(NPCState state)
