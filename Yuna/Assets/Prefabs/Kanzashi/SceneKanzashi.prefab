@@ -110,8 +110,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.7133602
-  m_Center: {x: 0.00000008499317, y: 0, z: -0.010703692}
+  m_Radius: 0.76258904
+  m_Center: {x: -0.0611714, y: 0, z: -0.010703694}
 --- !u!114 &909342946808240871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1afefb41614d92243ab07b389690ea5c, type: 3}
   - {fileID: 8300000, guid: 03d4003be7c875d40911c93e4587ead6, type: 3}
   - {fileID: 8300000, guid: 88aead9ac32e66549a74524acc43203f, type: 3}
+  playerInteraction: {fileID: 0}
 --- !u!82 &938653805377552220
 AudioSource:
   m_ObjectHideFlags: 0

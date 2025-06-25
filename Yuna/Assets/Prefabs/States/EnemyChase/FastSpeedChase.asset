@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76781ba6fc2fb94b9bcc35881889df2, type: 3}
   m_Name: FastSpeedChase
   m_EditorClassIdentifier: 
-  _chaseSpeed: 5
+  _chaseSpeed: 7
   _suspiciousTime: 4
   _confirmedTime: 1

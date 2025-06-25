@@ -17,6 +17,16 @@ MonoBehaviour:
   _lines:
   - <Speaker>k__BackingField: Chiyo
     <Text>k__BackingField: Yuna! Do not forget the Tessen.
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "I don\u2019t have one with me."
+  - <Speaker>k__BackingField: Chiyo
+    <Text>k__BackingField: Take this one. There are many enemy guards patrolling
+      outside the house, and even more throughout the village.
+  - <Speaker>k__BackingField: Chiyo
+    <Text>k__BackingField: "They\u2019re watching every path, every street. It won\u2019t
+      be easy to move unnoticed."
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "I\u2019ll be careful. Thank you, Chiyo."
   _conditions:
   - _conditionType: 0
     _value: dialogue3
