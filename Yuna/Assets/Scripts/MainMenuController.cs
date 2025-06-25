@@ -48,4 +48,26 @@ public class MainMenuController : MonoBehaviour
             Debug.Log($"Failed to delete {dirName}: {e.Message}");
         }
     }
+
+    public bool HaveSavedGame()
+    {
+        try
+        {
+            string playerDir = $"{Application.persistentDataPath}/Player";
+            string dialogueDir = $"{Application.persistentDataPath}/Dialogue";
+            string enemiesDir = $"{Application.persistentDataPath}/Enemies";
+            string npcsDir = $"{Application.persistentDataPath}/NPCs";
+
+            // Check if any of the directories exist
+            return Directory.Exists(playerDir) ||
+                   Directory.Exists(dialogueDir) ||
+                   Directory.Exists(enemiesDir) ||
+                   Directory.Exists(npcsDir);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log($"Error checking saved game: {e.Message}");
+            return false;
+        }
+    }
 }
