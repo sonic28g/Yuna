@@ -26,6 +26,14 @@ public class InventoryManager : MonoBehaviour
         ResetInventory();
     }
 
+    private void Start()
+    {
+        // Initialize ammo UI with loaded data
+        if (UIManager.instance == null) return;
+        foreach (var kvp in ammoDictionary) UIManager.instance.UpdateAmmoUI(kvp.Key, kvp.Value);
+    }
+
+
     private void PlayTakeSound()
     {
         if (_audioSource == null || _takeClips.Length == 0) return;
