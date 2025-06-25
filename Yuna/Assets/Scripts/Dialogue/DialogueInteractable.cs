@@ -6,7 +6,6 @@ public class DialogueInteractable : InteractableObject
     [SerializeField] private InspectableObject inspectableObject;
     [SerializeField] private GameObject talkIndicator;
 
-
     private void Awake()
     {
         if (dialogueSet == null) throw new System.Exception($"DialogueSet not set in {name}");
