@@ -34,6 +34,7 @@ public class CheckpointManager : MonoBehaviour
         EnemyController.SaveAllEnemies();
         NPCController.SaveAllNPCs();
         DialogueSet.SaveAllDialogueSets();
+        if (GameController.Instance != null) GameController.Instance.SaveKanzashis();
         if (InventoryManager.instance != null) InventoryManager.instance.SaveInventory();
 
         if (playSound) PlayCheckpointSound();
@@ -61,6 +62,7 @@ public class CheckpointManager : MonoBehaviour
 
         EnemyController.ResetAllEnemies();
         NPCController.ResetAllNPCs();
+        if (GameController.Instance != null) GameController.Instance.ResetKanzashis();
         if (InventoryManager.instance != null) InventoryManager.instance.ResetInventory();
 
         yield return new WaitForSeconds(3);
