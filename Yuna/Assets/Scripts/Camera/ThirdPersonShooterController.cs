@@ -96,18 +96,9 @@ public class ThirdPersonShooterController : MonoBehaviour
                 starterAssetsInputs.shoot = false;
             }
         }
-        else if (!starterAssetsInputs.aim && starterAssetsInputs.shoot && WeaponSwitcher.instance.CurrentWeapon.weaponType == WeaponType.Tessen)
+        else if (!starterAssetsInputs.aim && WeaponSwitcher.instance.CurrentWeapon.weaponType == WeaponType.Tessen && isAttacking)
         {
             AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-
-            if (stateInfo.IsName("Attacking") && stateInfo.normalizedTime < 1.0f)
-            {
-                tessen.SetActive(true);
-            }
-            else
-            {
-                tessen.SetActive(false);
-            }
 
             _animator.SetTrigger("Attacking");
             starterAssetsInputs.shoot = false;

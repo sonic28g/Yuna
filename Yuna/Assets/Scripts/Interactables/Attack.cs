@@ -12,7 +12,11 @@ public class Attack : InteractableObject
     public override void Interact()
     {
         thirdPersonShooterController.isAttacking = true;
-        gameObject.GetComponentInParent<EnemyHealth>().Kill();
-        gameObject.SetActive(false);
+
+        if (WeaponSwitcher.instance.CurrentWeapon.weaponType == WeaponType.Tessen)
+        {
+            gameObject.GetComponentInParent<EnemyHealth>().Kill();
+            gameObject.SetActive(false);
+        }
     }
 }
