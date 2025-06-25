@@ -23,14 +23,14 @@ public class CheckpointManager : MonoBehaviour
             Destroy(gameObject);
 
         _audioSource = GetComponent<AudioSource>();
-        SetCheckpoint(false);
+        lastCheckpointPos = player.transform.position;
     }
 
 
     public void SetCheckpoint(bool playSound = true)
     {
         lastCheckpointPos = player.transform.position;
-        
+
         EnemyController.SaveAllEnemies();
         NPCController.SaveAllNPCs();
         DialogueSet.SaveAllDialogueSets();
