@@ -12,6 +12,8 @@ TagManager:
   - Enemy
   - Guard
   - Wall
+  - Tessen
+  - BackCollider
   layers:
   - Default
   - TransparentFX

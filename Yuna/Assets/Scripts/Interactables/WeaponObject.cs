@@ -16,6 +16,7 @@ public class WeaponObject : InteractableObject
     [Header("Sound Settings")]
     [SerializeField, Tooltip("Layers that in which a sound will be emitted")]
     private LayerMask _soundMakerMask;
+    private static readonly string WALL_TAG = "Wall";
     [SerializeField] private GameObject _soundEmitterPrefab;
 
     [SerializeField] private AudioClip[] _startClips;
@@ -65,12 +66,14 @@ public class WeaponObject : InteractableObject
     {
         if (_soundEmitterPrefab == null) return;
 
+        bool isWall = collision.gameObject.CompareTag(WALL_TAG);
+
         // Check if the collision layer is in the mask
         int collisionLayer = collision.gameObject.layer;
         int collisionMask = 1 << collisionLayer;
 
         bool notInMask = (_soundMakerMask & collisionMask) == 0;
-        if (notInMask) return;
+        if (!isWall && notInMask) return;
 
         // Create the sound emitter at the contact point
         ContactPoint contactPoint = collision.GetContact(0);
@@ -94,8 +97,6 @@ public class WeaponObject : InteractableObject
         // Add the enemy to the hit list
         _hitEnemies.Add(enemy);
     }
-    
-
 }
 
 

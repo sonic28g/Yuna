@@ -63,5 +63,6 @@ public class TutorialManager : MonoBehaviour
     public void MarkCompleted()
     {
         currentTask.completed = true;
+        print("completed");
     }
 }

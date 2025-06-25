@@ -16,6 +16,7 @@ public class WeaponSwitcher : MonoBehaviour
     [SerializeField] private Image weaponPanelImage1;
     [SerializeField] private Image weaponPanelImage2;
     [SerializeField] private GameObject ammoValue;
+    [SerializeField] private GameObject tessen;
 
     private WeaponData currentWeaponData;
     public static WeaponSwitcher instance;
@@ -41,11 +42,13 @@ public class WeaponSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             EquipWeapon(0);
+            tessen.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             EquipWeapon(1);
+            tessen.SetActive(true);
         }
     }
 
