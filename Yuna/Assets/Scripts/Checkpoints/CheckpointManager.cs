@@ -1,13 +1,17 @@
 using System.Collections;
+using System.IO;
 using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
 {
     public static CheckpointManager Instance;
 
-    [SerializeField] private Vector3 lastCheckpointPos;
-    [SerializeField] GameObject player;
+    private string _playerDir;
+    private string CheckpointFilePath => $"{_playerDir}/checkpoint.json";
+    private CheckpointData _checkData;
 
+    private static readonly string PLAYER_TAG = "Player";
+    [SerializeField] GameObject player;
     [SerializeField] GameObject foundPanel;
 
     [Header("Sound Settings")]
@@ -22,14 +26,17 @@ public class CheckpointManager : MonoBehaviour
         else
             Destroy(gameObject);
 
+        if (player == null) player = GameObject.FindGameObjectWithTag(PLAYER_TAG);
         _audioSource = GetComponent<AudioSource>();
-        lastCheckpointPos = player.transform.position;
+
+        _playerDir = $"{Application.persistentDataPath}/Player";
+        ResetCheckpoint();
     }
 
 
     public void SetCheckpoint(bool playSound = true)
     {
-        lastCheckpointPos = player.transform.position;
+        SaveCheckpoint();
 
         EnemyController.SaveAllEnemies();
         NPCController.SaveAllNPCs();
@@ -58,7 +65,7 @@ public class CheckpointManager : MonoBehaviour
         foundPanel.GetComponent<Animator>().SetTrigger("found");
         yield return new WaitForSeconds(2);
 
-        player.transform.position = lastCheckpointPos;
+        ResetCheckpoint();
 
         EnemyController.ResetAllEnemies();
         NPCController.ResetAllNPCs();
@@ -67,5 +74,72 @@ public class CheckpointManager : MonoBehaviour
 
         yield return new WaitForSeconds(3);
         foundPanel.SetActive(false);
+    }
+
+
+    public void ResetCheckpoint()
+    {
+        LoadFromFile();
+        if (_checkData == null || player == null) return;
+
+        // Set player position and rotation from checkpoint data
+        player.transform.SetPositionAndRotation(_checkData.PlayerPosition, _checkData.PlayerRotation);
+    }
+
+    private void LoadFromFile()
+    {
+        // Already loaded
+        if (_checkData != null) return;
+
+        try
+        {
+            // Read the JSON file and deserialize it + Set the data variable
+            string json = File.ReadAllText(CheckpointFilePath);
+            _checkData = JsonUtility.FromJson<CheckpointData>(json) ?? throw new System.Exception($"Failed to parse checkpoint data from {CheckpointFilePath}");
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log($"Failed to load checkpoint data for {name}: {e.Message}");
+
+            // Initialize with default values if load fails
+            _checkData = new CheckpointData
+            {
+                PlayerPosition = player != null ? player.transform.position : Vector3.zero,
+                PlayerRotation = player != null ? player.transform.rotation : Quaternion.identity
+            };
+        }
+    }
+
+
+    public void SaveCheckpoint()
+    {
+        // Save data variable
+        _checkData ??= new();
+        _checkData.PlayerPosition = player != null ? player.transform.position : Vector3.zero;
+        _checkData.PlayerRotation = player != null ? player.transform.rotation : Quaternion.identity;
+
+        try
+        {
+            // Convert the data to JSON
+            string json = JsonUtility.ToJson(_checkData);
+
+            // Create the directory if it doesn't exist
+            if (!Directory.Exists(_playerDir)) Directory.CreateDirectory(_playerDir);
+
+            // Save the JSON to a file
+            File.WriteAllText(CheckpointFilePath, json);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log($"Failed to save checkpoint data for {name}: {e.Message}");
+        }
+    }
+
+
+    [System.Serializable]
+    private class CheckpointData
+    {
+        public Vector3 PlayerPosition;
+        public Quaternion PlayerRotation;
     }
 }
