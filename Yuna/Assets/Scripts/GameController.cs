@@ -1,16 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.IO;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController Instance;
+
     [SerializeField] private BGMType _defaultBGMType = BGMType.Outside;
     private readonly List<BGMTypeAreaTrigger> _currentBGMAreas = new();
     
     public GameObject tutorial;
 
+    private string _playerDir;
+    private string KanzashiFilePath => $"{_playerDir}/kanzashis.json";
+    private KanzashiData _kanzashiData;
+    [SerializeField] private GameObject _sceneKanzashi;
+    private const string KANZASHI_TAG = "Kanzashi";
 
-    private void Awake() => BGMTypeAreaTrigger.OnBGMTypeAreaChanged += HandleBGMAreaChanged;
+
+    private void Awake()
+    {
+        Instance = this;
+        BGMTypeAreaTrigger.OnBGMTypeAreaChanged += HandleBGMAreaChanged;
+
+        _playerDir = $"{Application.persistentDataPath}/Player";
+        ResetKanzashis();
+    }
+
     private void OnDestroy() => BGMTypeAreaTrigger.OnBGMTypeAreaChanged -= HandleBGMAreaChanged;
 
 
@@ -55,4 +72,87 @@ public class GameController : MonoBehaviour
         dialogueInteractable.Interact();
     }
 
+
+    private GameObject[] GetKanzashiObjects() => GameObject.FindGameObjectsWithTag(KANZASHI_TAG);
+    private KanzashiData.KanzashiEntry[] GetKanzashiEntries() => GetKanzashiObjects()
+        .Select(go => new KanzashiData.KanzashiEntry {
+            Position = go.transform.position,
+            Rotation = go.transform.rotation
+        }).ToArray();
+
+
+    public void ResetKanzashis()
+    {
+        if (_sceneKanzashi == null) return;
+        LoadFromFile();
+
+        // Clear existing kanzashi objects in the scene
+        GameObject[] existingKanzashis = GetKanzashiObjects();
+        foreach (GameObject kanzashi in existingKanzashis) Destroy(kanzashi);
+
+        // Instantiate kanzashi objects based on collected entries
+        if (_kanzashiData == null || _kanzashiData.KanzashiEntries == null) return;
+        foreach (var entry in _kanzashiData.KanzashiEntries) Instantiate(_sceneKanzashi, entry.Position, entry.Rotation);
+    }
+
+    private void LoadFromFile()
+    {
+        // Already loaded
+        if (_kanzashiData != null) return;
+
+        try
+        {
+            // Read the JSON file and deserialize it + Set the data variable
+            string json = File.ReadAllText(KanzashiFilePath);
+            _kanzashiData = JsonUtility.FromJson<KanzashiData>(json) ?? throw new System.Exception($"Failed to parse kanzashi data from {KanzashiFilePath}");
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log($"Failed to load kanzashi data for {name}: {e.Message}");
+
+            // Initialize with default values if load fails
+            _kanzashiData = new KanzashiData
+            {
+                KanzashiEntries = GetKanzashiEntries()
+            };
+        }
+    }
+
+
+    public void SaveKanzashis()
+    {
+        // Save data variable
+        _kanzashiData ??= new();
+        _kanzashiData.KanzashiEntries = GetKanzashiEntries();
+
+        try
+        {
+            // Convert the data to JSON
+            string json = JsonUtility.ToJson(_kanzashiData);
+
+            // Create the directory if it doesn't exist
+            if (!Directory.Exists(_playerDir)) Directory.CreateDirectory(_playerDir);
+
+            // Save the JSON to a file
+            File.WriteAllText(KanzashiFilePath, json);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log($"Failed to save kanzashi data for {name}: {e.Message}");
+        }
+    }
+
+
+    [System.Serializable]
+    private class KanzashiData
+    {
+        public KanzashiEntry[] KanzashiEntries;
+
+        [System.Serializable]
+        public class KanzashiEntry
+        {
+            public Vector3 Position;
+            public Quaternion Rotation;
+        }
+    }
 }
