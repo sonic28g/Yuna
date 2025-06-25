@@ -47,7 +47,7 @@ public class BGMPlayer : MonoBehaviour
         if (!hasAudioSource) throw new System.Exception($"AudioSource component is missing on {name}.");
 
         // Get the AudioMixer (from the AudioSource)
-        if (_audioSource.outputAudioMixerGroup == null) Debug.LogWarning($"OutputAudioMixerGroup is not set for {name}. Muffle will not work.");
+        if (_audioSource.outputAudioMixerGroup == null) Debug.LogError($"OutputAudioMixerGroup is not set for {name}. Muffle will not work.");
         else
         {
             _audioMixer = _audioSource.outputAudioMixerGroup.audioMixer;

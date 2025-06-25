@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,15 @@ public class MainMenuController : MonoBehaviour
     }
 
 
+    public void NewGame(string sceneName)
+    {
+        TryDelete("Player");
+        TryDelete("Dialogue");
+        TryDelete("Enemies");
+        TryDelete("NPCs");
+        ChangeToScene(sceneName);
+    }
+
     public void ChangeToScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -23,5 +33,19 @@ public class MainMenuController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+
+    private void TryDelete(string dirName)
+    {
+        try
+        {
+            string path = $"{Application.persistentDataPath}/{dirName}";
+            Directory.Delete(path, true);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log($"Failed to delete {dirName}: {e.Message}");
+        }
     }
 }
