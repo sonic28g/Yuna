@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6869e1dff5c8144954fb97b03a8e4b, type: 3}
+  m_Name: Guard'sWife
+  m_EditorClassIdentifier: 
+  <DialogueId>k__BackingField: dialogue3
+  <Skippable>k__BackingField: 1
+  _lines:
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "Hello. Please forgive my intrusion\u2026 but I heard
+      your husband lost his position."
+  - <Speaker>k__BackingField: Guard's Wife
+    <Text>k__BackingField: "\u2026Yes. But I can\u2019t tell him that myself. Not
+      anymore."
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "Why? If you don\u2019t mind me asking\u2026"
+  - <Speaker>k__BackingField: Guard's Wife
+    <Text>k__BackingField: He never came home. The last time I saw him, he said he
+      was going to the market.
+  - <Speaker>k__BackingField: Guard's Wife
+    <Text>k__BackingField: "He told me to be careful. I should\u2019ve listened.
+      He insisted on going alone\u2026 and he never came back."
+  - <Speaker>k__BackingField: Guard's Wife
+    <Text>k__BackingField: "I should\u2019ve listened. He insisted on going alone\u2026
+      and he never came back."
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "Thank you\u2026 For trusting me with this."
+  _conditions:
+  - _conditionType: 0
+    _value: dialogue3
+    _negated: 1
