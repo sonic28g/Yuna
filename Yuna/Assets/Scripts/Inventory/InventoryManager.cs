@@ -39,8 +39,7 @@ public class InventoryManager : MonoBehaviour
         if (_audioSource == null || _takeClips.Length == 0) return;
 
         int randomIndex = Random.Range(0, _takeClips.Length);
-        _audioSource.clip = _takeClips[randomIndex];
-        _audioSource.Play();
+        _audioSource.PlayOneShot(_takeClips[randomIndex]);
     }
 
 

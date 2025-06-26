@@ -52259,6 +52259,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Attack
+  _tessenClips:
+  - {fileID: 8300000, guid: e76d5d5ce116bc446a90e4d6aa0f95e1, type: 3}
+  - {fileID: 8300000, guid: 8f1b18324c9f33e4fbf82690ebbabb24, type: 3}
+  _audioSource: {fileID: 894682429690327128}
 --- !u!1 &7978996200844348081
 GameObject:
   m_ObjectHideFlags: 0
