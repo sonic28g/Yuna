@@ -30,6 +30,7 @@ namespace StarterAssets
 
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
+        private AudioSource _audioSource;
 
         [Space(10)]
 
@@ -131,6 +132,7 @@ namespace StarterAssets
             _input = GetComponent<StarterAssetsInputs>();
             currentStamina = maxStamina;
             _playerInput = GetComponent<PlayerInput>();
+            _audioSource = GetComponent<AudioSource>();
 
             AssignAnimationIDs();
         }
@@ -278,14 +280,10 @@ namespace StarterAssets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
         private void OnFootstep(AnimationEvent animationEvent)
         {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                if (FootstepAudioClips.Length > 0)
-                {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
-                }
-            }
+            if (animationEvent.animatorClipInfo.weight <= 0.5f || FootstepAudioClips.Length == 0) return;
+
+            int randomIndex = Random.Range(0, FootstepAudioClips.Length);
+            _audioSource.PlayOneShot(FootstepAudioClips[randomIndex], FootstepAudioVolume);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
