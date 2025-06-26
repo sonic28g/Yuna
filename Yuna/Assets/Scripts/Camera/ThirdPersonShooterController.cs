@@ -58,6 +58,16 @@ public class ThirdPersonShooterController : MonoBehaviour
             crossHair.SetActive(true);
             _animator.SetBool("Aiming", starterAssetsInputs.aim);
 
+            if (InventoryManager.instance.HasAmmo("Kanzashi"))
+            {
+                _animator.SetBool("HasAmmo", true);
+            }
+            else
+            {
+                _animator.SetBool("HasAmmo", true);
+                return;
+            }
+
             transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
 
             bool isPointingAtGuard = false;
@@ -70,8 +80,6 @@ public class ThirdPersonShooterController : MonoBehaviour
                 isPointingAtGuard = hit.collider.CompareTag("Guard");
 
                 aimUI.color = isPointingAtGuard ? transparentColor : normalColor;
-
-                Debug.Log("Apontar para: " + hit.collider.name);
             }
             else
             {
