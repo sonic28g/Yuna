@@ -1,6 +1,7 @@
 using System.Collections;
 using System.IO;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CheckpointManager : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class CheckpointManager : MonoBehaviour
     [Header("Sound Settings")]
     [SerializeField] private AudioClip _checkpointSound;
     private AudioSource _audioSource;
-
 
     private void Awake()
     {
@@ -63,7 +63,7 @@ public class CheckpointManager : MonoBehaviour
     {
         foundPanel.SetActive(true);
         foundPanel.GetComponent<Animator>().SetTrigger("found");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         ResetCheckpoint();
 
@@ -72,8 +72,9 @@ public class CheckpointManager : MonoBehaviour
         if (GameController.Instance != null) GameController.Instance.ResetKanzashis();
         if (InventoryManager.instance != null) InventoryManager.instance.ResetInventory();
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         foundPanel.SetActive(false);
+
     }
 
 
