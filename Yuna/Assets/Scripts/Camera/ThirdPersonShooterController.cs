@@ -55,16 +55,17 @@ public class ThirdPersonShooterController : MonoBehaviour
             aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
             _thirdPersonController.SetSensitivity(aimSensibility);
 
-            crossHair.SetActive(true);
             _animator.SetBool("Aiming", starterAssetsInputs.aim);
 
             if (InventoryManager.instance.HasAmmo("Kanzashi"))
             {
+                crossHair.SetActive(true);
                 _animator.SetBool("HasAmmo", true);
             }
             else
             {
-                _animator.SetBool("HasAmmo", true);
+                _animator.SetBool("HasAmmo", false);
+                starterAssetsInputs.aim = false;
                 return;
             }
 
