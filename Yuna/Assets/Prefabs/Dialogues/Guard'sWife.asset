@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6869e1dff5c8144954fb97b03a8e4b, type: 3}
   m_Name: Guard'sWife
   m_EditorClassIdentifier: 
-  <DialogueId>k__BackingField: dialogue3
+  <DialogueId>k__BackingField: dialogue4
   <Skippable>k__BackingField: 1
   _lines:
   - <Speaker>k__BackingField: Yuna
@@ -36,5 +36,5 @@ MonoBehaviour:
     <Text>k__BackingField: "Thank you\u2026 For trusting me with this."
   _conditions:
   - _conditionType: 0
-    _value: dialogue3
+    _value: dialogue4
     _negated: 1

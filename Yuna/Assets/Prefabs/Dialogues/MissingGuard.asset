@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6869e1dff5c8144954fb97b03a8e4b, type: 3}
   m_Name: MissingGuard
   m_EditorClassIdentifier: 
-  <DialogueId>k__BackingField: dialogue3
+  <DialogueId>k__BackingField: dialogue5
   <Skippable>k__BackingField: 1
   _lines:
   - <Speaker>k__BackingField: Yuna
@@ -25,5 +25,5 @@ MonoBehaviour:
     <Text>k__BackingField: "Why? If you don\u2019t mind me asking\u2026"
   _conditions:
   - _conditionType: 0
-    _value: dialogue3
+    _value: dialogue5
     _negated: 1
