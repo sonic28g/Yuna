@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectableID: Evidence2
   type: 0
-  inspectableTitle: Evidence 2
-  inspectableDescription: Something about evidence 2
+  inspectableTitle: Letter
+  inspectableDescription: "Discovered a gift, two ornate katanas, marked with a noble\u2019s
+    crest.\nBeside it, a thank-you letter.\nLooks like a bribe\u2026\nLord Ishikawa
+    is behind the plot to frame my father."
   isFound: 0
   isActive: 1

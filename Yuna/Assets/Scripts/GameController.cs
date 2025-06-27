@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.IO;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -18,6 +20,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject _sceneKanzashi;
     private const string KANZASHI_TAG = "Kanzashi";
 
+    [SerializeField] InspectableData letter;
+    [SerializeField] InspectableData diary;
+    [SerializeField] GameObject thoughtPanel;
+    [SerializeField] RoomCheck room;
+    [SerializeField] Diary yunasLetter;
 
     private void Awake()
     {
@@ -64,8 +71,24 @@ public class GameController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        yunasLetter.enabled = false;
     }
 
+
+    private void Update() {
+        if (letter.isFound && diary.isFound)
+        {
+            thoughtPanel.SetActive(true);
+            TextMeshProUGUI text = thoughtPanel.GetComponentInChildren<TextMeshProUGUI>();
+            text.text = "I have all the evidences to save my father. I need to get back to my room.";
+
+            if (room.isInRoom == true)
+            {
+                text.text = "I need to write to the shogun and send him all the evidences I found.";
+                yunasLetter.enabled = true;
+            }
+        }
+    }
 
     public void StartDialogue(DialogueInteractable dialogueInteractable)
     {
