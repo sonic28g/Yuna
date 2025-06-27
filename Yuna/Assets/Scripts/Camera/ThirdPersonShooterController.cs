@@ -14,6 +14,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] private Transform pfProjectile;
     [SerializeField] private Transform spawnProjectilePosition;
+    [SerializeField] private Transform spawnProjectilePositionCrouched;
+
     [SerializeField] private VignetteEffectHandler vignetteHandler;
     [SerializeField] private GameObject tessen;
 
@@ -24,6 +26,12 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private Color transparentColor = new Color(1, 1, 1, 0.3f); // branco com transparência
 
     [SerializeField] private GameObject staminaBar;
+
+    [SerializeField] private GameObject normalCamera;
+    [SerializeField] private GameObject normalAimCamera;
+    [SerializeField] private GameObject crouchedCamera;
+    [SerializeField] private GameObject crouchedAimCamera;
+
 
     private StarterAssetsInputs starterAssetsInputs;
     private ThirdPersonController _thirdPersonController;
@@ -52,7 +60,11 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         if (starterAssetsInputs.aim && _hasAnimator && !starterAssetsInputs.sprint && WeaponSwitcher.instance.CurrentWeapon.weaponType == WeaponType.Kanzashi)
         {
-            aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
+            if(isCrouching)
+                crouchedAimCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
+            else
+                aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 20;
+
             _thirdPersonController.SetSensitivity(aimSensibility);
 
             _animator.SetBool("Aiming", starterAssetsInputs.aim);
@@ -91,7 +103,13 @@ public class ThirdPersonShooterController : MonoBehaviour
             {
                 InventoryManager.instance.UseAmmo("Kanzashi");
 
-                Transform projectileTransform = Instantiate(pfProjectile, spawnProjectilePosition.position, Quaternion.LookRotation(aimDir));
+                Transform projectileTransform;
+                
+                if(isCrouching)
+                    projectileTransform = Instantiate(pfProjectile, spawnProjectilePositionCrouched.position, Quaternion.LookRotation(aimDir));
+                else 
+                    projectileTransform = Instantiate(pfProjectile, spawnProjectilePosition.position, Quaternion.LookRotation(aimDir));
+
                 Rigidbody rb = projectileTransform.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
@@ -115,8 +133,11 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
         else
         {
-            aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 0;
-
+            if(isCrouching)
+                crouchedAimCamera.GetComponent<CinemachineVirtualCamera>().Priority = 0;
+            else
+                aimVirtualCamera.GetComponent<CinemachineVirtualCamera>().Priority = 0;
+                
             _thirdPersonController.SetSensitivity(normalSensibility);
             crossHair.SetActive(false);
             _animator.SetBool("Aiming", false);
@@ -126,7 +147,26 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             isCrouching = !isCrouching; // alterna o estado
             _animator.SetBool("Crouching", isCrouching);
-            starterAssetsInputs.crouch = false; // impede múltiplos toggles no mesmo frame
+
+            starterAssetsInputs.crouch = false;
+        }
+
+
+        if (isCrouching)
+        {
+            normalCamera.SetActive(false);
+            normalAimCamera.SetActive(false);
+
+            crouchedCamera.SetActive(true);
+            crouchedAimCamera.SetActive(true);
+        }
+        else
+        {
+            normalCamera.SetActive(true);
+            normalAimCamera.SetActive(true);
+
+            crouchedCamera.SetActive(false);
+            crouchedAimCamera.SetActive(false);
         }
 
         if (starterAssetsInputs.scan && starterAssetsInputs.move == Vector2.zero)
