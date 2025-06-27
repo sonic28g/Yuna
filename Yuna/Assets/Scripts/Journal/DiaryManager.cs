@@ -8,7 +8,7 @@ public class DiaryManager : MonoBehaviour
 
     public TextMeshProUGUI diaryText;
 
-    private bool noClues = true;
+    private readonly List<InspectableData> _clues = new();
 
     [Header("Sound Settings")]
     [SerializeField] private AudioClip _openClip;
@@ -33,14 +33,13 @@ public class DiaryManager : MonoBehaviour
 
     public void UpdateDiary(InspectableData inspectableData)
     {
-        if (noClues)
-        {
-            diaryText.text = "";
-            noClues = false;
-        }
+        if (inspectableData == null) return;
+        if (_clues.Contains(inspectableData)) return;
+
+        if (_clues.Count == 0) diaryText.text = "";
 
         diaryText.text += inspectableData.inspectableTitle + ": " + inspectableData.inspectableDescription + "\n";
-    
+        _clues.Add(inspectableData);
     }
 
 
