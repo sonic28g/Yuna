@@ -14,50 +14,10 @@ public class KanzashiHairController : MonoBehaviour
     {
         currentAmmo = InventoryManager.instance.GetAmmo("Kanzashi");
 
-        switch (currentAmmo)
-        {
-            case 0:
-                kanzashi1.SetActive(false);
-                kanzashi2.SetActive(false);
-                kanzashi3.SetActive(false);
-                kanzashi4.SetActive(false);
-                kanzashi5.SetActive(false);
-                break;
-            case 1:
-                kanzashi1.SetActive(true);
-                kanzashi2.SetActive(false);
-                kanzashi3.SetActive(false);
-                kanzashi4.SetActive(false);
-                kanzashi5.SetActive(false);
-                break;
-            case 2:
-                kanzashi1.SetActive(true);
-                kanzashi2.SetActive(true);
-                kanzashi3.SetActive(false);
-                kanzashi4.SetActive(false);
-                kanzashi5.SetActive(false);
-                break;
-            case 3:
-                kanzashi1.SetActive(true);
-                kanzashi2.SetActive(true);
-                kanzashi3.SetActive(true);
-                kanzashi4.SetActive(false);
-                kanzashi5.SetActive(false);
-                break;
-            case 4:
-                kanzashi1.SetActive(true);
-                kanzashi2.SetActive(true);
-                kanzashi3.SetActive(true);
-                kanzashi4.SetActive(true);
-                kanzashi5.SetActive(false);
-                break;
-            case 5:
-                kanzashi1.SetActive(true);
-                kanzashi2.SetActive(true);
-                kanzashi3.SetActive(true);
-                kanzashi4.SetActive(true);
-                kanzashi5.SetActive(true);
-                break;
-        }
+        kanzashi1.SetActive(currentAmmo >= 1);
+        kanzashi2.SetActive(currentAmmo >= 2);
+        kanzashi3.SetActive(currentAmmo >= 3);
+        kanzashi4.SetActive(currentAmmo >= 4);
+        kanzashi5.SetActive(currentAmmo >= 5);
     }
 }
