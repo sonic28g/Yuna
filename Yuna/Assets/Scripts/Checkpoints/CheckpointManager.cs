@@ -14,6 +14,8 @@ public class CheckpointManager : MonoBehaviour
     private static readonly string PLAYER_TAG = "Player";
     [SerializeField] GameObject player;
     [SerializeField] GameObject foundPanel;
+    [SerializeField] GameObject checkpointPanel;
+
 
     [Header("Sound Settings")]
     [SerializeField] private AudioClip _checkpointSound;
@@ -127,6 +129,8 @@ public class CheckpointManager : MonoBehaviour
             // Create the directory if it doesn't exist
             if (!Directory.Exists(_playerDir)) Directory.CreateDirectory(_playerDir);
 
+            StartCoroutine(showAndHide(checkpointPanel, 2f));
+
             // Save the JSON to a file
             File.WriteAllText(CheckpointFilePath, json);
         }
@@ -134,6 +138,13 @@ public class CheckpointManager : MonoBehaviour
         {
             Debug.Log($"Failed to save checkpoint data for {name}: {e.Message}");
         }
+    }
+
+    IEnumerator showAndHide(GameObject gameObject, float time)
+    {
+        gameObject.SetActive(true);
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
     }
 
 
