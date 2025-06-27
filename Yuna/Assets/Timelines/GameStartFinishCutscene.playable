@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
-    volume: 0.5
+    volume: 0.03
 --- !u!74 &-5114257775200309191
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
-    volume: 0.5
+    volume: 0.1
 --- !u!114 &1924541461007501365
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
-    volume: 0.5
+    volume: 0.2
 --- !u!114 &3716989454264148117
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
-    volume: 0.5
+    volume: 0.2
 --- !u!114 &8253610679336114681
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1511,7 +1511,7 @@ MonoBehaviour:
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
-    volume: 0.5
+    volume: 0.1
 --- !u!114 &8951584376518168630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1528,7 +1528,7 @@ MonoBehaviour:
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
-    volume: 0.5
+    volume: 0.06
 --- !u!114 &9035930389995068654
 MonoBehaviour:
   m_ObjectHideFlags: 1
