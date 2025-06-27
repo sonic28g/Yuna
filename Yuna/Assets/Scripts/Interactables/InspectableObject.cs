@@ -1,12 +1,16 @@
-using System;
-using UnityEngine;
-
 public class InspectableObject : InteractableObject
 {
     public InspectableData inspectableData;
 
-    private void Start() {
-        inspectableData.isFound = false;
+    private void Awake()
+    {
+        if (inspectableData == null) throw new System.Exception($"InspectableData is not assigned in {name}");
+        // inspectableData.InitInspectable();
+    }
+
+    private void Start()
+    {
+        if (inspectableData.isFound) Interact();
     }
 
     public override void Interact()
@@ -14,20 +18,14 @@ public class InspectableObject : InteractableObject
         UIManager.instance.ShowDiaryEntry();
         inspectableData.isFound = true;
 
-        if (inspectableData.type.ToString().ToLower().Equals("clue"))
+        string type = inspectableData.type.ToString().ToLower();
+        if (type.Equals("clue") && DiaryManager.Instance != null)
         {
-            if (DiaryManager.Instance != null)
-            {
-                DiaryManager.Instance.UpdateDiary(inspectableData);
-            }
+            DiaryManager.Instance.UpdateDiary(inspectableData);
         }
-
-        if (inspectableData.type.ToString().ToLower() == "evidence")
+        else if (type.Equals("evidence") && EvidenceManager.Instance != null)
         {
-            if (EvidenceManager.Instance != null)
-            {
-                EvidenceManager.Instance.UpdateEvidence(inspectableData);
-            }
+            EvidenceManager.Instance.UpdateEvidence(inspectableData);
         }
 
         inspectableData.isActive = false;
