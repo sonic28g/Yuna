@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,11 +16,28 @@ public class UIManager : MonoBehaviour
     public GameObject pickupText;
     public TextMeshProUGUI ammoText; // Adiciona um campo para exibir a munição
 
+    [SerializeField] MenuController menuController;
+    [SerializeField] GameObject helper;
+    [SerializeField] TextMeshProUGUI helperTitle;
+    [SerializeField] Image helperImage;
+    [SerializeField] TextMeshProUGUI helperText;
+    [SerializeField] GameObject weaponPanel;
+    [SerializeField] GameObject DiaryEntry;
+
+    [SerializeField] private float zoomDuration = 0.2f;
+    [SerializeField] private float zoomScale = 1.5f;
+
+    [Header("Sound Settings")]
+    [SerializeField] private AudioClip _diaryEntrySound;
+    private AudioSource _audioSource;
+
+
     private void Awake()
     {
         instance = this;
         nearbyText.SetActive(false);
         pickupText.SetActive(false);
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void ShowNearbyText(bool show, InteractableObject interactableObject)
@@ -39,21 +58,78 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void ShowInteractionText(string text)
-    {
-        pickupText.SetActive(true);
-        pickupText.GetComponentInChildren<TextMeshProUGUI>().text = text;
-        Invoke("HidePickupText", 1f);
-    }
-
     private void HidePickupText()
     {
-        pickupText.SetActive(false);
+        //pickupText.SetActive(false);
     }
 
     public void UpdateAmmoUI(string weaponName, int amount)
     {
         if (ammoText != null)
             ammoText.text = amount.ToString(); // Atualiza o texto da munição
+    }
+
+    public void ShowHelper(string title, string text, Sprite image)
+    {
+        helper.SetActive(true);
+        helperTitle.text = title;
+        helperText.text = text;
+        helperImage.sprite = image;
+
+        weaponPanel.SetActive(true);
+
+        menuController.PauseGame();
+    }
+
+    public void ShowDiaryEntry()
+    {
+        PlayDiaryEntrySound();
+        DiaryEntry.SetActive(true);
+
+        StartCoroutine(WaitSecondsAndHide(5, DiaryEntry));
+    }
+
+    IEnumerator WaitSecondsAndHide(int seconds, GameObject gameObject)
+    {
+        yield return new WaitForSeconds(seconds);
+        gameObject.SetActive(false);
+    }
+
+    public void AmmoNumberEffect()
+    {
+        StartCoroutine(ZoomEffect(ammoText.transform));
+    }
+
+    private IEnumerator ZoomEffect(Transform target)
+    {
+        Vector3 originalScale = target.localScale;
+        Vector3 zoomedScale = originalScale * zoomScale;
+
+        float elapsed = 0f;
+        while (elapsed < zoomDuration)
+        {
+            target.localScale = Vector3.Lerp(originalScale, zoomedScale, elapsed / zoomDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        target.localScale = zoomedScale;
+
+        elapsed = 0f;
+        while (elapsed < zoomDuration)
+        {
+            target.localScale = Vector3.Lerp(zoomedScale, originalScale, elapsed / zoomDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        target.localScale = originalScale;
+    }
+
+
+    private void PlayDiaryEntrySound()
+    {
+        if (_audioSource == null || _diaryEntrySound == null) return;
+        _audioSource.PlayOneShot(_diaryEntrySound);
     }
 }

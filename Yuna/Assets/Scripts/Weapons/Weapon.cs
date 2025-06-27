@@ -14,7 +14,6 @@ public class Weapon : MonoBehaviour
         {
             if (!InventoryManager.instance.HasAmmo(weaponData.weaponName))
             {
-                UIManager.instance.ShowInteractionText("You have no kanzashis");
                 return;
             }
             InventoryManager.instance.UseAmmo(weaponData.weaponName);

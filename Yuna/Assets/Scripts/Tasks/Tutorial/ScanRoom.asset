@@ -15,5 +15,9 @@ MonoBehaviour:
   taskID: tut_2
   type: 0
   title: Scan room
-  description: Scan around the room (F) to find a kanzashi
+  description: If I focus maybe I'll find more...
   completed: 1
+  helperTitle: Focus
+  helperText: Yuna can enter focus mode. Press F to scan the room. Yuna will highlight
+    objects and enemies.
+  helperImage: {fileID: 21300000, guid: cf7e599f2374b46e9b2a5fdafe64964a, type: 3}

@@ -1,14 +1,21 @@
+using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Tutorial/PickKanzashi")]
 public class PickKanzashiTask : TaskData
 {
     private Vector3 lastPosition;
+    [SerializeField] string helperTitle;
+    [SerializeField] string helperText;
+    [SerializeField] Sprite helperImage;
 
     public override void StartTask()
     {
         completed = false;
+        UIManager.instance.ShowHelper(helperTitle, helperText, helperImage);
     }
 
     public override bool CheckIfCompleted()
@@ -19,4 +26,5 @@ public class PickKanzashiTask : TaskData
         }
         return completed;
     }
+
 }

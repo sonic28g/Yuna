@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree01B
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d2204d9b3a30bc4ea553622baf4bdee, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 4664415347873723833, guid: 6d2204d9b3a30bc4ea553622baf4bdee, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -92,22 +96,22 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8997249630904668777, guid: 6d2204d9b3a30bc4ea553622baf4bdee, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6d2204d9b3a30bc4ea553622baf4bdee, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2193537960827613384}
+      addedObject: {fileID: 4993257582097320549}
   m_SourcePrefab: {fileID: 100100000, guid: 6d2204d9b3a30bc4ea553622baf4bdee, type: 3}
---- !u!1 &1361719171996470048 stripped
+--- !u!1 &7131453652126606360 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 8997249630904668777, guid: 6d2204d9b3a30bc4ea553622baf4bdee, type: 3}
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6d2204d9b3a30bc4ea553622baf4bdee, type: 3}
   m_PrefabInstance: {fileID: 7942496524005939529}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &2193537960827613384
+--- !u!136 &4993257582097320549
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361719171996470048}
+  m_GameObject: {fileID: 7131453652126606360}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

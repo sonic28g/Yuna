@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectableID: Clue1
   type: 1
-  inspectableTitle: Clue 1
-  inspectableDescription: Something about clue 1
+  inspectableTitle: Diary Entry #1
+  inspectableDescription: "I heard two guards talking in hushed voices.\nThey said
+    my father dismissed a guard, suddenly.\nBut that doesn\u2019t sound like him.\nThe
+    guard lives in the east side of the village.\nI need to find out what really
+    happened.\nWithout being seen."
   isFound: 0
-  isActive: 1
+  isActive: 0

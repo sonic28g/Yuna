@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6869e1dff5c8144954fb97b03a8e4b, type: 3}
+  m_Name: Dialogue2
+  m_EditorClassIdentifier: 
+  <DialogueId>k__BackingField: dialogue1
+  <Skippable>k__BackingField: 1
+  _lines:
+  - <Speaker>k__BackingField: Guard
+    <Text>k__BackingField: I'm sorry, Lady Yuna. I can't let you leave this house.
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: 'What? Why not?  '
+  - <Speaker>k__BackingField: Guard
+    <Text>k__BackingField: "Orders from above. Since your father was arrested, no
+      one is allowed to leave the castle\u2014especially not you."
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "But he\u2019s innocent! You can\u2019t keep me locked
+      in here like a prisoner."
+  - <Speaker>k__BackingField: Guard
+    <Text>k__BackingField: "I understand how you feel, my lady. But my orders are
+      clear. It\u2019s for your safety\u2026 or so they say."
+  _conditions:
+  - _conditionType: 0
+    _value: dialogue1
+    _negated: 1

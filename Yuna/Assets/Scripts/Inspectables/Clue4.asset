@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02310d7d0105eb742bd1c7bcb48a6c88, type: 3}
+  m_Name: Clue4
+  m_EditorClassIdentifier: 
+  inspectableID: Clue4
+  type: 1
+  inspectableTitle: Diary Entry #4
+  inspectableDescription: "I found a guard\u2019s helmet on the ground\u2014one of
+    my father\u2019s.\nIt might belong to the missing man.\nWhy was it left behind?\nSomething
+    feels wrong."
+  isFound: 0
+  isActive: 1

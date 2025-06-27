@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241f16d51544344f2a28a98ef9f99bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: 
+  objectName: Shrine
   isActiveCheckpoint: 0
 --- !u!1 &5315659904283484562
 GameObject:

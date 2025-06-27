@@ -4,10 +4,6 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     private StarterAssetsInputs starterAssetsInputs;
-    public float interactionRange = 2f;
-    public Transform playerPosition;
-    public LayerMask interactableLayer;
-
     private InteractableObject nearbyObject = null;
 
     private void Awake() 
@@ -17,8 +13,6 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        DetectNearbyObject();
-
         if (starterAssetsInputs.interact && nearbyObject != null)
         {
             nearbyObject.Interact();
@@ -30,21 +24,15 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void DetectNearbyObject()
+    public void SetNearbyObject(InteractableObject obj)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(playerPosition.position, interactionRange, interactableLayer);
+        nearbyObject = obj;
+        UIManager.instance.ShowNearbyText(true, obj);
+    }
 
-        if (hitColliders.Length > 0)
-        {
-            nearbyObject = hitColliders[0].GetComponent<InteractableObject>();
-            if (nearbyObject != null)
-            {
-                UIManager.instance.ShowNearbyText(true, nearbyObject);
-                return;
-            }
-        }
-
-        nearbyObject = null;
+    public void ClearNearbyObject()
+    {
         UIManager.instance.ShowNearbyText(false, nearbyObject);
+        nearbyObject = null;
     }
 }

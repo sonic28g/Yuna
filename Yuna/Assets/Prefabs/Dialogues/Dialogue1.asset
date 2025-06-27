@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6869e1dff5c8144954fb97b03a8e4b, type: 3}
+  m_Name: Dialogue1
+  m_EditorClassIdentifier: 
+  <DialogueId>k__BackingField: dialogue0
+  <Skippable>k__BackingField: 1
+  _lines:
+  - <Speaker>k__BackingField: 'Chiyo '
+    <Text>k__BackingField: "My dear... I hate to bring you such news. Your father
+      was just taken by the shogun\u2019s guards."
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: What? Taken? Why? What is going on?
+  - <Speaker>k__BackingField: 'Chiyo '
+    <Text>k__BackingField: They say... he has been accused of high treason.
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "Treason?! That\u2019s impossible! My father would never
+      do such a thing!"
+  - <Speaker>k__BackingField: 'Chiyo '
+    <Text>k__BackingField: We both know that, Yuna. But not everyone in the palace
+      shares our view.
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "This is madness. I won\u2019t just sit here while he\u2019s
+      in danger!"
+  - <Speaker>k__BackingField: Yuna
+    <Text>k__BackingField: "I won\u2019t rest until the truth is known... And my
+      father is free."
+  - <Speaker>k__BackingField: 'Chiyo '
+    <Text>k__BackingField: "I knew you would say that. And I won\u2019t stop you."
+  - <Speaker>k__BackingField: 'Chiyo '
+    <Text>k__BackingField: "All these years\u2026 I\u2019ve trained you for this."
+  - <Speaker>k__BackingField: 'Chiyo '
+    <Text>k__BackingField: 'Now go, but be careful. Stay hidden and trust no one.  '
+  _conditions:
+  - _conditionType: 0
+    _value: dialogue0
+    _negated: 1

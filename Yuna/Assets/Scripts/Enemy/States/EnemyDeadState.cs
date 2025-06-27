@@ -8,6 +8,7 @@ public class EnemyDeadState : EnemyState
 
     private Behaviour[] _behaviours;
     private bool[] _enableds;
+    private Color _outlineColor;
 
 
     public override void EnterState(EnemyController enemy)
@@ -15,12 +16,14 @@ public class EnemyDeadState : EnemyState
         StopNavigation(enemy);
         DisableComponents(enemy);
         DeadAnimation(enemy);
+        NoOutline(enemy);
     }
 
     public override void ExitState(EnemyController enemy)
     {
         RestoreComponents(enemy);
         RestoreAnimation(enemy);
+        RestoreOutline(enemy);
     }
 
 
@@ -71,21 +74,71 @@ public class EnemyDeadState : EnemyState
             // ...
         };
 
-        // Store the enabled value and disable the behaviours
         int behavioursLength = _behaviours.Length;
-        _enableds = new bool[behavioursLength];
+        int collidersLength = enemy.Colliders.Length;
+        _enableds = new bool[behavioursLength + collidersLength];
 
+        // Store enabled values and disable the behaviours
         for (int i = 0; i < behavioursLength; i++)
         {
-            _enableds[i] = _behaviours[i].enabled;
-            _behaviours[i].enabled = false;
+            // Check if the behaviour is null
+            Behaviour behaviour = _behaviours[i];
+            if (behaviour == null) continue;
+
+            _enableds[i] = behaviour.enabled;
+            behaviour.enabled = false;
+        }
+
+        // Store enabled values and disable the colliders
+        for (int i = 0; i < collidersLength; i++)
+        {
+            // Check if the collider is null
+            Collider collider = enemy.Colliders[i];
+            if (collider == null) continue;
+
+            _enableds[behavioursLength + i] = collider.enabled;
+            collider.enabled = false;
         }
     }
 
-    private void RestoreComponents(EnemyController _)
+    private void RestoreComponents(EnemyController enemy)
     {
         // Restore the behaviours
         int behavioursLength = _behaviours.Length;
-        for (int i = 0; i < behavioursLength; i++) _behaviours[i].enabled = _enableds[i];
+        for (int i = 0; i < behavioursLength; i++)
+        {
+            // Check if the behaviour is null
+            Behaviour behaviour = _behaviours[i];
+            if (behaviour == null) continue;
+
+            behaviour.enabled = _enableds[i];
+        }
+
+        // Restore the colliders
+        int collidersLength = enemy.Colliders.Length;
+        for (int i = 0; i < collidersLength; i++)
+        {
+            // Check if the collider is null
+            Collider collider = enemy.Colliders[i];
+            if (collider == null) continue;
+
+            collider.enabled = _enableds[behavioursLength + i];
+        }
+    }
+
+
+    private void NoOutline(EnemyController enemy)
+    {
+        if (enemy.Outline == null) return;
+
+        _outlineColor = enemy.Outline.OutlineColor;
+        enemy.Outline.OutlineColor = Color.clear;
+    }
+
+    private void RestoreOutline(EnemyController enemy)
+    {
+        if (enemy.Outline == null) return;
+
+        enemy.Outline.OutlineColor = _outlineColor;
     }
 }

@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: TutorialSequence
   m_EditorClassIdentifier: 
   tutorialTasks:
-  - {fileID: 11400000, guid: c4842ceb9dfe7b64a9ef9fb856cfaa91, type: 2}
-  - {fileID: 11400000, guid: 37964652d11dbc34ab4f01b579b6a753, type: 2}
   - {fileID: 11400000, guid: 36b2d367ac404c640aab87079b58f6b7, type: 2}
+  - {fileID: 11400000, guid: 37964652d11dbc34ab4f01b579b6a753, type: 2}
   - {fileID: 11400000, guid: e6c7115dc620b514e944075871e0e038, type: 2}
+  - {fileID: 11400000, guid: 2bac7540082325249addbaaa4229ec5b, type: 2}
   - {fileID: 11400000, guid: 12456b3e1acd1ad48a5b96378ae72118, type: 2}
-  - {fileID: 11400000, guid: 49eca27adba3ac746a51ef79e7d97203, type: 2}
+  - {fileID: 11400000, guid: 03c24f7425d6ece47ab7d9da5f1a3f69, type: 2}
+  - {fileID: 11400000, guid: d7cb4841346c2f841aa9493ffcc11ba3, type: 2}
+  - {fileID: 11400000, guid: b6340cc5414894ba2a5931316d36740f, type: 2}

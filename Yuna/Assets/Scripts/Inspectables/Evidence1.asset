@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectableID: Evidence1
   type: 0
-  inspectableTitle: Evidence 1
-  inspectableDescription: Something about evidence 1
+  inspectableTitle: Diary
+  inspectableDescription: "Found papers hidden in a low-ranking guard\u2019s home.\nSomeone
+    was practising my father\u2019s handwriting and signature.\nAmong them, weapon
+    purchase orders and letters plotting against the shogun.\nClear signs of forgery."
   isFound: 0
+  isActive: 1

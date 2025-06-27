@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectableID: Clue2
   type: 1
-  inspectableTitle: Clue 2
-  inspectableDescription: Something about clue 2
+  inspectableTitle: Diary Entry #2
+  inspectableDescription: "Spoke with the guard\u2019s wife.\nShe said he disappeared
+    after being dismissed, though others claim he fled in shame.\nShe doesn\u2019t
+    believe it\u2014he warned her to be careful, spoke of shadows in the village.\nHe
+    left alone and never returned.\nSomething isn\u2019t right."
   isFound: 0
+  isActive: 1
