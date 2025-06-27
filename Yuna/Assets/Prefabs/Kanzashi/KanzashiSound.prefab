@@ -45,12 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e59ccb0d436104e9f88aeb71f70093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _useNavMeshCheck: 1
+  _sampleFailsDetectSound: 1
   _showEmissionGizmos: 1
   _enemyMask:
     serializedVersion: 2
     m_Bits: 512
   _checkRadius: 5
   _notifyRange: 6
+  _maxSampleDistance: 2.5
   _timeToActivate: 0
   _timeBetweenActivations: 0
   _repeat: 0
