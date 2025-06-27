@@ -74,30 +74,55 @@ public class EnemyDeadState : EnemyState
             // ...
         };
 
-        // Store the enabled value and disable the behaviours
         int behavioursLength = _behaviours.Length;
-        _enableds = new bool[behavioursLength];
+        int collidersLength = enemy.Colliders.Length;
+        _enableds = new bool[behavioursLength + collidersLength];
 
+        // Store enabled values and disable the behaviours
         for (int i = 0; i < behavioursLength; i++)
         {
             // Check if the behaviour is null
-            if (_behaviours[i] == null) continue;
+            Behaviour behaviour = _behaviours[i];
+            if (behaviour == null) continue;
 
-            _enableds[i] = _behaviours[i].enabled;
-            _behaviours[i].enabled = false;
+            _enableds[i] = behaviour.enabled;
+            behaviour.enabled = false;
+        }
+
+        // Store enabled values and disable the colliders
+        for (int i = 0; i < collidersLength; i++)
+        {
+            // Check if the collider is null
+            Collider collider = enemy.Colliders[i];
+            if (collider == null) continue;
+
+            _enableds[behavioursLength + i] = collider.enabled;
+            collider.enabled = false;
         }
     }
 
-    private void RestoreComponents(EnemyController _)
+    private void RestoreComponents(EnemyController enemy)
     {
         // Restore the behaviours
         int behavioursLength = _behaviours.Length;
         for (int i = 0; i < behavioursLength; i++)
         {
             // Check if the behaviour is null
-            if (_behaviours[i] == null) continue;
+            Behaviour behaviour = _behaviours[i];
+            if (behaviour == null) continue;
 
-            _behaviours[i].enabled = _enableds[i];
+            behaviour.enabled = _enableds[i];
+        }
+
+        // Restore the colliders
+        int collidersLength = enemy.Colliders.Length;
+        for (int i = 0; i < collidersLength; i++)
+        {
+            // Check if the collider is null
+            Collider collider = enemy.Colliders[i];
+            if (collider == null) continue;
+
+            collider.enabled = _enableds[behavioursLength + i];
         }
     }
 

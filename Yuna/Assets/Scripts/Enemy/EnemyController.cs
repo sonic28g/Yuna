@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     public Animator Animator { get; private set; }
     public AudioSource AudioSource { get; private set; }
     public Outline Outline { get; private set; }
+    public Collider[] Colliders { get; private set; }
 
     public GameObject SearchImage;
     public GameObject ChaseImage;
@@ -58,6 +59,7 @@ public class EnemyController : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         AudioSource = GetComponentInChildren<AudioSource>();
         Outline = GetComponentInChildren<Outline>();
+        Colliders = GetComponentsInChildren<Collider>();
 
         // Check for missing components or "invalid states" + initialization
         if (NavAgent == null) throw new Exception($"NavMeshAgent is missing in {name}");
