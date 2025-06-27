@@ -5,7 +5,7 @@ public class InspectableObject : InteractableObject
     private void Awake()
     {
         if (inspectableData == null) throw new System.Exception($"InspectableData is not assigned in {name}");
-        // inspectableData.InitInspectable();
+        inspectableData.InitInspectable();
     }
 
     private void Start()

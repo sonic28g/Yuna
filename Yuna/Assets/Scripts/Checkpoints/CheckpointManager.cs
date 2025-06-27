@@ -43,6 +43,7 @@ public class CheckpointManager : MonoBehaviour
         EnemyController.SaveAllEnemies();
         NPCController.SaveAllNPCs();
         DialogueSet.SaveAllDialogueSets();
+        InspectableData.SaveAllInspectables();
         if (GameController.Instance != null) GameController.Instance.SaveKanzashis();
         if (InventoryManager.instance != null) InventoryManager.instance.SaveInventory();
         if (TutorialManager.Instance != null) TutorialManager.Instance.SaveTutorial();
