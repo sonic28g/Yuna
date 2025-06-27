@@ -45,6 +45,7 @@ public class CheckpointManager : MonoBehaviour
         DialogueSet.SaveAllDialogueSets();
         if (GameController.Instance != null) GameController.Instance.SaveKanzashis();
         if (InventoryManager.instance != null) InventoryManager.instance.SaveInventory();
+        if (TutorialManager.Instance != null) TutorialManager.Instance.SaveTutorial();
 
         if (playSound) PlayCheckpointSound();
     }
