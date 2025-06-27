@@ -1,7 +1,5 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class Chiyo : MonoBehaviour
 {
@@ -11,7 +9,17 @@ public class Chiyo : MonoBehaviour
     [SerializeField] Sprite helperImage;
     [SerializeField] string helperText;
     private bool alreadyCompleted = false;
-    
+
+    private void Start()
+    {
+        if (DialogueManager.Instance != null && DialogueManager.Instance.HasSeenDialogue(dialogueID))
+        {
+            alreadyCompleted = true;
+            WeaponSwitcher.instance.canSwitchWeapons = true;
+            tessenPanel.SetActive(true);
+        }
+    }
+
     void Update()
     {
         if (!alreadyCompleted && DialogueManager.Instance != null && DialogueManager.Instance.HasSeenDialogue(dialogueID))
