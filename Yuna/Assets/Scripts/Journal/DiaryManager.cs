@@ -17,10 +17,6 @@ public class DiaryManager : MonoBehaviour
     private AudioSource _audioSource;
 
 
-    private void Start() {
-        diaryText.text = "No clues yet...";
-    }
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,6 +27,7 @@ public class DiaryManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        diaryText.text = "No clues yet...";
         _audioSource = GetComponent<AudioSource>();
     }
 
