@@ -17,18 +17,22 @@ public class DialogueInteractable : InteractableObject
         if (DialogueManager.Instance == null) return;
         if (!DialogueManager.Instance.HasSeenDialogue(dialogueSet.DialogueId)) return;
 
+        if (talkIndicator != null) Destroy(talkIndicator);
+
         // Interact with the inspectable object if the dialogue has already been seen
-        if (inspectableObject == null) return;
-        inspectableObject.Interact();
+        if (inspectableObject != null) inspectableObject.Interact();
+        
+        if (!dialogueSet.AreConditionsMet()) Destroy(this);
     }
 
     public override void Interact()
     {
         if (DialogueManager.Instance == null) return;
 
-        Destroy(talkIndicator);
-        
-        DialogueManager.Instance.StartDialogue(dialogueSet);
+        bool started = DialogueManager.Instance.StartDialogue(dialogueSet);
+        if (!started) return;
+
+        if (talkIndicator != null) Destroy(talkIndicator);
         DialogueManager.Instance.OnDialogueEnd += OnDialogueEnd;
     }
 
@@ -37,7 +41,6 @@ public class DialogueInteractable : InteractableObject
         DialogueManager.Instance.OnDialogueEnd -= OnDialogueEnd;
 
         if (inspectableObject != null) inspectableObject.Interact();
-        
-        Destroy(this);
+        if (!dialogueSet.AreConditionsMet()) Destroy(this);
     }
 }
