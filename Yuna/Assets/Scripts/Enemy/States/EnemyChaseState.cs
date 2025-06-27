@@ -35,6 +35,7 @@ public class EnemyChaseState : EnemyState
     public override void ExitState(EnemyController enemy)
     {
         enemy.ChaseImage.SetActive(false);
+        enemy.SoundDetection.EnableDetection();
 
         enemy.PlayerDetection.OnDetectionChanged -= OnDetectionChanged;
         enemy.PlayerDetection.SetDetectionMode(PlayerDetection.DetectionMode.Normal);
