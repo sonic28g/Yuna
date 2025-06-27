@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Linq;
 using System.IO;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class GameController : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     private readonly List<BGMTypeAreaTrigger> _currentBGMAreas = new();
     
     public GameObject tutorial;
+    [SerializeField] private PlayableDirector _director;
 
     private string _playerDir;
     private string KanzashiFilePath => $"{_playerDir}/kanzashis.json";
@@ -72,6 +73,14 @@ public class GameController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         yunasLetter.enabled = false;
+
+        if (_director == null) return;
+        if (TutorialManager.Instance == null || TutorialManager.Instance.currentIndex == 0) _director.Play();
+        else
+        {
+            _director.initialTime = _director.duration;
+            _director.Play();
+        }
     }
 
 
