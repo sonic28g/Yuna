@@ -1,4 +1,4 @@
-using System.Collections;
+using System.IO;
 using TMPro;
 using UnityEngine;
 
@@ -21,6 +21,8 @@ public class TutorialManager : MonoBehaviour
     {
         Instance = this;
         _audioSource = GetComponent<AudioSource>();
+
+        LoadTutorial();
     }
 
     void Start()
@@ -62,7 +64,55 @@ public class TutorialManager : MonoBehaviour
 
     public void MarkCompleted()
     {
+        if (currentTask == null) return;
         currentTask.completed = true;
         print("completed");
+    }
+
+
+    private void LoadTutorial()
+    {
+        string path = Application.persistentDataPath + "/Player/tutorial.json";
+        TutorialData tutorialData = new();
+
+        try
+        {
+            string json = File.ReadAllText(path);
+            tutorialData = JsonUtility.FromJson<TutorialData>(json);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("Failed to load tutorial data: " + e.Message);
+        }
+
+        currentIndex = tutorialData.CurrentIndex;
+    }
+
+    public void SaveTutorial()
+    {
+        string path = Application.persistentDataPath + "/Player/tutorial.json";
+        string directory = Path.GetDirectoryName(path);
+
+        TutorialData tutorialData = new() {
+            CurrentIndex = currentIndex
+        };
+
+        try
+        {
+            string json = JsonUtility.ToJson(tutorialData);
+            if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+            File.WriteAllText(path, json);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("Failed to save tutorial data: " + e.Message);
+        }
+    }
+
+
+    [System.Serializable]
+    public class TutorialData
+    {
+        public int CurrentIndex;
     }
 }
