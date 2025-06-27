@@ -112,6 +112,8 @@ public class EnemyHealth : MonoBehaviour
         CurrentHealth -= damage;
         Debug.Log($"{name} took {damage} damage from {weapon}.\nCurrent Health: {CurrentHealth} / {MaxHealth}");
 
+        gameObject.GetComponent<Animator>().SetTrigger("isHit");
+
         if (IsDead) Kill();
     }
 
