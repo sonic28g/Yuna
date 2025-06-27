@@ -34,3 +34,6 @@ MonoBehaviour:
   - _conditionType: 0
     _value: dialogue2
     _negated: 0
+  - _conditionType: 1
+    _value: 6
+    _negated: 0

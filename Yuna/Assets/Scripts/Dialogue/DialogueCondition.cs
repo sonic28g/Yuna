@@ -14,7 +14,7 @@ public class DialogueCondition
         bool result = _conditionType switch
         {
             DialogueConditionType.SeenDialogue => DialogueManager.Instance != null && DialogueManager.Instance.HasSeenDialogue(_value),
-            DialogueConditionType.NeedTutorialStep => TutorialManager.Instance != null && TutorialManager.Instance.currentIndex >= int.Parse(_value),
+            DialogueConditionType.NeedTutorialStep => TutorialManager.Instance != null && TutorialManager.Instance.currentIndex > int.Parse(_value),
             _ => throw new ArgumentOutOfRangeException()
         };
 
