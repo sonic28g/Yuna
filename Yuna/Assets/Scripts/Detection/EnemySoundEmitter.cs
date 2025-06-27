@@ -3,9 +3,10 @@ using UnityEngine.AI;
 
 public class EnemySoundEmitter : MonoBehaviour
 {
-    // Distance for sample NavMesh points + Time to destroy the emitter
-    private const float MAX_SAMPLE_DISTANCE = 1f;
-    private const float DESTRUCTION_TIME = 5f;
+    [SerializeField, Tooltip("If true, the emitter will use NavMesh to check if enemies are in notifyRange. If false, all the potential enemies are notified.")]
+    private bool _useNavMeshCheck = true;
+    [SerializeField, Tooltip("If true, if the sample position fails, the sound will be detected anyway. If false, the sound will not be detected if the sample position fails.")]
+    private bool _sampleFailsDetectSound = false;
 
     [Header("Emission Settings")]
     [SerializeField] private bool _showEmissionGizmos = true;
@@ -15,6 +16,8 @@ public class EnemySoundEmitter : MonoBehaviour
     private float _checkRadius = 8f;
     [SerializeField, Tooltip("Range to notify enemies")]
     private float _notifyRange = 5f;
+    [SerializeField, Tooltip("Maximum distance to sample NavMesh for path calculation")]
+    private float _maxSampleDistance = 1f;
 
     [Header("Activation Settings")]
     [SerializeField, Tooltip("Time between the activation and the sound emission")]
@@ -22,6 +25,9 @@ public class EnemySoundEmitter : MonoBehaviour
     [SerializeField, Tooltip("Time between each activation (if repeat is enabled)")]
     private float _timeBetweenActivations = 5f;
     [SerializeField] private bool _repeat = false;
+
+    // Time to destroy the emitter
+    private const float DESTRUCTION_TIME = 5f;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioClip[] _clips;
@@ -69,13 +75,16 @@ public class EnemySoundEmitter : MonoBehaviour
         {
             if (enemy == null) continue;
 
-            // Check if they have SoundDetection
+            // Check if the enemy have SoundDetection
             bool hasSoundDetection = enemy.TryGetComponent(out SoundDetection soundDetection);
             if (!hasSoundDetection) continue;
 
-            // Check if they are in range (with NavMesh)
-            Vector3 enemyPosition = enemy.transform.position;
-            float? navDistance = GetNavMeshDistance(emitterPosition, enemyPosition);
+            // Get distance with NavMesh (if applicable, otherwise set to 0).
+            // If the enemy is detected in case of NavMesh sampling failure and a failure occurs, the distance will be set to 0.
+            float? navDistance = _useNavMeshCheck ? GetNavMeshDistance(emitterPosition, enemy.transform.position) : 0f;
+            if (_sampleFailsDetectSound && !navDistance.HasValue) navDistance = 0f;
+
+            // Check if the enemy is in range
             if (!navDistance.HasValue || navDistance.Value > _notifyRange) continue;
 
             // Detect sound
@@ -87,16 +96,20 @@ public class EnemySoundEmitter : MonoBehaviour
     private float? GetNavMeshDistance(Vector3 start, Vector3 end)
     {
         // Snap to closest point on NavMesh
-        bool startSnapped = NavMesh.SamplePosition(start, out NavMeshHit startHit, MAX_SAMPLE_DISTANCE, NavMesh.AllAreas);
-        bool endSnapped = NavMesh.SamplePosition(end, out NavMeshHit endHit, MAX_SAMPLE_DISTANCE, NavMesh.AllAreas);
-        if (!startSnapped || !endSnapped) return null;
+        bool startSnapped = NavMesh.SamplePosition(start, out NavMeshHit startHit, _maxSampleDistance, NavMesh.AllAreas);
+        if (startSnapped) Debug.DrawLine(start, startHit.position, Color.gray, 2f);
+        else return null;
+
+        bool endSnapped = NavMesh.SamplePosition(end, out NavMeshHit endHit, _maxSampleDistance, NavMesh.AllAreas);
+        if (endSnapped) Debug.DrawLine(end, endHit.position, Color.red, 2f);
+        else return null;
 
         // Calculate the path
         NavMeshPath path = new();
         bool foundPath = NavMesh.CalculatePath(startHit.position, endHit.position, NavMesh.AllAreas, path);
 
         // Path not found or incomplete
-        if (!foundPath || path.status != NavMeshPathStatus.PathComplete) return null;
+        if (!foundPath || path.status != NavMeshPathStatus.PathComplete) return float.PositiveInfinity;
 
         // Get distance
         float pathDistance = 0f;
@@ -105,8 +118,8 @@ public class EnemySoundEmitter : MonoBehaviour
             pathDistance += Vector3.Distance(path.corners[i - 1], path.corners[i]);
 
             if (!_showEmissionGizmos) continue;
-            Color orange50 = new(1, 0.5f, 0, 0.5f); // Orange 50%
-            Debug.DrawLine(path.corners[i - 1], path.corners[i], orange50, 2f);
+            Color orange = new(1f, 0.5f, 0f, 1f); // Orange
+            Debug.DrawLine(path.corners[i - 1], path.corners[i], orange, 2f);
         }
 
         return pathDistance;
