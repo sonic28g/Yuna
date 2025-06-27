@@ -18,9 +18,6 @@ public class DialogueInteractable : InteractableObject
         if (!DialogueManager.Instance.HasSeenDialogue(dialogueSet.DialogueId)) return;
 
         if (talkIndicator != null) Destroy(talkIndicator);
-
-        // Interact with the inspectable object if the dialogue has already been seen
-        if (inspectableObject != null) inspectableObject.Interact();
         
         if (!dialogueSet.AreConditionsMet()) Destroy(this);
     }
