@@ -18,5 +18,5 @@ MonoBehaviour:
   inspectableDescription: "Discovered a gift, two ornate katanas, marked with a noble\u2019s
     crest.\nBeside it, a thank-you letter.\nLooks like a bribe\u2026\nLord Ishikawa
     is behind the plot to frame my father."
-  isFound: 1
+  isFound: 0
   isActive: 0

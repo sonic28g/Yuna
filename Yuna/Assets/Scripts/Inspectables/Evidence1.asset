@@ -18,5 +18,5 @@ MonoBehaviour:
   inspectableDescription: "Found papers hidden in a low-ranking guard\u2019s home.\nSomeone
     was practising my father\u2019s handwriting and signature.\nAmong them, weapon
     purchase orders and letters plotting against the shogun.\nClear signs of forgery."
-  isFound: 1
+  isFound: 0
   isActive: 0
