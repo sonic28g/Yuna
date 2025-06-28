@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
     [SerializeField] InspectableData diary;
     [SerializeField] GameObject thoughtPanel;
     [SerializeField] RoomCheck room;
-    [SerializeField] Diary yunasLetter;
+    [SerializeField] GameObject yunasLetter;
 
     private void Awake()
     {
@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        yunasLetter.enabled = false;
+        yunasLetter.SetActive(false);
 
         if (_director == null) return;
         if (TutorialManager.Instance == null || TutorialManager.Instance.currentIndex == 0) _director.Play();
@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
             if (room.isInRoom == true)
             {
                 text.text = "I need to write to the shogun and send him all the evidences I found.";
-                yunasLetter.enabled = true;
+                yunasLetter.SetActive(true);
             }
         }
     }

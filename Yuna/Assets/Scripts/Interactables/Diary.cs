@@ -7,6 +7,7 @@ public class Diary : InteractableObject
     [SerializeField] PlayableDirector finalScene;
     public override void Interact()
     {
+        
         finalScene.Play();
     }
 }
