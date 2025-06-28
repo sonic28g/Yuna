@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class Diary : InteractableObject
 {
+    [SerializeField] PlayableDirector finalScene;
     public override void Interact()
     {
-        print("The End");
+        finalScene.Play();
     }
 }

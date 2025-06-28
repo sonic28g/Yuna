@@ -7,7 +7,6 @@ public class SettingsUI : MonoBehaviour
     public TMP_Dropdown qualityDropdown;
     public TMP_Dropdown cascadeDropdown;
     public TMP_Dropdown msaaDropdown;
-    public Toggle highContrastToggle; // <-- novo
 
     bool isUpdatingUI;
 
@@ -35,10 +34,6 @@ public class SettingsUI : MonoBehaviour
             UpdateUI();
         });
 
-        highContrastToggle.onValueChanged.AddListener(isOn =>
-        {
-            SettingsManager.ApplyHighContrast(isOn);
-        });
     }
 
     void UpdateUI()
@@ -51,7 +46,6 @@ public class SettingsUI : MonoBehaviour
         cascadeDropdown.SetValueWithoutNotify(urp.shadowCascadeCount switch { 1 => 0, 2 => 1, 3 => 2, 4 => 3, _ => 0 });
         msaaDropdown.SetValueWithoutNotify(urp.msaaSampleCount switch { 1 => 0, 2 => 1, 4 => 2, 8 => 3, _ => 0 });
         qualityDropdown.SetValueWithoutNotify(QualitySettings.GetQualityLevel());
-        highContrastToggle.SetIsOnWithoutNotify(SettingsManager.IsHighContrastEnabled()); // atualiza estado do toggle
 
         isUpdatingUI = false;
     }
