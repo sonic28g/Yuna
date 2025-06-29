@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using TMPro;
 using UnityEngine.Playables;
+using UnityEngine.InputSystem;
 
 public class GameController : MonoBehaviour
 {
@@ -173,7 +174,6 @@ public class GameController : MonoBehaviour
             Debug.Log($"Failed to save kanzashi data for {name}: {e.Message}");
         }
     }
-
 
     [System.Serializable]
     private class KanzashiData

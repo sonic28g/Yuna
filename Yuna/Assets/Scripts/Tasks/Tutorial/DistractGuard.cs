@@ -20,7 +20,7 @@ public class DistractGuard : TaskData
         string aimKey = InputControlPath.ToHumanReadableString(aimBinding.effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
         string shootKey = InputControlPath.ToHumanReadableString(shootBinding.effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
 
-        helperText = $"Yuna can aim to throw kanzashis. Press {aimKey} to aim and {shootKey} to throw. If a kanzashi lands close to a guard it will alert them.";
+        helperText = $"Yuna can aim to throw kanzashis. Press {aimKey} to aim and {shootKey} to throw. If a kanzashi lands close to a guard it will alert them, you can use this also to distract them.";
         UIManager.instance.ShowHelper(helperTitle, helperText, helperImage);
 
         _inputs = GameObject.FindWithTag("Player").GetComponent<StarterAssetsInputs>();
