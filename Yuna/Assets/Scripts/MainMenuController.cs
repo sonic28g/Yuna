@@ -23,6 +23,7 @@ public class MainMenuController : MonoBehaviour
         TryDelete("Dialogue");
         TryDelete("Enemies");
         TryDelete("NPCs");
+        TryDelete("Inspectable");
         ChangeToScene(sceneName);
     }
 
