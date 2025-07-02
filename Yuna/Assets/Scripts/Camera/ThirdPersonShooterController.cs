@@ -83,23 +83,23 @@ public class ThirdPersonShooterController : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
 
-            bool isPointingAtGuard = false;
+            bool isPointingAtAlly = false;
 
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, distance, enemyMask))
             {
-                isPointingAtGuard = hit.collider.CompareTag("Guard");
+                isPointingAtAlly = hit.collider.CompareTag("Guard") || hit.collider.CompareTag("NPC");
 
-                aimUI.color = isPointingAtGuard ? transparentColor : normalColor;
+                aimUI.color = isPointingAtAlly ? transparentColor : normalColor;
             }
             else
             {
                 aimUI.color = normalColor;
             }
 
-            if (starterAssetsInputs.shoot && !isPointingAtGuard && InventoryManager.instance.HasAmmo("Kanzashi"))
+            if (starterAssetsInputs.shoot && !isPointingAtAlly && InventoryManager.instance.HasAmmo("Kanzashi"))
             {
                 InventoryManager.instance.UseAmmo("Kanzashi");
 

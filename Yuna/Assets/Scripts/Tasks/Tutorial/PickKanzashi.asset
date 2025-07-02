@@ -15,8 +15,9 @@ MonoBehaviour:
   taskID: tut_3
   type: 0
   title: Pick a kanzashi
-  description: I need to leave this room... But first I need kanzashis.
-  completed: 1
+  description: I need to leave this room... But first I need to get as many kanzashis
+    as I can.
+  completed: 0
   helperTitle: Kanzashi
   helperText: Kanzashi are traditional Japanese hairpins that Yuna can throw with
     precision. They distract guards if they land nearby, alerting them, but also

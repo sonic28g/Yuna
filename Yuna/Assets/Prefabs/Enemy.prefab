@@ -2306,23 +2306,23 @@ MonoBehaviour:
   _showFOVGizmos: 1
   _eyesTransform: {fileID: 6039743489875697275}
   _normalParameters:
-    <MaxVisionDistance>k__BackingField: 14.46
-    <MaxCloseDistance>k__BackingField: 1.44
-    <FieldOfView>k__BackingField: 146.6
+    <MaxVisionDistance>k__BackingField: 43
+    <MaxCloseDistance>k__BackingField: 1.3
+    <FieldOfView>k__BackingField: 183.5
     <DetectionCooldown>k__BackingField: 0.8
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 1
   _chaseParameters:
-    <MaxVisionDistance>k__BackingField: 20
-    <MaxCloseDistance>k__BackingField: 4
-    <FieldOfView>k__BackingField: 80
+    <MaxVisionDistance>k__BackingField: 43
+    <MaxCloseDistance>k__BackingField: 1.3
+    <FieldOfView>k__BackingField: 140
     <DetectionCooldown>k__BackingField: 0.6
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 2
   _searchParameters:
-    <MaxVisionDistance>k__BackingField: 26
-    <MaxCloseDistance>k__BackingField: 4
-    <FieldOfView>k__BackingField: 60
+    <MaxVisionDistance>k__BackingField: 43
+    <MaxCloseDistance>k__BackingField: 1.3
+    <FieldOfView>k__BackingField: 110
     <DetectionCooldown>k__BackingField: 1
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 1
@@ -52199,8 +52199,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 421475013780715995}
-  - component: {fileID: 7168279394385495544}
   - component: {fileID: 5576350853924840267}
+  - component: {fileID: 1806829640295090512}
   m_Layer: 7
   m_Name: BackCollider
   m_TagString: Untagged
@@ -52223,29 +52223,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6396323605542105574}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &7168279394385495544
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7869414123893929120}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2815238
-  m_Height: 1.6600449
-  m_Direction: 1
-  m_Center: {x: 0.001962632, y: 1.0023705, z: -0.26669356}
 --- !u!114 &5576350853924840267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52263,6 +52240,27 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e76d5d5ce116bc446a90e4d6aa0f95e1, type: 3}
   - {fileID: 8300000, guid: 8f1b18324c9f33e4fbf82690ebbabb24, type: 3}
   _audioSource: {fileID: 894682429690327128}
+--- !u!65 &1806829640295090512
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7869414123893929120}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.78354484, y: 1.811638, z: 0.5451647}
+  m_Center: {x: -0.002921324, y: 0.9670512, z: -0.30587134}
 --- !u!1 &7978996200844348081
 GameObject:
   m_ObjectHideFlags: 0
