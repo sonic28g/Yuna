@@ -7,11 +7,13 @@ public class Attack : InteractableObject
     [Header("Sound Settings")]
     [SerializeField] private AudioClip[] _tessenClips;
     [SerializeField] private AudioSource _audioSource;
+    private PlayerInteraction playerInteraction;
 
 
     private void Start()
     {
         thirdPersonShooterController = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonShooterController>();
+        playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>();
     }
 
 
@@ -25,6 +27,7 @@ public class Attack : InteractableObject
         EnemyHealth enemyHealth = gameObject.GetComponentInParent<EnemyHealth>();
         if (enemyHealth != null) enemyHealth.TakeDamage(WeaponType.Tessen);
 
+        playerInteraction.ClearNearbyObject();
         gameObject.SetActive(false);
     }
 

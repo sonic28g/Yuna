@@ -20,7 +20,7 @@ public class WeaponObject : InteractableObject
     [SerializeField] private GameObject _soundEmitterPrefab;
 
     [SerializeField] private AudioClip[] _startClips;
-    [SerializeField] private PlayerInteraction playerInteraction;
+    private PlayerInteraction playerInteraction;
 
 
 

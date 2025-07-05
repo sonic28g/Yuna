@@ -30,7 +30,7 @@ Material:
   - _SPECULARHIGHLIGHTS_OFF
   - _SPECULAR_SETUP
   m_InvalidKeywords: []
-  m_LightmapFlags: 0
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: 2000
@@ -134,7 +134,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.088388324, g: 0.088388324, b: 0.088388324, a: 1}
+    - _EmissionColor: {r: 0.00073146436, g: 0.00073146436, b: 0.00073146436, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

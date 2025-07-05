@@ -22,6 +22,7 @@ public class MenuController : MonoBehaviour
     public GameObject journalMenu;
     public GameObject optionsMenu;
     public GameObject briefingMenu;
+    public GameObject helperPanel;
 
     private void Awake()
     {
@@ -49,6 +50,11 @@ public class MenuController : MonoBehaviour
         {
             ToggleJournal();
             _inputs.triggerJournal = false;
+        }
+
+        if (helperPanel.activeSelf)
+        {
+            PauseGame();
         }
     }
 

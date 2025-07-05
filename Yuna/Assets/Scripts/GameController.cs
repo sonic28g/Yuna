@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private BGMType _defaultBGMType = BGMType.Outside;
     private readonly List<BGMTypeAreaTrigger> _currentBGMAreas = new();
-    
+
     public GameObject tutorial;
     [SerializeField] private PlayableDirector _director;
 
@@ -71,8 +71,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        SetCursor(false);
         yunasLetter.SetActive(false);
 
         if (_director == null) return;
@@ -85,7 +84,8 @@ public class GameController : MonoBehaviour
     }
 
 
-    private void Update() {
+    private void Update()
+    {
         if (letter.isFound && diary.isFound)
         {
             thoughtPanel.SetActive(true);
@@ -108,7 +108,8 @@ public class GameController : MonoBehaviour
 
     private GameObject[] GetKanzashiObjects() => GameObject.FindGameObjectsWithTag(KANZASHI_TAG);
     private KanzashiData.KanzashiEntry[] GetKanzashiEntries() => GetKanzashiObjects()
-        .Select(go => new KanzashiData.KanzashiEntry {
+        .Select(go => new KanzashiData.KanzashiEntry
+        {
             Position = go.transform.position,
             Rotation = go.transform.rotation
         }).ToArray();
@@ -185,6 +186,20 @@ public class GameController : MonoBehaviour
         {
             public Vector3 Position;
             public Quaternion Rotation;
+        }
+    }
+
+    public void SetCursor(bool mode)
+    {
+        if (mode == false)
+        {
+            Cursor.visible = mode;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = mode;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
