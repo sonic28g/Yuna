@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectableID: Clue4
   type: 1
-  inspectableTitle: Diary Entry #4
+  inspectableTitle: Entry #4
   inspectableDescription: "I found a guard\u2019s helmet on the ground\u2014one of
     my father\u2019s.\nIt might belong to the missing man.\nWhy was it left behind?\nSomething
     feels wrong."

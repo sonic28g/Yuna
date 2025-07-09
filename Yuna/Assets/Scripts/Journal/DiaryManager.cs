@@ -6,7 +6,8 @@ public class DiaryManager : MonoBehaviour
 {
     public static DiaryManager Instance { get; private set; }
 
-    public TextMeshProUGUI diaryText;
+    public TextMeshProUGUI diaryText1;
+    public TextMeshProUGUI diaryText2;
 
     private readonly List<InspectableData> _clues = new();
 
@@ -27,7 +28,7 @@ public class DiaryManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        diaryText.text = "No clues yet...";
+        diaryText1.text = "No clues yet...";
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -36,10 +37,21 @@ public class DiaryManager : MonoBehaviour
         if (inspectableData == null) return;
         if (_clues.Contains(inspectableData)) return;
 
-        if (_clues.Count == 0) diaryText.text = "";
+        if (_clues.Count == 0)
+            diaryText1.text = "";
 
-        diaryText.text += inspectableData.inspectableTitle + ": " + inspectableData.inspectableDescription + "\n";
+
+        if (_clues.Count < 2)
+        {
+            diaryText1.text += inspectableData.inspectableTitle + ": " + inspectableData.inspectableDescription + "\n";
+        }
+        else if (_clues.Count >= 2)
+        {
+            diaryText2.text += inspectableData.inspectableTitle + ": " + inspectableData.inspectableDescription + "\n";
+        }
+        
         _clues.Add(inspectableData);
+
     }
 
 

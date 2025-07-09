@@ -2306,21 +2306,21 @@ MonoBehaviour:
   _showFOVGizmos: 1
   _eyesTransform: {fileID: 6039743489875697275}
   _normalParameters:
-    <MaxVisionDistance>k__BackingField: 43
+    <MaxVisionDistance>k__BackingField: 25.7
     <MaxCloseDistance>k__BackingField: 1.3
     <FieldOfView>k__BackingField: 183.5
     <DetectionCooldown>k__BackingField: 0.8
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 1
   _chaseParameters:
-    <MaxVisionDistance>k__BackingField: 43
+    <MaxVisionDistance>k__BackingField: 25.7
     <MaxCloseDistance>k__BackingField: 1.3
     <FieldOfView>k__BackingField: 140
     <DetectionCooldown>k__BackingField: 0.6
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 2
   _searchParameters:
-    <MaxVisionDistance>k__BackingField: 43
+    <MaxVisionDistance>k__BackingField: 25.7
     <MaxCloseDistance>k__BackingField: 1.3
     <FieldOfView>k__BackingField: 110
     <DetectionCooldown>k__BackingField: 1
