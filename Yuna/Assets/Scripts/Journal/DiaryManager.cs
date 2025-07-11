@@ -43,11 +43,11 @@ public class DiaryManager : MonoBehaviour
 
         if (_clues.Count < 2)
         {
-            diaryText1.text += inspectableData.inspectableTitle + ": " + inspectableData.inspectableDescription + "\n";
+            diaryText1.text += inspectableData.inspectableTitle + ": " + inspectableData.inspectableDescription + "\n\n";
         }
         else if (_clues.Count >= 2)
         {
-            diaryText2.text += inspectableData.inspectableTitle + ": " + inspectableData.inspectableDescription + "\n";
+            diaryText2.text += inspectableData.inspectableTitle + ": " + inspectableData.inspectableDescription + "\n\n";
         }
         
         _clues.Add(inspectableData);

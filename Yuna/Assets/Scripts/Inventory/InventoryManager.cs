@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
     private readonly Dictionary<string, int> ammoDictionary = new();
+
+    private bool hasTessen = false;
 
     private AudioSource _audioSource;
     [SerializeField] private AudioClip[] _takeClips;
@@ -40,6 +43,11 @@ public class InventoryManager : MonoBehaviour
 
         int randomIndex = Random.Range(0, _takeClips.Length);
         _audioSource.PlayOneShot(_takeClips[randomIndex]);
+    }
+
+    public void EnableTessen()
+    {
+        hasTessen = true;
     }
 
 
@@ -88,9 +96,13 @@ public class InventoryManager : MonoBehaviour
             foreach (var entry in _invData.InventoryEntries)
                 if (!string.IsNullOrEmpty(entry.WeaponName)) ammoDictionary[entry.WeaponName] = entry.AmmoCount;
 
+        if (_invData != null)
+            hasTessen = _invData.HasTessen;
+
         // Update UI
-        if (UIManager.instance == null) return;
+            if (UIManager.instance == null) return;
         foreach (var kvp in ammoDictionary) UIManager.instance.UpdateAmmoUI(kvp.Key, kvp.Value);
+
     }
 
     private void LoadFromFile()
@@ -124,6 +136,8 @@ public class InventoryManager : MonoBehaviour
             })
             .ToArray();
 
+        _invData.HasTessen = hasTessen;
+
         try
         {
             // Convert the data to JSON
@@ -146,6 +160,7 @@ public class InventoryManager : MonoBehaviour
     private class InventoryData
     {
         public InvDataEntry[] InventoryEntries;
+        public bool HasTessen;
 
         [System.Serializable]
         public class InvDataEntry

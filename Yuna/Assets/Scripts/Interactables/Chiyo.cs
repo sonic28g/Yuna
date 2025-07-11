@@ -17,6 +17,7 @@ public class Chiyo : MonoBehaviour
             alreadyCompleted = true;
             WeaponSwitcher.instance.canSwitchWeapons = true;
             tessenPanel.SetActive(true);
+            InventoryManager.instance.EnableTessen(); 
         }
     }
 

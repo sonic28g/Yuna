@@ -18,5 +18,5 @@ MonoBehaviour:
   inspectableDescription: "I found a guard\u2019s helmet on the ground, one of my
     father\u2019s. It might belong to the missing man. Why was it left behind? I
     need to investigate the village more..."
-  isFound: 1
-  isActive: 0
+  isFound: 0
+  isActive: 1

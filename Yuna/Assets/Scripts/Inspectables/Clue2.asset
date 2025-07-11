@@ -18,5 +18,5 @@ MonoBehaviour:
   inspectableDescription: "Spoke with the guard\u2019s wife and she said he disappeared
     after being dismissed. She doesn\u2019t believe it, he warned her to be careful...
     He left alone and never returned."
-  isFound: 1
-  isActive: 0
+  isFound: 0
+  isActive: 1
