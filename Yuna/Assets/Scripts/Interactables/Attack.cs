@@ -28,7 +28,7 @@ public class Attack : InteractableObject
         if (enemyHealth != null) enemyHealth.TakeDamage(WeaponType.Tessen);
 
         playerInteraction.ClearNearbyObject();
-        gameObject.SetActive(false);
+        this.enabled = false;
     }
 
     private void PlayTessenSound()

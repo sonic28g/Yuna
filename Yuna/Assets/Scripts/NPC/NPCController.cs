@@ -23,6 +23,8 @@ public class NPCController : MonoBehaviour
     public EnemyHealth EnemyHealth { get; private set; }
     public Animator Animator { get; private set; }
     public AudioSource AudioSource { get; private set; }
+
+    public Attack backAttack;
     // ...
 
     // States
@@ -46,6 +48,7 @@ public class NPCController : MonoBehaviour
         EnemyHealth = GetComponentInChildren<EnemyHealth>();
         Animator = GetComponentInChildren<Animator>();
         AudioSource = GetComponentInChildren<AudioSource>();
+        backAttack = GetComponentInChildren<Attack>();
 
         // Check for missing components or "invalid states" + initialization
         if (NPCInterestPoints == null) throw new Exception($"NPCInterestPoints is missing in {name}");
@@ -130,6 +133,7 @@ public class NPCController : MonoBehaviour
 
         // Reset Health and current state
         EnemyHealth.ResetHealth(_npcDir);
+        backAttack.enabled = true;
         TransitionToState(WanderState);
     }
 
