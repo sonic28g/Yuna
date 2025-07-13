@@ -38,7 +38,7 @@ public class CheckpointManager : MonoBehaviour
 
     public void SetCheckpoint(bool playSound = true)
     {
-        SaveCheckpoint();
+        bool checkpointSuccess = SaveCheckpoint();
 
         EnemyController.SaveAllEnemies();
         NPCController.SaveAllNPCs();
@@ -47,6 +47,9 @@ public class CheckpointManager : MonoBehaviour
         if (GameController.Instance != null) GameController.Instance.SaveKanzashis();
         if (InventoryManager.instance != null) InventoryManager.instance.SaveInventory();
         if (TutorialManager.Instance != null) TutorialManager.Instance.SaveTutorial();
+
+        if(checkpointSuccess)
+            StartCoroutine(showAndHide(checkpointPanel, 2f));
 
         if (playSound) PlayCheckpointSound();
     }
@@ -60,6 +63,7 @@ public class CheckpointManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        Debug.Log("respawn player");
         StartCoroutine(RespawnCoroutine());
     }
 
@@ -68,7 +72,7 @@ public class CheckpointManager : MonoBehaviour
         foundPanel.SetActive(true);
         foundPanel.GetComponent<Animator>().SetTrigger("found");
         yield return new WaitForSeconds(1);
-
+        Debug.Log("respawn player 2");
         ResetCheckpoint();
 
         EnemyController.ResetAllEnemies();
@@ -78,7 +82,7 @@ public class CheckpointManager : MonoBehaviour
 
         yield return new WaitForSeconds(2);
         foundPanel.SetActive(false);
-
+        Debug.Log("respawn player 4");
     }
 
 
@@ -89,6 +93,8 @@ public class CheckpointManager : MonoBehaviour
 
         // Set player position and rotation from checkpoint data
         player.transform.SetPositionAndRotation(_checkData.PlayerPosition, _checkData.PlayerRotation);
+
+        Debug.Log("respawn player 3");
     }
 
     private void LoadFromFile()
@@ -116,7 +122,7 @@ public class CheckpointManager : MonoBehaviour
     }
 
 
-    public void SaveCheckpoint()
+    public bool SaveCheckpoint()
     {
         // Save data variable
         _checkData ??= new();
@@ -129,16 +135,18 @@ public class CheckpointManager : MonoBehaviour
             string json = JsonUtility.ToJson(_checkData);
 
             // Create the directory if it doesn't exist
-            if (!Directory.Exists(_playerDir)) Directory.CreateDirectory(_playerDir);
-
-            StartCoroutine(showAndHide(checkpointPanel, 2f));
+            if (!Directory.Exists(_playerDir))
+                Directory.CreateDirectory(_playerDir);
 
             // Save the JSON to a file
             File.WriteAllText(CheckpointFilePath, json);
+
+            return true;
         }
         catch (System.Exception e)
         {
             Debug.Log($"Failed to save checkpoint data for {name}: {e.Message}");
+            return false;
         }
     }
 

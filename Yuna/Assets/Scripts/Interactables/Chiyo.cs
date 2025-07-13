@@ -9,15 +9,19 @@ public class Chiyo : MonoBehaviour
     [SerializeField] Sprite helperImage;
     [SerializeField] string helperText;
     private bool alreadyCompleted = false;
+    private PlayerInteraction playerInteraction;
+
 
     private void Start()
     {
+        playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>();
+
         if (DialogueManager.Instance != null && DialogueManager.Instance.HasSeenDialogue(dialogueID))
         {
             alreadyCompleted = true;
             WeaponSwitcher.instance.canSwitchWeapons = true;
             tessenPanel.SetActive(true);
-            InventoryManager.instance.EnableTessen(); 
+            InventoryManager.instance.EnableTessen();
         }
     }
 
@@ -32,14 +36,15 @@ public class Chiyo : MonoBehaviour
             TutorialManager.Instance.MarkCompleted();
 
             var playerInput = GameObject.FindWithTag("Player").GetComponent<PlayerInput>();
-            var attackBinding = playerInput.actions["Shoot"].bindings[0]; 
+            var attackBinding = playerInput.actions["Shoot"].bindings[0];
             string attackKey = InputControlPath.ToHumanReadableString(
-                attackBinding.effectivePath, 
+                attackBinding.effectivePath,
                 InputControlPath.HumanReadableStringOptions.OmitDevice);
 
             helperText = $"Yuna can now switch weapons by pressing key 1 or 2. Press {attackKey} to use the Tessen. The tessen allows Yuna to attack enemies in the back.";
 
             UIManager.instance.ShowHelper(helperTitle, helperText, helperImage);
+            playerInteraction.ClearNearbyObject();
         }
     }
 }

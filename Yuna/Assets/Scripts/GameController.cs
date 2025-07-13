@@ -31,9 +31,11 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
         BGMTypeAreaTrigger.OnBGMTypeAreaChanged += HandleBGMAreaChanged;
 
         _playerDir = $"{Application.persistentDataPath}/Player";
+
         ResetKanzashis();
     }
 
@@ -71,6 +73,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        CheckpointManager.Instance.SaveCheckpoint();
         SetCursor(false);
         yunasLetter.SetActive(false);
 
