@@ -16,4 +16,4 @@ MonoBehaviour:
   type: 0
   title: Leave room
   description: Now I can leave the room.
-  completed: 1
+  completed: 0

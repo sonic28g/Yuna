@@ -29,7 +29,7 @@ public class MainMenuController : MonoBehaviour
 
     public void ChangeToScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
     public void CloseGame()

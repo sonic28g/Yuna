@@ -27,11 +27,12 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject thoughtPanel;
     [SerializeField] RoomCheck room;
     [SerializeField] GameObject yunasLetter;
+    
 
     private void Awake()
     {
         Instance = this;
-        
+
         BGMTypeAreaTrigger.OnBGMTypeAreaChanged += HandleBGMAreaChanged;
 
         _playerDir = $"{Application.persistentDataPath}/Player";
@@ -73,7 +74,9 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        CheckpointManager.Instance.SaveCheckpoint();
+        if (!Directory.Exists(_playerDir))
+            CheckpointManager.Instance.SaveCheckpoint();
+            
         SetCursor(false);
         yunasLetter.SetActive(false);
 

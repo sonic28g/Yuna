@@ -16,5 +16,5 @@ MonoBehaviour:
   type: 0
   title: Listen Conversation
   description: Maybe I should listen to what the guards are saying.
-  completed: 1
+  completed: 0
   dialogueID: dialogue2

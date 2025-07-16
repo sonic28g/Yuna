@@ -188,7 +188,7 @@ public class EnemyController : MonoBehaviour
     private void SaveEnemyData()
     {
         // Only if is dead
-        if (!EnemyHealth.IsDead) return;
+        if (EnemyHealth.IsDead) return;
 
         // Save data variable
         _enemyData ??= new EnemyData();

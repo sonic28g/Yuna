@@ -20,13 +20,27 @@ public class WeaponObject : InteractableObject
     [SerializeField] private GameObject _soundEmitterPrefab;
 
     [SerializeField] private AudioClip[] _startClips;
+    private GameObject player;
     private PlayerInteraction playerInteraction;
-
 
 
     private void Awake()
     {
-        playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>();
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            playerInteraction = player.GetComponent<PlayerInteraction>();
+
+            if (playerInteraction == null)
+            {
+                Debug.Log("PlayerInteraction not found.");
+            }
+        }
+        else
+        {
+            Debug.Log("Player not found.");
+        }
     }
 
     public void PlayThrowSound()
