@@ -22,7 +22,6 @@ public class EvidenceManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void UpdateEvidence(InspectableData evidenceData)

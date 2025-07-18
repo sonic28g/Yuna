@@ -32,6 +32,22 @@ public class CheckpointManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         _playerDir = $"{Application.persistentDataPath}/Player";
+    }
+
+    private void Start()
+    {
+        StartCoroutine(WaitForPlayerAndReset());
+    }
+
+    private IEnumerator WaitForPlayerAndReset()
+    {
+        while (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag(PLAYER_TAG);
+            yield return null; // Espera um frame
+        }
+
+        yield return null; // Garante que tudo foi inicializado
         ResetCheckpoint();
     }
 
@@ -48,7 +64,7 @@ public class CheckpointManager : MonoBehaviour
         if (InventoryManager.instance != null) InventoryManager.instance.SaveInventory();
         if (TutorialManager.Instance != null) TutorialManager.Instance.SaveTutorial();
 
-        if(checkpointSuccess)
+        if (checkpointSuccess)
             StartCoroutine(showAndHide(checkpointPanel, 2f));
 
         if (playSound) PlayCheckpointSound();
@@ -72,7 +88,6 @@ public class CheckpointManager : MonoBehaviour
         foundPanel.SetActive(true);
         foundPanel.GetComponent<Animator>().SetTrigger("found");
         yield return new WaitForSeconds(1);
-        Debug.Log("respawn player 2");
         ResetCheckpoint();
 
         EnemyController.ResetAllEnemies();
@@ -82,19 +97,24 @@ public class CheckpointManager : MonoBehaviour
 
         yield return new WaitForSeconds(2);
         foundPanel.SetActive(false);
-        Debug.Log("respawn player 4");
     }
 
 
     public void ResetCheckpoint()
     {
         LoadFromFile();
-        if (_checkData == null || player == null) return;
+
+        if (_checkData == null || player == null)
+        {
+            print("Data or player null from file");
+            return;
+        }
 
         // Set player position and rotation from checkpoint data
         player.transform.SetPositionAndRotation(_checkData.PlayerPosition, _checkData.PlayerRotation);
+        print(player.transform.position);
+        print(_checkData.PlayerPosition);
 
-        Debug.Log("respawn player 3");
     }
 
     private void LoadFromFile()

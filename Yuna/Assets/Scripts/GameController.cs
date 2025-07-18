@@ -5,6 +5,8 @@ using System.IO;
 using TMPro;
 using UnityEngine.Playables;
 using UnityEngine.InputSystem;
+using System.Collections;
+using UnityEngine.AI;
 
 public class GameController : MonoBehaviour
 {
@@ -27,7 +29,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject thoughtPanel;
     [SerializeField] RoomCheck room;
     [SerializeField] GameObject yunasLetter;
-    
+
 
     private void Awake()
     {
@@ -38,6 +40,9 @@ public class GameController : MonoBehaviour
         _playerDir = $"{Application.persistentDataPath}/Player";
 
         ResetKanzashis();
+
+        MenuController.Instance.ResumeGame();
+        //StartCoroutine(EnableAgentsAfterDelay());
     }
 
     private void OnDestroy() => BGMTypeAreaTrigger.OnBGMTypeAreaChanged -= HandleBGMAreaChanged;
@@ -76,7 +81,7 @@ public class GameController : MonoBehaviour
     {
         if (!Directory.Exists(_playerDir))
             CheckpointManager.Instance.SaveCheckpoint();
-            
+
         SetCursor(false);
         yunasLetter.SetActive(false);
 
@@ -206,6 +211,16 @@ public class GameController : MonoBehaviour
         {
             Cursor.visible = mode;
             Cursor.lockState = CursorLockMode.None;
+        }
+    }
+    
+    private IEnumerator EnableAgentsAfterDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        foreach (NavMeshAgent agent in FindObjectsOfType<NavMeshAgent>())
+        {
+            if (!agent.enabled)
+                agent.enabled = true;
         }
     }
 }

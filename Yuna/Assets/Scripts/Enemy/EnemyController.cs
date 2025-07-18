@@ -86,8 +86,10 @@ public class EnemyController : MonoBehaviour
         _saveAllEnemiesAction += SaveEnemy;
     }
 
+    private void Start() {
+        TransitionToState(PatrolState);
+    }
 
-    private void Start() => TransitionToState(PatrolState);
     private void OnDeath() => TransitionToState(DeadState);
 
     private void OnDestroy()

@@ -20,7 +20,6 @@ public class PlayerLocationManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // opcional, se quiseres manter entre cenas
         }
         else
         {

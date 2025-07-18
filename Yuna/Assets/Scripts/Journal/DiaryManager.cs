@@ -26,7 +26,6 @@ public class DiaryManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         diaryText1.text = "No clues yet...";
         _audioSource = GetComponent<AudioSource>();

@@ -33,7 +33,6 @@ public class MenuController : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Opcional, caso queiras que persista entre cenas
     }
 
     private void Update()
@@ -56,6 +55,7 @@ public class MenuController : MonoBehaviour
         {
             PauseGame();
         }
+
     }
 
     private void HandleShowMenu()
