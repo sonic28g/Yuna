@@ -38,6 +38,7 @@ public class DialogueManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
+
         // Disable the dialogue UI at the start
         if (_dialogueUI != null) _dialogueUI.SetActive(false);
 

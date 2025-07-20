@@ -86,7 +86,9 @@ public class GameController : MonoBehaviour
         yunasLetter.SetActive(false);
 
         if (_director == null) return;
-        if (TutorialManager.Instance == null || TutorialManager.Instance.currentIndex == 0) _director.Play();
+
+        if (TutorialManager.Instance == null || TutorialManager.Instance.currentIndex == 0)
+            _director.Play();
         else
         {
             _director.initialTime = _director.duration;

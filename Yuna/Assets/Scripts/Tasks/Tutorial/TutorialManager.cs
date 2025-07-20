@@ -5,7 +5,7 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance;
-    public int currentIndex { get; private set; } = 0;
+    [SerializeField] public int currentIndex  = 0;
 
     private TaskData currentTask;
     public TutorialSequence tutorialSequence;
@@ -21,7 +21,6 @@ public class TutorialManager : MonoBehaviour
     {
         Instance = this;
         _audioSource = GetComponent<AudioSource>();
-
         LoadTutorial();
     }
 
@@ -79,13 +78,14 @@ public class TutorialManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             tutorialData = JsonUtility.FromJson<TutorialData>(json);
+            currentIndex = tutorialData.CurrentIndex;
         }
         catch (System.Exception e)
         {
+            currentIndex = 0;
             Debug.Log("Failed to load tutorial data: " + e.Message);
         }
 
-        currentIndex = tutorialData.CurrentIndex;
     }
 
     public void SaveTutorial()

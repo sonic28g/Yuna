@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Yuna/Dialogue/DialogueSet")]
-public class DialogueSet : ScriptableObject
+public class DialogueSet : ScriptableObject, IResettable
 {
     private string _dialogueSetDir;
     private string DialogueSetFilePath => Path.Combine(_dialogueSetDir, $"{DialogueId}.json");
@@ -98,6 +98,11 @@ public class DialogueSet : ScriptableObject
         }
     }
 
+    public void ResetState()
+    {
+        Debug.Log(_dialogueData.Seen);
+        _dialogueData.Seen = false;
+    }
 
     [Serializable]
     private class DialogueData

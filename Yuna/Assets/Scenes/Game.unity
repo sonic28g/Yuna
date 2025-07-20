@@ -812,6 +812,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03224465
       objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.022175912
@@ -7216,6 +7220,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03224465
       objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.022175912
@@ -9936,7 +9944,7 @@ PrefabInstance:
     - target: {fileID: 8477897391351171217, guid: e839bf89a646a4d46b2cc8d79c394ccf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 863827389}
     - target: {fileID: 8477897391351171217, guid: e839bf89a646a4d46b2cc8d79c394ccf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -9944,14 +9952,14 @@ PrefabInstance:
     - target: {fileID: 8477897391351171217, guid: e839bf89a646a4d46b2cc8d79c394ccf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 863827389}
     - target: {fileID: 8477897391351171217, guid: e839bf89a646a4d46b2cc8d79c394ccf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ToggleKeybindsShowing
       objectReference: {fileID: 0}
     - target: {fileID: 8477897391351171217, guid: e839bf89a646a4d46b2cc8d79c394ccf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: 
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 8477897391351171217, guid: e839bf89a646a4d46b2cc8d79c394ccf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
@@ -11051,7 +11059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "FPS: 18,19 (54,97 ms)\nM\xE9dia FPS: 16,30"
+  m_text: "FPS: 18,86 (53,02 ms)\nM\xE9dia FPS: 14,58"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15471,6 +15479,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.09632485
       objectReference: {fileID: 0}
+    - target: {fileID: 6304381182009824868, guid: a8ba863fc05304ce0b3f40b6b077d115, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6348305746171268929, guid: a8ba863fc05304ce0b3f40b6b077d115, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.000012715592
@@ -16278,6 +16290,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21397,6 +21413,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6304381182009824868, guid: a8ba863fc05304ce0b3f40b6b077d115, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6348305746171268929, guid: a8ba863fc05304ce0b3f40b6b077d115, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0000035762614
@@ -24971,6 +24991,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03224465
       objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.022175912
@@ -27526,6 +27550,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34064,6 +34092,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44394,6 +44426,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03224465
       objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.022175912
@@ -47951,6 +47987,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53041,6 +53081,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 863827389}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: ToggleOptionsShowing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2123501722}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -53053,19 +53105,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: ToggleOptionsShowing
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 863827389}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: TogglePauseShowing
         m_Mode: 6
@@ -53472,6 +53512,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58506,6 +58550,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03224465
       objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.022175912
@@ -61441,6 +61489,10 @@ PrefabInstance:
     - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_Speed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71232,6 +71284,10 @@ PrefabInstance:
       value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 6304381182009824868, guid: a8ba863fc05304ce0b3f40b6b077d115, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304381182009824868, guid: a8ba863fc05304ce0b3f40b6b077d115, type: 3}
       propertyPath: m_ObstacleAvoidanceType
       value: 4
       objectReference: {fileID: 0}
@@ -75710,6 +75766,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03224465
       objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.022175912
@@ -79948,6 +80008,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.096324794
       objectReference: {fileID: 0}
+    - target: {fileID: 6304381182009824868, guid: a8ba863fc05304ce0b3f40b6b077d115, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6348305746171268929, guid: a8ba863fc05304ce0b3f40b6b077d115, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0000075498824
@@ -81799,6 +81863,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -85274,6 +85342,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -88934,6 +89006,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03224465
       objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.022175912
@@ -91267,6 +91343,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -101191,6 +101271,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 863827389}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: ToggleSettingsShowing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 675310571}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -101203,19 +101295,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: ToggleSettingsShowing
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 863827389}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: ToggleOptionsShowing
         m_Mode: 6
@@ -103448,6 +103528,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -106808,6 +106892,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03224465
       objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.022175912
@@ -108829,10 +108917,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 863827389}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: ResumeGame
-        m_Mode: 1
+        m_MethodName: ToggleJournalShowing
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -108853,10 +108941,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 863827389}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: ToggleJournalShowing
-        m_Mode: 6
+        m_MethodName: ResumeGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -109461,6 +109549,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -118729,6 +118821,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03224465
       objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.022175912
@@ -123341,6 +123437,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03224465
       objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.022175912
@@ -127370,6 +127470,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -135000,7 +135104,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 863827389}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: TogglePauseShowing
         m_Mode: 6
@@ -135024,7 +135128,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 863827389}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: ToggleBriefingShowing
         m_Mode: 6
@@ -143393,6 +143497,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 863827389}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: ToggleBriefingShowing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 2123501722}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -143405,7 +143521,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 863827389}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: TogglePauseShowing
         m_Mode: 6
@@ -143416,18 +143532,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: ToggleBriefingShowing
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1947475110
 MonoBehaviour:
@@ -144372,6 +144476,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 863827389}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: ToggleKeybindsShowing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 675310571}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -144384,19 +144500,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: ToggleKeybindsShowing
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 863827389}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: ToggleOptionsShowing
         m_Mode: 6
@@ -145701,6 +145805,10 @@ PrefabInstance:
     - target: {fileID: 1938205386364077097, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03224465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332830140725461085, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524666792231263, guid: 5a4c67eab82b65509b1fa6e48d591d37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -147489,7 +147597,6 @@ GameObject:
   - component: {fileID: 1987466536}
   - component: {fileID: 1987466539}
   - component: {fileID: 1987466538}
-  - component: {fileID: 1987466537}
   m_Layer: 5
   m_Name: Settings Menu
   m_TagString: Untagged
@@ -147517,74 +147624,6 @@ RectTransform:
   m_AnchoredPosition: {x: -10.000061, y: 146}
   m_SizeDelta: {x: 641.2693, y: 68.7012}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1987466537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987466535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1987466538}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2123501722}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1965072113}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: ResumeGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1987466538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148879,7 +148918,6 @@ GameObject:
   - component: {fileID: 2033815088}
   - component: {fileID: 2033815091}
   - component: {fileID: 2033815090}
-  - component: {fileID: 2033815089}
   m_Layer: 5
   m_Name: Options Menu
   m_TagString: Untagged
@@ -148907,74 +148945,6 @@ RectTransform:
   m_AnchoredPosition: {x: -10.000061, y: 140.99994}
   m_SizeDelta: {x: 641.2693, y: 68.7012}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2033815089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033815087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 2033815090}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2123501722}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1965072113}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: ResumeGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2033815090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155054,6 +155024,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 863827389}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: ToggleSettingsShowing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 675310571}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -155066,19 +155048,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: ToggleSettingsShowing
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 863827389}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
         m_MethodName: ToggleOptionsShowing
         m_Mode: 6
@@ -165215,6 +165185,10 @@ PrefabInstance:
     - target: {fileID: 248315440409308872, guid: 802e2977ca02faf4590e9244176f0c3c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
+      objectReference: {fileID: 863827389}
+    - target: {fileID: 248315440409308872, guid: 802e2977ca02faf4590e9244176f0c3c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ResumeGame
       objectReference: {fileID: 0}
     - target: {fileID: 6761672616205966684, guid: 802e2977ca02faf4590e9244176f0c3c, type: 3}
       propertyPath: m_Pivot.x

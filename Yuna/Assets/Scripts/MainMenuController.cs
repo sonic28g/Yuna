@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private BGMType _bgmType = BGMType.MainMenu;
+    [SerializeField] private SOResetter sOResetter;
 
     private void OnEnable()
     {
@@ -24,6 +25,7 @@ public class MainMenuController : MonoBehaviour
         TryDelete("Enemies");
         TryDelete("NPCs");
         TryDelete("Inspectable");
+        sOResetter.ResetAll();
         ChangeToScene(sceneName);
     }
 
