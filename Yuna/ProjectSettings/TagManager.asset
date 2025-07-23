@@ -15,6 +15,7 @@ TagManager:
   - Tessen
   - BackCollider
   - NPC
+  - Clue
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Yuna/Enemy/EnemyChaseState")]
@@ -69,6 +69,7 @@ public class EnemyChaseState : EnemyState
     {
         if (enemy.PlayerDetection.WasDetected && enemy.PlayerDetection.WasTooClose)
         {
+            Debug.Log("detected");
             _timer = _confirmedTime;
             _phase = ChasePhase.Confirmed;
         }

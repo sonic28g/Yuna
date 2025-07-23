@@ -39,6 +39,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     private Outline[] kanzashiOutlines;
     private Outline[] enemyOutlines;
     private Outline[] guardsOutlines;
+
     private bool _hasAnimator;
 
     public bool isAttacking = false;
@@ -232,7 +233,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             if (outline != null)
                 outline.enabled = active;
         }
-        
+
 
         GameObject[] guardsObjects = GameObject.FindGameObjectsWithTag("Guard");
         guardsOutlines = new Outline[guardsObjects.Length];
@@ -248,6 +249,9 @@ public class ThirdPersonShooterController : MonoBehaviour
             if (outline != null)
                 outline.enabled = active;
         }
+
+        Outline clueOutline = GameObject.FindGameObjectWithTag("Clue").GetComponent<Outline>();
+        clueOutline.enabled = active;
     }
 
 }

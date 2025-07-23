@@ -32,6 +32,7 @@ public class PlayerDetection : MonoBehaviour
     public bool WasDetected { get; private set; } = false;
     public bool WasTooClose { get; private set; } = false;
     public Vector3? HitPoint { get; private set; } = null;
+    private float _cooldownTimer = 0f;
 
 
     private void Awake()
@@ -42,13 +43,13 @@ public class PlayerDetection : MonoBehaviour
     private void OnEnable()
     {
         // Start checking detection
-        StartCoroutine(nameof(CheckDetection));
+        //StartCoroutine(nameof(CheckDetection));
     }
 
     private void OnDisable()
     {
         // Stop checking detection
-        StopCoroutine(nameof(CheckDetection));
+        //StopCoroutine(nameof(CheckDetection));
     }
 
 
@@ -63,6 +64,18 @@ public class PlayerDetection : MonoBehaviour
             yield return new WaitForSeconds(parameters.DetectionCooldown);
         }
     }
+    
+    private void Update()
+    {
+        _cooldownTimer -= Time.deltaTime;
+
+        if (_cooldownTimer <= 0f)
+        {
+            DetectionParameters parameters = CurrentParameters;
+            CheckPlayerDetection(parameters);
+            _cooldownTimer = parameters.DetectionCooldown;
+        }
+    }
 
 
     private void CheckPlayerDetection(DetectionParameters parameters)
@@ -73,8 +86,10 @@ public class PlayerDetection : MonoBehaviour
         bool isDetectable = CanBeDetected(parameters);
 
         bool isDetected = isDetectable && CanSeePlayer(parameters, out hitPoint);
+        Debug.Log(isDetected);
         bool isTooClose = isDetected && PlayerTooClose(parameters, hitPoint);
-        
+        Debug.Log(isTooClose);
+
         UpdateDetectionState(isDetected, isTooClose, hitPoint);
     }
 
@@ -108,7 +123,7 @@ public class PlayerDetection : MonoBehaviour
     {
         return _playerDetectionPoints.InLineOfSight(
             VisionOrigin.position, VisionOrigin.forward,
-            parameters.MaxVisionDistance, _chaseParameters.FieldOfView,
+            parameters.MaxVisionDistance, parameters.FieldOfView,
             out hitPoint
         );
     }
@@ -125,7 +140,9 @@ public class PlayerDetection : MonoBehaviour
 
     private void UpdateDetectionState(bool isDetected, bool isTooClose, Vector3? hitPoint)
     {
-        if (isDetected == WasDetected && isTooClose == WasTooClose && hitPoint == HitPoint) return;
+        if (isDetected == WasDetected && isTooClose == WasTooClose && ApproximatelyEqual(hitPoint, HitPoint))
+            return;
+
 
         // Changed detected or too close or hit point
         WasDetected = isDetected;
@@ -133,6 +150,13 @@ public class PlayerDetection : MonoBehaviour
         HitPoint = hitPoint;
 
         OnDetectionChanged?.Invoke(isDetected, isTooClose, hitPoint);
+    }
+
+    private bool ApproximatelyEqual(Vector3? a, Vector3? b, float tolerance = 0.05f)
+    {
+        if (!a.HasValue && !b.HasValue) return true;
+        if (!a.HasValue || !b.HasValue) return false;
+        return Vector3.Distance(a.Value, b.Value) <= tolerance;
     }
 
 

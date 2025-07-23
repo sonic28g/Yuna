@@ -1200,21 +1200,21 @@ MonoBehaviour:
   _normalParameters:
     <MaxVisionDistance>k__BackingField: 100
     <MaxCloseDistance>k__BackingField: 1.3
-    <FieldOfView>k__BackingField: 157.3
+    <FieldOfView>k__BackingField: 170.6
     <DetectionCooldown>k__BackingField: 0.8
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 1
   _chaseParameters:
     <MaxVisionDistance>k__BackingField: 100
     <MaxCloseDistance>k__BackingField: 1.3
-    <FieldOfView>k__BackingField: 110
+    <FieldOfView>k__BackingField: 150.6
     <DetectionCooldown>k__BackingField: 0.6
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 2
   _searchParameters:
     <MaxVisionDistance>k__BackingField: 100
     <MaxCloseDistance>k__BackingField: 1.3
-    <FieldOfView>k__BackingField: 90
+    <FieldOfView>k__BackingField: 146.3
     <DetectionCooldown>k__BackingField: 1
     <OnlyDetectSuspicious>k__BackingField: 0
     <SafeAreaMode>k__BackingField: 1
@@ -1301,10 +1301,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113069680736261656}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
